@@ -112,7 +112,6 @@
   peak = !git log -1 --format=\"%H\" | tr -d \"\n\" | pbcopy
   most = !git log --since=\"1 year ago\" --pretty=format: --name-only | sort | uniq -c | sort -rg | head -30
   scrub = reset --hard @{upstream}
-  jump = "!$(brew --prefix git)/share/git-core/contrib/git-jump/git-jump"
   #  Create a zip archive of the current HEAD.
   zip = archive -o latest.zip HEAD
 
