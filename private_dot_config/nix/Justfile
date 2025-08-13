@@ -1,0 +1,7 @@
+# List all available commands
+default:
+  just --list
+
+# Apply current macOS configuration
+darwin-rebuild:
+  sudo darwin-rebuild switch --flake ~/.config/nix#simple
