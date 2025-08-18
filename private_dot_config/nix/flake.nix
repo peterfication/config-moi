@@ -14,7 +14,8 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs; [
-        chezmoi
+        age # https://github.com/FiloSottile/age
+        chezmoi # https://www.chezmoi.io
         jjui
         jujutsu
         rclone
