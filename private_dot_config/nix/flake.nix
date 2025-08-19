@@ -55,9 +55,17 @@
         postActivation = {
           text = ''
             echo ""
-            echo "Running chezmoi init ..."
-            sudo -u "$(logname)" env HOME="/Users/$(logname)"  ${pkgs.chezmoi}/bin/chezmoi init --apply "${chezmoiUrl}"
-            echo "Running chezmoi init done"
+            chezmoi_config_file_path="/Users/$(logname)/.config/chezmoi/chezmoi.toml"
+            if [ -f "/Users/$(logname)/.config/chezmoi/chezmoi.toml" ]; then
+              echo "Found chezmoi config file at $chezmoi_config_file_path"
+              echo "Running chezmoi apply ..."
+              ${pkgs.chezmoi}/bin/chezmoi apply
+              echo "Chezmoi apply done"
+            else
+              echo "Running chezmoi init ..."
+              sudo -u "$(logname)" env HOME="/Users/$(logname)"  ${pkgs.chezmoi}/bin/chezmoi init --apply "${chezmoiUrl}"
+              echo "Running chezmoi init done"
+            fi
             echo ""
           '';
         };
