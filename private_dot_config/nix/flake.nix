@@ -16,10 +16,11 @@
       environment.systemPackages = with pkgs; [
         age # https://github.com/FiloSottile/age
         chezmoi # https://www.chezmoi.io
-        jjui
-        jujutsu
-        rclone
-        sshs
+        jjui # https://github.com/idursun/jjui
+        jujutsu # https://jj-vcs.github.io/jj/latest/
+        lazygit # https://github.com/jesseduffield/lazygit
+        rclone # https://rclone.org/
+        sshs # https://github.com/quantumsheep/sshs
         vim
       ];
 
