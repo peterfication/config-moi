@@ -6,14 +6,17 @@ git:
     pager: delta --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
     # externalDiffCommand: difft --color=always
   overrideGpg: true # Ignore GPG errors as I'm using a GPG agent
+
 os:
   editPreset: nvim-remote
   shellFunctionsFile: ~/.config/lazygit/env.sh
+
 keybinding:
   universal:
     nextTab: "<c-n>"
   files:
     openStatusFilter: "<c-p>"
+
 gui:
   theme:
     selectedRangeBgColor:
@@ -26,6 +29,9 @@ gui:
     'staging': '#11aaff'
     'integration': '#11aaff'
   showIcons: true
+
+promptToReturnFromSubprocess: false # removes "press enter to return to lazygit" popup
+
 customCommands:
   # From https://github.com/jesseduffield/lazygit/issues/2057#issuecomment-1625798497
   # - key: 'C'
