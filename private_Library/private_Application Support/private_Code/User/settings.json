@@ -1,3 +1,4 @@
 {
     "workbench.colorTheme": "Default Dark Modern",
+    "lazygit-vscode.configPath": "~/.vscode/lazygit.yml",
 }
