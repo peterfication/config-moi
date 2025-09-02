@@ -8,7 +8,7 @@ git:
   overrideGpg: true # Ignore GPG errors as I'm using a GPG agent
 os:
   editPreset: nvim-remote
-  shellFunctionsFile: ~/config/lazygit_env.sh
+  shellFunctionsFile: ~/.config/lazygit/env.sh
 keybinding:
   universal:
     nextTab: "<c-n>"
