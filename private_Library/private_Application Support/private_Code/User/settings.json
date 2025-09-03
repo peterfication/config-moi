@@ -1,5 +1,7 @@
 {
-    "workbench.colorTheme": "Default Dark Modern",
-    "lazygit-vscode.configPath": "~/.vscode/lazygit.yml",
-    "telemetry.telemetryLevel": "off",
+  "containers.containerClient": "com.microsoft.visualstudio.containers.docker",
+  "containers.orchestratorClient": "com.microsoft.visualstudio.orchestrators.dockercompose",
+  "lazygit-vscode.configPath": "~/.vscode/lazygit.yml",
+  "telemetry.telemetryLevel": "off",
+  "workbench.colorTheme": "Default Dark Modern"
 }

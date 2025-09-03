@@ -1,4 +1,5 @@
 os:
   editPreset: "vscode"
+  shellFunctionsFile: ~/.vscode/lazygit_env.sh
 
 promptToReturnFromSubprocess: false # removes "press enter to return to lazygit" popup
