@@ -3,5 +3,10 @@ use = "yazi-rs/plugins:git"
 rev = "d7588f6"
 hash = "63b6c222bf2103b3023389dde5e2ecfe"
 
+[[plugin.deps]]
+use = "yazi-rs/plugins:jump-to-char"
+rev = "d7588f6"
+hash = "d2f04875bbd4ed3dd5696e8c4b094fde"
+
 [flavor]
 deps = []

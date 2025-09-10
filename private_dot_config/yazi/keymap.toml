@@ -1,3 +1,4 @@
+# Plugins: git
 [[mgr.prepend_keymap]]
 on = "<C-p>"
 run = 'shell -- qlmanage -p "$@"'
@@ -7,3 +8,9 @@ desc = "Preview the selected file(s) in Quick Look"
 on = "<C-o>"
 run = "shell --confirm 'open .'"
 desc = "Open the current directory in Finder"
+
+# Plugins: jump-to-char
+[[mgr.prepend_keymap]]
+on   = "f"
+run  = "plugin jump-to-char"
+desc = "Jump to char"
