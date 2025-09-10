@@ -1,0 +1,28 @@
+# Plugins: git
+[[mgr.prepend_keymap]]
+on = "<C-p>"
+run = 'shell -- qlmanage -p "$@"'
+desc = "Preview the selected file(s) in Quick Look"
+
+[[mgr.prepend_keymap]]
+on = "<C-o>"
+run = "shell --confirm 'open .'"
+desc = "Open the current directory in Finder"
+
+# Plugins: fg.yazi (fzf rg)
+[[mgr.prepend_keymap]]
+on = [ "f", "s" ]
+run = 'plugin fazif "../../scripts/faziffd.sh"'
+desc = "Find files/directories with fd and fzf"
+
+# Plugins: jump-to-char
+[[mgr.prepend_keymap]]
+on   = ["f", "f"]
+run  = "plugin jump-to-char"
+desc = "Jump to char"
+
+# Plugins: toggle-pane
+[[mgr.prepend_keymap]]
+on   = "T"
+run  = "plugin toggle-pane max-preview"
+desc = "Maximize or restore the preview pane"
