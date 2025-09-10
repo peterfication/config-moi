@@ -14,3 +14,9 @@ desc = "Open the current directory in Finder"
 on   = "f"
 run  = "plugin jump-to-char"
 desc = "Jump to char"
+
+# Plugins: toggle-pane
+[[mgr.prepend_keymap]]
+on   = "T"
+run  = "plugin toggle-pane max-preview"
+desc = "Maximize or restore the preview pane"

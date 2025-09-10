@@ -8,5 +8,10 @@ use = "yazi-rs/plugins:jump-to-char"
 rev = "d7588f6"
 hash = "d2f04875bbd4ed3dd5696e8c4b094fde"
 
+[[plugin.deps]]
+use = "yazi-rs/plugins:toggle-pane"
+rev = "d7588f6"
+hash = "d6f60c24d8c0cf57a855bf46115b2502"
+
 [flavor]
 deps = []
