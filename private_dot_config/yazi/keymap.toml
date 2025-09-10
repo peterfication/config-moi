@@ -12,7 +12,7 @@ desc = "Open the current directory in Finder"
 # Plugins: fg.yazi (fzf rg)
 [[mgr.prepend_keymap]]
 on = [ "f", "s" ]
-run = 'plugin fazif "../../scripts/faziffd.sh"'
+run = 'plugin fazif "../../scripts/fazif_fd_fzf.sh"'
 desc = "Find files/directories with fd and fzf"
 
 # Plugins: jump-to-char
