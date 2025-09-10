@@ -18,5 +18,10 @@ use = "Shallow-Seek/fazif"
 rev = "7b6da3f"
 hash = "8c164e8a1452f04ba0eccd8af4eaa91a"
 
+[[plugin.deps]]
+use = "wylie102/duckdb"
+rev = "3f8c863"
+hash = "87b9233a74325e95011670ed20bbd0d4"
+
 [flavor]
 deps = []
