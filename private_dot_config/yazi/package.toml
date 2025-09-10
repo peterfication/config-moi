@@ -13,5 +13,10 @@ use = "yazi-rs/plugins:toggle-pane"
 rev = "d7588f6"
 hash = "d6f60c24d8c0cf57a855bf46115b2502"
 
+[[plugin.deps]]
+use = "Shallow-Seek/fazif"
+rev = "7b6da3f"
+hash = "8c164e8a1452f04ba0eccd8af4eaa91a"
+
 [flavor]
 deps = []
