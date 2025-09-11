@@ -3,9 +3,6 @@ prepend_keymap = [
   { on = "<C-p>", run = 'shell -- qlmanage -p "$@"', desc = "Preview the selected file(s) in Quick Look" },
   { on = "<C-o>", run = "shell --confirm 'open .'", desc = "Open the current directory in Finder" },
 
-  # Plugin: fg.yazi (fzf rg)
-  { on = [ "f", "s" ], run = 'plugin fazif "../../scripts/fazif_fd_fzf.sh"', desc = "Find files/directories with fd and fzf" },
-
   # Plugin: smart-filter
   { on = "F", run = "plugin smart-filter", desc = "Smart filter" },
 
