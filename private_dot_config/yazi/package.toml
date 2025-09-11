@@ -14,11 +14,6 @@ rev = "d7588f6"
 hash = "d6f60c24d8c0cf57a855bf46115b2502"
 
 [[plugin.deps]]
-use = "Shallow-Seek/fazif"
-rev = "7b6da3f"
-hash = "8c164e8a1452f04ba0eccd8af4eaa91a"
-
-[[plugin.deps]]
 use = "wylie102/duckdb"
 rev = "3f8c863"
 hash = "87b9233a74325e95011670ed20bbd0d4"
@@ -27,6 +22,11 @@ hash = "87b9233a74325e95011670ed20bbd0d4"
 use = "yazi-rs/plugins:smart-filter"
 rev = "d7588f6"
 hash = "e56b7abf3c06e8ce496eadcca168c093"
+
+[[plugin.deps]]
+use = "stelcodes/bunny"
+rev = "bd8a767"
+hash = "5dded0f0f40142f99dda23aedd76b2bf"
 
 [flavor]
 deps = []
