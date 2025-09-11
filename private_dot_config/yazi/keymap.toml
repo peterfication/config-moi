@@ -1,46 +1,20 @@
-# Plugins: git
-[[mgr.prepend_keymap]]
-on = "<C-p>"
-run = 'shell -- qlmanage -p "$@"'
-desc = "Preview the selected file(s) in Quick Look"
+[mgr]
+prepend_keymap = [
+  { on = "<C-p>", run = 'shell -- qlmanage -p "$@"', desc = "Preview the selected file(s) in Quick Look" },
+  { on = "<C-o>", run = "shell --confirm 'open .'", desc = "Open the current directory in Finder" },
 
-[[mgr.prepend_keymap]]
-on = "<C-o>"
-run = "shell --confirm 'open .'"
-desc = "Open the current directory in Finder"
+  # Plugin: fg.yazi (fzf rg)
+  { on = [ "f", "s" ], run = 'plugin fazif "../../scripts/fazif_fd_fzf.sh"', desc = "Find files/directories with fd and fzf" },
 
-# Plugins: fg.yazi (fzf rg)
-[[mgr.prepend_keymap]]
-on = [ "f", "s" ]
-run = 'plugin fazif "../../scripts/fazif_fd_fzf.sh"'
-desc = "Find files/directories with fd and fzf"
+  # Plugin: jump-to-char
+  { on = ["f", "f"], run = "plugin jump-to-char", desc = "Jump to char" },
 
-# Plugins: jump-to-char
-[[mgr.prepend_keymap]]
-on   = ["f", "f"]
-run  = "plugin jump-to-char"
-desc = "Jump to char"
+  # Plugin: toggle-pane
+  { on = "T", run = "plugin toggle-pane max-preview", desc = "Maximize or restore the preview pane" },
 
-# Plugins: toggle-pane
-[[mgr.prepend_keymap]]
-on   = "T"
-run  = "plugin toggle-pane max-preview"
-desc = "Maximize or restore the preview pane"
-
-# Plugins: duckdb
-[[mgr.prepend_keymap]]
-on = "H"
-run = "plugin duckdb -1"
-desc = "Scroll one column to the left"
-[[mgr.prepend_keymap]]
-on = "L"
-run = "plugin duckdb +1"
-desc = "Scroll one column to the right"
-[[mgr.prepend_keymap]]
-on = ["g", "o"]
-run = "plugin duckdb -open"
-desc = "open with duckdb"
-[[mgr.prepend_keymap]]
-on = ["g", "u"]
-run = "plugin duckdb -ui"
-desc = "open with duckdb ui"
+  # Plugin: duckdb
+  { on = "H", run = "plugin duckdb -1", desc = "Scroll one column to the left" },
+  { on = "L", run = "plugin duckdb +1", desc = "Scroll one column to the right" },
+  { on = ["g", "o"], run = "plugin duckdb -open", desc = "open with duckdb" },
+  { on = ["g", "u"], run = "plugin duckdb -ui", desc = "open with duckdb ui" }
+]

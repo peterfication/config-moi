@@ -1,17 +1,11 @@
 [mgr]
 ratio = [1, 2, 5]
 
-[[plugin.prepend_fetchers]]
-id   = "git"
-name = "*"
-run  = "git"
-
-[[plugin.prepend_fetchers]]
-id   = "git"
-name = "*/"
-run  = "git"
-
 [plugin]
+prepend_fetchers = [
+  { id   = "git", name = "*", run  = "git" },
+  { id   = "git", name = "*/", run  = "git" }
+]
 prepend_previewers = [
   { name = "*.csv", run = "duckdb" },
   { name = "*.tsv", run = "duckdb" },
