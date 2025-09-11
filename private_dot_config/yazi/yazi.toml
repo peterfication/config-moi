@@ -5,7 +5,7 @@ show_hidden = true
 [plugin]
 prepend_fetchers = [
   { id   = "git", name = "*", run  = "git" },
-  { id   = "git", name = "*/", run  = "git" }
+  { id   = "git", name = "*/", run  = "git" },
 ]
 prepend_previewers = [
   { name = "*.csv", run = "duckdb" },
@@ -15,7 +15,8 @@ prepend_previewers = [
   { name = "*.txt", run = "duckdb" },
   { name = "*.xlsx", run = "duckdb" },
   { name = "*.db", run = "duckdb" },
-  { name = "*.duckdb", run = "duckdb" }
+  { name = "*.duckdb", run = "duckdb" },
+  { name = "*.npy", run = 'piper -- uv run ~/.config/scripts/npy_show.py $1' },
 ]
 prepend_preloaders = [
   { name = "*.csv", run = "duckdb", multi = false },
@@ -23,5 +24,5 @@ prepend_preloaders = [
   { name = "*.json", run = "duckdb", multi = false },
   { name = "*.parquet", run = "duckdb", multi = false },
   { name = "*.txt", run = "duckdb", multi = false },
-  { name = "*.xlsx", run = "duckdb", multi = false }
+  { name = "*.xlsx", run = "duckdb", multi = false },
 ]

@@ -28,5 +28,10 @@ use = "stelcodes/bunny"
 rev = "bd8a767"
 hash = "5dded0f0f40142f99dda23aedd76b2bf"
 
+[[plugin.deps]]
+use = "yazi-rs/plugins:piper"
+rev = "d7588f6"
+hash = "2143a53182dbbe935a1abd1623424aa5"
+
 [flavor]
 deps = []
