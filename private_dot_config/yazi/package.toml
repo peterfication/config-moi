@@ -23,5 +23,10 @@ use = "yazi-rs/plugins:smart-filter"
 rev = "d7588f6"
 hash = "e56b7abf3c06e8ce496eadcca168c093"
 
+[[plugin.deps]]
+use = "stelcodes/bunny"
+rev = "bd8a767"
+hash = "5dded0f0f40142f99dda23aedd76b2bf"
+
 [flavor]
 deps = []
