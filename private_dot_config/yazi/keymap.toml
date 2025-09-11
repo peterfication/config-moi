@@ -6,6 +6,9 @@ prepend_keymap = [
   # Plugin: fg.yazi (fzf rg)
   { on = [ "f", "s" ], run = 'plugin fazif "../../scripts/fazif_fd_fzf.sh"', desc = "Find files/directories with fd and fzf" },
 
+  # Plugin: smart-filter
+  { on = "F", run = "plugin smart-filter", desc = "Smart filter" },
+
   # Plugin: jump-to-char
   { on = ["f", "f"], run = "plugin jump-to-char", desc = "Jump to char" },
 
