@@ -40,25 +40,27 @@ require("yatline"):setup({
 	show_background = false,
 
 	header_line = {
-		left = {
-			section_a = {
-				{ type = "coloreds", custom = false, name = "githead" },
-			},
-			section_b = {},
-			section_c = {},
-		},
-		right = {
-			section_a = {
-				{ type = "line", custom = false, name = "tabs", params = { "right" } },
-			},
-			section_b = {},
-			section_c = {},
-		},
+		-- Empty, so that starship is not overwritten
+		-- left = {
+		-- 	section_a = {
+		-- 		{ type = "coloreds", custom = false, name = "githead" },
+		-- 	},
+		-- 	section_b = {},
+		-- 	section_c = {},
+		-- },
+		-- right = {
+		-- 	section_a = {
+		-- 		{ type = "line", custom = false, name = "tabs", params = { "right" } },
+		-- 	},
+		-- 	section_b = {},
+		-- 	section_c = {},
+		-- },
 	},
 
 	status_line = {
 		left = {
 			section_a = {
+				{ type = "line", custom = false, name = "tabs", params = { "left" } },
 				{ type = "string", custom = false, name = "tab_mode" },
 			},
 			section_b = {
@@ -83,4 +85,6 @@ require("yatline"):setup({
 		},
 	},
 })
-require("yatline-githead"):setup()
+require("starship"):setup({
+	config_file = "~/.config/yazi/starship.toml",
+})

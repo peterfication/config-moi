@@ -19,11 +19,6 @@ rev = "3f8c863"
 hash = "87b9233a74325e95011670ed20bbd0d4"
 
 [[plugin.deps]]
-use = "yazi-rs/plugins:smart-filter"
-rev = "d7588f6"
-hash = "e56b7abf3c06e8ce496eadcca168c093"
-
-[[plugin.deps]]
 use = "stelcodes/bunny"
 rev = "bd8a767"
 hash = "5dded0f0f40142f99dda23aedd76b2bf"
@@ -42,6 +37,11 @@ hash = "981acbe9b758b1af3a8154c932bb936d"
 use = "imsi32/yatline-githead"
 rev = "f8f969e"
 hash = "4d441b38138ce6492a4e10fa349fd65"
+
+[[plugin.deps]]
+use = "Rolv-Apneseth/starship"
+rev = "a63550b"
+hash = "c2021386289a0cbb3e152a052f67c177"
 
 [flavor]
 deps = []
