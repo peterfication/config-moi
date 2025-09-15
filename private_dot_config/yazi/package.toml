@@ -33,5 +33,15 @@ use = "yazi-rs/plugins:piper"
 rev = "d7588f6"
 hash = "2143a53182dbbe935a1abd1623424aa5"
 
+[[plugin.deps]]
+use = "imsi32/yatline"
+rev = "88bd1c5"
+hash = "981acbe9b758b1af3a8154c932bb936d"
+
+[[plugin.deps]]
+use = "imsi32/yatline-githead"
+rev = "f8f969e"
+hash = "4d441b38138ce6492a4e10fa349fd65"
+
 [flavor]
 deps = []
