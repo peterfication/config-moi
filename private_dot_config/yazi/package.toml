@@ -38,5 +38,10 @@ use = "imsi32/yatline-githead"
 rev = "f8f969e"
 hash = "4d441b38138ce6492a4e10fa349fd65"
 
+[[plugin.deps]]
+use = "Rolv-Apneseth/starship"
+rev = "a63550b"
+hash = "c2021386289a0cbb3e152a052f67c177"
+
 [flavor]
 deps = []
