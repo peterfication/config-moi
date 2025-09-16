@@ -27,6 +27,9 @@ prepend_keymap = [
 
   # Plugin: lazygit
   { on = ["g", "l"], run = "plugin lazygit", desc = "Open Lazygit" },
+
+  # Plugin: what-size
+  { on = ["p", "s"], run = "plugin what-size", desc = "Open what-size" },
 ]
 
 [input]

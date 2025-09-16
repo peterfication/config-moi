@@ -43,5 +43,10 @@ use = "Lil-Dank/lazygit"
 rev = "8f37dc5"
 hash = "ee71543790f0ce3951161045a3787abd"
 
+[[plugin.deps]]
+use = "pirafrank/what-size"
+rev = "d896656"
+hash = "62251f94eb67648d42cdfcfb8be0fad2"
+
 [flavor]
 deps = []
