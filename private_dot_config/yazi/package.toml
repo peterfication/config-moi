@@ -14,9 +14,9 @@ rev = "d7588f6"
 hash = "d6f60c24d8c0cf57a855bf46115b2502"
 
 [[plugin.deps]]
-use = "wylie102/duckdb"
-rev = "3f8c863"
-hash = "87b9233a74325e95011670ed20bbd0d4"
+use = "peterfication/duckdb"
+rev = "cb33131"
+hash = "cbe2e67a6c353aaca2fca5371a19027d"
 
 [[plugin.deps]]
 use = "stelcodes/bunny"
