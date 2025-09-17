@@ -3,6 +3,7 @@ default:
 
 # Chezmoi diff
 diff:
+  just vscode-extensions-pretty
   chezmoi diff
 
 # Chezmoi apply
@@ -16,6 +17,10 @@ vscode-extensions-add:
 # Apply the changes to VSCode extensions.json
 vscode-extensions-apply:
   chezmoi apply ~/.vscode/extensions/extensions.json
+
+# Format the VSCode extensions.json file so chezmoi diff is more meaningfull
+vscode-extensions-pretty:
+  prettier -w ~/.vscode/extensions/extensions.json
 
 # Re-add yazi package.toml file to chezmoi.
 yazi-add-package-toml:
