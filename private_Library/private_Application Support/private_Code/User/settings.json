@@ -4,6 +4,7 @@
   "lazygit-vscode.configPath": "~/.vscode/lazygit.yml",
   "telemetry.telemetryLevel": "off",
   "workbench.colorTheme": "Default Dark Modern",
+  "workbench.startupEditor": "none",
   "terminal.integrated.env.osx": {
     "GIT_EDITOR": "code --wait"
   }
