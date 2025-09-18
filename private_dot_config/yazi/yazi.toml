@@ -8,14 +8,15 @@ prepend_fetchers = [
   { id   = "git", name = "*/", run  = "git" },
 ]
 prepend_previewers = [
-  { name = "*.csv", run = "duckdb" },
-  { name = "*.tsv", run = "duckdb" },
-  { name = "*.json", run = "duckdb" },
+  { name = "*.csv", run = "mux duckdb code" },
+  { name = "*.tsv", run = "mux duckdb code" },
+  { name = "*.json", run = "mux duckdb code" },
   { name = "*.parquet", run = "duckdb" },
   { name = "*.txt", run = "duckdb" },
   { name = "*.xlsx", run = "duckdb" },
   { name = "*.db", run = "duckdb" },
   { name = "*.duckdb", run = "duckdb" },
+
   { name = "*.npy", run = 'piper -- num-peek $1' },
 ]
 prepend_preloaders = [
