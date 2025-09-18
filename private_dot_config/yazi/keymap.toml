@@ -30,6 +30,9 @@ prepend_keymap = [
 
   # Plugin: what-size
   { on = ["p", "s"], run = "plugin what-size", desc = "Open what-size" },
+
+  # Plugin: mux
+  { on = "P", run = "plugin mux next", desc = "Cycle through mux previewers" },
 ]
 
 [input]
