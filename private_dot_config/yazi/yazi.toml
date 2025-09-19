@@ -8,6 +8,7 @@ prepend_fetchers = [
   { id   = "git", name = "*/", run  = "git" },
 ]
 prepend_previewers = [
+  { name = "*/", run = "mux eza eza_tree" },
   { name = "*.csv", run = "mux duckdb code" },
   { name = "*.tsv", run = "mux duckdb code" },
   { name = "*.json", run = "mux duckdb code" },
