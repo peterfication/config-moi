@@ -88,3 +88,21 @@ require("yatline"):setup({
 require("starship"):setup({
 	config_file = "~/.config/yazi/starship.toml",
 })
+
+require("mux"):setup({
+  notify_on_switch = true,
+	aliases = {
+		eza = {
+			previewer = "piper",
+			args = {
+				"eza -a --oneline --color=always --icons=always --group-directories-first --no-quotes $1",
+			},
+		},
+		eza_tree = {
+			previewer = "piper",
+			args = {
+				"eza -T -a --color=always --icons=always --group-directories-first --no-quotes $1",
+			},
+		},
+	},
+})
