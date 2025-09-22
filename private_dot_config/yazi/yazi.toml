@@ -18,7 +18,7 @@ prepend_previewers = [
   { name = "*.db", run = "duckdb" },
   { name = "*.duckdb", run = "duckdb" },
 
-  { name = "*.npy", run = 'piper -- num-peek $1' },
+  { name = "*.npy", run = 'piper -- num-peek "$1"' },
 ]
 prepend_preloaders = [
   { name = "*.csv", run = "duckdb", multi = false },
