@@ -48,5 +48,10 @@ use = "wylie102/duckdb"
 rev = "3f8c863"
 hash = "87b9233a74325e95011670ed20bbd0d4"
 
+[[plugin.deps]]
+use = "yaqihou/nav-parent-panel"
+rev = "e72b944"
+hash = "541c53f04c184de6269a87923a4500ec"
+
 [flavor]
 deps = []

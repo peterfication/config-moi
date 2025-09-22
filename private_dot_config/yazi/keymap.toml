@@ -33,6 +33,10 @@ prepend_keymap = [
 
   # Plugin: mux
   { on = "P", run = "plugin mux next", desc = "Cycle through mux previewers" },
+
+  # Plugin: https://github.com/yaqihou/nav-parent-panel.yazi
+  { on = "<C-k>", run = "plugin nav-parent-panel prev", desc = "Go to previous sibling directory" },
+  { on = "<C-j>", run = "plugin nav-parent-panel next", desc = "Go to next sibling directory" },
 ]
 
 [input]
