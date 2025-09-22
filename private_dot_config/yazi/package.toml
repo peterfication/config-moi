@@ -53,5 +53,10 @@ use = "yaqihou/nav-parent-panel"
 rev = "e72b944"
 hash = "541c53f04c184de6269a87923a4500ec"
 
+[[plugin.deps]]
+use = "peterfication/mux"
+rev = "235994e"
+hash = "726304f97ad9e1b87544d966ad86d0ce"
+
 [flavor]
 deps = []
