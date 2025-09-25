@@ -1,27 +1,27 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "d7588f6"
+rev = "d1c8baa"
 hash = "63b6c222bf2103b3023389dde5e2ecfe"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:jump-to-char"
-rev = "d7588f6"
-hash = "d2f04875bbd4ed3dd5696e8c4b094fde"
+rev = "d1c8baa"
+hash = "ce67445ebb1bf3d97b8e44f50904b2c5"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "d7588f6"
-hash = "d6f60c24d8c0cf57a855bf46115b2502"
+rev = "d1c8baa"
+hash = "8a7c58225816a163a6e8730c0adafbc8"
 
 [[plugin.deps]]
 use = "stelcodes/bunny"
-rev = "bd8a767"
-hash = "5dded0f0f40142f99dda23aedd76b2bf"
+rev = "7137a44"
+hash = "58bfa473bcac8574400e573787954512"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:piper"
-rev = "d7588f6"
-hash = "2143a53182dbbe935a1abd1623424aa5"
+rev = "d1c8baa"
+hash = "a20327710c3a8d37ee0972128dcb6a31"
 
 [[plugin.deps]]
 use = "imsi32/yatline"
@@ -55,8 +55,8 @@ hash = "541c53f04c184de6269a87923a4500ec"
 
 [[plugin.deps]]
 use = "peterfication/mux"
-rev = "235994e"
-hash = "726304f97ad9e1b87544d966ad86d0ce"
+rev = "ca7163f"
+hash = "16e1d204e2e913dba1fcf8dc73ea68a6"
 
 [flavor]
 deps = []
