@@ -38,3 +38,7 @@ vscode-extensions-pretty:
 # Re-add yazi package.toml file to chezmoi.
 yazi-add-package-toml:
    chezmoi add ~/.config/yazi/package.toml
+
+# Upgrade yazi packages in package.toml file
+yazi-upgrade:
+  ya pkg upgrade
