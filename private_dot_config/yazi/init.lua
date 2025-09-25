@@ -93,16 +93,28 @@ require("mux"):setup({
   notify_on_switch = true,
   remember_per_file_suffix = true,
 	aliases = {
-		eza = {
+		eza_tree_1 = {
 			previewer = "piper",
 			args = {
-				'eza -a --oneline --color=always --icons=always --group-directories-first --no-quotes "$1"',
+				'cd "$1" && LS_COLORS="ex=32" eza -lbF --tree --level 1 --color=always --icons=always --group-directories-first --no-quotes .',
 			},
 		},
-		eza_tree = {
+		eza_tree_2 = {
 			previewer = "piper",
 			args = {
-				'eza -T -a --color=always --icons=always --group-directories-first --no-quotes "$1"',
+				'cd "$1" && LS_COLORS="ex=32" eza -lbF --tree --level 2 --color=always --icons=always --group-directories-first --no-quotes .',
+			},
+		},
+		eza_tree_3 = {
+			previewer = "piper",
+			args = {
+				'cd "$1" && LS_COLORS="ex=32" eza -lbF --tree --level 3 --color=always --icons=always --group-directories-first --no-quotes .',
+			},
+		},
+		eza_tree_4 = {
+			previewer = "piper",
+			args = {
+				'cd "$1" && LS_COLORS="ex=32" eza -lbF --tree --level 4 --color=always --icons=always --group-directories-first --no-quotes .',
 			},
 		},
 	},
