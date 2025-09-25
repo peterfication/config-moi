@@ -91,6 +91,7 @@ require("starship"):setup({
 
 require("mux"):setup({
   notify_on_switch = true,
+  remember_per_file_suffix = true,
 	aliases = {
 		eza = {
 			previewer = "piper",

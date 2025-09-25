@@ -6,9 +6,22 @@ diff:
   just vscode-extensions-pretty
   chezmoi diff
 
+# Reverse Chezmoi diff (= what needs to moved to chemzmoi)
+diff-reverse:
+  just vscode-extensions-pretty
+  chezmoi diff --reverse
+
 # Chezmoi apply
 apply:
-  chezmoi apply
+  chezmoi apply --interactive
+
+# Custom apply reverse: Apply all changes from the home directory to chezmoi
+apply-reverse:
+  chezmoi status --path-style absolute | grep '/Users' | awk '{print $2}' | xargs -I {} chezmoi add --prompt {}
+
+# Chezmoi status
+status:
+  chezmoi status
 
 # Re-add the VSCode extensions.json (See script for more details)
 vscode-extensions-add:
