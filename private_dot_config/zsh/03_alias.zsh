@@ -21,13 +21,6 @@ alias clear-real="clear && printf '\e[3J'"
 
 # Inspired by https://github.com/jlevy/the-art-of-command-line
 alias explain="~/config/zsh/other/explain.sh"
-cheat() {
-  ~/config/zsh/other/cheat.sh $1
-}
-cheatl() {
-  ~/config/zsh/other/cheat.sh $1 | less
-}
-compdef cheatl=cheat
 
 # lazygit() {
 #   config_file="$HOME/.config/lazygit/config.yml"
