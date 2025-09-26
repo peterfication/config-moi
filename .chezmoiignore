@@ -4,3 +4,4 @@ Justfile
 .vscode/extensions/extensions_add.sh
 docs
 other
+scripts

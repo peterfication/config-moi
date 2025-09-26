@@ -1,0 +1,2 @@
+url,archived,default_branch,last_timestamp_iso,days_since_last_activity,stale_by_threshold,status
+https://github.com/neovim/neovim,False,master,2025-09-26T05:10:24Z,0,False,ok
