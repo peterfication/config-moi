@@ -22,19 +22,6 @@ alias clear-real="clear && printf '\e[3J'"
 # Inspired by https://github.com/jlevy/the-art-of-command-line
 alias explain="~/config/zsh/other/explain.sh"
 
-# lazygit() {
-#   config_file="$HOME/.config/lazygit/config.yml"
-
-#   # If there is a .lazygit.yml file in the current Git repository root,
-#   # use it as well.
-#   gitroot=$(git rev-parse --show-toplevel)
-#   if [ -f "$gitroot/.lazygit.yml" ]; then
-#     config_file="$config_file,$gitroot/.lazygit.yml"
-#   fi
-
-#   command lazygit --use-config-file="$config_file"
-# }
-
 alias sqlite='sqlite3'
 sqlite-csv-viewer() {
   sqlite3 -column :memory: ".import --csv $1 tmp" 'select * from tmp;' | bat
