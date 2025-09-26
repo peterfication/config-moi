@@ -28,7 +28,6 @@ brew 'bash-completion'
 brew 'bat' # cat/less replacement written in Rust
 brew 'borgbackup'
 brew 'bottom'
-brew 'broot'
 brew 'btop'
 brew 'catimg' # Image preview in the terminal
 brew 'cdparanoia'
