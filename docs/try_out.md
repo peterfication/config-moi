@@ -3,3 +3,4 @@
 - https://github.com/FelixKratz/SketchyBar
 - https://github.com/tinted-theming/tinty
 - https://github.com/gpakosz/.tmux
+- https://github.com/chubin/cheat.sh
