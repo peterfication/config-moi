@@ -1,0 +1,21 @@
+Include ~/.colima/ssh_config
+Include ~/.ssh/config.local
+
+# See https://gist.github.com/Tamal/1cc77f88ef3e900aeae65f0e5e504794
+Host github.com
+  Hostname ssh.github.com
+  Port 443
+
+Host *
+    UseKeychain yes
+    AddKeysToAgent yes
+    IdentityFile ~/.ssh/id_rsa
+
+# Mounting a remote directory using rclone
+# mkdir -p ~/tmp/ssh_mount && rclone nfsmount <remote>:/home/user ~/tmp/ssh_mount
+#
+# Mounting a directory using sshfs
+# mkdir -p ~/tmp/ssh_mount && sshfs user@host:/home/user ~/tmp/ssh_mount
+# mkdir -p ~/tmp/ssh_mount && sshfs <SSH Host>:/home/user ~/tmp/ssh_mount
+# # Do some work
+# umount ~/tmp/ssh_mount
