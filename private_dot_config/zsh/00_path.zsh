@@ -19,7 +19,5 @@ export PATH="$(brew --prefix)/opt/curl/bin:$PATH"
 # Use homebrew gnu grep
 export PATH="$(brew --prefix)/opt/grep/libexec/gnubin:$PATH"
 
-export PATH="$HOME/config/bin:$PATH"
 export PATH=$HOME"/.local/share/neovim/bin:$PATH"
-
 export PATH=$HOME"/.local/bin:$PATH"
