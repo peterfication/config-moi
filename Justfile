@@ -42,3 +42,7 @@ yazi-add-package-toml:
 # Upgrade yazi packages in package.toml file
 yazi-upgrade:
   ya pkg upgrade
+
+# Check if there are outdated repositories in repos.txt
+repos-check:
+  GITHUB_TOKEN="$(gh auth token)" uv run ./scripts/check_repos_graphql.py repos.txt repo_activity.csv --threshold-days 365 --batch-size 50
