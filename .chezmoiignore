@@ -5,3 +5,5 @@ Justfile
 docs
 other
 scripts
+repo_activity.csv
+repos.txt
