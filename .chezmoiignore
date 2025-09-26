@@ -2,3 +2,4 @@ README.md
 **/*/README.md
 Justfile
 .vscode/extensions/extensions_add.sh
+docs
