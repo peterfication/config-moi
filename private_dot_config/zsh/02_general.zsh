@@ -7,7 +7,7 @@ export VISUAL="nvim"
 export EDITOR="nvim"
 # alias nvim="~/.local/share/neovim/bin/nvim"
 alias e=nvim
-alias vim=nvim
+alias n=nvim
 
 # setopt shwordsplit
 #
