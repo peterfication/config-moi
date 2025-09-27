@@ -16,9 +16,9 @@ fi
 function tmux_new_with_name() {
   for TS_DIR in $1; do
     DIR_NAME=`echo $TS_DIR | grep -o "[a-zA-Z0-9_.-]*$" | sed -r 's/[.]+/-/g'`
-    echo "Create session '${DIR_NAME}' with window 'vim' and folder '${TS_DIR}'"
-    eval "tmux new-session -d -c ${TS_DIR} -s ${DIR_NAME} -n vim"
-    eval "tmux send-keys -t 1.0 vim Enter"
+    echo "Create session '${DIR_NAME}' with window 'nvim' and folder '${TS_DIR}'"
+    eval "tmux new-session -d -c ${TS_DIR} -s ${DIR_NAME} -n nvim"
+    eval "tmux send-keys -t 1.0 nvim Enter"
 
     # echo "Split window 'console' in session '${DIR_NAME}'"
     # eval "tmux split-window -h -t ${DIR_NAME} -c ${TS_DIR}"
@@ -26,7 +26,7 @@ function tmux_new_with_name() {
     # echo "Create window 'console' in session '${DIR_NAME}' with folder '${TS_DIR}'"
     # eval "tm new-window -t ${DIR_NAME}: -c ${TS_DIR} -n console"
 
-    # Show vim window
+    # Show nvim window
     # eval "tm next-window"
   done
 }
@@ -46,7 +46,7 @@ function ts_from_arg() {
 
 function tss() {
   tmux split-pane -h
-  tmux send-keys -t 1.0 vim Enter
+  tmux send-keys -t 1.0 nvim Enter
   tmux split-pane -d -v
 }
 

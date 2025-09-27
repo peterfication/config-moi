@@ -28,7 +28,7 @@
         # Run darwin-rebuild from the nix config directory
         nix-rebuild = "(cd ~/.config/nix && just darwin-rebuild)";
         # Open vim with the chezmoi config
-        conf = " cd $(chezmoi source-path) && vim";
+        conf = " cd $(chezmoi source-path) && nvim";
       };
 
       programs.zsh.enableCompletion = false;
@@ -59,7 +59,7 @@
           text = ''
             echo ""
             chezmoi_config_file_path="/Users/$(logname)/.config/chezmoi/chezmoi.toml"
-            if [ -f "/Users/$(logname)/.config/chezmoi/chezmoi.toml" ]; then
+            if [ -f "$chezmoi_config_file_path" ]; then
               echo "Found chezmoi config file at $chezmoi_config_file_path"
               echo "Running chezmoi apply ..."
               ${pkgs.chezmoi}/bin/chezmoi apply
