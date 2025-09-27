@@ -142,7 +142,7 @@ return {
         treesitter_context.go_to_context(vim.v.count1)
       end
       local go_to_parent_repeat, _go_to_parent_repeat =
-        ts_repeat_move.make_repeatable_move_pair(go_to_parent, go_to_parent)
+          ts_repeat_move.make_repeatable_move_pair(go_to_parent, go_to_parent)
       vim.keymap.set("n", "gltc", go_to_parent_repeat, { silent = true })
     end,
   },
@@ -201,7 +201,7 @@ return {
       -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
       require("which-key").add({
         -- TODO: https://github.com/nvim-treesitter/playground
-        { "zM", ufo.openAllFolds, desc = "Close all folds" },
+        { "zM", ufo.openAllFolds,  desc = "Close all folds" },
         { "zR", ufo.closeAllFolds, desc = "Open all folds" },
 
         {
@@ -232,8 +232,8 @@ return {
       "SmiteshP/nvim-navic",
     },
     config = function()
-      local plugin = require("lazy.core.config").spec.plugins["neoconf.nvim"]
-      require("neoconf").setup(require("lazy.core.plugin").values(plugin, "opts", false))
+      -- local plugin = require("lazy.core.config").spec.plugins["neoconf.nvim"]
+      -- require("neoconf").setup(require("lazy.core.plugin").values(plugin, "opts", false))
 
       local nvim_lsp = require("lspconfig")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -246,120 +246,6 @@ return {
       local util = require("lspconfig/util")
       local path = util.path
 
-      local settings = {
-        lua_ls = {
-          Lua = {
-            runtime = {
-              version = "LuaJIT", -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-            },
-            diagnostics = {
-              globals = {
-                "vim",
-                "describe",
-                "it",
-              },
-            },
-            workspace = {
-              checkThirdParty = false,
-              -- library = vim.api.nvim_get_runtime_file("", true), -- Make the server aware of Neovim runtime files
-              library = {
-                vim.env.VIMRUNTIME,
-                "${3rd}/luv/library",
-                "${3rd}/busted/library",
-                "${3rd}/plenary.nvim/lua",
-                "${3rd}/luassert/library",
-              },
-            },
-            -- Do not send telemetry data containing a randomized but unique identifier
-            telemetry = {
-              enable = false,
-            },
-            format = {
-              enable = false,
-              -- Put format options here
-              -- NOTE: the value should be STRING!!
-              defaultConfig = {
-                indent_style = "space",
-                indent_size = "2",
-              },
-            },
-          },
-        },
-        jsonls = {
-          settings = {
-            json = {
-              format = {
-                enable = true,
-              },
-              -- schemas = require("schemastore").json.schemas(),
-              -- validate = { enable = true },
-            },
-          },
-        },
-        settings = {
-          solargraph = {
-            autoformat = true,
-            completion = true,
-            diagnostic = true,
-            folding = true,
-            references = true,
-            rename = true,
-            symbols = true,
-          },
-          ruby_ls = {
-            autoformat = true,
-            completion = true,
-            diagnostic = true,
-            folding = true,
-            references = true,
-            rename = true,
-            symbols = true,
-          },
-        },
-      }
-      local cmd = {
-        elixirls = { "elixir-ls" },
-      }
-      local root_dir = {
-        pylsp = function(fname)
-          return nvim_lsp.util.root_pattern(".git")(fname) or util.path.dirname(fname)
-        end,
-      }
-      local before_init = {
-        jedi_language_server = function(_, config)
-          local match = vim.fn.glob(path.join(config.root_dir, "poetry.lock"))
-          if match ~= "" then
-            local venv = vim.fn.trim(vim.fn.system("poetry env info -p"))
-            vim.env.VIRTUAL_ENV = venv
-
-            python_path = path.join(venv, "bin", "python")
-            config.cmd = { python_path, "-m", "jedi_language_server" }
-            config.init_options = {
-              extra_paths = {
-                path.join(venv, "lib", "python3.12", "site-packages"),
-              },
-            }
-          end
-        end,
-        pylsp = function(_, config)
-          local match = vim.fn.glob(path.join(config.root_dir, "poetry.lock"))
-          if match ~= "" then
-            local venv = vim.fn.trim(vim.fn.system("poetry env info -p"))
-            vim.env.VIRTUAL_ENV = venv
-            config.cmd = { path.join(venv, "bin", "pylsp") }
-            config.init_options = {
-              extra_paths = {
-                path.join(venv, "lib", "python3.12", "site-packages"),
-              },
-            }
-          end
-        end,
-      }
-
-      -- Command to set install Python neovim:
-      -- uv run pip install neovim
-      vim.g.python3_host_prog = vim.fn.expand("$HOME/.venv/bin/python3")
-
       local servers = {
         "bashls",
         "elixirls",
@@ -370,7 +256,6 @@ return {
         -- "pyright",
         -- "jedi_language_server",
         "pylsp",
-        -- "ruby_ls",
         "solargraph",
         "tailwindcss",
         "terraformls",
@@ -444,125 +329,128 @@ return {
       local wk = require("which-key")
       wk.add({
         -- TODO: https://github.com/lukas-reineke/lsp-format.nvim
-        { "<Leader>P", "<CMD>lua vim.lsp.buf.format({ async = true })<CR>", desc = "[LSP] format" },
+        { "<Leader>P",  "<CMD>lua vim.lsp.buf.format({ async = true })<CR>", desc = "[LSP] format" },
 
-        { "<Leader>a", "<CMD>lua vim.lsp.buf.code_action()<CR>", desc = "[LSP] Code action" },
+        { "<Leader>a",  "<CMD>lua vim.lsp.buf.code_action()<CR>",            desc = "[LSP] Code action" },
 
-        { "<Leader>z", group = "LSP" },
-        { "<Leader>za", "<CMD>lua vim.lsp.buf.code_action()<CR>", desc = "[LSP] Code action" },
-        { "<Leader>zr", "<CMD>lua vim.lsp.buf.rename()<CR>", desc = "[LSP] Rename" },
+        { "<Leader>z",  group = "LSP" },
+        { "<Leader>za", "<CMD>lua vim.lsp.buf.code_action()<CR>",            desc = "[LSP] Code action" },
+        { "<Leader>zr", "<CMD>lua vim.lsp.buf.rename()<CR>",                 desc = "[LSP] Rename" },
 
-        { "K", "<CMD>lua vim.lsp.buf.hover()<CR>", desc = "[LSP] Show documentation" },
-        { "<Leader>K", show_line_diagnostics, desc = "[LSP] Show line diagnostics" },
-        { "<Leader>K", "<CMD>lua vim.diagnostic.open_float()<CR>", desc = "[LSP] Show line diagnostics" },
+        {
+          "K",
+          "<CMD>lua vim.lsp.buf.hover()<CR>",
+          desc = "[LSP] Show documentation",
+        },
+        {
+          "<Leader>K",
+          show_line_diagnostics,
+          desc = "[LSP] Show line diagnostics",
+        },
+        {
+          "<Leader>K",
+          "<CMD>lua vim.diagnostic.open_float()<CR>",
+          desc = "[LSP] Show line diagnostics",
+        },
         -- { "gd", "<CMD>lua vim.lsp.buf.definition()<CR>", desc = "[LSP] Go to definition " },
         -- { "gi", "<CMD>lua vim.lsp.buf.implementation()<CR>", desc = "[LSP] Go to implementation" },
         -- { "gr", "<CMD>lua vim.lsp.buf.references()<CR>", desc = "[LSP] Find references" },
         { "gD", "<CMD>lua vim.lsp.buf.declaration()<CR>", desc = "[LSP] Go to declaration" },
-        { "<Leader>tgd", "<CMD>tab split | lua vim.lsp.buf.definition()<CR>", desc = "[LSP] Go to definition " },
-        { "gd", "<CMD>Telescope lsp_definitions<CR>", desc = "[LSP] Find definitions with Telescope" },
-        { "gr", "<CMD>Telescope lsp_references<CR>", desc = "[LSP] Find references with Telescope" },
+        {
+          "<Leader>tgd",
+          "<CMD>tab split | lua vim.lsp.buf.definition()<CR>",
+          desc = "[LSP] Go to definition ",
+        },
+        { "gd", "<CMD>Telescope lsp_definitions<CR>",     desc = "[LSP] Find definitions with Telescope" },
+        { "gr", "<CMD>Telescope lsp_references<CR>",      desc = "[LSP] Find references with Telescope" },
         { "gi", "<CMD>Telescope lsp_implementations<CR>", desc = "[LSP] Find implementations with Telescope" },
       })
 
-      for _, lsp in ipairs(servers) do
-        local on_attach = function(client, bufnr)
-          vim.notify("Buffer " .. bufnr .. " attached to lsp " .. lsp, vim.log.levels.INFO)
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("my.lsp", {}),
+        callback = function(args)
+          local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+
+          -- vim.notify("Buffer " .. args.buf .. " attached to lsp " .. client.name, vim.log.levels.INFO)
+
           require("illuminate").on_attach(client)
 
           if client.server_capabilities.documentSymbolProvider then
-            navic.attach(client, bufnr)
+            navic.attach(client, args.buf)
           end
+        end,
+      })
 
-          --Enable completion triggered by <c-x><c-o>
-          vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
-          -- Mappings.
-          -- wk.register({
-          --   g = {
-          --     D = { "<CMD>lua vim.lsp.buf.declaration()<CR>", "LSP go to declaration", noremap = true, buffer = bufnr },
-          --     d = {
-          --       "<CMD>lua vim.lsp.buf.definition()<CR>",
-          --       "LSP go to definition " .. bufnr,
-          --       noremap = true,
-          --       buffer = bufnr,
-          --     },
-          --     i = {
-          --       "<CMD>lua vim.lsp.buf.implementation()<CR>",
-          --       "LSP go to implementation",
-          --       noremap = true,
-          --       buffer = bufnr,
-          --     },
-          --     r = { "<CMD>lua vim.lsp.buf.references()<CR>", "LSP find references", noremap = true, buffer = bufnr },
-          --   },
-
-          --   K = { "<CMD>lua vim.lsp.buf.hover()<CR>", "LSP Show documentation", noremap = true, buffer = bufnr },
-
-          --   ["<leader>"] = {
-          --     z = {
-          --       r = { "<CMD>lua vim.lsp.buf.rename()<CR>", "LSP rename", noremap = true, buffer = bufnr },
-          --     },
-          --   },
-          -- })
-          -- buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-          -- buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-          -- buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-          -- buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-          -- buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-          -- buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-          -- buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-          -- buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-          -- buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-          -- buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-
-          -- if client.name == "jedi_language_server" then
-          --   -- Use these things from pylsp
-          --   client.server_capabilities.definitionProvider = false
-          --   client.server_capabilities.documentSymbolProvider = false
-          --   client.server_capabilities.hoverProvider = false
-          --   client.server_capabilities.implementationProvider = false
-          --   client.server_capabilities.referencesProvider = false
-          --   client.server_capabilities.renameProvider = false
-          --
-          --   -- codeActionProvider = true,
-          --   -- codeLensProvider = { resolveProvider = false },
-          --   -- completionProvider = { resolveProvider = true, triggerCharacters = { "." } },
-          --   -- documentFormattingProvider = true,
-          --   -- documentHighlightProvider = true,
-          --   -- documentRangeFormattingProvider = true,
-          --   -- executeCommandProvider = { commands = {} },
-          --   -- foldingRangeProvider = true,
-          --   -- signatureHelpProvider = { triggerCharacters = { "(", ",", "=" } },
-          -- end
-        end
-
-        -- Use a loop to conveniently call 'setup' on multiple servers and
-        -- map buffer local keybindings when the language server attaches
-        nvim_lsp[lsp].setup({
-          capabilities = capabilities,
-          on_attach = on_attach,
-          flags = {
-            debounce_text_changes = 150,
-          },
-          settings = settings[lsp],
-          cmd = cmd[lsp],
-          before_init = before_init[lsp],
-          root_dir = root_dir[lsp],
-        })
-
-        -- local options = { noremap = true }
-        -- vim.api.nvim_set_keymap("n", "<Leader>P", "<CMD>lua vim.lsp.buf.format({ async = true })<CR>", options)
-        -- vim.api.nvim_set_keymap("n", "<Leader>a", "<CMD>lua vim.lsp.buf.code_action()<CR>", options)
-
-        -- vim.cmd("autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx")
+      for _, lsp in ipairs(servers) do
+        vim.lsp.enable(lsp)
       end
 
-      vim.api.nvim_create_user_command("LspDiagnoticsVirtualTextDisable", function()
-        vim.diagnostic.config({ virtual_text = false })
-      end, {})
-      vim.api.nvim_create_user_command("LspDiagnoticsVirtualTextEnable", function()
-        vim.diagnostic.config({ virtual_text = true })
-      end, {})
+      -- local on_attach = function(client, bufnr)
+      --   -- Mappings.
+      --   -- wk.register({
+      --   --   g = {
+      --   --     D = { "<CMD>lua vim.lsp.buf.declaration()<CR>", "LSP go to declaration", noremap = true, buffer = bufnr },
+      --   --     d = {
+      --   --       "<CMD>lua vim.lsp.buf.definition()<CR>",
+      --   --       "LSP go to definition " .. bufnr,
+      --   --       noremap = true,
+      --   --       buffer = bufnr,
+      --   --     },
+      --   --     i = {
+      --   --       "<CMD>lua vim.lsp.buf.implementation()<CR>",
+      --   --       "LSP go to implementation",
+      --   --       noremap = true,
+      --   --       buffer = bufnr,
+      --   --     },
+      --   --     r = { "<CMD>lua vim.lsp.buf.references()<CR>", "LSP find references", noremap = true, buffer = bufnr },
+      --   --   },
+      --
+      --   --   K = { "<CMD>lua vim.lsp.buf.hover()<CR>", "LSP Show documentation", noremap = true, buffer = bufnr },
+      --
+      --   --   ["<leader>"] = {
+      --   --     z = {
+      --   --       r = { "<CMD>lua vim.lsp.buf.rename()<CR>", "LSP rename", noremap = true, buffer = bufnr },
+      --   --     },
+      --   --   },
+      --   -- })
+      --   -- buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+      --   -- buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+      --   -- buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+      --   -- buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+      --   -- buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+      --   -- buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+      --   -- buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+      --   -- buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+      --   -- buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+      --   -- buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+      --
+      --   -- if client.name == "jedi_language_server" then
+      --   --   -- Use these things from pylsp
+      --   --   client.server_capabilities.definitionProvider = false
+      --   --   client.server_capabilities.documentSymbolProvider = false
+      --   --   client.server_capabilities.hoverProvider = false
+      --   --   client.server_capabilities.implementationProvider = false
+      --   --   client.server_capabilities.referencesProvider = false
+      --   --   client.server_capabilities.renameProvider = false
+      --   --
+      --   --   -- codeActionProvider = true,
+      --   --   -- codeLensProvider = { resolveProvider = false },
+      --   --   -- completionProvider = { resolveProvider = true, triggerCharacters = { "." } },
+      --   --   -- documentFormattingProvider = true,
+      --   --   -- documentHighlightProvider = true,
+      --   --   -- documentRangeFormattingProvider = true,
+      --   --   -- executeCommandProvider = { commands = {} },
+      --   --   -- foldingRangeProvider = true,
+      --   --   -- signatureHelpProvider = { triggerCharacters = { "(", ",", "=" } },
+      --   -- end
+      -- end
+
+      -- vim.api.nvim_create_user_command("LspDiagnoticsVirtualTextDisable", function()
+      --   vim.diagnostic.config({ virtual_text = false })
+      -- end, {})
+      -- vim.api.nvim_create_user_command("LspDiagnoticsVirtualTextEnable", function()
+      --   vim.diagnostic.config({ virtual_text = true })
+      -- end, {})
     end,
   },
 

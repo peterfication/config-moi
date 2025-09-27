@@ -25,6 +25,7 @@ brew 'aws-nuke'
 brew 'awscli'
 brew 'bash'
 brew 'bash-completion'
+brew 'bash-language-server'
 brew 'bat' # cat/less replacement written in Rust
 brew 'borgbackup'
 brew 'bottom'
