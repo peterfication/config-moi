@@ -23,7 +23,9 @@ source ~/.config/zsh_new/99_starship.zsh
 
 # It is good to load these popular plugins last, and in this order:
 zcomet load zsh-users/zsh-syntax-highlighting
-zcomet load zsh-users/zsh-autosuggestions
+# zcomet load zsh-users/zsh-autosuggestions
 
+# Disable compaudit security warning by default
+zstyle ':zcomet:compinit' arguments -C
 # Run compinit and compile its cache
 zcomet compinit

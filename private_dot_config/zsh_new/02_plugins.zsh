@@ -1,12 +1,12 @@
-zcomet load ohmyzsh plugins/chezmoi
-zcomet load ohmyzsh plugins/chruby
+zcomet trigger ohmyzsh plugins/chezmoi
+zcomet trigger ohmyzsh plugins/chruby
 zcomet load ohmyzsh plugins/direnv
 zcomet load ohmyzsh plugins/dotenv
 zcomet load ohmyzsh plugins/eza
 zcomet load ohmyzsh plugins/fzf
-zcomet load ohmyzsh plugins/git-extras
-zcomet load ohmyzsh plugins/mise
-zcomet load ohmyzsh plugins/volta
+zcomet trigger ohmyzsh plugins/git-extras
+zcomet trigger ohmyzsh plugins/mise
+zcomet trigger ohmyzsh plugins/volta
 zcomet load ohmyzsh plugins/zoxide
 
 zcomet load Aloxaf/fzf-tab

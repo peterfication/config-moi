@@ -31,6 +31,8 @@
         conf = " cd $(chezmoi source-path) && vim";
       };
 
+      programs.zsh.enableCompletion = false;
+
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
 

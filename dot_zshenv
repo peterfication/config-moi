@@ -1,0 +1,2 @@
+# Tell macOS's /etc/zshrc to skip compinit
+export skip_global_compinit=1
