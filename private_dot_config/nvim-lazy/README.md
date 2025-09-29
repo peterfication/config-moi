@@ -15,8 +15,6 @@ Refer to the [documentation](https://lazyvim.github.io/installation).
 - hkupty/iron.nvim
 - L3MON4D3/LuaSnip
 - stevearc/overseer.nvim
-- nvim-neotest/neotest
-- RRethy/vim-illuminate
 - lukas-reineke/indent-blankline.nvim
 - akinsho/bufferline.nvim
 - nvim-lualine/lualine.nvim
