@@ -21,12 +21,15 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.ai.copilot" },
     { import = "lazyvim.plugins.extras.ai.copilot-chat" },
     { import = "lazyvim.plugins.extras.coding.blink" },
+    { import = "lazyvim.plugins.extras.coding.mini-surround" },
     { import = "lazyvim.plugins.extras.editor.aerial" },
     { import = "lazyvim.plugins.extras.editor.harpoon2" },
     { import = "lazyvim.plugins.extras.editor.neo-tree" },
 
     { import = "lazyvim.plugins.extras.lsp.neoconf" },
     { import = "lazyvim.plugins.extras.lsp.none-ls" },
+
+    { import = "lazyvim.plugins.extras.test.core" },
 
     { import = "lazyvim.plugins.extras.lang.markdown" },
     { import = "lazyvim.plugins.extras.lang.git" },

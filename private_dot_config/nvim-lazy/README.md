@@ -8,29 +8,18 @@ Refer to the [documentation](https://lazyvim.github.io/installation).
 - mrjones2014/legendary.nvim
 - davidmh/cspell.nvim
 - more configs from nvimtools/none-ls.nvim
-- johmsalas/text-case.nvim
-- rmagatti/goto-preview
-- OXY2DEV/markview.nvim
 - chentoast/marks.nvim
 - simnalamburt/vim-mundo
 - tpope/vim-abolish
 - tpope/vim-repeat
-- ggandor/leap.nvim and ggandor/flit.nvim
-- yorickpeterse/nvim-window
-- kevinhwang91/nvim-hlslens
-- iamcco/markdown-preview.nvim
 - hkupty/iron.nvim
 - L3MON4D3/LuaSnip
 - stevearc/overseer.nvim
-- nvim-neotest/neotest
-- RRethy/vim-illuminate
 - lukas-reineke/indent-blankline.nvim
 - akinsho/bufferline.nvim
 - nvim-lualine/lualine.nvim
 - petertriho/nvim-scrollbar
 - wfxr/minimap.vim
-- NvChad/nvim-colorizer.lua
-- anuvyklack/windows.nvim
 - nyngwang/NeoZoom.lua
 
 - https://github.com/nvim-neorg/neorg
@@ -52,7 +41,7 @@ Refer to the [documentation](https://lazyvim.github.io/installation).
 - nvim-treesitter/nvim-treesitter-context
 - RRethy/nvim-treesitter-textsubjects
 - aaronik/treewalker.nvim
-- HiPhish/rainbow-delimiters.nvim
 - kevinhwang91/nvim-ufo
 - SmiteshP/nvim-navic
 - chrisgrieser/nvim-various-textobjs
+- https://github.com/SmiteshP/nvim-navbuddy
