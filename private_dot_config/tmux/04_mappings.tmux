@@ -11,7 +11,7 @@ bind-key C-f run-shell -b "tmux ls -F \"##S\" | fzf-tmux -- --header '[Switch se
 bind-key C-d run-shell -b "tmux ls -F \"##S\" | fzf-tmux -- --header '[Kill session]' | xargs tmux kill-session -t"
 
 # A key binding that opens the icd history and on enter creates a ts session with this dir
-bind-key C-t run-shell -b "cat $HOME/.history.icd | fzf-tmux -- --header '[Create session]' | xargs -0 bash -c 'source ~/config/zsh/05_tmux.zsh && tmux display \"Session created for $@\" && ts_from_arg \"$@\"' - "
+bind-key C-t run-shell -b "cat $HOME/.history.icd | fzf-tmux -- --header '[Create session]' | xargs -0 bash -c 'source ~/.config/zsh_new/tools/tmux.zsh && tmux display \"Session created for $@\" && ts_from_arg \"$@\"' - "
 
 #### WINDOWNS ####
 

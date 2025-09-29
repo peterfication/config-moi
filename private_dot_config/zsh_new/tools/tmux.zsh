@@ -44,12 +44,6 @@ function ts_from_arg() {
   # tmux -2 a -t $DIR_NAME
 }
 
-function tss() {
-  tmux split-pane -h
-  tmux send-keys -t 1.0 nvim Enter
-  tmux split-pane -d -v
-}
-
 # fs [FUZZY PATTERN] - Select selected tmux session
 #   - Bypass fuzzy finder if there's only one match (--select-1)
 #   - Exit if there's no match (--exit-0)
