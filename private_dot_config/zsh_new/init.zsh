@@ -21,6 +21,11 @@ source ~/.config/zsh_new/10_tools.zsh
 source ~/.config/zsh_new/11_macos.zsh
 source ~/.config/zsh_new/99_starship.zsh
 
+# Source a local file if it exists
+if [[ -f ~/.config/zsh_new/local.zsh ]]; then
+  source ~/.config/zsh_new/local.zsh
+fi
+
 # It is good to load these popular plugins last, and in this order:
 zcomet load zsh-users/zsh-syntax-highlighting
 # zcomet load zsh-users/zsh-autosuggestions
