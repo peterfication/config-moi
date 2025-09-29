@@ -26,19 +26,19 @@ return {
       keys[#keys + 1] = { "<Leader>cf", false }
 
       keys[#keys + 1] =
-        { "<leader>za", vim.lsp.buf.code_action, desc = "[LSP] Code Action", mode = { "n", "v" }, has = "codeAction" }
+        { "<Leader>za", vim.lsp.buf.code_action, desc = "[LSP] Code Action", mode = { "n", "v" }, has = "codeAction" }
 
       keys[#keys + 1] =
-        { "<leader>zc", vim.lsp.codelens.run, desc = "[LSP] Run Codelens", mode = { "n", "v" }, has = "codeLens" }
+        { "<Leader>zc", vim.lsp.codelens.run, desc = "[LSP] Run Codelens", mode = { "n", "v" }, has = "codeLens" }
       keys[#keys + 1] = {
-        "<leader>zC",
+        "<Leader>zC",
         vim.lsp.codelens.refresh,
         desc = "[LSP] Refresh & Display Codelens",
         mode = { "n" },
         has = "codeLens",
       }
       keys[#keys + 1] = {
-        "<leader>zR",
+        "<Leader>zR",
         function()
           Snacks.rename.rename_file()
         end,
@@ -46,8 +46,8 @@ return {
         mode = { "n" },
         has = { "workspace/didRenameFiles", "workspace/willRenameFiles" },
       }
-      keys[#keys + 1] = { "<leader>zr", vim.lsp.buf.rename, desc = "[LSP] Rename", has = "rename" }
-      keys[#keys + 1] = { "<leader>zA", LazyVim.lsp.action.source, desc = "[LSP] Source Action", has = "codeAction" }
+      keys[#keys + 1] = { "<Leader>zr", vim.lsp.buf.rename, desc = "[LSP] Rename", has = "rename" }
+      keys[#keys + 1] = { "<Leader>zA", LazyVim.lsp.action.source, desc = "[LSP] Source Action", has = "codeAction" }
       keys[#keys + 1] = { "<Leader>zf", vim.lsp.buf.format, desc = "[LSP] Format", has = "format" }
     end,
     keys = {
