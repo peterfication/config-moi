@@ -11,4 +11,10 @@ return {
       notifier = { enabled = false },
     },
   },
+
+  {
+    "petertriho/nvim-scrollbar",
+    event = "BufReadPre",
+    opts = {},
+  },
 }

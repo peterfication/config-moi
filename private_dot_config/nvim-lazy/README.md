@@ -14,9 +14,6 @@ Refer to the [documentation](https://lazyvim.github.io/installation).
 - simnalamburt/vim-mundo
 - tpope/vim-abolish
 - tpope/vim-repeat
-- ggandor/leap.nvim and ggandor/flit.nvim
-- yorickpeterse/nvim-window
-- kevinhwang91/nvim-hlslens
 - hkupty/iron.nvim
 - L3MON4D3/LuaSnip
 - stevearc/overseer.nvim
@@ -27,7 +24,6 @@ Refer to the [documentation](https://lazyvim.github.io/installation).
 - nvim-lualine/lualine.nvim
 - petertriho/nvim-scrollbar
 - wfxr/minimap.vim
-- anuvyklack/windows.nvim
 - nyngwang/NeoZoom.lua
 
 - https://github.com/nvim-neorg/neorg
