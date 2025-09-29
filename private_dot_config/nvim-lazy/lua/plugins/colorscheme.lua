@@ -4,9 +4,7 @@ return {
     lazy = false,
     priority = 1000,
     ---@type solarized.config
-    opts = {
-
-    },
+    opts = {},
     config = function(_, opts)
       vim.o.termguicolors = true
       vim.o.background = "dark"

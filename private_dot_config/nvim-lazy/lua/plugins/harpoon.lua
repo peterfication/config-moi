@@ -19,15 +19,15 @@ return {
         end
 
         require("telescope.pickers")
-            .new({}, {
-              prompt_title = "Harpoon",
-              finder = require("telescope.finders").new_table({
-                results = file_paths,
-              }),
-              previewer = conf.file_previewer({}),
-              sorter = conf.generic_sorter({}),
-            })
-            :find()
+          .new({}, {
+            prompt_title = "Harpoon",
+            finder = require("telescope.finders").new_table({
+              results = file_paths,
+            }),
+            previewer = conf.file_previewer({}),
+            sorter = conf.generic_sorter({}),
+          })
+          :find()
       end
 
       return {
@@ -113,28 +113,28 @@ return {
         end
 
         require("telescope.pickers")
-            .new({}, {
-              prompt_title = "Yeet",
-              finder = require("telescope.finders").new_table({
-                results = commands,
-              }),
-              sorter = conf.generic_sorter({}),
-              attach_mappings = function(_, map)
-                local function submit(_prompt_bufnr)
-                  local selection = require("telescope.actions.state").get_selected_entry()
-                  vim.print(vim.inspect(selection[1]))
-                  require("yeet").execute(selection[1])
-                end
-                map("i", "<CR>", submit)
-                map("n", "<CR>", submit)
-                return true
-              end,
-            })
-            :find()
+          .new({}, {
+            prompt_title = "Yeet",
+            finder = require("telescope.finders").new_table({
+              results = commands,
+            }),
+            sorter = conf.generic_sorter({}),
+            attach_mappings = function(_, map)
+              local function submit(_prompt_bufnr)
+                local selection = require("telescope.actions.state").get_selected_entry()
+                vim.print(vim.inspect(selection[1]))
+                require("yeet").execute(selection[1])
+              end
+              map("i", "<CR>", submit)
+              map("n", "<CR>", submit)
+              return true
+            end,
+          })
+          :find()
       end
 
       return {
-        { "<Leader><BS>",  group = "Yeet" },
+        { "<Leader><BS>", group = "Yeet" },
         {
           "<Leader><BS><BS>",
           function()

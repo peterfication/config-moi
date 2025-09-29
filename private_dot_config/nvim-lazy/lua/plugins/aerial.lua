@@ -10,9 +10,9 @@ return {
     },
 
     keys = {
-      { "<Leader>z",  group = "LSP" },
+      { "<Leader>z", group = "LSP" },
       { "<Leader>zo", ":AerialToggle float<CR>", desc = "Toggle Aerial to select (LSP) tags" },
-      { "<Leader>zz", ":Telescope aerial<CR>",   desc = "Open Aerial (LSP) tags in Telescope" },
+      { "<Leader>zz", ":Telescope aerial<CR>", desc = "Open Aerial (LSP) tags in Telescope" },
     },
   },
 }

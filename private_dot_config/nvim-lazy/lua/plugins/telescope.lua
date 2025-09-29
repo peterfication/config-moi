@@ -101,44 +101,44 @@ return {
 
       local git_hunks = function()
         require("telescope.pickers")
-            .new({
-              finder = require("telescope.finders").new_oneshot_job({ "git", "jump", "--stdout", "diff" }, {
-                entry_maker = function(line)
-                  local filename, lnum_string = line:match("([^:]+):(%d+).*")
+          .new({
+            finder = require("telescope.finders").new_oneshot_job({ "git", "jump", "--stdout", "diff" }, {
+              entry_maker = function(line)
+                local filename, lnum_string = line:match("([^:]+):(%d+).*")
 
-                  -- I couldn't find a way to use grep in new_oneshot_job so we have to filter here
-                  -- return nil if filename is /dev/null because this means the file was deleted
-                  if filename:match("^/dev/null") then
-                    return nil
-                  end
+                -- I couldn't find a way to use grep in new_oneshot_job so we have to filter here
+                -- return nil if filename is /dev/null because this means the file was deleted
+                if filename:match("^/dev/null") then
+                  return nil
+                end
 
-                  return {
-                    value = filename,
-                    display = line,
-                    ordinal = line,
-                    filename = filename,
-                    lnum = tonumber(lnum_string),
-                  }
-                end,
-              }),
-              sorter = require("telescope.sorters").get_generic_fuzzy_sorter(),
-              previewer = require("telescope.config").values.grep_previewer({}),
-              results_title = "Git hunks",
-              prompt_title = "Git hunks",
-              layout_strategy = "flex",
-            }, {})
-            :find()
+                return {
+                  value = filename,
+                  display = line,
+                  ordinal = line,
+                  filename = filename,
+                  lnum = tonumber(lnum_string),
+                }
+              end,
+            }),
+            sorter = require("telescope.sorters").get_generic_fuzzy_sorter(),
+            previewer = require("telescope.config").values.grep_previewer({}),
+            results_title = "Git hunks",
+            prompt_title = "Git hunks",
+            layout_strategy = "flex",
+          }, {})
+          :find()
       end
 
       return {
-        { "<Leader>e",  group = "Open file(s)" },
+        { "<Leader>e", group = "Open file(s)" },
         { "<Leader>eb", ":Telescope file_browser hidden=true<CR>", desc = "Telescope file browser" },
-        { "<Leader>eo", ":Oil<CR>",                                desc = "Oil file browser" },
-        { "<Leader>ee", builtin.find_files,                        desc = "Find files with Telescope" },
-        { "<Leader>eg", builtin.git_files,                         desc = "Find Git ls-files with Telescope" },
-        { "<Leader>eh", builtin.oldfiles,                          desc = "Recent files with Telescope" },
+        { "<Leader>eo", ":Oil<CR>", desc = "Oil file browser" },
+        { "<Leader>ee", builtin.find_files, desc = "Find files with Telescope" },
+        { "<Leader>eg", builtin.git_files, desc = "Find Git ls-files with Telescope" },
+        { "<Leader>eh", builtin.oldfiles, desc = "Recent files with Telescope" },
 
-        { "<Leader>E",  group = "Open buffer(s)" },
+        { "<Leader>E", group = "Open buffer(s)" },
         {
           "<Leader>EB",
           ":Telescope file_browser path=%:p:h<CR>",
@@ -146,7 +146,7 @@ return {
         },
         { "<Leader>EE", builtin.buffers, desc = "Find files of currently open buffers" },
 
-        { "<Leader>f",  group = "Search" },
+        { "<Leader>f", group = "Search" },
         {
           "<Leader>ff",
           builtin.live_grep,
@@ -165,8 +165,8 @@ return {
 
         { "<Leader>F", builtin.grep_string, desc = "Find word under cursor with Telescope" },
 
-        { "<Leader>H", builtin.pickers,     desc = "Telescope history" },
-        { "<Leader>/", builtin.pickers,     desc = "Search history with Telescope" },
+        { "<Leader>H", builtin.pickers, desc = "Telescope history" },
+        { "<Leader>/", builtin.pickers, desc = "Search history with Telescope" },
 
         {
           "<Leader>l",
@@ -174,7 +174,7 @@ return {
           desc = "Select lines of current buffer with Telescope",
         },
 
-        { "<Leader>?",  builtin.help_tags,   desc = "Search Vim help tags with Telescope" },
+        { "<Leader>?", builtin.help_tags, desc = "Search Vim help tags with Telescope" },
 
         { "<Leader>dE", builtin.diagnostics, desc = "Diagnostics of project with Telescope" },
         {
@@ -182,42 +182,42 @@ return {
           ":Telescope diagnostics bufnr=0<CR>",
           desc = "Diagnostics of current buffer with Telescope",
         },
-        { "<Leader>xE", builtin.diagnostics,              desc = "Diagnostics of project with Telescope" },
+        { "<Leader>xE", builtin.diagnostics, desc = "Diagnostics of project with Telescope" },
         {
           "<Leader>xe",
           ":Telescope diagnostics bufnr=0<CR>",
           desc = "Diagnostics of current buffer with Telescope",
         },
 
-        { "<Leader>m",  builtin.marks,                    desc = "Open marks in Telescope" },
-        { "<Leader>j",  builtin.jumplist,                 desc = "Open jumplist in Telescope" },
+        { "<Leader>m", builtin.marks, desc = "Open marks in Telescope" },
+        { "<Leader>j", builtin.jumplist, desc = "Open jumplist in Telescope" },
 
-        { "<Leader>c",  group = "Commands" },
-        { "<Leader>cc", builtin.commands,                 desc = "Open commands in Telescope" },
-        { "<Leader>ch", builtin.command_history,          desc = "Open command history in Telescope" },
+        { "<Leader>c", group = "Commands" },
+        { "<Leader>cc", builtin.commands, desc = "Open commands in Telescope" },
+        { "<Leader>ch", builtin.command_history, desc = "Open command history in Telescope" },
 
-        { "<Leader>C",  builtin.builtin,                  desc = "Open builtin Telescope actions in Telescope" },
+        { "<Leader>C", builtin.builtin, desc = "Open builtin Telescope actions in Telescope" },
 
         { "<Leader>qh", ":Telescope quickfixhistory<CR>", desc = "Open quickfix history in Telescope" },
-        { "<Leader>qq", ":Telescope quickfix<CR>",        desc = "Open quickfix list in Telescope" },
+        { "<Leader>qq", ":Telescope quickfix<CR>", desc = "Open quickfix list in Telescope" },
 
-        { "<Leader>g",  group = "Git" },
+        { "<Leader>g", group = "Git" },
         {
           "<Leader>gc",
           builtin.git_commits,
           desc = "Open Git commits in Telescope (<C-d> opens DiffView)",
         },
-        { "<Leader>gs", git_hunks,      desc = "Open Git status hunks in Telescope" },
+        { "<Leader>gs", git_hunks, desc = "Open Git status hunks in Telescope" },
 
-        { "<Leader>G",  group = "Git 2" },
+        { "<Leader>G", group = "Git 2" },
         {
           "<Leader>GC",
           builtin.git_bcommits,
           desc = "Open current buffer Git commits in Telescope (<C-d> opens DiffView)",
         },
-        { "<Leader>GS", builtin.git_status,     desc = "Open Git status files in Telescope" },
+        { "<Leader>GS", builtin.git_status, desc = "Open Git status files in Telescope" },
 
-        { "<Leader>o",  group = "Octo / Github" },
+        { "<Leader>o", group = "Octo / Github" },
         {
           "<Leader>oi",
           ":Telescope gh issues<CR>",
@@ -229,11 +229,11 @@ return {
           desc = "Open Github pull requests in Telescope ([o]cto [p]ull requests)",
         },
 
-        { "<Leader>p",  ":Telescope neoclip<CR>",    desc = "Open neoclip (clipboard) in Telescope" },
+        { "<Leader>p", ":Telescope neoclip<CR>", desc = "Open neoclip (clipboard) in Telescope" },
 
-        { "<Leader>p",  ":Telescope neoclip<CR>",    desc = "Open neoclip (clipboard) in Telescope", mode = "v" },
+        { "<Leader>p", ":Telescope neoclip<CR>", desc = "Open neoclip (clipboard) in Telescope", mode = "v" },
 
-        { "<Leader>ZZ", builtin.treesitter,          desc = "Open Treesitter in Telescope" },
+        { "<Leader>ZZ", builtin.treesitter, desc = "Open Treesitter in Telescope" },
         { "<Leader>ZT", builtin.current_buffer_tags, desc = "Open current buffer tags in Telescope" },
       }
     end,

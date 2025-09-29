@@ -113,7 +113,7 @@ return {
 
       return {
         { "<Leader>gb", ":Gitsigns toggle_current_line_blame<CR>", desc = "Toogle Git blame current line" },
-        { "<Leader>GB", tig_blame_term_open,                       desc = "Open tig for current file" },
+        { "<Leader>GB", tig_blame_term_open, desc = "Open tig for current file" },
       }
     end,
   },

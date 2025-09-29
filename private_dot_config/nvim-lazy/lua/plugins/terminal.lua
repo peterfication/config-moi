@@ -101,7 +101,7 @@ return {
       return {
         -- Because of lazy loading, <C-t> from the opts.open_mapping is not loaded, so it needs
         -- to be redefined here.
-        { "<C-t>",      "<CMD>ToggleTerm<CR>",                                   { desc = "Toggle ToggleTerm" } },
+        { "<C-t>", "<CMD>ToggleTerm<CR>", { desc = "Toggle ToggleTerm" } },
         {
           "<C-k>",
           function()
@@ -111,17 +111,17 @@ return {
           { mode = { "n", "i", "t" }, desc = "Toggle term next" },
         },
         { "<Leader>gd", ':8TermExec cmd="lazydocker; exit" direction=float<CR>', desc = "Open lazydocker" },
-        { "<Leader>t1", "<CMD>ToggleTerm 1<CR>",                                 desc = "Open terminal 1" },
-        { "<Leader>t2", "<CMD>ToggleTerm 2<CR>",                                 desc = "Open terminal 2" },
-        { "<Leader>t3", "<CMD>ToggleTerm 3<CR>",                                 desc = "Open terminal 3" },
-        { "<Leader>t4", "<CMD>ToggleTerm 4<CR>",                                 desc = "Open terminal 4" },
-        { "<Leader>t5", "<CMD>ToggleTerm 5<CR>",                                 desc = "Open terminal 5" },
-        { "<Leader>t6", "<CMD>ToggleTerm 6<CR>",                                 desc = "Open terminal 6" },
-        { "<Leader>t7", "<CMD>ToggleTerm 7<CR>",                                 desc = "Open terminal 7" },
-        { "<Leader>t8", "<CMD>ToggleTerm 8<CR>",                                 desc = "Open terminal 8" },
-        { "<Leader>t9", "<CMD>ToggleTerm 9<CR>",                                 desc = "Open terminal 9" },
-        { "<Leader>te", "<CMD>TermSelect<CR>",                                   desc = "Select terminal to show" },
-        { "<Leader>tn", open_new_terminal,                                       desc = "Open a new terminal" },
+        { "<Leader>t1", "<CMD>ToggleTerm 1<CR>", desc = "Open terminal 1" },
+        { "<Leader>t2", "<CMD>ToggleTerm 2<CR>", desc = "Open terminal 2" },
+        { "<Leader>t3", "<CMD>ToggleTerm 3<CR>", desc = "Open terminal 3" },
+        { "<Leader>t4", "<CMD>ToggleTerm 4<CR>", desc = "Open terminal 4" },
+        { "<Leader>t5", "<CMD>ToggleTerm 5<CR>", desc = "Open terminal 5" },
+        { "<Leader>t6", "<CMD>ToggleTerm 6<CR>", desc = "Open terminal 6" },
+        { "<Leader>t7", "<CMD>ToggleTerm 7<CR>", desc = "Open terminal 7" },
+        { "<Leader>t8", "<CMD>ToggleTerm 8<CR>", desc = "Open terminal 8" },
+        { "<Leader>t9", "<CMD>ToggleTerm 9<CR>", desc = "Open terminal 9" },
+        { "<Leader>te", "<CMD>TermSelect<CR>", desc = "Select terminal to show" },
+        { "<Leader>tn", open_new_terminal, desc = "Open a new terminal" },
 
         -- NOTE: <Leader><ESC> would be a nice mapping but this will mess with spaces that
         -- that you want to enter.

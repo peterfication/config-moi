@@ -44,11 +44,11 @@ return {
       -- })
     end,
     keys = {
-      { "<Leader>M",  group = "Noice" },
+      { "<Leader>M", group = "Noice" },
       { "<Leader>MC", ":lua require('notify').dismiss()<CR>", desc = "Close all Noice messages" },
-      { "<Leader>MF", ":Noice telescope<CR>",                 desc = "Open Noice messages in Telescope" },
-      { "<Leader>MM", ":Noice<CR>",                           desc = "Open Noice messages" },
-      { "<Leader>Mf", ":Noice telescope<CR>",                 desc = "Open Noice messages in Telescope" },
+      { "<Leader>MF", ":Noice telescope<CR>", desc = "Open Noice messages in Telescope" },
+      { "<Leader>MM", ":Noice<CR>", desc = "Open Noice messages" },
+      { "<Leader>Mf", ":Noice telescope<CR>", desc = "Open Noice messages in Telescope" },
     },
   },
 }

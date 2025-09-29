@@ -43,7 +43,7 @@ return {
       -- ["A-j"] = { ":cnext<CR>", "Next quickfix item" },
       -- ["A-k"] = { ":cprevious<CR>", "Previous quickfix item" },
 
-      { "<Leader>q",  group = "Quickfix" },
+      { "<Leader>q", group = "Quickfix" },
       {
         "<Leader>qc",
         ":cclose<CR>",
@@ -60,16 +60,16 @@ return {
         desc = "Load quickfix from rspec-quickfix tests",
       },
 
-      { "<Leader>x",  group = "Trouble" },
-      { "<Leader>xl", "<CMD>Trouble loclist toggle<CR>",                                    desc = "Toggle loclist" },
+      { "<Leader>x", group = "Trouble" },
+      { "<Leader>xl", "<CMD>Trouble loclist toggle<CR>", desc = "Toggle loclist" },
       { "<Leader>xn", "<CMD>Trouble diagnostics next<CR><CMD>Trouble diagnostics jump<CR>", desc = "Next" },
-      { "<Leader>xq", "<CMD>Trouble qflist toggle<CR>",                                     desc = "Toggle quickfix" },
+      { "<Leader>xq", "<CMD>Trouble qflist toggle<CR>", desc = "Toggle quickfix" },
       {
         "<Leader>xw",
         "<CMD>Trouble diagnostics toggle<CR>",
         desc = "Toggle workspace diagnostics",
       },
-      { "<Leader>xx",  group = "Trouble document diagnostics" },
+      { "<Leader>xx", group = "Trouble document diagnostics" },
       {
         "<Leader>xxx",
         "<CMD>Trouble diagnostics toggle filter.buf=0 filter.severity=vim.diagnostic.severity.ERROR<CR>",
@@ -80,7 +80,7 @@ return {
         "<CMD>Trouble diagnostics toggle filter.buf=0 filter.severity=vim.diagnostic.severity.WARN<CR>",
         desc = "Toggle document diagnostics",
       },
-      { "<Leader>xxe", "<CMD>Telescope diagnostics<CR>",      desc = "Telescope document diagnostics" },
+      { "<Leader>xxe", "<CMD>Telescope diagnostics<CR>", desc = "Telescope document diagnostics" },
     },
   },
 

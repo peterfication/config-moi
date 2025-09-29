@@ -25,10 +25,10 @@ return {
       keys[#keys + 1] = { "<Leader>cA", false }
 
       keys[#keys + 1] =
-      { "<leader>za", vim.lsp.buf.code_action, desc = "[LSP] Code Action", mode = { "n", "v" }, has = "codeAction" }
+        { "<leader>za", vim.lsp.buf.code_action, desc = "[LSP] Code Action", mode = { "n", "v" }, has = "codeAction" }
 
       keys[#keys + 1] =
-      { "<leader>zc", vim.lsp.codelens.run, desc = "[LSP] Run Codelens", mode = { "n", "v" }, has = "codeLens" }
+        { "<leader>zc", vim.lsp.codelens.run, desc = "[LSP] Run Codelens", mode = { "n", "v" }, has = "codeLens" }
       keys[#keys + 1] = {
         "<leader>zC",
         vim.lsp.codelens.refresh,
