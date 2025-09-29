@@ -1,5 +1,13 @@
 return {
   {
+    "tpope/vim-fugitive",
+    cmd = { "Git" },
+    keys = {
+      { "<Leader>GV", ":Git blame<CR>", desc = "Open Git blame with fugitive" },
+    },
+  },
+
+  {
     "sindrets/diffview.nvim",
     opts = {
       keymaps = {
