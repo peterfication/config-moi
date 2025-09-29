@@ -23,6 +23,7 @@ return {
       keys[#keys + 1] = { "<Leader>cR", false }
       keys[#keys + 1] = { "<Leader>cr", false }
       keys[#keys + 1] = { "<Leader>cA", false }
+      keys[#keys + 1] = { "<Leader>cf", false }
 
       keys[#keys + 1] =
         { "<leader>za", vim.lsp.buf.code_action, desc = "[LSP] Code Action", mode = { "n", "v" }, has = "codeAction" }
@@ -47,6 +48,7 @@ return {
       }
       keys[#keys + 1] = { "<leader>zr", vim.lsp.buf.rename, desc = "[LSP] Rename", has = "rename" }
       keys[#keys + 1] = { "<leader>zA", LazyVim.lsp.action.source, desc = "[LSP] Source Action", has = "codeAction" }
+      keys[#keys + 1] = { "<Leader>zf", vim.lsp.buf.format, desc = "[LSP] Format", has = "format" }
     end,
     keys = {
       { "<Leader>z", group = "LSP" },
