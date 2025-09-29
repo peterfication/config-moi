@@ -18,7 +18,7 @@ function tmux_new_with_name() {
     DIR_NAME=`echo $TS_DIR | grep -o "[a-zA-Z0-9_.-]*$" | sed -r 's/[.]+/-/g'`
     echo "Create session '${DIR_NAME}' with window 'nvim' and folder '${TS_DIR}'"
     eval "tmux new-session -d -c ${TS_DIR} -s ${DIR_NAME} -n nvim"
-    eval "tmux send-keys -t 1.0 nvim Enter"
+    eval "tmux send-keys -t 1.0 nn Enter"
 
     # echo "Split window 'console' in session '${DIR_NAME}'"
     # eval "tmux split-window -h -t ${DIR_NAME} -c ${TS_DIR}"
@@ -42,12 +42,6 @@ function ts_from_arg() {
   tmux_new_with_name $1
   DIR_NAME=`$1 | grep -o "[a-zA-Z0-9._-]*$" | sed -r 's/[.]+/-/g'`
   # tmux -2 a -t $DIR_NAME
-}
-
-function tss() {
-  tmux split-pane -h
-  tmux send-keys -t 1.0 nvim Enter
-  tmux split-pane -d -v
 }
 
 # fs [FUZZY PATTERN] - Select selected tmux session
