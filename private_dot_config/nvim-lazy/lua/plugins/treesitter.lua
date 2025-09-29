@@ -16,4 +16,16 @@ return {
       { "<A-S-l>", "<CMD>Treewalker SwapRight<CR>", silent = true },
     },
   },
+
+  {
+    "mawkler/refjump.nvim",
+    event = "LspAttach",
+    opts = {
+      keymaps = {
+        enable = true,
+        next = "<A-n>",
+        prev = "<A-p>",
+      },
+    },
+  },
 }

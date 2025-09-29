@@ -52,3 +52,4 @@ Refer to the [documentation](https://lazyvim.github.io/installation).
 - kevinhwang91/nvim-ufo
 - SmiteshP/nvim-navic
 - chrisgrieser/nvim-various-textobjs
+- https://github.com/SmiteshP/nvim-navbuddy
