@@ -1,7 +1,4 @@
 return {
-  { import = "lazyvim.plugins.extras.ai.copilot" },
-  { import = "lazyvim.plugins.extras.ai.copilot-chat" },
-
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     opts = {

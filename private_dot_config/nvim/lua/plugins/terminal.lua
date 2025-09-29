@@ -171,8 +171,8 @@ return {
       })
 
       -- Telescope setup
-      local conf = require("telescope.config").values
       local function toggle_telescope(harpoon_files)
+        local conf = require("telescope.config").values
         local file_paths = {}
         for _, item in ipairs(harpoon_files.items) do
           table.insert(file_paths, item.value)
@@ -220,6 +220,7 @@ return {
       end, { desc = "Go to next harpoon file" })
 
       local function toggle_telescope_yeet(harpoon_lines)
+        local conf = require("telescope.config").values
         local commands = {}
         for _, item in ipairs(harpoon_lines.items) do
           vim.print(vim.inspect(item))

@@ -4,7 +4,7 @@ return {
     opts = function()
       local actions = require("telescope.actions")
       local action_state = require("telescope.actions.state")
-      local action_window_picker = function(prompt_bufnr)
+      local action_window_picker = function(_prompt_bufnr)
         local picker = require("window-picker")
         local winid = picker.pick_window()
         if winid then
