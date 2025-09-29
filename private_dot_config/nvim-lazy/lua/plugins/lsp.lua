@@ -26,10 +26,10 @@ return {
       keys[#keys + 1] = { "<Leader>cf", false }
 
       keys[#keys + 1] =
-        { "<Leader>za", vim.lsp.buf.code_action, desc = "[LSP] Code Action", mode = { "n", "v" }, has = "codeAction" }
+      { "<Leader>za", vim.lsp.buf.code_action, desc = "[LSP] Code Action", mode = { "n", "v" }, has = "codeAction" }
 
       keys[#keys + 1] =
-        { "<Leader>zc", vim.lsp.codelens.run, desc = "[LSP] Run Codelens", mode = { "n", "v" }, has = "codeLens" }
+      { "<Leader>zc", vim.lsp.codelens.run, desc = "[LSP] Run Codelens", mode = { "n", "v" }, has = "codeLens" }
       keys[#keys + 1] = {
         "<Leader>zC",
         vim.lsp.codelens.refresh,
@@ -49,6 +49,29 @@ return {
       keys[#keys + 1] = { "<Leader>zr", vim.lsp.buf.rename, desc = "[LSP] Rename", has = "rename" }
       keys[#keys + 1] = { "<Leader>zA", LazyVim.lsp.action.source, desc = "[LSP] Source Action", has = "codeAction" }
       keys[#keys + 1] = { "<Leader>zf", vim.lsp.buf.format, desc = "[LSP] Format", has = "format" }
+
+      keys[#keys + 1] = {
+        "<A-n>",
+        function()
+          Snacks.words.jump(vim.v.count1)
+        end,
+        has = "documentHighlight",
+        desc = "Next Reference",
+        cond = function()
+          return Snacks.words.is_enabled()
+        end,
+      }
+      keys[#keys + 1] = {
+        "<A-p>",
+        function()
+          Snacks.words.jump(-vim.v.count1)
+        end,
+        has = "documentHighlight",
+        desc = "Prev Reference",
+        cond = function()
+          return Snacks.words.is_enabled()
+        end,
+      }
     end,
     keys = {
       { "<Leader>z", group = "LSP" },
