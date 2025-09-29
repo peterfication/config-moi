@@ -11,3 +11,5 @@ vim.opt.listchars = {
   eol = "↵",
   -- tab = '»', -- tab does not work
 }
+
+vim.wo.relativenumber = false
