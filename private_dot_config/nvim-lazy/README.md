@@ -8,7 +8,6 @@ Refer to the [documentation](https://lazyvim.github.io/installation).
 - mrjones2014/legendary.nvim
 - davidmh/cspell.nvim
 - more configs from nvimtools/none-ls.nvim
-- johmsalas/text-case.nvim
 - rmagatti/goto-preview
 - chentoast/marks.nvim
 - simnalamburt/vim-mundo
