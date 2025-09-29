@@ -1,0 +1,6 @@
+# Example for using SSH keys managed in 1Password
+# The file ~/.config/1Password/ssh/agent.toml needs to be set up first.
+Host *
+  UseKeychain yes
+  AddKeysToAgent yes
+  IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
