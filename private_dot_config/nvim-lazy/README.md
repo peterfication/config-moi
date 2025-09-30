@@ -10,8 +10,6 @@ Refer to the [documentation](https://lazyvim.github.io/installation).
 - more configs from nvimtools/none-ls.nvim
 - chentoast/marks.nvim
 - simnalamburt/vim-mundo
-- tpope/vim-abolish
-- tpope/vim-repeat
 - hkupty/iron.nvim
 - L3MON4D3/LuaSnip
 - stevearc/overseer.nvim
@@ -40,8 +38,6 @@ Refer to the [documentation](https://lazyvim.github.io/installation).
 - nvim-treesitter/nvim-treesitter-textobjects
 - nvim-treesitter/nvim-treesitter-context
 - RRethy/nvim-treesitter-textsubjects
-- aaronik/treewalker.nvim
 - kevinhwang91/nvim-ufo
-- SmiteshP/nvim-navic
 - chrisgrieser/nvim-various-textobjs
 - https://github.com/SmiteshP/nvim-navbuddy
