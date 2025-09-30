@@ -1,9 +1,13 @@
 return {
   {
-    "johmsalas/text-case.nvim",
+    "tpope/vim-abolish",
     event = "BufReadPre",
-    opts = {},
-    init = function()
+  },
+  {
+    "johmsalas/text-case.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    event = "VeryLazy",
+    opts = function()
       LazyVim.on_load("telescope.nvim", function()
         require("telescope").load_extension("textcase")
       end)

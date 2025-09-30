@@ -10,17 +10,13 @@ Refer to the [documentation](https://lazyvim.github.io/installation).
 - more configs from nvimtools/none-ls.nvim
 - chentoast/marks.nvim
 - simnalamburt/vim-mundo
-- tpope/vim-abolish
-- tpope/vim-repeat
 - hkupty/iron.nvim
 - L3MON4D3/LuaSnip
 - stevearc/overseer.nvim
 - lukas-reineke/indent-blankline.nvim
 - akinsho/bufferline.nvim
 - nvim-lualine/lualine.nvim
-- petertriho/nvim-scrollbar
 - wfxr/minimap.vim
-- nyngwang/NeoZoom.lua
 
 - https://github.com/nvim-neorg/neorg
 - https://github.com/dhruvasagar/vim-zoom
@@ -29,19 +25,12 @@ Refer to the [documentation](https://lazyvim.github.io/installation).
 - https://github.com/dstein64/vim-startuptime
 - https://github.com/NTBBloodbath/doom-nvim
 - https://github.com/NTBBloodbath/cheovim
-- https://github.com/norcalli/nvim-colorizer.lua
-- https://github.com/ziontee113/syntax-tree-surfer
 
 ### Treesitter
 
 - incremental_selection
 - function show_line_diagnostics
 
-- nvim-treesitter/nvim-treesitter-textobjects
-- nvim-treesitter/nvim-treesitter-context
 - RRethy/nvim-treesitter-textsubjects
-- aaronik/treewalker.nvim
 - kevinhwang91/nvim-ufo
-- SmiteshP/nvim-navic
 - chrisgrieser/nvim-various-textobjs
-- https://github.com/SmiteshP/nvim-navbuddy
