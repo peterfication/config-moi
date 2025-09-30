@@ -35,8 +35,6 @@ Refer to the [documentation](https://lazyvim.github.io/installation).
 - incremental_selection
 - function show_line_diagnostics
 
-- nvim-treesitter/nvim-treesitter-textobjects
-- nvim-treesitter/nvim-treesitter-context
 - RRethy/nvim-treesitter-textsubjects
 - kevinhwang91/nvim-ufo
 - chrisgrieser/nvim-various-textobjs
