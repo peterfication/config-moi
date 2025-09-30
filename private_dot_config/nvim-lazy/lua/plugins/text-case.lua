@@ -9,7 +9,7 @@ return {
     event = "VeryLazy",
     opts = function()
       LazyVim.on_load("telescope.nvim", function()
-        require("telescope").load_extension("aerial")
+        require("telescope").load_extension("textcase")
       end)
     end,
     keys = {
