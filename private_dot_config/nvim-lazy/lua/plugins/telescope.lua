@@ -163,7 +163,12 @@ return {
           desc = "Open input to search for word with Telescope",
         },
 
-        { "<Leader>F", builtin.grep_string, desc = "Find word under cursor with Telescope" },
+        {
+          "<Leader>F",
+          builtin.grep_string,
+          desc = "Find word under cursor with Telescope",
+          mode = { "n", "v" },
+        },
 
         { "<Leader>H", builtin.pickers, desc = "Telescope history" },
         { "<Leader>/", builtin.pickers, desc = "Search history with Telescope" },
