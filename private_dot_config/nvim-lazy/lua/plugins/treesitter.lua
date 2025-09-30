@@ -73,4 +73,22 @@ return {
       { "<A-S-l>", "<CMD>Treewalker SwapRight<CR>", silent = true },
     },
   },
+
+  {
+    "SmiteshP/nvim-navic",
+    event = "VeryLazy",
+  },
+  {
+    "hasansujon786/nvim-navbuddy",
+    event = "VeryLazy",
+    opts = { lsp = { auto_attach = true } },
+    keys = {
+      { "<leader>zb", "<CMD>Navbuddy<CR>", desc = "Navbuddy" },
+    },
+  },
+  {
+    "numToStr/Comment.nvim",
+    event = "VeryLazy",
+    opts = {},
+  },
 }

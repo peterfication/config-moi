@@ -16,9 +16,7 @@ Refer to the [documentation](https://lazyvim.github.io/installation).
 - lukas-reineke/indent-blankline.nvim
 - akinsho/bufferline.nvim
 - nvim-lualine/lualine.nvim
-- petertriho/nvim-scrollbar
 - wfxr/minimap.vim
-- nyngwang/NeoZoom.lua
 
 - https://github.com/nvim-neorg/neorg
 - https://github.com/dhruvasagar/vim-zoom
@@ -27,8 +25,6 @@ Refer to the [documentation](https://lazyvim.github.io/installation).
 - https://github.com/dstein64/vim-startuptime
 - https://github.com/NTBBloodbath/doom-nvim
 - https://github.com/NTBBloodbath/cheovim
-- https://github.com/norcalli/nvim-colorizer.lua
-- https://github.com/ziontee113/syntax-tree-surfer
 
 ### Treesitter
 
@@ -38,4 +34,3 @@ Refer to the [documentation](https://lazyvim.github.io/installation).
 - RRethy/nvim-treesitter-textsubjects
 - kevinhwang91/nvim-ufo
 - chrisgrieser/nvim-various-textobjs
-- https://github.com/SmiteshP/nvim-navbuddy
