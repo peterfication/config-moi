@@ -26,10 +26,10 @@ return {
       keys[#keys + 1] = { "<Leader>cf", false }
 
       keys[#keys + 1] =
-      { "<Leader>za", vim.lsp.buf.code_action, desc = "[LSP] Code Action", mode = { "n", "v" }, has = "codeAction" }
+        { "<Leader>za", vim.lsp.buf.code_action, desc = "[LSP] Code Action", mode = { "n", "v" }, has = "codeAction" }
 
       keys[#keys + 1] =
-      { "<Leader>zc", vim.lsp.codelens.run, desc = "[LSP] Run Codelens", mode = { "n", "v" }, has = "codeLens" }
+        { "<Leader>zc", vim.lsp.codelens.run, desc = "[LSP] Run Codelens", mode = { "n", "v" }, has = "codeLens" }
       keys[#keys + 1] = {
         "<Leader>zC",
         vim.lsp.codelens.refresh,
@@ -86,5 +86,16 @@ return {
         null_ls.builtins.code_actions.gitsigns,
       })
     end,
+  },
+
+  {
+    "mason-org/mason.nvim",
+    opts = {
+      ensure_installed = {
+        -- Protobufs
+        -- "buf",
+        "protols",
+      },
+    },
   },
 }
