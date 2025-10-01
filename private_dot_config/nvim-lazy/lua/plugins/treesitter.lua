@@ -75,20 +75,20 @@ return {
   },
 
   {
-    "SmiteshP/nvim-navic",
-    event = "VeryLazy",
-  },
-  {
     "hasansujon786/nvim-navbuddy",
-    event = "VeryLazy",
+    cmd = { "Navbuddy" },
     opts = { lsp = { auto_attach = true } },
     keys = {
       { "<leader>zb", "<CMD>Navbuddy<CR>", desc = "Navbuddy" },
     },
   },
   {
+    "SmiteshP/nvim-navic",
+    cmd = { "Navbuddy" },
+  },
+  {
     "numToStr/Comment.nvim",
-    event = "VeryLazy",
+    cmd = { "Navbuddy" },
     opts = {},
   },
 }
