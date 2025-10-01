@@ -182,14 +182,14 @@ return {
         {
           "<Leader>ft",
           function()
-            require("telescope.builtin").grep_string({ search = "TODO:" })()
+            require("telescope.builtin").grep_string({ search = "TODO:" })
           end,
           desc = "List all TODO: comments in Telescope",
         },
         {
           "<Leader>fw",
           function()
-            require("telescope.builtin").grep_string({ search = vim.fn.input("Grep For > ") })()
+            require("telescope.builtin").grep_string({ search = vim.fn.input("Grep For > ") })
           end,
           desc = "Open input to search for word with Telescope",
         },
