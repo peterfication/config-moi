@@ -3,7 +3,7 @@
 local map = vim.keymap.set
 
 map("n", "<Leader><ESC>", ":nohlsearch<CR>", { silent = true, desc = "Clear search highlight" })
-map("n", "<Leader>w", ":w<CR>", { silent = true, desc = "Save current buffer" })
+map("n", "<Leader>we", ":w<CR>", { silent = true, desc = "Save current buffer" })
 
 map("n", "<Leader>!", ":w<CR>", { silent = true, desc = "Save current buffer" })
 
