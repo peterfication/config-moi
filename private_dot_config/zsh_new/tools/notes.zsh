@@ -1,4 +1,4 @@
-alias notes="cd ~/notes && vim"
+alias notes="cd ~/notes && nn"
 
 snotes() {
   cd ~/notes
