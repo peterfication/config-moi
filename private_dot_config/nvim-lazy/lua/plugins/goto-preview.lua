@@ -16,6 +16,7 @@ return {
     keys = {
       { "gp",  group = "Goto Preview" },
       { "gpd", "<CMD>lua require('goto-preview').goto_preview_definition()<CR>", desc = "Preview Definition" },
+      { "gpD", "<CMD>tab split | lua vim.lsp.buf.definition()<CR>", desc = "Preview Definition in a new tab" },
       { "gP",  "<CMD>lua require('goto-preview').close_all_win()<CR>",           desc = "Close preview windows" },
     },
   },

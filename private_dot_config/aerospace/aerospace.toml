@@ -4,11 +4,6 @@
 # It's not necessary to copy all keys to your config.
 # If the key is missing in your config, "default-config.toml" will serve as a fallback
 
-# You can use it to add commands that run after login to macOS user session.
-# 'start-at-login' needs to be 'true' for 'after-login-command' to work
-# Available commands: https://nikitabobko.github.io/AeroSpace/commands
-after-login-command = []
-
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
@@ -87,7 +82,7 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 cmd-alt-shift-ctrl-i = 'exec-and-forget open /Applications/iTerm.app'
 cmd-alt-shift-ctrl-f = 'exec-and-forget open /Applications/Firefox.app'
 cmd-alt-shift-ctrl-t = 'exec-and-forget open /Applications/Notion.app'
-cmd-alt-shift-ctrl-z = 'exec-and-forget open /Applications/zoom.us.app'
+cmd-alt-shift-ctrl-y = 'exec-and-forget open /Applications/zoom.us.app'
 
 cmd-alt-shift-ctrl-s = 'exec-and-forget open ~/Pictures/Screenshots'
 cmd-alt-shift-ctrl-h = 'exec-and-forget open ~/'
@@ -165,6 +160,18 @@ cmd-alt-shift-ctrl-l = 'workspace-back-and-forth'
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 cmd-alt-shift-ctrl-n = 'move-workspace-to-monitor --wrap-around next'
 cmd-alt-shift-ctrl-b = 'focus-monitor --wrap-around next'
+
+# cmd-alt-shift-ctrl-leftSquareBracket = ''
+# cmd-alt-shift-ctrl-rightSquareBracket = ''
+
+# cmd-alt-shift-ctrl-quote = ''
+# cmd-alt-shift-ctrl-semicolon = ''
+# cmd-alt-shift-ctrl-backslash = ''
+
+# These don't work
+# cmd-alt-shift-ctrl-comma = ''
+# cmd-alt-shift-ctrl-period = ''
+# cmd-alt-shift-ctrl-slash = ''
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 cmd-alt-shift-ctrl-p = 'mode service'
