@@ -9,7 +9,7 @@ vim.opt.listchars = {
   precedes = "<",
   space = "·",
   eol = "↵",
-  -- tab = '»', -- tab does not work
+  tab = "│─",
 }
 
 vim.wo.relativenumber = false
