@@ -1,3 +1,6 @@
+export ZVM_VI_EDITOR=vim
+zcomet load jeffreytse/zsh-vi-mode
+
 zcomet load ohmyzsh plugins/chezmoi
 zcomet load ohmyzsh plugins/chruby
 zcomet load ohmyzsh plugins/direnv
