@@ -43,6 +43,11 @@ yazi-add-package-toml:
 yazi-upgrade:
   ya pkg upgrade
 
+# Clean all plugins and reinstall them
+yazi-reinstall:
+  rm -rf ~/.config/yazi/plugins
+  ya pkg install
+
 # Check if there are outdated repositories in repos.txt
 repos-check:
   GITHUB_TOKEN="$(gh auth token)" uv run ./scripts/check_repos_graphql.py repos.txt repo_activity.csv --threshold-days 365 --batch-size 50
