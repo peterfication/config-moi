@@ -8,6 +8,7 @@ return {
             auto_show = true,
           },
           ghost_text = {
+            enabled = false,
             show_with_menu = false,
           },
         },
