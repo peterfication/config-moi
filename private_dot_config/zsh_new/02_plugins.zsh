@@ -1,4 +1,5 @@
 export ZVM_VI_EDITOR=vim
+export ZVM_INIT_MODE=sourcing
 zcomet load jeffreytse/zsh-vi-mode
 
 zcomet load ohmyzsh plugins/chezmoi
