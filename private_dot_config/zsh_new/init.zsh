@@ -17,6 +17,7 @@ source ~/.config/zsh_new/01_languages.zsh
 source ~/.config/zsh_new/02_plugins.zsh
 source ~/.config/zsh_new/03_general.zsh
 source ~/.config/zsh_new/04_alias.zsh
+source ~/.config/zsh_new/05_theme.zsh
 source ~/.config/zsh_new/10_tools.zsh
 source ~/.config/zsh_new/11_macos.zsh
 source ~/.config/zsh_new/99_starship.zsh
