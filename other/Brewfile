@@ -164,6 +164,7 @@ brew 'tfenv' # For managing Terraform versions
 brew 'tflint' # Terraform linter
 brew 'tidy-viewer' # View things nicely formatted in the Terminal, e.g. CSVs
 brew 'tig' # Git text interface
+brew 'tinted-theming/tinted/tinty'
 brew 'tmux'
 brew 'tree'
 brew 'urlview' # For tmux URLs selection
