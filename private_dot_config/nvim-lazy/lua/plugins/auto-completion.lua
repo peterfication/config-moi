@@ -11,9 +11,9 @@ return {
             show_with_menu = false,
           },
         },
-        keymap = {
-          ["<Esc>"] = { "hide", "fallback" },
-        },
+        -- keymap = {
+        --   ["<Esc>"] = { "hide", "fallback" },
+        -- },
         cmdline = {
           keymap = {
             ["<ESC>"] = {
