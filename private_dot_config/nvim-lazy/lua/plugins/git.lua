@@ -2,8 +2,17 @@ return {
   {
     "tpope/vim-fugitive",
     cmd = { "Git" },
+    -- keys = {
+    --   { "<Leader>GV", ":Git blame<CR>", desc = "Open Git blame with fugitive" },
+    -- },
+  },
+
+  {
+    "FabijanZulj/blame.nvim",
+    config = true,
+    cmd = "BlameToggle",
     keys = {
-      { "<Leader>GV", ":Git blame<CR>", desc = "Open Git blame with fugitive" },
+      { "<Leader>GV", "<CMD>BlameToggle<CR>", desc = "Open Git blame" },
     },
   },
 
