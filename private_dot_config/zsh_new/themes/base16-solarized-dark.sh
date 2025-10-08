@@ -35,9 +35,11 @@ if [ -z "$TTY" ] && ! TTY=$(tty) || [ ! -w "$TTY" ]; then
   put_template() { true; }
   put_template_var() { true; }
   put_template_custom() { true; }
-elif [ -n "$TMUX" ] || [ "${TERM%%[-.]*}" = "tmux" ]; then
+elif { [ -n "$TMUX" ] || [ "${TERM%%[-.]*}" = "tmux" ]; } && [ -z "$NVIM" ]; then
   # Tell tmux to pass the escape sequences through
   # (Source: http://permalink.gmane.org/gmane.comp.terminal-emulators.tmux.user/1324)
+  #
+  # But only if it's not a Neovim terminal inside tmux
   put_template() { printf '\033Ptmux;\033\033]4;%d;rgb:%s\033\033\\\033\\' "$@" > "$TTY"; }
   put_template_var() { printf '\033Ptmux;\033\033]%d;rgb:%s\033\033\\\033\\' "$@" > "$TTY"; }
   put_template_custom() { printf '\033Ptmux;\033\033]%s%s\033\033\\\033\\' "$@" > "$TTY"; }
