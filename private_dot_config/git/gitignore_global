@@ -7,7 +7,7 @@
 .lazygit.yml
 .project
 .settings
-.vscode
+.vscode/*
 .vim
 .vim/
 .vim/*
