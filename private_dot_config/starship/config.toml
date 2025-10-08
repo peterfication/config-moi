@@ -23,7 +23,6 @@ $fossil_branch\
 $vcsh\
 [ ](fg:color_aqua)\
 (\
-$fill\
 [ ](color_blue)\
 $direnv\
 $singularity\
