@@ -15,6 +15,16 @@ return {
   {
     "petertriho/nvim-scrollbar",
     event = "BufReadPre",
-    opts = {},
+    opts = {
+      set_highlights = true,
+      handlers = {
+        gitsigns = true,
+      },
+      marks = {
+        GitAdd = { text = "┃" },
+        GitChange = { text = "┃" },
+        GitDelete = { text = "_" },
+      },
+    },
   },
 }
