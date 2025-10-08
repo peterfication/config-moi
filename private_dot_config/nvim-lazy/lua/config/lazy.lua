@@ -47,6 +47,8 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.toml" },
     { import = "lazyvim.plugins.extras.lang.yaml" },
 
+    { import = "lazyvim.plugins.extras.linting.eslint" },
+
     { import = "lazyvim.plugins.extras.ui.treesitter-context" },
 
     { import = "plugins" },
