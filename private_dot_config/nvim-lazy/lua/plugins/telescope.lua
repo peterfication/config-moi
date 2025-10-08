@@ -16,6 +16,9 @@ return {
           end
         end
       end
+      local open_with_trouble = function(...)
+        return require("trouble.sources.telescope").open(...)
+      end
 
       local additional_opts = {
         defaults = {
@@ -24,14 +27,13 @@ return {
           },
           mappings = {
             i = {
+              ["<c-t>"] = actions.select_tab,
               ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
               ["<C-a>"] = actions.send_to_qflist + actions.open_qflist,
               ["<C-d>"] = actions.delete_buffer,
               ["<C-n>"] = actions.cycle_history_next,
               ["<C-p>"] = actions.cycle_history_prev,
               ["<C-w>"] = action_window_picker,
-              -- TODO: This prevents <C-x> to open a horizontal split
-              -- ["<c-x>"] = trouble.open_with_trouble,
             },
             n = {
               ["d"] = actions.delete_buffer,
@@ -39,8 +41,7 @@ return {
               ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
               ["q"] = actions.send_selected_to_qflist + actions.open_qflist,
               ["w"] = action_window_picker,
-              -- TODO: This prevents <C-x> to open a horizontal split
-              -- ["<c-x>"] = trouble.open_with_trouble,
+              ["<a-t>"] = open_with_trouble,
             },
           },
           preview = {
