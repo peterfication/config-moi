@@ -50,10 +50,12 @@ return {
       keys[#keys + 1] = { "<Leader>zA", LazyVim.lsp.action.source, desc = "[LSP] Source Action", has = "codeAction" }
       keys[#keys + 1] = { "<Leader>zf", vim.lsp.buf.format, desc = "[LSP] Format", has = "format" }
 
+      local cycle = true
+
       keys[#keys + 1] = {
         "<A-n>",
         function()
-          Snacks.words.jump(vim.v.count1)
+          Snacks.words.jump(vim.v.count1, cycle)
         end,
         has = "documentHighlight",
         desc = "Next Reference",
@@ -64,7 +66,7 @@ return {
       keys[#keys + 1] = {
         "<A-p>",
         function()
-          Snacks.words.jump(-vim.v.count1)
+          Snacks.words.jump(-vim.v.count1, cycle)
         end,
         has = "documentHighlight",
         desc = "Prev Reference",
