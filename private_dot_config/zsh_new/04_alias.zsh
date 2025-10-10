@@ -1,6 +1,3 @@
-# zoxide interactive
-alias zz=zi
-
 # Remove files a little bit more secure
 alias shred="rm -rPv"
 
