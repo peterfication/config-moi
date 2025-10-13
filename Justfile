@@ -17,7 +17,7 @@ apply:
 
 # Custom apply reverse: Apply all changes from the home directory to chezmoi
 apply-reverse:
-  chezmoi status --path-style absolute | grep '/Users' | awk '{print $2}' | xargs -I {} chezmoi add --prompt {}
+  chezmoi status --path-style absolute | grep '/Users' | awk '{$1=""; sub(/^ /, ""); print}' | xargs -I {} chezmoi add --prompt "{}"
 
 # Chezmoi status
 status:
