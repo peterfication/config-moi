@@ -1,0 +1,31 @@
+{
+  "name": "Vimium C",
+  "@time": "10/13/2025, 7:58:31 AM",
+  "time": 1760335111791,
+  "environment": {
+    "extension": "2.12.3",
+    "platform": "mac",
+    "firefox": 143
+  },
+  "exclusionRules": [
+    {
+      "passKeys": "^ <m-s-e> H J K L",
+      "pattern": ":https://mail.google.com/"
+    },
+    {
+      "passKeys": "^ <m-s-e> H J K L",
+      "pattern": ":https://app.fastmail.com/"
+    },
+    {
+      "passKeys": "^ <m-s-e> H J K L",
+      "pattern": ":https://app.asana.com/"
+    }
+  ],
+  "keyLayout": 2,
+  "keyMappings": [
+    "#!no-check",
+    "map <m-s-e> Vomnibar.activateTabs",
+    ""
+  ],
+  "vimSync": true
+}
