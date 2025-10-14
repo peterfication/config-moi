@@ -17,3 +17,5 @@ map("n", "<Leader>6", "6gt", { desc = "Go to tab 6" })
 map("n", "<Leader>7", "7gt", { desc = "Go to tab 7" })
 map("n", "<Leader>8", "8gt", { desc = "Go to tab 8" })
 map("n", "<Leader>9", "9gt", { desc = "Go to tab 9" })
+
+map("n", "gcc", "gcl", { desc = "Toggle comment for current line" })
