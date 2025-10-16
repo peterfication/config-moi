@@ -1,6 +1,6 @@
 # zmodload zsh/zprof
 
-# source ~/.config/zsh/init.zsh
-source ~/.config/zsh_new/init.zsh
+# source ~/.config/zsh_old/init.zsh
+source ~/.config/zsh/init.zsh
 
 # zprof

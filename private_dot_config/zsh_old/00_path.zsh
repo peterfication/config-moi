@@ -1,11 +1,5 @@
 if [ -e /opt/homebrew/bin/brew ]; then
-  # Write homebrew to cache for speed up if it doesn't exist yet
-  export HOMEBREW_SHELLENV_CACHE_FILE="$HOME/.cache/homebrew_shellenv.sh"
-  if [ ! -e "$HOMEBREW_SHELLENV_CACHE_FILE" ]; then
-    /opt/homebrew/bin/brew shellenv > "$HOMEBREW_SHELLENV_CACHE_FILE"
-  fi
-
-  source "$HOMEBREW_SHELLENV_CACHE_FILE"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 if [ -e /home/linuxbrew/.linuxbrew/bin/brew ]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
@@ -20,4 +14,10 @@ fi
 # protected to be sourced only once. Hence, I need to manually set the PATH.
 export PATH="$HOME/.nix-profile/bin:/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:$PATH"
 
+# Use homebrew curl
+export PATH="$(brew --prefix)/opt/curl/bin:$PATH"
+# Use homebrew gnu grep
+export PATH="$(brew --prefix)/opt/grep/libexec/gnubin:$PATH"
+
+export PATH=$HOME"/.local/share/neovim/bin:$PATH"
 export PATH=$HOME"/.local/bin:$PATH"
