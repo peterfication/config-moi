@@ -29,6 +29,7 @@ fi
 
 # It is good to load these popular plugins last, and in this order:
 zcomet load zsh-users/zsh-syntax-highlighting
+zcomet fpath zsh-users/zsh-completions/src
 # zcomet load zsh-users/zsh-autosuggestions
 
 # Disable compaudit security warning by default
