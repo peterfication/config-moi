@@ -3,8 +3,7 @@ export EDITOR="nvim"
 # alias nvim="~/.local/share/neovim/bin/nvim"
 alias e=nvim
 alias n=nvim
-alias nvim-lazy="NVIM_APPNAME=nvim-lazy nvim"
-alias nn=nvim-lazy
+alias nvim-old="NVIM_APPNAME=nvim-old nvim"
 
 # See https://wilsonmar.github.io/maximum-limits/
 # To me a problem occurred with Capybara and Webmock displaying the following message:

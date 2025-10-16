@@ -1,41 +1,22 @@
-# Neovim config in Lua
+# 💤 Config based on LazyVim
 
-[Neovim Lua guide](https://github.com/nanotee/nvim-lua-guide)
+Refer to the [documentation](https://lazyvim.github.io/installation).
 
-## Set up lua files for Neovim to find them
+## TODO
 
-```bash
-ln -s ln -s ~/config/vim-lua .config/nvim/lua
-```
-
-## Features
-
-- Jump between windows with `<Leader>W`
-- Select register history with `<Leader>p`
-- Telescope
-  - Open files with `<Leader>e`
-  - Switch current buffers with `<Leader>E` and close open buffers with `<C-d>`
-  - Open recently opened files with `<Leader>he`
-  - Run commands with `<Leader>c`
-  - Run Telescope lists with `<Leader>C`
-  - Run recently run commands with `<Leader>hc`
-  - Search with `<Leader>f`
-  - Search for word under the cursor with `<Leader>F`
-  - Show search history with `<Leader>hf`
-- LSP features
-  - Format the current buffer with `<Leader>P`
-  - List code actions with `<Leader>a`
-- Git
-  - Open Lazygit with `<Leader>gg`
-  - Toggle blame line with `<Leader>gb`
-  - Open Diffview for the current file with `<Leader>GG`
-  - Open Tig blame with `<Leader>GB`
-  - Jump to next and previous Git hunk with `ghn` and `ghp`
-  - Switch between dirty Git files with `<Leader>gs`
-- Set uppercase marks (e.g. `mA`) and jump between them via Telescope with `<Leader>m`
-- Quickfix
-
-## Nice Neovim plugins that I don't need at the moment
+- chrisgrieser/nvim-spider
+- mrjones2014/legendary.nvim
+- davidmh/cspell.nvim
+- more configs from nvimtools/none-ls.nvim
+- chentoast/marks.nvim
+- simnalamburt/vim-mundo
+- hkupty/iron.nvim
+- L3MON4D3/LuaSnip
+- stevearc/overseer.nvim
+- lukas-reineke/indent-blankline.nvim
+- akinsho/bufferline.nvim
+- nvim-lualine/lualine.nvim
+- wfxr/minimap.vim
 
 - https://github.com/nvim-neorg/neorg
 - https://github.com/dhruvasagar/vim-zoom
@@ -44,10 +25,12 @@ ln -s ln -s ~/config/vim-lua .config/nvim/lua
 - https://github.com/dstein64/vim-startuptime
 - https://github.com/NTBBloodbath/doom-nvim
 - https://github.com/NTBBloodbath/cheovim
-- https://github.com/norcalli/nvim-colorizer.lua
-- https://github.com/ziontee113/syntax-tree-surfer
 
-## (Neo)vim learning resources
+### Treesitter
 
-- https://github.com/mhinz/vim-galore
-- [Vhyrro - Understanding Neovim](https://www.youtube.com/watch?v=87AXw9Quy9U&list=PLx2ksyallYzW4WNYHD9xOFrPRYGlntAft&index=2)
+- incremental_selection
+- function show_line_diagnostics
+
+- RRethy/nvim-treesitter-textsubjects
+- kevinhwang91/nvim-ufo
+- chrisgrieser/nvim-various-textobjs

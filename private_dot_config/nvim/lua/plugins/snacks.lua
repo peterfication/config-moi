@@ -1,19 +1,29 @@
 return {
   {
-    "folke/snacks.nvim",
-    ---@type snacks.Config
+    "snacks.nvim",
     opts = {
-      lazygit = {
-        -- See https://github.com/folke/snacks.nvim/blob/main/docs/lazygit.md
+      scroll = {
+        animate = {
+          duration = { step = 10, total = 100 },
+          easing = "linear",
+        },
       },
+      notifier = { enabled = false },
     },
-    keys = {
-      {
-        "<Leader>gg",
-        function()
-          require("snacks").lazygit()
-        end,
-        desc = "Open LazyGit",
+  },
+
+  {
+    "petertriho/nvim-scrollbar",
+    event = "BufReadPre",
+    opts = {
+      set_highlights = true,
+      handlers = {
+        gitsigns = true,
+      },
+      marks = {
+        GitAdd = { text = "┃" },
+        GitChange = { text = "┃" },
+        GitDelete = { text = "_" },
       },
     },
   },
