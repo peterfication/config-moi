@@ -21,6 +21,7 @@ local bookmarks = {
 	{ key = "c", path = "~/.config", desc = "~/.config" },
 	{ key = "C", path = "~/config", desc = "~/config" },
 	{ key = "l", path = "~/.local", desc = "~/.local " },
+	{ key = "u", path = "~/coding", desc = "~/coding" },
 }
 local extra_bookmarks_path = home .. "/.config/yazi/local_bookmarks.lua"
 local extra_bookmarks = nil
