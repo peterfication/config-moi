@@ -5,14 +5,38 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "CAPS_LOCK to Escape",
+                        "description": "CAPS_LOCK: Escape",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "caps_lock",
-                                    "modifiers": {}
+                                    "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [{ "key_code": "escape" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "CAPS_LOCK: tap = Escape, hold = Ctrl+Shift+Alt",
+                        "enabled": false,
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "caps_lock",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "parameters": {
+                                    "basic.to_if_alone_timeout_milliseconds": 100,
+                                    "basic.to_if_held_down_threshold_milliseconds": 100
+                                },
+                                "to_if_alone": [{ "key_code": "escape" }],
+                                "to_if_held_down": [
+                                    {
+                                        "key_code": "left_control",
+                                        "modifiers": ["left_shift", "left_option"]
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]
