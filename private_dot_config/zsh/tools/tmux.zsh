@@ -1,5 +1,15 @@
 alias tm='env TERM=screen-256color tmux -2'
 
+export TMUX_SESSIONS_FILE="$HOME/.config/tmux/sessions.txt"
+
+# Add the current working directory to the tmux sessions file
+function tm_add_cwd() {
+  local cwd=$(pwd)
+  if ! grep -Fxq "$cwd" "$TMUX_SESSIONS_FILE"; then
+    echo "$cwd" >> "$TMUX_SESSIONS_FILE"
+  fi
+}
+
 if ! [ -f ~/.tmux/plugins/tpm/tpm ]
 then
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
