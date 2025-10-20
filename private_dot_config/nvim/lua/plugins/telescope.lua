@@ -156,6 +156,13 @@ return {
           end,
           desc = "Recent files with Telescope",
         },
+        {
+          "<Leader>ea",
+          function()
+            require("telescope.builtin").find_files({ hidden = true, no_ignore = true })
+          end,
+          desc = "Find all files with Telescope",
+        },
 
         { "<Leader>E", group = "Open buffer(s)" },
         {
