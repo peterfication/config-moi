@@ -86,7 +86,11 @@ return {
     event = "VeryLazy",
     ---@module 'oil'
     ---@type oil.SetupOpts
-    opts = {},
+    opts = {
+      view_options = {
+        show_hidden = true,
+      },
+    },
     keys = {
       { "<leader>no", "<CMD>Oil --float<CR>", desc = "Open Oil for the project" },
       { "<leader>NO", "<CMD>Oil --float .<CR>", desc = "Open Oil for the project" },
