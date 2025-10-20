@@ -134,7 +134,6 @@ return {
 
       return {
         { "<Leader>e", group = "Open file(s)" },
-        { "<Leader>eb", ":Telescope file_browser hidden=true<CR>", desc = "Telescope file browser" },
         { "<Leader>eo", ":Oil<CR>", desc = "Oil file browser" },
         {
           "<Leader>ee",
