@@ -66,7 +66,7 @@ return {
       },
     },
     keys = {
-      { "<Leader>n", group = "Neotree" },
+      { "<Leader>n",  group = "Neotree" },
       -- Fallback when "n" is pressed only once
       -- { "<Leader>n", ":Neotree toggle float<CR>", desc = "Open NeoTree files" },
       {
@@ -74,9 +74,9 @@ return {
         ":Neotree filesystem reveal float<CR>",
         desc = "Open NeoTree with the current file selected",
       },
-      { "<Leader>nb", ":Neotree buffers toggle float<CR>", desc = "Open NeoTree buffers" },
+      { "<Leader>nb", ":Neotree buffers toggle float<CR>",    desc = "Open NeoTree buffers" },
       { "<Leader>ng", ":Neotree git_status toggle float<CR>", desc = "Open NeoTree git_status" },
-      { "<Leader>nn", ":Neotree toggle float<CR>", desc = "Open NeoTree files" },
+      { "<Leader>nn", ":Neotree toggle float<CR>",            desc = "Open NeoTree files" },
     },
   },
 
@@ -92,7 +92,7 @@ return {
       },
     },
     keys = {
-      { "<leader>no", "<CMD>Oil --float<CR>", desc = "Open Oil for the project" },
+      { "<leader>no", "<CMD>Oil --float<CR>",   desc = "Open Oil for the project" },
       { "<leader>NO", "<CMD>Oil --float .<CR>", desc = "Open Oil for the project" },
     },
   },
