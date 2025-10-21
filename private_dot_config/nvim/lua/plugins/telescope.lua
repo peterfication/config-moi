@@ -103,38 +103,38 @@ return {
     keys = function()
       local git_hunks = function()
         require("telescope.pickers")
-          .new({
-            finder = require("telescope.finders").new_oneshot_job({ "git", "jump", "--stdout", "diff" }, {
-              entry_maker = function(line)
-                local filename, lnum_string = line:match("([^:]+):(%d+).*")
+            .new({
+              finder = require("telescope.finders").new_oneshot_job({ "git", "jump", "--stdout", "diff" }, {
+                entry_maker = function(line)
+                  local filename, lnum_string = line:match("([^:]+):(%d+).*")
 
-                -- I couldn't find a way to use grep in new_oneshot_job so we have to filter here
-                -- return nil if filename is /dev/null because this means the file was deleted
-                if filename:match("^/dev/null") then
-                  return nil
-                end
+                  -- I couldn't find a way to use grep in new_oneshot_job so we have to filter here
+                  -- return nil if filename is /dev/null because this means the file was deleted
+                  if filename:match("^/dev/null") then
+                    return nil
+                  end
 
-                return {
-                  value = filename,
-                  display = line,
-                  ordinal = line,
-                  filename = filename,
-                  lnum = tonumber(lnum_string),
-                }
-              end,
-            }),
-            sorter = require("telescope.sorters").get_generic_fuzzy_sorter(),
-            previewer = require("telescope.config").values.grep_previewer({}),
-            results_title = "Git hunks",
-            prompt_title = "Git hunks",
-            layout_strategy = "flex",
-          }, {})
-          :find()
+                  return {
+                    value = filename,
+                    display = line,
+                    ordinal = line,
+                    filename = filename,
+                    lnum = tonumber(lnum_string),
+                  }
+                end,
+              }),
+              sorter = require("telescope.sorters").get_generic_fuzzy_sorter(),
+              previewer = require("telescope.config").values.grep_previewer({}),
+              results_title = "Git hunks",
+              prompt_title = "Git hunks",
+              layout_strategy = "flex",
+            }, {})
+            :find()
       end
 
       return {
-        { "<Leader>e", group = "Open file(s)" },
-        { "<Leader>eo", ":Oil<CR>", desc = "Oil file browser" },
+        { "<Leader>e",  group = "Open file(s)" },
+        { "<Leader>eo", ":Oil<CR>",            desc = "Oil file browser" },
         {
           "<Leader>ee",
           function()
@@ -296,7 +296,7 @@ return {
           desc = "Open jumplist in Telescope",
         },
 
-        { "<Leader>c", group = "Commands" },
+        { "<Leader>c",  group = "Commands" },
         {
           "<Leader>cc",
           function()
@@ -321,9 +321,9 @@ return {
         },
 
         { "<Leader>qh", ":Telescope quickfixhistory<CR>", desc = "Open quickfix history in Telescope" },
-        { "<Leader>qq", ":Telescope quickfix<CR>", desc = "Open quickfix list in Telescope" },
+        { "<Leader>qq", ":Telescope quickfix<CR>",        desc = "Open quickfix list in Telescope" },
 
-        { "<Leader>g", group = "Git" },
+        { "<Leader>g",  group = "Git" },
         {
           "<Leader>gc",
           function()
@@ -331,9 +331,9 @@ return {
           end,
           desc = "Open Git commits in Telescope (<C-d> opens DiffView)",
         },
-        { "<Leader>gs", git_hunks, desc = "Open Git status hunks in Telescope" },
+        { "<Leader>gs", git_hunks,      desc = "Open Git status hunks in Telescope" },
 
-        { "<Leader>G", group = "Git 2" },
+        { "<Leader>G",  group = "Git 2" },
         {
           "<Leader>GC",
           function()
