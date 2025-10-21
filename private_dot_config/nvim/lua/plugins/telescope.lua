@@ -159,7 +159,22 @@ return {
         {
           "<Leader>ea",
           function()
-            require("telescope.builtin").find_files({ hidden = true, no_ignore = true })
+            require("telescope.builtin").find_files({
+              find_command = {
+                "rg",
+                "--files",
+                "--hidden",
+                "--no-ignore",
+                "--maxdepth",
+                2,
+                "--glob",
+                "!.git/*",
+                "--glob",
+                "!.venv/*",
+                "--glob",
+                "!node_modules/*",
+              },
+            })
           end,
           desc = "Find all files with Telescope",
         },
