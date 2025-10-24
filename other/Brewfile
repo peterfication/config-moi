@@ -30,8 +30,8 @@ brew 'bat' # cat/less replacement written in Rust
 brew 'borgbackup'
 brew 'bottom'
 brew 'btop'
-brew 'catimg' # Image preview in the terminal
 brew 'cdparanoia'
+brew 'chafa' # Image preview in the terminal
 brew 'chruby'
 brew 'cloc'
 brew 'cmake'
