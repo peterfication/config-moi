@@ -1,3 +1,7 @@
+if true then
+  return {}
+end
+
 return {
   {
     "benlubas/molten-nvim",
@@ -14,6 +18,7 @@ return {
   {
     "GCBallesteros/jupytext.nvim",
     config = true,
+    -- events = { "VeryLazy" },
   },
   -- {
   --   -- see the image.nvim readme for more information about configuring this plugin
