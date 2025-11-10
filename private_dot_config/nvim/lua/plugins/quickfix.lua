@@ -93,7 +93,7 @@ return {
       vim.diagnostic.config({ virtual_text = false })
 
       -- This is needed because other plugins that lazy load later might overwrite it.
-      LazyVim.lsp.on_attach(function(_client, _buffer)
+      Snacks.util.lsp.on(function(_client, _buffer)
         vim.diagnostic.config({ virtual_text = false })
       end)
     end,
