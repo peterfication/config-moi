@@ -1,0 +1,23 @@
+README.md
+**/*/README.md
+Justfile
+.vscode/extensions/extensions_add.sh
+docs
+other
+scripts
+repo_activity.csv
+repos.txt
+
+{{ if eq .chezmoi.os "linux" }}
+# Ignore these files on Linux (servers)
+.config/hammerspoon
+.config/karabiner
+.config/nix
+.config/nvim-old
+.config/svim
+.config/zsh_old
+.gnupg
+.ssh
+.vscode
+Library
+{{ end }}
