@@ -1,3 +1,6 @@
+# Only do this on macOS
+[[ "$(uname)" != "Darwin" ]] && return
+
 # Use homebrew curl
 export PATH="$HOMEBREW_PREFIX/opt/curl/bin:$PATH"
 
