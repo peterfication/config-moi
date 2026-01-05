@@ -217,6 +217,7 @@ cask 'darktable'
 cask 'eqmac'
 cask 'firefox'
 cask 'flipper'
+cask 'flowvision' # Fotos viewer
 cask 'flux'
 # cask 'flycut'
 cask 'font-fira-mono-nerd-font'
@@ -262,6 +263,7 @@ cask 'vmware-fusion'
 cask 'webtorrent'
 cask 'xbar'
 cask 'xld' # X Lossless Decoder - CD ripper
+cask 'xnviewmp' # Image viewer
 cask 'zenmate-vpn'
 
 # Games
