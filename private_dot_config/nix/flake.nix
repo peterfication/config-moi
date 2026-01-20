@@ -21,6 +21,7 @@
         jjui # https://github.com/idursun/jjui
         jujutsu # https://jj-vcs.github.io/jj/latest/
         lazygit # https://github.com/jesseduffield/lazygit
+        peco # https://github.com/peco/peco interactive grep
         rclone # https://rclone.org/
         sshs # https://github.com/quantumsheep/sshs
         vim
