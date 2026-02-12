@@ -5,3 +5,7 @@
 - `mac_os_defaults.sh`
 - iterm: Set up Nerd font
 - iterm: Set up left option to Esc+
+- tmux plugin install
+- yazi plugin install
+- brew casks
+- volta
