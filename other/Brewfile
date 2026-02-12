@@ -44,19 +44,15 @@ brew 'curl'
 brew 'd2' # Diagramming tool https://d2lang.com/
 brew 'derailed/popeye/popeye'
 brew 'difftastic'
-brew 'direnv'
 brew 'dive' # https://github.com/wagoodman/dive Docker image inspection
 brew 'docker'
 brew 'dog' # Modern replacement for dig
 brew 'dos2unix'
 brew 'dua-cli' # Disk usage analyzer
-brew 'duckdb' # For JSON and CSV analysis
 brew 'duf'
 brew 'dust' # du -sh replacement
 brew 'elixir-ls'
-brew 'exa' # ls replacement
 brew 'fastlane'
-brew 'fd' # find replacement
 brew 'ffmpeg'
 brew 'fluxcd/tap/flux', link: false
 brew 'flyctl'
@@ -64,12 +60,10 @@ brew 'fpp' # PathPicker
 brew 'macos-fuse-t/homebrew-cask/fuse-t'
 brew 'macos-fuse-t/homebrew-cask/fuse-t-sshfs' # Alternative to the normal sshfs from https://github.com/libfuse/sshfs
 brew 'fx'
-brew 'fzf'
 brew 'gh'
 brew 'git'
 brew 'git-absorb' # Also see https://github.com/jesseduffield/lazygit/blob/master/docs/dev/Find_Base_Commit_For_Fixup_Design.md
 brew 'git-crypt'
-brew 'git-delta' # Git pager
 brew 'git-extras'
 brew 'git-filter-repo' # Replacement for git-filter-branch
 brew 'git-lfs'
@@ -94,7 +88,6 @@ brew 'jc' # https://github.com/kellyjonbrazil/jc - JSON CLI output
 brew 'jesseduffield/lazydocker/lazydocker'
 brew 'jpeg-xl'
 brew 'jq'
-brew 'just'
 brew 'k9s'
 # brew 'koekeishiya/formulae/yabai' # Tiling window manager (requires to much security permissions)
 brew 'kubernetes-cli'
@@ -115,8 +108,6 @@ brew 'mas' # A command-line interface for the Mac App Store
 brew 'mergestat/mergestat/mergestat'
 brew 'mosh'
 brew 'ms-jpq/sad/sad'
-brew 'neovim'
-brew 'neovim-remote'
 brew 'netcat' # GNU nc - Tutorial: https://blog.ikuamike.io/posts/2021/netcat/
 brew 'nmap' # Network Mapper https://nmap.org/
 # Other tools:
@@ -139,11 +130,9 @@ brew 'pyenv'
 brew 'pyright'
 brew 'python@3.9'
 brew 'qrencode'
-brew 'rclone'
 brew 'readline', link: true
 brew 'redis'
 brew 'restic' # Backup tool
-brew 'ripgrep' # grep replacement, same as rga
 brew 'rlwrap'
 brew 'rtx' # asdf replacement in Rust
 brew 'ruby-install'
@@ -165,10 +154,8 @@ brew 'tflint' # Terraform linter
 brew 'tidy-viewer' # View things nicely formatted in the Terminal, e.g. CSVs
 brew 'tig' # Git text interface
 brew 'tinted-theming/tinted/tinty'
-brew 'tmux'
 brew 'tree'
 brew 'urlview' # For tmux URLs selection
-brew 'uv' # Python env and package management
 brew 'viu' # Image preview in the terminal
 brew 'watch'
 brew 'watchexec'
@@ -176,13 +163,11 @@ brew 'watchman'
 brew 'weaveworks/tap/eksctl'
 brew 'wget'
 brew 'ramonvermeulen/whosthere/whosthere' # network scanner TUI
-brew 'yazi' # Terminal file manager
 brew 'youtube-dl'
 brew 'yt-dlp'
 brew 'zbar' # QR code reader with zbarimg
 brew 'zellij'
 brew 'zlib'
-brew 'zoxide'
 brew 'zsh'
 brew 'zsh-completions'
 

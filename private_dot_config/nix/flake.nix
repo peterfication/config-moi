@@ -18,13 +18,30 @@
       environment.systemPackages = with pkgs; [
         age # https://github.com/FiloSottile/age
         chezmoi # https://www.chezmoi.io
+        delta # https://github.com/dandavison/delta
+        direnv # https://github.com/direnv/direnv
+        duckdb # https://github.com/duckdb/duckdb
+        eza # https://github.com/eza-community/eza
+        fd # https://github.com/sharkdp/fd
+        fzf # https://github.com/junegunn/fzf
         jjui # https://github.com/idursun/jjui
         jujutsu # https://jj-vcs.github.io/jj/latest/
+        just # https://github.com/casey/just
         lazygit # https://github.com/jesseduffield/lazygit
+        lefthook # https://github.com/evilmartians/lefthook
+        mise # https://github.com/jdx/mise
+        neovim # https://github.com/neovim/neovim
         peco # https://github.com/peco/peco interactive grep
         rclone # https://rclone.org/
+        ripgrep # https://github.com/BurntSushi/ripgrep
+        sshfs # https://github.com/libfuse/sshfs
         sshs # https://github.com/quantumsheep/sshs
+        starship # https://github.com/starship/starship
+        tmux
+        uv # https://github.com/astral-sh/uv
         vim
+        yazi # https://github.com/sxyazi/yazi
+        zoxide # https://github.com/ajeetdsouza/zoxide
       ];
 
       environment.shellAliases = {
