@@ -5,7 +5,7 @@ if which sed | grep -q '/usr/bin/sed'; then
   echo "Install a recent one with:"
   echo "  "
   echo "  brew install gnu-sed"
-  echo "  sudo ln -s /usr/local/bin/gsed /usr/local/bin/sed"
+  echo "  ln -s /opt/homebrew/opt/gnu-sed/libexec/gnubin/sed /opt/homebrew/bin/sed"
   echo "  "
 fi
 
