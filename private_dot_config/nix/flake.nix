@@ -83,9 +83,8 @@
             chezmoi_config_file_path="/Users/$(logname)/.config/chezmoi/chezmoi.toml"
             if [ -f "$chezmoi_config_file_path" ]; then
               echo "Found chezmoi config file at $chezmoi_config_file_path"
-              echo "Running chezmoi apply ..."
-              ${pkgs.chezmoi}/bin/chezmoi apply
-              echo "Chezmoi apply done"
+              echo "Don't init chezmoi again."
+              # ${pkgs.chezmoi}/bin/chezmoi apply
             else
               echo "Running chezmoi init ..."
               sudo -u "$(logname)" env HOME="/Users/$(logname)"  ${pkgs.chezmoi}/bin/chezmoi init --apply "${chezmoiUrl}"
