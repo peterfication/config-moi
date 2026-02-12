@@ -45,6 +45,10 @@
         zoxide # https://github.com/ajeetdsouza/zoxide
       ];
 
+      fonts.packages = [
+        pkgs.nerd-fonts.fira-code
+      ];
+
       environment.shellAliases = {
         # Run darwin-rebuild from the nix config directory
         nix-rebuild = "(cd ~/.config/nix && just nix-darwin-rebuild)";
