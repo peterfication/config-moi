@@ -1,0 +1,24 @@
+cask '1password'
+cask 'alfred'
+cask 'firefox'
+cask 'font-fira-mono-nerd-font'
+cask 'google-chrome'
+cask 'hammerspoon'
+cask 'iina' # Video player
+cask 'iterm2'
+cask 'karabiner-elements'
+cask 'nikitabobko/tap/aerospace'
+cask 'spotify'
+cask 'stats' # https://github.com/exelban/stats
+cask 'tableplus'
+cask 'xnviewmp' # Image viewer
+cask 'thaw'
+
+# AI
+cask 'codex'
+cask 'copilot-cli'
+brew 'gemini-cli'
+
+# Manuall install needed because of --no-quarantine
+# brew 'glance-chamburr' # QuickLook collection https://github.com/chamburr/glance
+# brew install --no-quarantine glance-chamburr

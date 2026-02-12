@@ -1,6 +1,7 @@
 default:
   just --list
 
+import 'private_dot_config/brew/Justfile'
 import 'private_dot_config/nix/Justfile'
 
 # Chezmoi diff

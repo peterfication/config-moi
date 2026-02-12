@@ -186,38 +186,24 @@ brew 'zsh-completions'
 # kubectl
 
 # QuickLook plugins
-brew 'glance-chamburr' # QuickLook collection https://github.com/chamburr/glance
 cask 'qlmarkdown'
 
-cask '1password'
-cask 'nikitabobko/tap/aerospace'
 cask 'alacritty'
-cask 'alfred'
 cask 'applite' # Homebrew GUI https://github.com/milanvarady/Applite
 cask 'android-commandlinetools'
 cask 'android-platform-tools'
 cask 'balenaetcher' # Flash USB drives
-cask 'bartender' # Somewhat alternative: OnlySwitch https://github.com/jacklandrin/OnlySwitch
 cask 'cyberduck'
 cask 'darktable'
 cask 'eqmac'
-cask 'firefox'
 cask 'flipper'
 cask 'flowvision' # Fotos viewer
 cask 'flux'
-# cask 'flycut'
-cask 'font-fira-mono-nerd-font'
 cask 'gitify'
-cask 'google-chrome'
-cask 'hammerspoon'
-cask 'iina' # Video player
-cask 'iterm2'
-cask 'karabiner-elements'
 cask 'keycastr' # Show key presses in the screen
 cask 'kitty'
 cask 'kiwix'
 cask 'knockknock'
-cask 'little-snitch'
 cask 'macfuse'
 cask 'microsoft-auto-update'
 cask 'microsoft-office'
@@ -225,19 +211,13 @@ cask 'modern-csv'
 cask 'neovide'
 cask 'netiquette'
 cask 'netnewswire' # RSS reader
-# cask 'nextcloud'
 cask 'oversight'
 cask 'pingid'
 cask 'rar'
-cask 'rectangle'
-cask 'semulov' # Eject menu bar https://github.com/kainjow/Semulov
 # cask 'shortcat' Vimium style UI click triggering for Mac OS
 cask 'signal'
 cask 'sloth'
-cask 'spotify'
-cask 'stats' # https://github.com/exelban/stats
 cask 'sweet-home3d'
-cask 'tableplus'
 cask 'temurin'
 cask 'thaw' # Fork of ice (menu bar manager)
 cask 'transmission' # torrent client
@@ -250,8 +230,6 @@ cask 'vmware-fusion'
 cask 'webtorrent'
 cask 'xbar'
 cask 'xld' # X Lossless Decoder - CD ripper
-cask 'xnviewmp' # Image viewer
-cask 'zenmate-vpn'
 
 # Games
 cask 'openemu'

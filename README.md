@@ -25,6 +25,10 @@ sudo nix run "nix-darwin/nix-darwin-25.05#darwin-rebuild" -- --flake ".config/ni
 
 # Run the nix-rebuild alias in a new shell
 nix-rebuild
+
+# Install homebrew things
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+cd ~/.config/brew && just brew-install
 ```
 
 ## Just commands
