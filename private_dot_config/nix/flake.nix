@@ -14,7 +14,7 @@
     chezmoiUrl = "https://github.com/peterfication/config-moi.git";
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
-      # $ nix-env -qaP | grep wget
+      # $ nix search nixpkgs <query>
       environment.systemPackages = with pkgs; [
         age # https://github.com/FiloSottile/age
         chezmoi # https://www.chezmoi.io

@@ -5,3 +5,7 @@ nix-default:
 # Apply current macOS configuration
 nix-darwin-rebuild:
   sudo darwin-rebuild switch --flake ~/.config/nix#simple
+
+# Search nix packages
+nix-search QUERY:
+  nix search nixpkgs {{QUERY}}
