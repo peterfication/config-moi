@@ -5,3 +5,7 @@ brew-default:
 # Install all tools from Brewfile
 brew-install:
   brew bundle install --file ~/.config/brew/Brewfile
+
+# Install all tools from Brewfile.local if it exists
+brew-install-local:
+  [ -f ~/.config/brew/Brewfile.local ] && brew bundle install --file ~/.config/brew/Brewfile.local
