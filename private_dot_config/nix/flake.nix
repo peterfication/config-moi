@@ -26,6 +26,7 @@
         fzf # https://github.com/junegunn/fzf
         iterm2 # https://github.com/gnachman/iTerm2
         jjui # https://github.com/idursun/jjui
+        jq # https://github.com/jqlang/jq
         jujutsu # https://jj-vcs.github.io/jj/latest/
         just # https://github.com/casey/just
         lazygit # https://github.com/jesseduffield/lazygit
