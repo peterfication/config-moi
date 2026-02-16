@@ -1,3 +1,5 @@
+brew 'switchaudio-osx'
+
 cask '1password'
 cask 'alfred'
 cask 'firefox'

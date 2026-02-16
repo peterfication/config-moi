@@ -9,6 +9,10 @@
 - yazi plugin install
 - volta
 
+### Alfred
+
+- Enable clipboard history
+
 ## Optional
 
 - Create `~/.ssh/config.local`
