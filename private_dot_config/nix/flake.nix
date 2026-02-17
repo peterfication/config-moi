@@ -16,6 +16,9 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix search nixpkgs <query>
       environment.systemPackages = with pkgs; [
+        icu
+        openssl
+
         age # https://github.com/FiloSottile/age
         chezmoi # https://www.chezmoi.io
         delta # https://github.com/dandavison/delta
@@ -58,6 +61,12 @@
         install-all = "nix-rebuild && brew-install";
         # Open vim with the chezmoi config
         conf = " cd $(chezmoi source-path) && nvim";
+      };
+
+      environment.variables = {
+        PKG_CONFIG_PATH = "${pkgs.icu.dev}/lib/pkgconfig:${pkgs.openssl.dev}/lib/pkgconfig";
+        CFLAGS = "-I${pkgs.icu.dev}/include -I${pkgs.openssl.dev}/include";
+        LDFLAGS = "-L${pkgs.icu.dev}/lib -L${pkgs.openssl.dev}/lib";
       };
 
       programs.zsh.enableCompletion = false;
