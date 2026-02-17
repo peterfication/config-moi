@@ -13,6 +13,25 @@
   let
     chezmoiUrl = "https://github.com/peterfication/config-moi.git";
     configuration = { pkgs, ... }: {
+      nixpkgs.overlays = [
+        (final: prev: {
+          # This line makes it work whether nixpkgs uses yazi or yazi-unwrapped
+          yazi = (if prev ? yazi-unwrapped then prev.yazi-unwrapped else prev.yazi).overrideAttrs (old: rec {
+            version = "26.1.22";
+            src = prev.fetchFromGitHub {
+              owner = "sxyazi";
+              repo = "yazi";
+              rev = "v${version}";
+              sha256 = "sha256-BZktPXn+8vyFyHapvW+9nepFsWRW/XBtdBcnLKrCNCw=";
+            };
+
+            # leave these OUT for now
+            # vendorHash = "";
+            # cargoHash = "";
+          });
+        })
+      ];
+
       # List packages installed in system profile. To search by name, run:
       # $ nix search nixpkgs <query>
       environment.systemPackages = with pkgs; [
