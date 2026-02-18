@@ -1,4 +1,5 @@
 brew 'switchaudio-osx'
+brew 'syncthing' # It's in brew and not in nix because of the service
 
 cask '1password'
 cask 'alfred'
