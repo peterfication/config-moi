@@ -1,7 +1,4 @@
-# Find the installed versions:
-#   ls -l /nix/store/*postgresql-*/bin/psql
-export PG16_BIN="/nix/store/8mjxcgh6l95v0855rps2wgjshq0x6f2s-postgresql-16.11/bin"
-export PG17_BIN="/nix/store/8dqr0i6k6r2cjfgd2r5jyaihbdicqb9c-postgresql-17.7/bin"
+# NOTE: PG1X_BIN is set in the system flake.nix
 
 # PostgreSQL 16
 export PG16_HOME="$HOME/.local/share/postgres16"
