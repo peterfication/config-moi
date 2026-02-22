@@ -37,15 +37,12 @@ brew 'cloc'
 brew 'cmake'
 brew 'cmatrix'
 brew 'code-minimap'
-brew 'colima' # For easy local docker https://github.com/abiosoft/colima
 brew 'coreutils'
 brew 'ctags'
 brew 'curl'
 brew 'd2' # Diagramming tool https://d2lang.com/
 brew 'derailed/popeye/popeye'
 brew 'difftastic'
-brew 'dive' # https://github.com/wagoodman/dive Docker image inspection
-brew 'docker'
 brew 'dog' # Modern replacement for dig
 brew 'dos2unix'
 brew 'dua-cli' # Disk usage analyzer
@@ -240,7 +237,6 @@ cask 'widelands'
 # affinity-designer-beta
 # betterdisplay
 # chromium
-# docker
 # keepingyouawake # via Hammerspoon
 # lulu # Little Snitch alternative
 # obsidian # and https://syncthing.net/

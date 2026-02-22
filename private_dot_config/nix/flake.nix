@@ -41,8 +41,6 @@
         mise # https://github.com/jdx/mise
         neovim # https://github.com/neovim/neovim
         peco # https://github.com/peco/peco interactive grep
-        podman # https://github.com/containers/podman
-        podman-tui # https://github.com/containers/podman-tui
         rclone # https://rclone.org/
         ripgrep # https://github.com/BurntSushi/ripgrep
         sshfs # https://github.com/libfuse/sshfs
@@ -53,6 +51,11 @@
         vim
         yazi # https://github.com/sxyazi/yazi
         zoxide # https://github.com/ajeetdsouza/zoxide
+
+        # Container tooling
+        dive # https://github.com/wagoodman/dive (Docker image inspection)
+        podman # https://github.com/containers/podman
+        podman-tui # https://github.com/containers/podman-tui
       ];
 
       fonts.packages = [
