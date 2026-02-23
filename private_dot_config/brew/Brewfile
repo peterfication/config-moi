@@ -1,5 +1,10 @@
-brew 'switchaudio-osx'
-brew 'syncthing' # It's in brew and not in nix because of the service
+brew 'switchaudio-osx' # https://github.com/deweller/switchaudio-osx
+
+# Packages that provide a service via brew and hence are not in nix
+brew 'syncthing' # https://github.com/syncthing/syncthing
+
+# Packages that are not available on https://search.nixos.org/packages
+brew 'rv' # https://github.com/spinel-coop/rv uv for Ruby
 
 cask '1password'
 cask 'alfred'
