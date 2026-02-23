@@ -12,6 +12,7 @@
   outputs = inputs@{ self, nix-darwin, nixpkgs }:
   let
     chezmoiUrl = "https://github.com/peterfication/config-moi.git";
+    localConfig = import ./local.nix;
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix search nixpkgs <query>
@@ -84,14 +85,21 @@
       };
 
       programs.zsh.enableCompletion = false;
+      # Enable alternative shell support in nix-darwin.
+      # programs.fish.enable = true;
 
       nix.enable = false;
 
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
 
-      # Enable alternative shell support in nix-darwin.
-      # programs.fish.enable = true;
+      # The platform the configuration will be used on.
+      nixpkgs.hostPlatform = "aarch64-darwin";
+
+      # Enable touch ID authentication for sudo.
+      security.pam.services.sudo_local.touchIdAuth = true;
+
+      system.primaryUser = localConfig.systemPrimaryUser;
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
@@ -100,11 +108,16 @@
       # $ darwin-rebuild changelog
       system.stateVersion = 6;
 
-      # The platform the configuration will be used on.
-      nixpkgs.hostPlatform = "aarch64-darwin";
-
-      # Enable touch ID authentication for sudo.
-      security.pam.services.sudo_local.touchIdAuth = true;
+      system.defaults = {
+        # Check the values with the following command:
+        #
+        #   defaults read NSGlobalDomain KeyRepeat
+        #
+        NSGlobalDomain = {
+          KeyRepeat = 2; # Lower is faster
+          InitialKeyRepeat = 15; # Lower is sooner
+        };
+      };
 
       system.activationScripts = {
         # See https://github.com/nix-darwin/nix-darwin/blob/master/modules/system/activation-scripts.nix#L154

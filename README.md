@@ -14,8 +14,16 @@ See [Justfile](private_dot_config/nix/Justfile) for useful commands.
 # Install nix with determinate installer but with nix upstream
 curl -fsSL https://install.determinate.systems/nix | sh -s -- install
 
+# Fill the chezmoi age key
 touch ~/.config/chezmoi/key.txt
 vim ~/.config/chezmoi/key.txt
+
+# Clone and link the nix folder (amongst others) with a temporary chezmoi bin
+sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply https://github.com/peterfication/config-moi && rm ~/.local/bin/chezmoi
+
+# Set the local nix values
+cp ~/.config/nix/local.nix.example ~/.config/nix/local.nix
+vim ~/.config/nix/local.nix
 
 # Run the initial nix-darwin command
 sudo nix run "nix-darwin/nix-darwin-25.05#darwin-rebuild" -- --flake ".config/nix#simple" switch
