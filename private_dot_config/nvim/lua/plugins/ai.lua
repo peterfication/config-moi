@@ -10,14 +10,5 @@ return {
         height = 0.8,
       },
     },
-    keys = {
-      { "<Leader>v", group = "chatgpt" },
-      { "<Leader>vv", ":CopilotChatToggle<CR>", desc = "Toggle CopilotChat" },
-      {
-        "<Leader>vn",
-        ":CopilotChatReset<CR>:CopilotChatOpen<CR>",
-        desc = "Open CopilotChat with a new session",
-      },
-    },
   },
 }
