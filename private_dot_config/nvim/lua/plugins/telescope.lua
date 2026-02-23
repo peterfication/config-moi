@@ -152,7 +152,7 @@ return {
         {
           "<Leader>eh",
           function()
-            require("telescope.builtin").oldfiles()
+            require("telescope.builtin").oldfiles({ cwd_only = true })
           end,
           desc = "Recent files with Telescope",
         },
