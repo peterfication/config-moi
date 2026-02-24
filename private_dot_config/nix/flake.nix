@@ -13,6 +13,7 @@
   let
     chezmoiUrl = "https://github.com/peterfication/config-moi.git";
     localConfig = import ./local.nix;
+    systemDefaults = import ./systemDefaults.nix;
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix search nixpkgs <query>
@@ -108,16 +109,7 @@
       # $ darwin-rebuild changelog
       system.stateVersion = 6;
 
-      system.defaults = {
-        # Check the values with the following command:
-        #
-        #   defaults read NSGlobalDomain KeyRepeat
-        #
-        NSGlobalDomain = {
-          KeyRepeat = 2; # Lower is faster
-          InitialKeyRepeat = 15; # Lower is sooner
-        };
-      };
+      system.defaults = systemDefaults;
 
       system.activationScripts = {
         # See https://github.com/nix-darwin/nix-darwin/blob/master/modules/system/activation-scripts.nix#L154
