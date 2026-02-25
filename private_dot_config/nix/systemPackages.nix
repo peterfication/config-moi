@@ -16,6 +16,7 @@ pkgs: with pkgs; [
   eza # https://github.com/eza-community/eza
   fd # https://github.com/sharkdp/fd
   fzf # https://github.com/junegunn/fzf
+  gh # https://cli.github.com/
   iterm2 # https://github.com/gnachman/iTerm2
   jjui # https://github.com/idursun/jjui
   jq # https://github.com/jqlang/jq
