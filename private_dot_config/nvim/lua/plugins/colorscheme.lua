@@ -12,6 +12,9 @@ return {
           DiagnosticUnderlineInfo = { undercurl = true },
           DiagnosticUnderlineHint = { undercurl = true },
           DiagnosticUnderlineOk = { undercurl = true },
+          -- For strikethrough issues, see
+          -- https://github.com/maxmx03/solarized.nvim/issues/102
+          -- (SpellBad, SpellCap, SpellLocal, SpellRare)
         }
       end,
     },
