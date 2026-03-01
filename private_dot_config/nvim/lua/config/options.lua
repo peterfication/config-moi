@@ -16,3 +16,5 @@ vim.wo.relativenumber = false
 
 -- LazyVim auto format
 vim.g.autoformat = false
+
+vim.opt.spelllang = { "en", "de" }
