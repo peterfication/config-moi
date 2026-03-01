@@ -17,6 +17,7 @@ pkgs: with pkgs; [
   fd # https://github.com/sharkdp/fd
   fzf # https://github.com/junegunn/fzf
   gh # https://cli.github.com/
+  ghostty-bin # https://github.com/ghostty-org/ghostty
   iterm2 # https://github.com/gnachman/iTerm2
   jjui # https://github.com/idursun/jjui
   jq # https://github.com/jqlang/jq
