@@ -7,7 +7,6 @@
 - iterm: Set up left option to Esc+
 - tmux plugin install
 - yazi plugin install
-- volta
 
 ### Alfred
 
