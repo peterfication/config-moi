@@ -1,2 +1,8 @@
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
+
+[tools]
+node = "24"
+yarn = "4.1.0"
+"npm:@mariozechner/pi-coding-agent" = "0.55.3"
+"npm:skills" = "1.4.3"
