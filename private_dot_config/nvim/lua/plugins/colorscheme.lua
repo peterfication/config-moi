@@ -4,7 +4,17 @@ return {
     lazy = false,
     priority = 1000,
     ---@type solarized.config
-    opts = {},
+    opts = {
+      on_highlights = function(colors)
+        return {
+          DiagnosticUnderlineError = { undercurl = true },
+          DiagnosticUnderlineWarn = { undercurl = true },
+          DiagnosticUnderlineInfo = { undercurl = true },
+          DiagnosticUnderlineHint = { undercurl = true },
+          DiagnosticUnderlineOk = { undercurl = true },
+        }
+      end,
+    },
     config = function(_, opts)
       vim.o.termguicolors = true
       vim.o.background = "dark"
