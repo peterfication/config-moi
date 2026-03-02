@@ -3,9 +3,7 @@ export ZVM_INIT_MODE=sourcing
 zcomet load jeffreytse/zsh-vi-mode
 
 zcomet load ohmyzsh plugins/chezmoi
-zcomet load ohmyzsh plugins/chruby
 zcomet load ohmyzsh plugins/direnv
-zcomet load ohmyzsh plugins/dotenv
 zcomet load ohmyzsh plugins/eza
 zcomet load ohmyzsh plugins/fzf
 zcomet trigger git ohmyzsh plugins/git-extras

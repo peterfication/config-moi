@@ -17,7 +17,6 @@ brew 'act'
 brew 'amethyst'
 brew 'ansible'
 brew 'aom'
-brew 'asdf'
 brew 'autoconf'
 brew 'automake'
 brew 'autopep8'
@@ -32,7 +31,6 @@ brew 'bottom'
 brew 'btop'
 brew 'cdparanoia'
 brew 'chafa' # Image preview in the terminal
-brew 'chruby'
 brew 'cloc'
 brew 'cmake'
 brew 'cmatrix'
@@ -131,8 +129,6 @@ brew 'readline', link: true
 brew 'redis'
 brew 'restic' # Backup tool
 brew 'rlwrap'
-brew 'rtx' # asdf replacement in Rust
-brew 'ruby-install'
 brew 'rubyfmt'
 brew 'rust-analyzer'
 brew 'sniffnet' # Network monitoring tool
