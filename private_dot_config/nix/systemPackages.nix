@@ -42,5 +42,6 @@ pkgs: with pkgs; [
   # Container tooling
   dive # https://github.com/wagoodman/dive (Docker image inspection)
   podman # https://github.com/containers/podman
+  podman-compose # https://github.com/containers/podman-compose
   podman-tui # https://github.com/containers/podman-tui
 ]
