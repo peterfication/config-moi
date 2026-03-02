@@ -1,4 +1,4 @@
 [".config/pi"]
     type = "git-repo"
     url = "git@github.com:peterfication/my-pi.git"
-    refreshPeriod = "60s"
+    refreshPeriod = "168h" # 1 week
