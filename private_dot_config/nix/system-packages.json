@@ -1,0 +1,154 @@
+[
+  {
+    "name": "age",
+    "version": "1.3.1"
+  },
+  {
+    "name": "chezmoi",
+    "version": "2.68.1"
+  },
+  {
+    "name": "delta",
+    "version": "0.18.2"
+  },
+  {
+    "name": "direnv",
+    "version": "2.37.1"
+  },
+  {
+    "name": "dive",
+    "version": "0.13.1"
+  },
+  {
+    "name": "duckdb",
+    "version": "1.4.3"
+  },
+  {
+    "name": "eza",
+    "version": "0.23.4"
+  },
+  {
+    "name": "fd",
+    "version": "10.3.0"
+  },
+  {
+    "name": "fzf",
+    "version": "0.67.0"
+  },
+  {
+    "name": "gh",
+    "version": "2.85.0"
+  },
+  {
+    "name": "ghostty-bin",
+    "version": "1.2.3"
+  },
+  {
+    "name": "icu4c",
+    "version": "76.1"
+  },
+  {
+    "name": "iterm2",
+    "version": "3.6.6"
+  },
+  {
+    "name": "jjui",
+    "version": "0.9.10"
+  },
+  {
+    "name": "jq",
+    "version": "1.8.1"
+  },
+  {
+    "name": "jujutsu",
+    "version": "0.37.0"
+  },
+  {
+    "name": "just",
+    "version": "1.46.0"
+  },
+  {
+    "name": "lazygit",
+    "version": "0.58.1"
+  },
+  {
+    "name": "lefthook",
+    "version": "2.0.14"
+  },
+  {
+    "name": "mise",
+    "version": "2026.1.2"
+  },
+  {
+    "name": "neovim",
+    "version": "0.11.5"
+  },
+  {
+    "name": "openssl",
+    "version": "3.6.0"
+  },
+  {
+    "name": "peco",
+    "version": "0.5.11"
+  },
+  {
+    "name": "podman",
+    "version": "5.7.0"
+  },
+  {
+    "name": "podman-compose",
+    "version": "1.5.0"
+  },
+  {
+    "name": "podman-tui",
+    "version": "1.10.0"
+  },
+  {
+    "name": "postgresql",
+    "version": "16.11"
+  },
+  {
+    "name": "postgresql",
+    "version": "17.7"
+  },
+  {
+    "name": "rclone",
+    "version": "1.72.1"
+  },
+  {
+    "name": "ripgrep",
+    "version": "15.1.0"
+  },
+  {
+    "name": "sshfs-fuse",
+    "version": "2.10"
+  },
+  {
+    "name": "sshs",
+    "version": "4.7.2"
+  },
+  {
+    "name": "starship",
+    "version": "1.24.2"
+  },
+  {
+    "name": "tmux",
+    "version": "3.6a"
+  },
+  {
+    "name": "uv",
+    "version": "0.9.26"
+  },
+  {
+    "name": "vim",
+    "version": "9.1.1918"
+  },
+  {
+    "name": "yazi",
+    "version": "26.1.4"
+  },
+  {
+    "name": "zoxide",
+    "version": "0.9.8"
+  }
+]
