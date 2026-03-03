@@ -1,5 +1,9 @@
 keybind = global:cmd+escape=toggle_quick_terminal
 quick-terminal-position = bottom
 
+# Set default zoom
+window-inherit-font-size = false
+font-size = 11
+
 confirm-close-surface = false
 macos-option-as-alt = left
