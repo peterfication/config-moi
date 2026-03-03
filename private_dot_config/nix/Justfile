@@ -9,3 +9,7 @@ nix-darwin-rebuild:
 # Search nix packages
 nix-search QUERY:
   nix search nixpkgs {{QUERY}}
+
+# Export system packages and versions as JSON
+nix-system-packages-json OUTPUT_PATH="~/.config/nix/system-packages.json":
+  ~/.config/nix/export_system_packages_json.sh {{OUTPUT_PATH}}
