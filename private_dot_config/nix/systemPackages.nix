@@ -7,6 +7,7 @@ pkgs: with pkgs; [
   # See ~/.config/zsh/tools/postgresql.zsh for how to use these.
   postgresql_16
   postgresql_17
+  redis
 
   age # https://github.com/FiloSottile/age
   chezmoi # https://www.chezmoi.io

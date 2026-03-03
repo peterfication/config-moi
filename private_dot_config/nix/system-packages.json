@@ -116,6 +116,10 @@
     "version": "1.72.1"
   },
   {
+    "name": "redis",
+    "version": "8.2.3"
+  },
+  {
     "name": "ripgrep",
     "version": "15.1.0"
   },
