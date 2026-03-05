@@ -5,7 +5,7 @@
   },
   {
     "name": "chezmoi",
-    "version": "2.68.1"
+    "version": "2.69.4"
   },
   {
     "name": "delta",
@@ -21,7 +21,7 @@
   },
   {
     "name": "duckdb",
-    "version": "1.4.3"
+    "version": "1.4.4"
   },
   {
     "name": "eza",
@@ -33,11 +33,11 @@
   },
   {
     "name": "fzf",
-    "version": "0.67.0"
+    "version": "0.70.0"
   },
   {
     "name": "gh",
-    "version": "2.85.0"
+    "version": "2.87.3"
   },
   {
     "name": "ghostty-bin",
@@ -53,7 +53,7 @@
   },
   {
     "name": "jjui",
-    "version": "0.9.10"
+    "version": "0.9.12"
   },
   {
     "name": "jq",
@@ -61,7 +61,7 @@
   },
   {
     "name": "jujutsu",
-    "version": "0.37.0"
+    "version": "0.38.0"
   },
   {
     "name": "just",
@@ -69,23 +69,23 @@
   },
   {
     "name": "lazygit",
-    "version": "0.58.1"
+    "version": "0.59.0"
   },
   {
     "name": "lefthook",
-    "version": "2.0.14"
+    "version": "2.1.1"
   },
   {
     "name": "mise",
-    "version": "2026.1.2"
+    "version": "2026.2.20"
   },
   {
     "name": "neovim",
-    "version": "0.11.5"
+    "version": "0.11.6"
   },
   {
     "name": "openssl",
-    "version": "3.6.0"
+    "version": "3.6.1"
   },
   {
     "name": "peco",
@@ -93,7 +93,7 @@
   },
   {
     "name": "podman",
-    "version": "5.7.0"
+    "version": "5.8.0"
   },
   {
     "name": "podman-compose",
@@ -105,15 +105,15 @@
   },
   {
     "name": "postgresql",
-    "version": "16.11"
+    "version": "16.13"
   },
   {
     "name": "postgresql",
-    "version": "17.7"
+    "version": "17.9"
   },
   {
     "name": "rclone",
-    "version": "1.72.1"
+    "version": "1.73.1"
   },
   {
     "name": "redis",
@@ -125,7 +125,7 @@
   },
   {
     "name": "sshfs-fuse",
-    "version": "2.10"
+    "version": "3.7.5"
   },
   {
     "name": "sshs",
@@ -141,18 +141,18 @@
   },
   {
     "name": "uv",
-    "version": "0.9.26"
+    "version": "0.10.6"
   },
   {
     "name": "vim",
-    "version": "9.1.1918"
+    "version": "9.1.2148"
   },
   {
     "name": "yazi",
-    "version": "26.1.4"
+    "version": "26.1.22"
   },
   {
     "name": "zoxide",
-    "version": "0.9.8"
+    "version": "0.9.9"
   }
 ]

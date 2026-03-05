@@ -6,6 +6,12 @@ nix-default:
 nix-darwin-rebuild:
   sudo darwin-rebuild switch --flake ~/.config/nix#simple
 
+# Update all flake inputs and apply current macOS configuration
+nix-update-all:
+  nix --extra-experimental-features "nix-command flakes" flake update --flake ~/.config/nix
+  just nix-darwin-rebuild
+  just nix-system-packages-json
+
 # Search nix packages
 nix-search QUERY:
   nix search nixpkgs {{QUERY}}
