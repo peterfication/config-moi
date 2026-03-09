@@ -58,5 +58,10 @@ use = "peterfication/mux"
 rev = "266233e"
 hash = "1963dda85333e5e2cb6ff5d7d5a6ad4e"
 
+[[plugin.deps]]
+use = "yazi-rs/plugins:zoom"
+rev = "1962818"
+hash = "fa268cb59989a87780605fdcfb8d99a9"
+
 [flavor]
 deps = []
