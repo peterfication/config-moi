@@ -1,0 +1,68 @@
+#!/bin/bash
+set -euo pipefail
+
+PATH="/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
+RESTIC_BIN="$(command -v restic)"
+if [[ -z "${RESTIC_BIN}" ]]; then
+  echo "restic not found in PATH" >&2
+  exit 1
+fi
+
+CONFIG_FILE="{{ joinPath .chezmoi.homeDir ".config" "restic" "restic.env" }}"
+if [[ ! -f "${CONFIG_FILE}" ]]; then
+  echo "missing config file: ${CONFIG_FILE}" >&2
+  exit 1
+fi
+
+source "${CONFIG_FILE}"
+
+: "${RESTIC_HOST:?RESTIC_HOST is not set}"
+: "${RESTIC_USERNAME:?RESTIC_USERNAME is not set}"
+: "${RESTIC_PORT:?RESTIC_PORT is not set}"
+: "${RESTIC_BASE_PATH:?RESTIC_BASE_PATH is not set}"
+
+DATE="$(date '+%Y-%m-%d %H:%M:%S')"
+
+REPO="sftp://${RESTIC_USERNAME}@${RESTIC_HOST}:${RESTIC_PORT}/${RESTIC_BASE_PATH}/${RESTIC_REPOSITORY_NAME}"
+PASSWORD_FILE="{{ joinPath .chezmoi.homeDir ".config" "restic" "password" }}"
+INCLUDE_FILE="{{ joinPath .chezmoi.homeDir ".config" "restic" "include.txt" }}"
+LOG_DIR="{{ joinPath .chezmoi.homeDir "Library" "Logs" }}"
+LOG_FILE="${LOG_DIR}/restic-backup.log"
+CHECK_STAMP="{{ joinPath .chezmoi.homeDir ".local" "state" "restic" "restic-check.day" }}"
+
+mkdir -p "${LOG_DIR}"
+mkdir -p "$(dirname "${CHECK_STAMP}")"
+
+export RESTIC_REPOSITORY="${REPO}"
+export RESTIC_PASSWORD_FILE="${PASSWORD_FILE}"
+
+{
+  echo "=== ${DATE} backup start ==="
+  echo "Restic repository: ${REPO}"
+
+  "${RESTIC_BIN}" backup \
+    --files-from-verbatim "${INCLUDE_FILE}" \
+    --one-file-system \
+    --exclude-caches \
+    --tag macbook
+
+  "${RESTIC_BIN}" forget \
+    --keep-daily 7 \
+    --keep-weekly 4 \
+    --keep-monthly 12 \
+    --prune
+
+  TODAY="$(date '+%Y-%m-%d')"
+  LAST_CHECK=""
+  if [[ -f "${CHECK_STAMP}" ]]; then
+    LAST_CHECK="$(cat "${CHECK_STAMP}")"
+  fi
+
+  if [[ "${TODAY}" != "${LAST_CHECK}" ]]; then
+    "${RESTIC_BIN}" check --read-data-subset=10%
+    printf '%s\n' "${TODAY}" > "${CHECK_STAMP}"
+  fi
+
+  echo "=== $(date '+%Y-%m-%d %H:%M:%S') backup end ==="
+} >> "${LOG_FILE}" 2>&1

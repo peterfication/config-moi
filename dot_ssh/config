@@ -1,3 +1,5 @@
+IgnoreUnknown UseKeychain
+
 Include ~/.config/colima/ssh_config
 Include ~/.ssh/config.local
 

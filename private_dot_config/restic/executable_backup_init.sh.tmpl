@@ -1,0 +1,44 @@
+#!/bin/bash
+set -euo pipefail
+
+PATH="/run/current-system/sw/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
+RESTIC_BIN="$(command -v restic)"
+if [[ -z "${RESTIC_BIN}" ]]; then
+  echo "restic not found in PATH" >&2
+  exit 1
+fi
+
+CONFIG_FILE="{{ joinPath .chezmoi.homeDir ".config" "restic" "restic.env" }}"
+if [[ ! -f "${CONFIG_FILE}" ]]; then
+  echo "missing config file: ${CONFIG_FILE}" >&2
+  exit 1
+fi
+
+source "${CONFIG_FILE}"
+
+: "${RESTIC_HOST:?RESTIC_HOST is not set}"
+: "${RESTIC_USERNAME:?RESTIC_USERNAME is not set}"
+: "${RESTIC_PORT:?RESTIC_PORT is not set}"
+: "${RESTIC_BASE_PATH:?RESTIC_BASE_PATH is not set}"
+
+PASSWORD_FILE="{{ joinPath .chezmoi.homeDir ".config" "restic" "password" }}"
+
+REPO="sftp://${RESTIC_USERNAME}@${RESTIC_HOST}:${RESTIC_PORT}/${RESTIC_BASE_PATH}/${RESTIC_REPOSITORY_NAME}"
+
+export RESTIC_REPOSITORY="${REPO}"
+export RESTIC_PASSWORD_FILE="${PASSWORD_FILE}"
+
+echo "Initializing restic repository at:"
+echo "  ${RESTIC_REPOSITORY}"
+
+"${RESTIC_BIN}" snapshots >/dev/null 2>&1 && {
+  echo "Repository already exists and is accessible."
+  exit 0
+}
+
+"${RESTIC_BIN}" init
+
+echo "Repository initialized successfully."
+echo "You can test it with:"
+echo "  restic snapshots"

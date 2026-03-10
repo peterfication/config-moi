@@ -19,3 +19,4 @@
 - Create `~/.config/tmux/sessions.txt` or add folders via `tm_add_cwd`
 - Create `~/.config/yazi/local_bookmarks.lua`
 - Create `~/.config/zsh/local.zsh`
+- Set up restic launchd agent (See `~/config/restic/README.md`)

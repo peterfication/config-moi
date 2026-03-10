@@ -21,3 +21,9 @@ repos.txt
 .vscode
 Library
 {{ end }}
+
+{{ if ne .machine "private" }}
+# These files are only needed on the private machine
+Library/LaunchAgents/restic.backup.plist
+.config/restic
+{{ end }}
