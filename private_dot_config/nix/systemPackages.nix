@@ -30,6 +30,7 @@ pkgs: with pkgs; [
   neovim # https://github.com/neovim/neovim
   peco # https://github.com/peco/peco interactive grep
   rclone # https://rclone.org/
+  restic # https://github.com/restic/restic
   ripgrep # https://github.com/BurntSushi/ripgrep
   sshfs # https://github.com/libfuse/sshfs
   sshs # https://github.com/quantumsheep/sshs

@@ -120,6 +120,10 @@
     "version": "8.2.3"
   },
   {
+    "name": "restic",
+    "version": "0.18.1"
+  },
+  {
     "name": "ripgrep",
     "version": "15.1.0"
   },
