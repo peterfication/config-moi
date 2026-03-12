@@ -1,0 +1,17 @@
+default:
+  just --list
+
+MOUNT_DIR := "~/tmp/restic"
+
+# List restic snapshots
+snapshots:
+  restic snapshots
+
+# Mount the restic repository
+mount:
+  mkdir -p {{MOUNT_DIR}}
+  restic mount {{MOUNT_DIR}}
+
+# Unmount the restic mount point
+unmount:
+  diskutil umount {{MOUNT_DIR}}
