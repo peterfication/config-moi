@@ -110,7 +110,7 @@ cmd-alt-shift-ctrl-a = 'exec-and-forget open ~/Downloads'
 # alt-shift-equal = 'resize smart +50'
 
 # https://nikitabobko.github.io/AeroSpace/commands#fullscreen
-cmd-alt-shift-ctrl-space = 'fullscreen'
+# cmd-alt-shift-ctrl-space = 'fullscreen'
 cmd-alt-shift-ctrl-enter = 'fullscreen'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
