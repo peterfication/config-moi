@@ -19,15 +19,22 @@ end)
 
 hyperSpace = hs.hotkey.modal.new({ "ctrl", "alt", "cmd", "shift" }, "space")
 
+local hyperSpaceTimeout = nil
+
 function hyperSpace:entered()
   hs.alert.show("Hyper+Space mode")
-  hs.timer.doAfter(2, function()
+  hyperSpaceTimeout = hs.timer.doAfter(2, function()
     hs.alert.show("Hyper+Space mode timeout")
     hyperSpace:exit()
+    hyperSpaceTimeout = nil
   end)
 end
 
 function hyperSpace:exited()
+  if hyperSpaceTimeout then
+    hyperSpaceTimeout:stop()
+    hyperSpaceTimeout = nil
+  end
   hs.timer.doAfter(0.5, function()
     hs.alert.closeAll()
   end)
