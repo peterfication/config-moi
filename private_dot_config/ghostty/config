@@ -7,3 +7,6 @@ font-size = 11
 
 confirm-close-surface = false
 macos-option-as-alt = left
+
+# Always start in the home directory
+working-directory = home
