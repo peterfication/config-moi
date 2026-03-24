@@ -1,6 +1,7 @@
 # List packages installed in system profile. To search by name, run:
 # $ nix search nixpkgs <query>
-pkgs: with pkgs; [
+{ pkgs, pkgsUnstable }:
+with pkgs; [
   icu
   openssl
 
@@ -17,28 +18,28 @@ pkgs: with pkgs; [
   eza # https://github.com/eza-community/eza
   fd # https://github.com/sharkdp/fd
   fzf # https://github.com/junegunn/fzf
-  gh # https://cli.github.com/
-  ghostty-bin # https://github.com/ghostty-org/ghostty
+  pkgsUnstable.gh # https://cli.github.com/
+  pkgsUnstable.ghostty-bin # https://github.com/ghostty-org/ghostty
   iterm2 # https://github.com/gnachman/iTerm2
   jjui # https://github.com/idursun/jjui
   jq # https://github.com/jqlang/jq
   jujutsu # https://jj-vcs.github.io/jj/latest/
   just # https://github.com/casey/just
-  lazygit # https://github.com/jesseduffield/lazygit
-  lefthook # https://github.com/evilmartians/lefthook
+  pkgsUnstable.lazygit # https://github.com/jesseduffield/lazygit
+  pkgsUnstable.lefthook # https://github.com/evilmartians/lefthook
   mise # https://github.com/jdx/mise
-  neovim # https://github.com/neovim/neovim
+  pkgsUnstable.neovim # https://github.com/neovim/neovim
   peco # https://github.com/peco/peco interactive grep
   rclone # https://rclone.org/
   restic # https://github.com/restic/restic
   ripgrep # https://github.com/BurntSushi/ripgrep
-  sshfs # https://github.com/libfuse/sshfs
+  pkgsUnstable.sshfs # https://github.com/libfuse/sshfs
   sshs # https://github.com/quantumsheep/sshs
   starship # https://github.com/starship/starship
   tmux
-  uv # https://github.com/astral-sh/uv
+  pkgsUnstable.uv # https://github.com/astral-sh/uv
   vim
-  yazi # https://github.com/sxyazi/yazi
+  pkgsUnstable.yazi # https://github.com/sxyazi/yazi
   zoxide # https://github.com/ajeetdsouza/zoxide
 
   # Container tooling
