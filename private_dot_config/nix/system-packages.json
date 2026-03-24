@@ -108,6 +108,10 @@
     "version": "2.1.1"
   },
   {
+    "name": "lnav",
+    "version": "0.13.2"
+  },
+  {
     "name": "mise",
     "version": "2025.11.7"
   },

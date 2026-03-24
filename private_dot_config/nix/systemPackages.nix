@@ -27,6 +27,7 @@ with pkgs; [
   just # https://github.com/casey/just
   pkgsUnstable.lazygit # https://github.com/jesseduffield/lazygit
   pkgsUnstable.lefthook # https://github.com/evilmartians/lefthook
+  lnav # https://github.com/tstack/lnav
   mise # https://github.com/jdx/mise
   pkgsUnstable.neovim # https://github.com/neovim/neovim
   peco # https://github.com/peco/peco interactive grep
