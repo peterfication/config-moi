@@ -2,15 +2,15 @@
   description = "My nix-darwin system flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
-    nix-darwin.url = "github:nix-darwin/nix-darwin/master";
-    # nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.11-darwin";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nixpkgs-unstable }:
   let
+    system = "aarch64-darwin";
     chezmoiUrl = "https://github.com/peterfication/config-moi.git";
     environmentVariables = import ./environmentVariables.nix;
     localConfig = import ./local.nix;
@@ -18,8 +18,13 @@
     systemDefaults = import ./systemDefaults.nix;
     systemPackages = import ./systemPackages.nix;
     systemActivationScripts = import ./systemActivationScripts.nix;
+    pkgsUnstable = import nixpkgs-unstable {
+      inherit system;
+    };
     configuration = { pkgs, ... }: {
-      environment.systemPackages = systemPackages pkgs;
+      environment.systemPackages = systemPackages {
+        inherit pkgs pkgsUnstable;
+      };
       fonts.packages = [
         pkgs.nerd-fonts.fira-code
       ];
@@ -36,7 +41,7 @@
       nix.settings.experimental-features = "nix-command flakes";
 
       # The platform the configuration will be used on.
-      nixpkgs.hostPlatform = "aarch64-darwin";
+      nixpkgs.hostPlatform = system;
 
       # Enable touch ID authentication for sudo.
       security.pam.services.sudo_local.touchIdAuth = true;
@@ -56,7 +61,7 @@
   in
   {
     # First time run:
-    # sudo nix run nix-darwin/nix-darwin-25.05#darwin-rebuild -- --flake ~/config/nix#simple switch
+    # sudo nix run nix-darwin/nix-darwin-25.11#darwin-rebuild -- --flake ~/.config/nix#simple switch
 
     # Following darwin builds:
     # sudo darwin-rebuild switch --flake ~/config/nix#simple

@@ -7,7 +7,7 @@ OUTPUT_PATH="${1:-"$SCRIPT_DIR/system-packages.json"}"
 NIX_EXPR='
 let
   flake = builtins.getFlake (toString ./.);
-  packages = import ./systemPackages.nix flake.darwinConfigurations.simple.pkgs;
+  packages = flake.darwinConfigurations.simple.config.environment.systemPackages;
   normalize = pkg:
     let parsed = builtins.parseDrvName pkg.name;
     in {
