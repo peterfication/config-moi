@@ -1,7 +1,7 @@
 return {
   {
     "tpope/vim-fugitive",
-    cmd = { "Git" },
+    cmd = { "Git", "Gdiffsplit" },
     -- keys = {
     --   { "<Leader>GV", ":Git blame<CR>", desc = "Open Git blame with fugitive" },
     -- },
