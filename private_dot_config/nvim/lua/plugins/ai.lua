@@ -10,7 +10,45 @@ return {
         height = 0.8,
       },
     },
+    keys = {
+      { "<Leader>aa", false },
+      {
+        "<Leader>ag",
+        function()
+          return require("CopilotChat").toggle()
+        end,
+        desc = "Toggle (CopilotChat)",
+        mode = { "n", "x" },
+      },
+    },
   },
+
+  {
+    "yetone/avante.nvim",
+    opts = {
+      provider = "codex",
+
+      acp_providers = {
+        codex = {
+          command = "codex-acp",
+          args = {},
+        },
+      },
+
+      windows = {
+        edit = {
+          start_insert = false,
+        },
+        ask = {
+          start_insert = false,
+        }
+      }
+    },
+    keys = {
+      { "<Leader>aa", "<cmd>AvanteAsk<CR>", desc = "Ask Avante" },
+    },
+  },
+
   {
     "olimorris/codecompanion.nvim",
     version = "^19.0.0",
@@ -46,8 +84,8 @@ return {
     },
     keys = {
       {
-        "<Leader>ac",
-        "<CMD>CodeCompanionChat<CR>",
+        "<Leader>ak",
+        "<CMD>CodeCompanionChat Toggle<CR>",
         desc = "Chat with Code Companion",
       },
     },
