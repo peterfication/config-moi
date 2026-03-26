@@ -17,7 +17,11 @@ return {
   },
 
   {
-    "sindrets/diffview.nvim",
+    -- "sindrets/diffview.nvim",
+    -- The original repo seems to be unmaintained
+    -- See https://github.com/sindrets/diffview.nvim/issues/605
+    "dlyongemallo/diffview.nvim",
+    tag = "v0.23",
     opts = {
       keymaps = {
         view = {
