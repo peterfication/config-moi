@@ -11,31 +11,6 @@ return {
       end,
     },
     init = function()
-      -- From https://github.com/akinsho/toggleterm.nvim/issues/116#issuecomment-1163129278
-      -- In a floating terminal, go to a file under the cursor with gF
-      -- but don't open the file in the floating terminal window, instead close the floating terminal
-      -- and open the file in the previous window.
-      vim.api.nvim_create_augroup("ToggleTerm", {})
-      vim.api.nvim_create_autocmd("TermOpen", {
-        pattern = "term://*toggleterm#*",
-        callback = function()
-          vim.keymap.set("n", "gf", function()
-            vim.cmd("tabedit " .. vim.fn.expand("<cfile>"))
-          end, { buffer = true })
-        end,
-        group = "ToggleTerm",
-      })
-    end,
-    keys = function()
-      local function open_new_terminal()
-        local toggleterm = require("toggleterm")
-        local toggleterm_terminal = require("toggleterm.terminal")
-
-        local terms = toggleterm_terminal.get_all(true)
-        local next_index = #terms + 1
-        toggleterm.toggle(next_index)
-      end
-
       -- The prev/next functionality is taken from https://github.com/akinsho/toggleterm.nvim/issues/522
       local function get_term_index(current_id)
         local toggleterm_terminal = require("toggleterm.terminal")
@@ -52,25 +27,6 @@ return {
         vim.print("get term index current_id: " .. current_id .. " term index: " .. idx)
         return idx
       end
-
-      -- local function go_prev_term()
-      --   local current_id = vim.b.toggle_number
-      --   if current_id == nil then
-      --     return
-      --   end
-
-      --   local terms = require("toggleterm.terminal").get_all(true)
-      --   local prev_index
-
-      --   local index = get_term_index(current_id, terms)
-      --   if index > 1 then
-      --     prev_index = index - 1
-      --   else
-      --     prev_index = #terms
-      --   end
-      --   require("toggleterm").toggle(index)
-      --   require("toggleterm").toggle(prev_index)
-      -- end
 
       local function go_next_term()
         local toggleterm = require("toggleterm")
@@ -98,19 +54,64 @@ return {
         end
       end
 
+      local function go_prev_term()
+        local current_id = vim.b.toggle_number
+        if current_id == nil then
+          return
+        end
+
+        local terms = require("toggleterm.terminal").get_all(true)
+        local prev_index
+
+        local index = get_term_index(current_id, terms)
+        if index > 1 then
+          prev_index = index - 1
+        else
+          prev_index = #terms
+        end
+        require("toggleterm").toggle(index)
+        require("toggleterm").toggle(prev_index)
+      end
+
+      -- From https://github.com/akinsho/toggleterm.nvim/issues/116#issuecomment-1163129278
+      -- In a floating terminal, go to a file under the cursor with gF
+      -- but don't open the file in the floating terminal window, instead close the floating terminal
+      -- and open the file in the previous window.
+      vim.api.nvim_create_augroup("ToggleTerm", {})
+      vim.api.nvim_create_autocmd("TermOpen", {
+        pattern = "term://*toggleterm#*",
+        callback = function(args)
+          vim.keymap.set("n", "gf", function()
+            vim.cmd("tabedit " .. vim.fn.expand("<cfile>"))
+          end, { buffer = true })
+
+          vim.keymap.set({ "n", "i", "t" }, "<C-j>", function()
+            go_next_term()
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, false, true), "x!", true)
+          end, { buffer = args.buf, desc = "Toggle term previous" })
+          vim.keymap.set({ "n", "i", "t" }, "<C-k>", function()
+            go_prev_term()
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, false, true), "x!", true)
+          end, { buffer = args.buf, desc = "Toggle term next" })
+        end,
+        group = "ToggleTerm",
+      })
+    end,
+    keys = function()
+      local function open_new_terminal()
+        local toggleterm = require("toggleterm")
+        local toggleterm_terminal = require("toggleterm.terminal")
+
+        local terms = toggleterm_terminal.get_all(true)
+        local next_index = #terms + 1
+        toggleterm.toggle(next_index)
+      end
+
       return {
         -- Because of lazy loading, <C-t> from the opts.open_mapping is not loaded, so it needs
         -- to be redefined here.
         { "<C-t>", "<CMD>ToggleTerm<CR>", { desc = "Toggle ToggleTerm" } },
-        {
-          "<C-k>",
-          function()
-            go_next_term()
-            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, false, true), "x!", true)
-          end,
-          { mode = { "n", "i", "t" }, desc = "Toggle term next" },
-        },
-        { "<Leader>gd", ':8TermExec cmd="lazydocker; exit" direction=float<CR>', desc = "Open lazydocker" },
+
         { "<Leader>t1", "<CMD>ToggleTerm 1<CR>", desc = "Open terminal 1" },
         { "<Leader>t2", "<CMD>ToggleTerm 2<CR>", desc = "Open terminal 2" },
         { "<Leader>t3", "<CMD>ToggleTerm 3<CR>", desc = "Open terminal 3" },
@@ -122,6 +123,8 @@ return {
         { "<Leader>t9", "<CMD>ToggleTerm 9<CR>", desc = "Open terminal 9" },
         { "<Leader>te", "<CMD>TermSelect<CR>", desc = "Select terminal to show" },
         { "<Leader>tn", open_new_terminal, desc = "Open a new terminal" },
+
+        { "<Leader>gd", ':8TermExec cmd="lazydocker; exit" direction=float<CR>', desc = "Open lazydocker" },
 
         -- NOTE: <Leader><ESC> would be a nice mapping but this will mess with spaces that
         -- that you want to enter.
