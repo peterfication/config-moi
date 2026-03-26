@@ -18,6 +18,11 @@ diff-reverse:
 apply:
   chezmoi apply --interactive
 
+# Apply only modified files with chezmoi
+apply-modified:
+  git status --porcelain | awk '{print $2}' | \
+    xargs -r chezmoi apply --interactive --source-path --
+
 # Custom apply reverse: Apply all changes from the home directory to chezmoi
 apply-reverse:
   chezmoi status --path-style absolute | grep '/Users' | awk '{$1=""; sub(/^ /, ""); print}' | xargs -I {} chezmoi add --prompt "{}"
