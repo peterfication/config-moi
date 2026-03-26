@@ -41,6 +41,7 @@ return {
         end,
       })
     end,
+    cmd = { "DiffviewOpen", "DiffviewFileHistory" },
     keys = {
       {
         "<Leader>GG",
