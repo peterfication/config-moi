@@ -79,6 +79,19 @@ return {
         pickers = {
           git_commits = {
             mappings = {
+              n = {
+                ["d"] = function()
+                  -- Open in diffview
+                  local selected_entry = action_state.get_selected_entry()
+                  local value = selected_entry.value
+                  -- close Telescope window properly prior to switching windows
+                  vim.api.nvim_win_close(0, true)
+                  vim.cmd("stopinsert")
+                  vim.schedule(function()
+                    vim.cmd(("DiffviewOpen %s^!"):format(value))
+                  end)
+                end,
+              },
               i = {
                 ["<C-d>"] = function()
                   -- Open in diffview
