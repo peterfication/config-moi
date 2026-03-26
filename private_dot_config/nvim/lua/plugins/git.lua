@@ -20,6 +20,16 @@ return {
     "sindrets/diffview.nvim",
     opts = {
       keymaps = {
+        view = {
+          {
+            "n",
+            "ghc",
+            function()
+              require("diffview.actions").next_conflict()
+            end,
+            { nowait = true, desc = "Go to the next conflict" },
+          },
+        },
         file_history_panel = {
           {
             "n",
@@ -45,8 +55,22 @@ return {
     keys = {
       {
         "<Leader>GG",
+        desc = "DiffView",
+      },
+      {
+        "<Leader>GGF",
         ":DiffviewFileHistory %<CR>",
         desc = "Open DiffView with the Git history of the current file",
+      },
+      {
+        "<Leader>GGM",
+        ":DiffviewOpen<CR>",
+        desc = "Open DiffView (e.g. for merge conflicts)",
+      },
+      {
+        "<Leader>GGR",
+        ":DiffviewOpen origin/main...HEAD<CR>",
+        desc = "Open DiffView for current branch against main (like a PR)",
       },
     },
   },
