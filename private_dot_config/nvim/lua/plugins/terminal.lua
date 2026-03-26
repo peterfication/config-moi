@@ -1,3 +1,84 @@
+-- The prev/next functionality is taken from https://github.com/akinsho/toggleterm.nvim/issues/522
+local function get_term_index(current_id)
+  local toggleterm_terminal = require("toggleterm.terminal")
+  local terms = toggleterm_terminal.get_all(true)
+  local idx
+
+  for i, v in ipairs(terms) do
+    if v.id == current_id then
+      idx = i
+    end
+  end
+
+  return idx
+end
+
+local function go_next_term()
+  local toggleterm = require("toggleterm")
+  local toggleterm_terminal = require("toggleterm.terminal")
+
+  local current_id = vim.b.toggle_number
+  if current_id == nil then
+    return
+  end
+
+  local terms = toggleterm_terminal.get_all(true)
+  local next_index
+
+  local index = get_term_index(current_id)
+  if index == #terms then
+    next_index = 1
+  else
+    next_index = index + 1
+  end
+
+  -- Only toggle if index and next_index are different
+  if index ~= next_index then
+    Snacks.notifier.notify("Terminal " .. next_index .. "/" .. #terms, "info", {
+      style = "minimal",
+    })
+
+    toggleterm.toggle(index)
+    toggleterm.toggle(next_index)
+  end
+end
+
+local function go_prev_term()
+  local current_id = vim.b.toggle_number
+  if current_id == nil then
+    return
+  end
+
+  local terms = require("toggleterm.terminal").get_all(true)
+  local prev_index
+
+  local index = get_term_index(current_id)
+  if index > 1 then
+    prev_index = index - 1
+  else
+    prev_index = #terms
+  end
+
+  -- Only toggle if index and prev_index are different
+  if index ~= prev_index then
+    Snacks.notifier.notify("Terminal " .. prev_index .. "/" .. #terms, "info", {
+      style = "minimal",
+    })
+
+    require("toggleterm").toggle(index)
+    require("toggleterm").toggle(prev_index)
+  end
+end
+
+local function open_new_terminal()
+  local toggleterm = require("toggleterm")
+  local toggleterm_terminal = require("toggleterm.terminal")
+
+  local terms = toggleterm_terminal.get_all(true)
+  local next_index = #terms + 1
+  toggleterm.toggle(next_index)
+end
+
 return {
   {
     "akinsho/toggleterm.nvim",
@@ -11,68 +92,6 @@ return {
       end,
     },
     init = function()
-      -- The prev/next functionality is taken from https://github.com/akinsho/toggleterm.nvim/issues/522
-      local function get_term_index(current_id)
-        local toggleterm_terminal = require("toggleterm.terminal")
-        vim.print("get term index current_id: " .. current_id)
-        local terms = toggleterm_terminal.get_all(true)
-        local idx
-
-        for i, v in ipairs(terms) do
-          if v.id == current_id then
-            idx = i
-          end
-        end
-
-        vim.print("get term index current_id: " .. current_id .. " term index: " .. idx)
-        return idx
-      end
-
-      local function go_next_term()
-        local toggleterm = require("toggleterm")
-        local toggleterm_terminal = require("toggleterm.terminal")
-
-        local current_id = vim.b.toggle_number
-        if current_id == nil then
-          return
-        end
-
-        local terms = toggleterm_terminal.get_all(true)
-        local next_index
-
-        local index = get_term_index(current_id)
-        if index == #terms then
-          next_index = 1
-        else
-          next_index = index + 1
-        end
-        vim.print("length: " .. #terms .. " current index: " .. index .. " next index: " .. next_index)
-        -- Only toggle if index and next_index are different
-        if index ~= next_index then
-          toggleterm.toggle(index)
-          toggleterm.toggle(next_index)
-        end
-      end
-
-      local function go_prev_term()
-        local current_id = vim.b.toggle_number
-        if current_id == nil then
-          return
-        end
-
-        local terms = require("toggleterm.terminal").get_all(true)
-        local prev_index
-
-        local index = get_term_index(current_id, terms)
-        if index > 1 then
-          prev_index = index - 1
-        else
-          prev_index = #terms
-        end
-        require("toggleterm").toggle(index)
-        require("toggleterm").toggle(prev_index)
-      end
-
       -- From https://github.com/akinsho/toggleterm.nvim/issues/116#issuecomment-1163129278
       -- In a floating terminal, go to a file under the cursor with gF
       -- but don't open the file in the floating terminal window, instead close the floating terminal
@@ -97,44 +116,33 @@ return {
         group = "ToggleTerm",
       })
     end,
-    keys = function()
-      local function open_new_terminal()
-        local toggleterm = require("toggleterm")
-        local toggleterm_terminal = require("toggleterm.terminal")
+    keys = {
+      -- Because of lazy loading, <C-t> from the opts.open_mapping is not loaded, so it needs
+      -- to be redefined here.
+      { "<C-t>",      "<CMD>ToggleTerm<CR>",                                   { desc = "Toggle ToggleTerm" } },
 
-        local terms = toggleterm_terminal.get_all(true)
-        local next_index = #terms + 1
-        toggleterm.toggle(next_index)
-      end
+      { "<Leader>t1", "<CMD>ToggleTerm 1<CR>",                                 desc = "Open terminal 1" },
+      { "<Leader>t2", "<CMD>ToggleTerm 2<CR>",                                 desc = "Open terminal 2" },
+      { "<Leader>t3", "<CMD>ToggleTerm 3<CR>",                                 desc = "Open terminal 3" },
+      { "<Leader>t4", "<CMD>ToggleTerm 4<CR>",                                 desc = "Open terminal 4" },
+      { "<Leader>t5", "<CMD>ToggleTerm 5<CR>",                                 desc = "Open terminal 5" },
+      { "<Leader>t6", "<CMD>ToggleTerm 6<CR>",                                 desc = "Open terminal 6" },
+      { "<Leader>t7", "<CMD>ToggleTerm 7<CR>",                                 desc = "Open terminal 7" },
+      { "<Leader>t8", "<CMD>ToggleTerm 8<CR>",                                 desc = "Open terminal 8" },
+      { "<Leader>t9", "<CMD>ToggleTerm 9<CR>",                                 desc = "Open terminal 9" },
+      { "<Leader>te", "<CMD>TermSelect<CR>",                                   desc = "Select terminal to show" },
+      { "<Leader>tn", open_new_terminal,                                       desc = "Open a new terminal" },
 
-      return {
-        -- Because of lazy loading, <C-t> from the opts.open_mapping is not loaded, so it needs
-        -- to be redefined here.
-        { "<C-t>", "<CMD>ToggleTerm<CR>", { desc = "Toggle ToggleTerm" } },
+      { "<Leader>gd", ':8TermExec cmd="lazydocker; exit" direction=float<CR>', desc = "Open lazydocker" },
 
-        { "<Leader>t1", "<CMD>ToggleTerm 1<CR>", desc = "Open terminal 1" },
-        { "<Leader>t2", "<CMD>ToggleTerm 2<CR>", desc = "Open terminal 2" },
-        { "<Leader>t3", "<CMD>ToggleTerm 3<CR>", desc = "Open terminal 3" },
-        { "<Leader>t4", "<CMD>ToggleTerm 4<CR>", desc = "Open terminal 4" },
-        { "<Leader>t5", "<CMD>ToggleTerm 5<CR>", desc = "Open terminal 5" },
-        { "<Leader>t6", "<CMD>ToggleTerm 6<CR>", desc = "Open terminal 6" },
-        { "<Leader>t7", "<CMD>ToggleTerm 7<CR>", desc = "Open terminal 7" },
-        { "<Leader>t8", "<CMD>ToggleTerm 8<CR>", desc = "Open terminal 8" },
-        { "<Leader>t9", "<CMD>ToggleTerm 9<CR>", desc = "Open terminal 9" },
-        { "<Leader>te", "<CMD>TermSelect<CR>", desc = "Select terminal to show" },
-        { "<Leader>tn", open_new_terminal, desc = "Open a new terminal" },
-
-        { "<Leader>gd", ':8TermExec cmd="lazydocker; exit" direction=float<CR>', desc = "Open lazydocker" },
-
-        -- NOTE: <Leader><ESC> would be a nice mapping but this will mess with spaces that
-        -- that you want to enter.
-        {
-          "<C-Space>",
-          [[<C-\><C-n>]],
-          desc = "In terminal, go from INSERT to NORMAL mode",
-          mode = "t",
-        },
-      }
-    end,
+      -- NOTE: <Leader><ESC> would be a nice mapping but this will mess with spaces that
+      -- that you want to enter.
+      {
+        "<C-Space>",
+        [[<C-\><C-n>]],
+        desc = "In terminal, go from INSERT to NORMAL mode",
+        mode = "t",
+      },
+    },
   },
 }
