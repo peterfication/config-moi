@@ -23,6 +23,7 @@ cask 'thaw'
 
 # AI
 cask 'codex'
+brew 'codex-acp'
 cask 'copilot-cli'
 brew 'gemini-cli'
 
