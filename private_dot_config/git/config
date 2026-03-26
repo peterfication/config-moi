@@ -70,6 +70,9 @@
   XignoreRevsFile = .git-blame-ignore-revs
 
 [alias]
+  diffview = "!nvim -c 'DiffviewOpen'"
+  dv = diffview
+
   p = pull
   f = fetch
   fp = fetch origin --prune
