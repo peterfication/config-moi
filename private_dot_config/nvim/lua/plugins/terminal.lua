@@ -147,7 +147,7 @@ return {
             vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, false, true), "x!", true)
           end, { buffer = args.buf, desc = "Toggle term next" })
 
-          vim.keymap.set({ "n", "i", "t" }, "<Leader>l", function()
+          vim.keymap.set({ "n" }, "<Leader>l", function()
             show_content_in_lnav()
             vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, false, true), "x!", true)
           end, { buffer = args.buf, desc = "View terminal buffer in lnav" })
