@@ -79,6 +79,40 @@ local function open_new_terminal()
   toggleterm.toggle(next_index)
 end
 
+local function show_content_in_lnav()
+  local current_id = vim.b.toggle_number
+  if current_id == nil then
+    return
+  end
+
+  local toggleterm_terminal = require("toggleterm.terminal")
+  local Terminal = toggleterm_terminal.Terminal
+  local current_term = toggleterm_terminal.get(current_id, true)
+  if current_term == nil then
+    return
+  end
+
+  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  local tmpfile = vim.fn.tempname() .. ".log"
+  vim.fn.writefile(lines, tmpfile)
+
+  local lnav_command = "lnav " .. vim.fn.shellescape(tmpfile)
+  local lnav_term = Terminal:new({
+    display_name = "lnav",
+    cmd = lnav_command,
+    direction = "float",
+    close_on_exit = true,
+    hidden = true,
+    on_exit = function()
+      vim.fn.delete(tmpfile)
+    end,
+  })
+
+  -- Hide the current terminal and show the lnav terminal
+  current_term:close()
+  lnav_term:toggle()
+end
+
 return {
   {
     "akinsho/toggleterm.nvim",
@@ -112,6 +146,11 @@ return {
             go_prev_term()
             vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, false, true), "x!", true)
           end, { buffer = args.buf, desc = "Toggle term next" })
+
+          vim.keymap.set({ "n", "i", "t" }, "<Leader>l", function()
+            show_content_in_lnav()
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, false, true), "x!", true)
+          end, { buffer = args.buf, desc = "View terminal buffer in lnav" })
         end,
         group = "ToggleTerm",
       })
