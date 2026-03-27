@@ -1,6 +1,6 @@
 
 # Reload the tmux config Ctrl+b r
-bind r source-file ~/.tmux.conf \; display "Config Reloaded!"
+bind r source-file ~/.config/tmux/tmux.conf \; display "Config Reloaded!"
 
 #### SESSIONS ####
 
