@@ -18,6 +18,10 @@ diff-reverse:
 apply:
   chezmoi apply --interactive
 
+# Chezmoi apply without rendering 1Password-backed templates
+apply-public:
+  ./scripts/apply_public.sh
+
 # Apply only modified files with chezmoi
 apply-modified:
   git status --porcelain | awk '{print $2}' | \
