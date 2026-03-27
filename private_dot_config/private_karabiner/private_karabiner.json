@@ -59,21 +59,21 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "Avoid starting sysdiagnose with the built-in macOS shortcut cmd+shift+option+ctrl+,",
+                                "description": "Hyper+, sends [ on a German layout instead of starting the built-in macOS sysdiagnose shortcut",
                                 "from": {
                                     "key_code": "comma",
                                     "modifiers": { "mandatory": ["command", "shift", "option", "control"] }
                                 },
-                                "to": [],
+                                "to": [{ "key_code": "5", "modifiers": ["right_option"] }],
                                 "type": "basic"
                             },
                             {
-                                "description": "Avoid starting sysdiagnose with the built-in macOS shortcut cmd+shift+option+ctrl+.",
+                                "description": "Hyper+. sends ] on a German layout instead of starting the built-in macOS sysdiagnose shortcut",
                                 "from": {
                                     "key_code": "period",
                                     "modifiers": { "mandatory": ["command", "shift", "option", "control"] }
                                 },
-                                "to": [],
+                                "to": [{ "key_code": "6", "modifiers": ["right_option"] }],
                                 "type": "basic"
                             },
                             {
