@@ -3,7 +3,7 @@
   nix-rebuild = "(cd ~/.config/nix && just nix-darwin-rebuild && just nix-system-packages-json)";
   # Run bundle install from the brew config directory
   brew-install = "(cd ~/.config/brew && just brew-install)";
-  install-all = "nix-rebuild && brew-install && mise install";
+  install-all = "nix-rebuild && brew-install && mise install && config-healthcheck";
   # Open vim with the chezmoi config
   conf = " cd $(chezmoi source-path) && nvim";
 }

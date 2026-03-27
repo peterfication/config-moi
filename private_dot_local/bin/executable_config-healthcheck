@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+readonly GREEN="$(printf '\033[32m')"
+readonly YELLOW="$(printf '\033[33m')"
+readonly RESET="$(printf '\033[0m')"
+
+check_file() {
+    local -r label="$1"
+    local -r path="$2"
+
+    if [[ -f "$path" ]]; then
+        printf "%b[OK]%b %s (%s)\n" "$GREEN" "$RESET" "$label" "$path"
+    else
+        printf "%b[MISSING]%b %s (%s)\n" "$YELLOW" "$RESET" "$label" "$path"
+    fi
+}
+
+main() {
+    local -r home_dir="${HOME:?HOME is not set}"
+
+    printf "Health check for manual file setup\n"
+    check_file "SSH local config" "$home_dir/.ssh/config.local"
+    check_file "Homebrew local bundle" "$home_dir/.config/brew/Brewfile.local"
+    check_file "tmux sessions file" "$home_dir/.config/tmux/sessions.txt"
+    check_file "yazi local bookmarks" "$home_dir/.config/yazi/local_bookmarks.lua"
+    check_file "zsh local overrides" "$home_dir/.config/zsh/local.zsh"
+    check_file "restic launch agent" "$home_dir/Library/LaunchAgents/restic.backup.plist"
+
+    printf "\nNot checked automatically: iTerm settings, tmux/yazi plugin installs, Alfred clipboard history.\n"
+}
+
+main "$@"
