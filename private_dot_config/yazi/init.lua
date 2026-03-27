@@ -97,25 +97,25 @@ require("mux"):setup({
 		eza_tree_1 = {
 			previewer = "piper",
 			args = {
-				'cd "$1" && LS_COLORS="ex=32" eza -lbF --tree --level 1 --color=always --icons=always --group-directories-first --no-quotes .',
+				'cd "$1" && eza -lbF --tree --level 1 --color=always --icons=always --group-directories-first --no-quotes .',
 			},
 		},
 		eza_tree_2 = {
 			previewer = "piper",
 			args = {
-				'cd "$1" && LS_COLORS="ex=32" eza -lbF --tree --level 2 --color=always --icons=always --group-directories-first --no-quotes .',
+				'cd "$1" && eza -lbF --tree --level 2 --color=always --icons=always --group-directories-first --no-quotes .',
 			},
 		},
 		eza_tree_3 = {
 			previewer = "piper",
 			args = {
-				'cd "$1" && LS_COLORS="ex=32" eza -lbF --tree --level 3 --color=always --icons=always --group-directories-first --no-quotes .',
+				'cd "$1" && eza -lbF --tree --level 3 --color=always --icons=always --group-directories-first --no-quotes .',
 			},
 		},
 		eza_tree_4 = {
 			previewer = "piper",
 			args = {
-				'cd "$1" && LS_COLORS="ex=32" eza -lbF --tree --level 4 --color=always --icons=always --group-directories-first --no-quotes .',
+				'cd "$1" && eza -lbF --tree --level 4 --color=always --icons=always --group-directories-first --no-quotes .',
 			},
 		},
 	},
