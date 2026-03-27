@@ -31,3 +31,7 @@ main() {
 }
 
 main "$@"
+
+echo ""
+echo "chezmoi status"
+chezmoi status
