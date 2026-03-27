@@ -55,3 +55,6 @@ bind-key o run-shell '~/.tmux/plugins/tmux-fpp/fpp.tmux start paste'
 
 # Fingers https://github.com/Morantron/tmux-fingers
 set -g @fingers-key m
+
+# Open a new window in the current path and start Codex
+bind-key C-c new-window -c "#{pane_current_path}" "codex"
