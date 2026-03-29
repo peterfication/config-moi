@@ -9,4 +9,7 @@ confirm-close-surface = false
 macos-option-as-alt = left
 
 # Always start in the home directory
+window-inherit-working-directory = false
+tab-inherit-working-directory = false
+split-inherit-working-directory = false
 working-directory = home
