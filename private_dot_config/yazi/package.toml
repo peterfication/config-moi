@@ -65,5 +65,5 @@ hash = "fa268cb59989a87780605fdcfb8d99a9"
 
 [[flavor.deps]]
 use = "peterfication/solarized"
-rev = "ffd1e2c"
-hash = "8105d4a6669561113295e8f75888eabd"
+rev = "b652f3d"
+hash = "d724ed1d4639b356d00612c07c565174"
