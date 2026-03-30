@@ -81,7 +81,7 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 # R-CMD configuration for applications
 cmd-alt-shift-ctrl-i = 'exec-and-forget open "/Applications/Nix Apps/iTerm2.app"'
 cmd-alt-shift-ctrl-f = 'exec-and-forget open /Applications/Firefox.app'
-cmd-alt-shift-ctrl-t = 'exec-and-forget open /Applications/Notion.app'
+# cmd-alt-shift-ctrl- = 'exec-and-forget open /Applications/Notion.app'
 cmd-alt-shift-ctrl-y = 'exec-and-forget open /Applications/zoom.us.app'
 
 cmd-alt-shift-ctrl-s = 'exec-and-forget open ~/Pictures/Screenshots'
