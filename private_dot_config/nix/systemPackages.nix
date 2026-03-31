@@ -45,6 +45,7 @@ with pkgs; [
   pkgsUnstable.uv # https://github.com/astral-sh/uv
   vim
   pkgsUnstable.yazi # https://github.com/sxyazi/yazi
+  watch
   zoxide # https://github.com/ajeetdsouza/zoxide
 
   # Container tooling

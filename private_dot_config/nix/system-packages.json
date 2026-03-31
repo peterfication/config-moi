@@ -208,6 +208,10 @@
     "version": "9.1.2148"
   },
   {
+    "name": "watch-procps",
+    "version": "4.0.4"
+  },
+  {
     "name": "yazi",
     "version": "26.1.22"
   },
