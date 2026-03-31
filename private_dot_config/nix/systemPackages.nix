@@ -11,6 +11,7 @@ with pkgs; [
   redis
 
   age # https://github.com/FiloSottile/age
+  bitwarden-cli # https://github.com/bitwarden/clients
   chezmoi # https://www.chezmoi.io
   delta # https://github.com/dandavison/delta
   direnv # https://github.com/direnv/direnv
