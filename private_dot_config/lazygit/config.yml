@@ -14,8 +14,9 @@ os:
   shellFunctionsFile: ~/.config/lazygit/env.sh
 
 keybinding:
-  universal:
-    nextTab: "<c-n>"
+  # I remaped Hyper+, and Hyper+. for []
+  # universal:
+  #   nextTab: "<c-n>"
   files:
     openStatusFilter: "<c-p>"
 
