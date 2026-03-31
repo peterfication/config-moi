@@ -11,7 +11,10 @@ with pkgs; [
   redis
 
   age # https://github.com/FiloSottile/age
+  arp-scan # https://github.com/royhills/arp-scan
+  bitwarden-cli # https://github.com/bitwarden/clients
   chezmoi # https://www.chezmoi.io
+  curl
   delta # https://github.com/dandavison/delta
   direnv # https://github.com/direnv/direnv
   duckdb # https://github.com/duckdb/duckdb
@@ -29,6 +32,7 @@ with pkgs; [
   pkgsUnstable.lefthook # https://github.com/evilmartians/lefthook
   lnav # https://github.com/tstack/lnav
   mise # https://github.com/jdx/mise
+  _1password-cli # https://developer.1password.com/docs/cli/
   pkgsUnstable.neovim # https://github.com/neovim/neovim
   peco # https://github.com/peco/peco interactive grep
   rclone # https://rclone.org/
@@ -41,6 +45,7 @@ with pkgs; [
   pkgsUnstable.uv # https://github.com/astral-sh/uv
   vim
   pkgsUnstable.yazi # https://github.com/sxyazi/yazi
+  watch
   zoxide # https://github.com/ajeetdsouza/zoxide
 
   # Container tooling
