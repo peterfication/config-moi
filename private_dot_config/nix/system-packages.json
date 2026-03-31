@@ -24,6 +24,10 @@
     "version": "2.66.2"
   },
   {
+    "name": "curl",
+    "version": "8.18.0"
+  },
+  {
     "name": "darwin-help",
     "version": ""
   },

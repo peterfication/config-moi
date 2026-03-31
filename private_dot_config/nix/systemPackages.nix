@@ -14,6 +14,7 @@ with pkgs; [
   arp-scan # https://github.com/royhills/arp-scan
   bitwarden-cli # https://github.com/bitwarden/clients
   chezmoi # https://www.chezmoi.io
+  curl
   delta # https://github.com/dandavison/delta
   direnv # https://github.com/direnv/direnv
   duckdb # https://github.com/duckdb/duckdb
