@@ -11,6 +11,7 @@ nix-update-all:
   nix --extra-experimental-features "nix-command flakes" flake update --flake ~/.config/nix
   just nix-darwin-rebuild
   just nix-system-packages-json
+  chezmoi add ~/.config/nix/flake.lock
 
 # Search nix packages
 nix-search QUERY:

@@ -85,7 +85,7 @@
   },
   {
     "name": "gh",
-    "version": "2.88.1"
+    "version": "2.89.0"
   },
   {
     "name": "ghostty-bin",
@@ -201,7 +201,7 @@
   },
   {
     "name": "uv",
-    "version": "0.10.12"
+    "version": "0.11.2"
   },
   {
     "name": "vim",
