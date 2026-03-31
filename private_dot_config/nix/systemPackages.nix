@@ -29,6 +29,7 @@ with pkgs; [
   pkgsUnstable.lefthook # https://github.com/evilmartians/lefthook
   lnav # https://github.com/tstack/lnav
   mise # https://github.com/jdx/mise
+  _1password-cli # https://developer.1password.com/docs/cli/
   pkgsUnstable.neovim # https://github.com/neovim/neovim
   peco # https://github.com/peco/peco interactive grep
   rclone # https://rclone.org/

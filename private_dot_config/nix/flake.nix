@@ -43,6 +43,9 @@
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = system;
 
+      # Allow unfree packages, such as 1password-cli.
+      nixpkgs.config.allowUnfree = true;
+
       # Enable touch ID authentication for sudo.
       security.pam.services.sudo_local.touchIdAuth = true;
 
