@@ -19,3 +19,4 @@ nix-search QUERY:
 # Export system packages and versions as JSON
 nix-system-packages-json OUTPUT_PATH="~/.config/nix/system-packages.json":
   ~/.config/nix/export_system_packages_json.sh {{OUTPUT_PATH}}
+  chezmoi add ~/.config/nix/system-packages.json
