@@ -309,16 +309,16 @@ return {
           desc = "Open jumplist in Telescope",
         },
 
-        { "<Leader>c",  group = "Commands" },
+        { "<Leader>C",  group = "Commands" },
         {
-          "<Leader>cc",
+          "<Leader>CC",
           function()
             require("telescope.builtin").commands()
           end,
           desc = "Open commands in Telescope",
         },
         {
-          "<Leader>ch",
+          "<Leader>CH",
           function()
             require("telescope.builtin").command_history()
           end,
@@ -326,7 +326,7 @@ return {
         },
 
         {
-          "<Leader>C",
+          "<Leader>CB",
           function()
             require("telescope.builtin").builtin()
           end,

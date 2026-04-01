@@ -17,43 +17,6 @@ return {
       servers = {
         ["*"] = {
           keys = {
-            -- Change keympas from <Leader>c to <Leader>z
-            { "<Leader>ca", false },
-            { "<Leader>cc", false },
-            { "<Leader>cC", false },
-            { "<Leader>cR", false },
-            { "<Leader>cr", false },
-            { "<Leader>cA", false },
-            { "<Leader>cf", false },
-
-            {
-              "<Leader>za",
-              vim.lsp.buf.code_action,
-              desc = "[LSP] Code Action",
-              mode = { "n", "v" },
-              has = "codeAction",
-            },
-            { "<Leader>zc", vim.lsp.codelens.run,      desc = "[LSP] Run Codelens",  mode = { "n", "v" }, has = "codeLens" },
-            {
-              "<Leader>zC",
-              vim.lsp.codelens.refresh,
-              desc = "[LSP] Refresh & Display Codelens",
-              mode = { "n" },
-              has = "codeLens",
-            },
-            {
-              "<Leader>zR",
-              function()
-                Snacks.rename.rename_file()
-              end,
-              desc = "[LSP] Rename File",
-              mode = { "n" },
-              has = { "workspace/didRenameFiles", "workspace/willRenameFiles" },
-            },
-            { "<Leader>zr", vim.lsp.buf.rename,        desc = "[LSP] Rename",        has = "rename" },
-            { "<Leader>zA", LazyVim.lsp.action.source, desc = "[LSP] Source Action", has = "codeAction" },
-            { "<Leader>zf", vim.lsp.buf.format,        desc = "[LSP] Format",        has = "format" },
-
             {
               "<A-n>",
               function()
