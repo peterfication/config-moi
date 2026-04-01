@@ -375,19 +375,6 @@ return {
         },
 
         {
-          "<Leader>p",
-          ":Telescope neoclip<CR>",
-          desc = "Open neoclip (clipboard) in Telescope",
-        },
-
-        {
-          "<Leader>p",
-          ":Telescope neoclip<CR>",
-          desc = "Open neoclip (clipboard) in Telescope",
-          mode = "v",
-        },
-
-        {
           "<Leader>ZZ",
           function()
             require("telescope.builtin").treesitter()
