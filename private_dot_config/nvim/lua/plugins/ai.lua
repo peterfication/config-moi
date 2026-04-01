@@ -1,3 +1,19 @@
+if true then
+  return {
+    {
+      "folke/sidekick.nvim",
+      opts = {
+        cli = {
+          mux = {
+            enabled = true,
+            create = "window",
+          },
+        },
+      },
+    },
+  }
+end
+
 return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
@@ -41,8 +57,8 @@ return {
         },
         ask = {
           start_insert = false,
-        }
-      }
+        },
+      },
     },
     keys = {
       { "<Leader>aa", "<cmd>AvanteAsk<CR>", desc = "Ask Avante" },
