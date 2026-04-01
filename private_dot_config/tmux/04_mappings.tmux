@@ -20,7 +20,7 @@ bind-key C-g run-shell -b "tmux list-windows -F \"##I:##W\" | fzf-tmux -- --head
 
 # Switch windows
 bind C-n next-window
-bind C-p next-window
+bind C-p previous-window
 
 #### PANES ####
 
