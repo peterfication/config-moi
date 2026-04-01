@@ -95,11 +95,12 @@ if [[ -n "${query}" ]]; then
 			.[] |
 			[
 				(.title // "" | gsub("[\\t\\r\\n]"; " ")),
+				(.title // "" | gsub("[\\t\\r\\n]"; " ")),
 				(.subtitle // "" | gsub("[\\t\\r\\n]"; " ")),
 				(.match // "" | gsub("[\\t\\r\\n]"; " ")),
 				@json
 			] | @tsv
-		' | "${fzf_bin}" --filter="${query}" --delimiter=$'\t' --nth=1,2,3 | cut -f4-
+		' | "${fzf_bin}" --filter="${query}" --delimiter=$'\t' --nth=1,2,3,4 | cut -f5-
 	)"
 else
 	filtered_json="$(printf '%s' "${bookmarks_json}" | jq -c '.[]')"
