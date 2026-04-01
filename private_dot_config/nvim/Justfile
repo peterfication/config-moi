@@ -1,0 +1,7 @@
+# List all available commands
+nvim-default:
+  just --list
+
+# Update the lazy-lock file in chezmoi
+nvim-lazy-lock:
+  chezmoi add ~/.config/nvim/lazy-lock.json
