@@ -7,6 +7,11 @@ return {
           menu = {
             auto_show = true,
           },
+          list = {
+            selection = {
+              preselect = false,
+            },
+          },
           ghost_text = {
             enabled = false,
             show_with_menu = false,
