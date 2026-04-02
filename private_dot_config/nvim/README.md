@@ -27,7 +27,6 @@ return {
 
 - mrjones2014/legendary.nvim
 - davidmh/cspell.nvim
-- more configs from nvimtools/none-ls.nvim
 - chentoast/marks.nvim
 - simnalamburt/vim-mundo
 - hkupty/iron.nvim
