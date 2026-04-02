@@ -16,6 +16,10 @@
     "version": "5.3p3"
   },
   {
+    "name": "bat",
+    "version": "0.26.1"
+  },
+  {
     "name": "bitwarden-cli",
     "version": "2025.11.0"
   },

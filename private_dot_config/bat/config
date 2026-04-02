@@ -1,0 +1,6 @@
+# Run `bat --list-themes` for a list of all available themes
+# Or
+# bat --list-themes | fzf --preview="bat --theme={} --color=always /path/to/file"
+--theme="Solarized (dark)"
+
+--italic-text=always

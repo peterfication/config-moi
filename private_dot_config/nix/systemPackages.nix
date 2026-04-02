@@ -12,6 +12,7 @@ with pkgs; [
 
   age # https://github.com/FiloSottile/age
   arp-scan # https://github.com/royhills/arp-scan
+  bat # https://github.com/sharkdp/bat
   bitwarden-cli # https://github.com/bitwarden/clients
   chezmoi # https://www.chezmoi.io
   curl
