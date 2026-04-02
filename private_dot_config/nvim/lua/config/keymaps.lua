@@ -3,7 +3,6 @@
 local map = vim.keymap.set
 
 map("n", "<Leader><ESC>", ":nohlsearch<CR>", { silent = true, desc = "Clear search highlight" })
-map("n", "<Leader>we", ":w<CR>", { silent = true, desc = "Save current buffer" })
 
 map("n", "<Leader>!", ":w<CR>", { silent = true, desc = "Save current buffer" })
 
@@ -18,5 +17,7 @@ map("n", "<Leader>7", "7gt", { desc = "Go to tab 7" })
 map("n", "<Leader>8", "8gt", { desc = "Go to tab 8" })
 map("n", "<Leader>9", "9gt", { desc = "Go to tab 9" })
 
-map("n", "<Leader>bc", ":bufdo bd<CR>", { desc = "Delete/clear all buffers" })
-map("n", "<Leader>qA", ":qa!<CR>", { desc = "Quit all without saving" })
+map("n", "<Leader>bw", ":w<CR>", { silent = true, desc = "Safe/write current buffer" })
+map("n", "<Leader>bW", ":wa<CR>", { silent = true, desc = "Safe/write all buffers" })
+map("n", "<Leader>bc", ":bufdo bd<CR>", { silent = true, desc = "Delete/clear all buffers" })
+map("n", "<Leader>qA", ":qa!<CR>", { silent = true, desc = "Quit all without saving" })
