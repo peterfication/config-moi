@@ -12,6 +12,7 @@ return {
             show_with_menu = false,
           },
         },
+        -- Don't do this because it will mess with expecations to get out of insert mode reliably.
         -- keymap = {
         --   ["<Esc>"] = { "hide", "fallback" },
         -- },
