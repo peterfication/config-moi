@@ -79,7 +79,7 @@ return {
     cmd = { "Navbuddy" },
     opts = { lsp = { auto_attach = true } },
     keys = {
-      { "<leader>zb", "<CMD>Navbuddy<CR>", desc = "Navbuddy" },
+      { "<Leader>cb", "<CMD>Navbuddy<CR>", desc = "Navbuddy" },
     },
   },
   {

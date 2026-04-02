@@ -43,9 +43,6 @@ return {
         },
       },
     },
-    keys = {
-      { "<Leader>z", group = "LSP" },
-    },
   },
 
   {
