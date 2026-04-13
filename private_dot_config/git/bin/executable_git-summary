@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+readonly YELLOW="$(printf '\033[33m')"
+readonly RESET="$(printf '\033[0m')"
+
+heading() {
+  echo ""
+  printf "${YELLOW}## %s ##${RESET}\n" "$1"
+  echo ""
+}
+
+# https://github.com/GitAlias/gitalias/tree/main/doc/git-churn
+heading "What changes the most (3 month)"
+git log \
+  --all \
+  --find-copies \
+  --find-renames \
+  --name-only \
+  --since=3-month-ago \
+  --format='format:' | \
+  awk 'NF{a[$0]++}END{for(i in a){print a[i], i}}' | \
+  sort -rn | head -20
+
+heading "What changes the most (1 year)"
+git log \
+  --all \
+  --find-copies \
+  --find-renames \
+  --name-only \
+  --since=1-year-ago \
+  --format='format:' | \
+  awk 'NF{a[$0]++}END{for(i in a){print a[i], i}}' | \
+  sort -rn | head -20
+
+heading "Who built this"
+git shortlog -sn --no-merges
+
+heading "Where do bugs cluster"
+git log -i -P --grep="\b(fix|fixed|fixes|bug|broken)\b" --name-only --format='' | sort | uniq -c | sort -nr | head -20
+
+heading "Is work on this project accelerating or slowing down"
+git log --format='%ad' --date=format:'%Y-%m' | sort | uniq -c
+echo ""
+git log --format='%ad' --date=format:'%Y-%m' | sort | uniq -c | awk '{printf $2" "; for (i=1;i<=$1;i++){printf "-";} print ""; }'
+
+heading "How often is the team firefighting"
+git log --oneline --since="1 year ago" | grep -iE 'revert|hotfix|emergency|rollback'

@@ -21,3 +21,4 @@ fi
 export PATH="$HOME/.nix-profile/bin:/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:$PATH"
 
 export PATH=$HOME"/.local/bin:$PATH"
+export PATH=$HOME"/.config/git/bin:$PATH"
