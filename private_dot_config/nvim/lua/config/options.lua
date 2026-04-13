@@ -18,3 +18,5 @@ vim.wo.relativenumber = false
 vim.g.autoformat = false
 
 vim.opt.spelllang = { "en", "de" }
+
+vim.opt.colorcolumn = "100"
