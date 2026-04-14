@@ -1,5 +1,8 @@
 # Base
 
+# Enable support for extended (modified) keys, e.g. Shift+Arrow keys, Ctrl+Arrow keys, etc.
+set -g extended-keys-format csi-u
+
 set -g mode-keys vi # Enable vi-mode
 # emacs key bindings in tmux command prompt (prefix + :) are better than
 # vi keys, even for vim users
