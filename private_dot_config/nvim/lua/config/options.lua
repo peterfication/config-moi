@@ -2,7 +2,7 @@
 
 vim.g.lazyvim_picker = "telescope"
 
-vim.g.maplocalleader = "-"
+vim.g.maplocalleader = "  "
 
 vim.opt.listchars = {
   trail = "¤",
