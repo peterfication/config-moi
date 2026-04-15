@@ -21,6 +21,7 @@ with pkgs; [
   duckdb # https://github.com/duckdb/duckdb
   eza # https://github.com/eza-community/eza
   fd # https://github.com/sharkdp/fd
+  fpp # https://github.com/facebook/pathpicker
   fzf # https://github.com/junegunn/fzf
   pkgsUnstable.gh # https://cli.github.com/
   pkgsUnstable.ghostty-bin # https://github.com/ghostty-org/ghostty

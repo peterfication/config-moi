@@ -84,6 +84,10 @@
     "version": "10.3.0"
   },
   {
+    "name": "fpp",
+    "version": "0.9.5"
+  },
+  {
     "name": "fzf",
     "version": "0.67.0"
   },
