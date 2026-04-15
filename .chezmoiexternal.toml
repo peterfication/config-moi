@@ -1,3 +1,8 @@
+[".config/agents"]
+    type = "git-repo"
+    url = "git@github.com:peterfication/my-agents.git"
+    refreshPeriod = "168h" # 1 week
+
 [".config/pi"]
     type = "git-repo"
     url = "git@github.com:peterfication/my-pi.git"
