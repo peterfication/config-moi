@@ -8,9 +8,9 @@ gui:
     inactiveBorderColor:
       - white
     selectedLineBgColor:
-      - blue
+      - '#003440'
     optionsTextColor:
-      - blue
+      - '#003440'
   returnImmediately: false
   wrapMainPanel: true
   # Side panel width as a ratio of the screen's width
@@ -32,7 +32,7 @@ logs:
   since: '60m' # set to '' to show all logs
   tail: '' # set to 200 to show last 200 lines of logs
 commandTemplates:
-  dockerCompose: docker-compose
+  dockerCompose: podman-compose
   restartService: '{{ .DockerCompose }} restart {{ .Service.Name }}'
   up:  '{{ .DockerCompose }} up -d'
   down: '{{ .DockerCompose }} down'
