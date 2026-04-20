@@ -120,8 +120,57 @@ return {
 
   {
     "pwntester/octo.nvim",
-    opts = {
-      default_merge_method = "merge",
-    },
+    opts = function(_, opts)
+      opts.default_merge_method = "merge"
+
+      local group = vim.api.nvim_create_augroup("octo_review_diff_localleader_dash", { clear = true })
+
+      vim.api.nvim_create_autocmd("BufEnter", {
+        group = group,
+        pattern = "octo://*",
+        callback = function(ev)
+          local ok = pcall(vim.api.nvim_buf_get_var, ev.buf, "octo_diff_props")
+          if not ok then
+            return
+          end
+
+          vim.keymap.set("n", "<localleader><Space>", function()
+            local reviews = require("octo.reviews")
+            local layout = reviews.get_current_layout()
+            if not layout then
+              return
+            end
+
+            local current = layout.files[layout.selected_file_idx]
+            if not current or current.viewed_state == "VIEWED" then
+              return
+            end
+
+            local has_next_unviewed = false
+            for i, file in ipairs(layout.files) do
+              if i ~= layout.selected_file_idx and file.viewed_state ~= "VIEWED" then
+                has_next_unviewed = true
+                break
+              end
+            end
+
+            current:toggle_viewed()
+
+            if has_next_unviewed then
+              vim.defer_fn(function()
+                local fresh_layout = reviews.get_current_layout()
+                if fresh_layout then
+                  fresh_layout:select_next_unviewed_file()
+                end
+              end, 150)
+            end
+          end, {
+            buffer = ev.buf,
+            silent = true,
+            desc = "mark viewed and jump to next unviewed file",
+          })
+        end,
+      })
+    end,
   },
 }
