@@ -42,6 +42,7 @@ with pkgs; [
   restic # https://github.com/restic/restic
   ripgrep # https://github.com/BurntSushi/ripgrep
   pkgsUnstable.sshfs # https://github.com/libfuse/sshfs
+  samba # https://gitlab.com/samba-team/samba
   sshs # https://github.com/quantumsheep/sshs
   starship # https://github.com/starship/starship
   tmux
