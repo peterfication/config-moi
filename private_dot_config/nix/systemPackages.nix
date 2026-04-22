@@ -51,6 +51,7 @@ with pkgs; [
   vim
   pkgsUnstable.yazi # https://github.com/sxyazi/yazi
   watch
+  pkgsUnstable.whosthere # https://github.com/ramonvermeulen/whosthere
   zoxide # https://github.com/ajeetdsouza/zoxide
 
   # Container tooling
