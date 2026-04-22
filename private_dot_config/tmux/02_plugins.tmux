@@ -16,3 +16,9 @@ set -g @plugin 'schasse/tmux-jump'
 set -g @plugin 'alexwforsythe/tmux-which-key'
 set -g @plugin 'tmux-plugins/tmux-fpp'
 set -g @plugin 'Morantron/tmux-fingers'
+
+# https://github.com/Peter-McKinney/tmux-fzf-open-files-nvim
+set -g @plugin 'Peter-McKinney/tmux-open-file-nvim'
+set -g @open-file-nvim-key e
+set -g @open-file-nvim-all-key E
+set -g @open-file-nvim-all-history-key H
