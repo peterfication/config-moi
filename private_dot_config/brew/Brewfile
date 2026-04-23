@@ -27,6 +27,7 @@ cask 'codex'
 brew 'codex-acp'
 cask 'copilot-cli'
 brew 'gemini-cli'
+cask 'zed' # https://github.com/zed-industries/zed
 
 # Manuall install needed because of --no-quarantine
 # brew 'glance-chamburr' # QuickLook collection https://github.com/chamburr/glance
