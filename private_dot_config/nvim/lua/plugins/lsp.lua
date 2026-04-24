@@ -43,6 +43,20 @@ return {
         },
       },
     },
+    keys = {
+      { "gp", group = "Goto preview" },
+      { "gpd", group = "Goto preview definition" },
+      {
+        "gpds",
+        "<CMD>vsplit | lua vim.lsp.buf.definition()<CR>",
+        desc = "Open definition in a new split",
+      },
+      {
+        "gpdt",
+        "<CMD>tab split | lua vim.lsp.buf.definition()<CR>",
+        desc = "Open definition in a new tab",
+      },
+    },
   },
 
   {
