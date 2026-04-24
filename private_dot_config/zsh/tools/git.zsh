@@ -43,3 +43,5 @@ function pr-checkout() {
 # Cache Git credentials for 10 hours
 alias git_cache_credentials="git config --global credential.helper 'cache --timeout=36000'"
 alias git_no_cache_credentials="git config --global --unset credential.helper"
+
+export GH_TELEMETRY=false
