@@ -1,0 +1,74 @@
+#!/bin/sh
+
+# Swap the visible AeroSpace workspaces between two target monitors.
+#
+# Selection rules:
+# - If there are exactly 2 active monitors, use both.
+# - If there are exactly 3 active monitors, exclude any monitor whose name
+#   contains "Built-in" case-insensitively, then use the remaining two.
+#
+# The script exits silently for unsupported monitor layouts, ambiguous
+# workspace resolution, or when AeroSpace is unavailable.
+
+set -u
+
+aerospace_bin="${AEROSPACE_BIN:-aerospace}"
+monitor_format='%{monitor-id}%{tab}%{monitor-name}'
+focused_monitor_id="$("$aerospace_bin" list-monitors --focused --format '%{monitor-id}' 2>/dev/null)" || exit 0
+[ -n "$focused_monitor_id" ] || exit 0
+
+monitors="$("$aerospace_bin" list-monitors --format "$monitor_format" 2>/dev/null)" || exit 0
+[ -n "$monitors" ] || exit 0
+
+monitor_count="$(printf '%s\n' "$monitors" | awk 'NF { count += 1 } END { print count + 0 }')"
+
+case "$monitor_count" in
+  2)
+    target_monitors="$monitors"
+    ;;
+  3)
+    target_monitors="$(printf '%s\n' "$monitors" | awk -F '\t' 'tolower($2) !~ /built-in/')"
+    ;;
+  *)
+    exit 0
+    ;;
+esac
+
+target_count="$(printf '%s\n' "$target_monitors" | awk 'NF { count += 1 } END { print count + 0 }')"
+[ "$target_count" -eq 2 ] || exit 0
+
+monitor_one="$(printf '%s\n' "$target_monitors" | sed -n '1p')"
+monitor_two="$(printf '%s\n' "$target_monitors" | sed -n '2p')"
+[ -n "$monitor_one" ] || exit 0
+[ -n "$monitor_two" ] || exit 0
+
+monitor_one_id="$(printf '%s\n' "$monitor_one" | cut -f 1)"
+monitor_two_id="$(printf '%s\n' "$monitor_two" | cut -f 1)"
+[ -n "$monitor_one_id" ] || exit 0
+[ -n "$monitor_two_id" ] || exit 0
+
+workspace_one="$("$aerospace_bin" list-workspaces --monitor "$monitor_one_id" --visible 2>/dev/null)" || exit 0
+workspace_two="$("$aerospace_bin" list-workspaces --monitor "$monitor_two_id" --visible 2>/dev/null)" || exit 0
+
+workspace_one_count="$(printf '%s\n' "$workspace_one" | awk 'NF { count += 1 } END { print count + 0 }')"
+workspace_two_count="$(printf '%s\n' "$workspace_two" | awk 'NF { count += 1 } END { print count + 0 }')"
+[ "$workspace_one_count" -eq 1 ] || exit 0
+[ "$workspace_two_count" -eq 1 ] || exit 0
+
+workspace_one_name="$(printf '%s\n' "$workspace_one" | sed -n '1p')"
+workspace_two_name="$(printf '%s\n' "$workspace_two" | sed -n '1p')"
+[ -n "$workspace_one_name" ] || exit 0
+[ -n "$workspace_two_name" ] || exit 0
+[ "$workspace_one_name" != "$workspace_two_name" ] || exit 0
+
+echo "Swapping workspace '$workspace_one_name' on monitor '$monitor_one_id' with workspace '$workspace_two_name' on monitor '$monitor_two_id' while preserving focused monitor '$focused_monitor_id'..." >&2
+
+"$aerospace_bin" focus-monitor "$monitor_two_id" >/dev/null 2>&1 || exit 0
+sleep 0.1
+"$aerospace_bin" summon-workspace "$workspace_one_name" >/dev/null 2>&1 || exit 0
+sleep 0.1
+"$aerospace_bin" focus-monitor "$monitor_one_id" >/dev/null 2>&1 || exit 0
+sleep 0.1
+"$aerospace_bin" summon-workspace "$workspace_two_name" >/dev/null 2>&1 || exit 0
+sleep 0.1
+"$aerospace_bin" focus-monitor "$focused_monitor_id" >/dev/null 2>&1 || exit 0

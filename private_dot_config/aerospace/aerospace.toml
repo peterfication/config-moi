@@ -160,6 +160,7 @@ cmd-alt-shift-ctrl-l = 'workspace-back-and-forth'
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 cmd-alt-shift-ctrl-n = 'move-workspace-to-monitor --wrap-around next'
 cmd-alt-shift-ctrl-b = 'focus-monitor --wrap-around next'
+cmd-alt-shift-ctrl-r = 'exec-and-forget ~/.local/bin/aerospace-swap-external-workspaces'
 
 # cmd-alt-shift-ctrl-leftSquareBracket = ''
 # cmd-alt-shift-ctrl-rightSquareBracket = ''
