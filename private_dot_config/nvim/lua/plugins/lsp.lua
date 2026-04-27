@@ -10,39 +10,6 @@ return {
     --   -- add a keymap
     --   keys[#keys + 1] = { "H", "<cmd>echo 'hello'<cr>" }
     -- end,
-    opts = {
-      -- See
-      -- https://www.lazyvim.org/plugins/lsp
-      -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/lsp/keymaps.lua
-      servers = {
-        ["*"] = {
-          keys = {
-            {
-              "<A-n>",
-              function()
-                Snacks.words.jump(vim.v.count1, true)
-              end,
-              has = "documentHighlight",
-              desc = "Next Reference",
-              cond = function()
-                return Snacks.words.is_enabled()
-              end,
-            },
-            {
-              "<A-p>",
-              function()
-                Snacks.words.jump(-vim.v.count1, true)
-              end,
-              has = "documentHighlight",
-              desc = "Prev Reference",
-              cond = function()
-                return Snacks.words.is_enabled()
-              end,
-            },
-          },
-        },
-      },
-    },
     keys = {
       { "gp", group = "Goto preview" },
       { "gpd", group = "Goto preview definition" },
