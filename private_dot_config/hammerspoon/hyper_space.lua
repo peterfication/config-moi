@@ -11,7 +11,20 @@ function M.setup()
 	end
 
 	local function openGhostty(path)
-		hs.task.new("/usr/bin/open", nil, { "-na", "Ghostty", path }):start()
+		hs.task.new("/usr/bin/osascript", nil, {
+			"-e",
+			'tell application "Ghostty"',
+			"-e",
+			"activate",
+			"-e",
+			"set cfg to new surface configuration",
+			"-e",
+			('set initial working directory of cfg to "%s"'):format(path),
+			"-e",
+      "set win to new window with configuration cfg",
+			"-e",
+			"end tell",
+		}):start()
 	end
 
 	-- Hyper+Space mode
