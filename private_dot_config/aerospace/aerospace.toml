@@ -78,17 +78,6 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 # See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
 # alt-enter = 'exec-and-forget open -n /System/Applications/Utilities/Terminal.app'
 
-# R-CMD configuration for applications
-cmd-alt-shift-ctrl-i = 'exec-and-forget open "/Applications/Nix Apps/iTerm2.app"'
-cmd-alt-shift-ctrl-f = 'exec-and-forget open /Applications/Firefox.app'
-# cmd-alt-shift-ctrl- = 'exec-and-forget open /Applications/Notion.app'
-cmd-alt-shift-ctrl-y = 'exec-and-forget open /Applications/zoom.us.app'
-
-cmd-alt-shift-ctrl-s = 'exec-and-forget open ~/Pictures/Screenshots'
-cmd-alt-shift-ctrl-h = 'exec-and-forget open ~/'
-cmd-alt-shift-ctrl-d = 'exec-and-forget open ~/Documents'
-cmd-alt-shift-ctrl-a = 'exec-and-forget open ~/Downloads'
-
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 # alt-slash = 'layout tiles horizontal vertical'
 # alt-comma = 'layout accordion horizontal vertical'
