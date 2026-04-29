@@ -29,7 +29,7 @@
   },
   {
     "name": "curl",
-    "version": "8.18.0"
+    "version": "8.19.0"
   },
   {
     "name": "darwin-help",
@@ -97,7 +97,7 @@
   },
   {
     "name": "gh",
-    "version": "2.89.0"
+    "version": "2.91.0"
   },
   {
     "name": "ghostty-bin",
@@ -129,11 +129,11 @@
   },
   {
     "name": "lazygit",
-    "version": "0.60.0"
+    "version": "0.61.1"
   },
   {
     "name": "lefthook",
-    "version": "2.1.1"
+    "version": "2.1.5"
   },
   {
     "name": "lnav",
@@ -149,7 +149,7 @@
   },
   {
     "name": "neovim",
-    "version": "0.11.6"
+    "version": "0.12.2"
   },
   {
     "name": "openssl",
@@ -217,7 +217,7 @@
   },
   {
     "name": "uv",
-    "version": "0.11.2"
+    "version": "0.11.7"
   },
   {
     "name": "vim",
@@ -229,7 +229,7 @@
   },
   {
     "name": "whosthere",
-    "version": "0.7.0"
+    "version": "0.7.1"
   },
   {
     "name": "yazi",

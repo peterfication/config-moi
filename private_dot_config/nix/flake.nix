@@ -22,6 +22,15 @@
       inherit system;
     };
     configuration = { pkgs, ... }: {
+      nixpkgs.overlays = [
+        (_final: prev: {
+          # Work around a Darwin-specific direnv test failure at the pinned nixpkgs rev.
+          direnv = prev.direnv.overrideAttrs (_old: {
+            doCheck = false;
+          });
+        })
+      ];
+
       environment.systemPackages = systemPackages {
         inherit pkgs pkgsUnstable;
       };
