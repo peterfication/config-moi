@@ -200,10 +200,6 @@
     "version": "4.22.6"
   },
   {
-    "name": "sshfs-fuse",
-    "version": "3.7.5"
-  },
-  {
     "name": "sshs",
     "version": "4.7.2"
   },

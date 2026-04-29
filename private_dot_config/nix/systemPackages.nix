@@ -41,8 +41,8 @@ with pkgs; [
   rclone # https://rclone.org/
   restic # https://github.com/restic/restic
   ripgrep # https://github.com/BurntSushi/ripgrep
-  pkgsUnstable.sshfs # https://github.com/libfuse/sshfs
   samba # https://gitlab.com/samba-team/samba
+  # pkgsUnstable.sshfs # https://github.com/libfuse/sshfs => Brewfile fuse-t
   sshs # https://github.com/quantumsheep/sshs
   starship # https://github.com/starship/starship
   tmux

@@ -6,6 +6,8 @@ brew 'domcyrus/rustnet/rustnet' # https://github.com/domcyrus/rustnet
 brew 'rv' # https://github.com/spinel-coop/rv uv for Ruby
 brew 'switchaudio-osx' # https://github.com/deweller/switchaudio-osx
 brew 'veeso/termscp/termscp' # https://github.com/veeso/termscp
+brew 'macos-fuse-t/homebrew-cask/fuse-t' # https://github.com/macos-fuse-t/fuse-t
+brew 'macos-fuse-t/homebrew-cask/sshfs-fuse-t'
 
 cask '1password'
 cask 'alfred'
