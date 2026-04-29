@@ -32,63 +32,28 @@ gui:
 promptToReturnFromSubprocess: false # removes "press enter to return to lazygit" popup
 
 customCommands:
-  - key: 'C'
-    command: 'git branch -r | sed "s/origin\///" | fzf --prompt="Select branch: " | xargs -I {} git checkout {}'
-    context: 'localBranches'
-    output: terminal
   - key: '<c-d>'
     command: '[ -z "$NVIM" ] && (nvim -c DiffviewOpen) || (nvim --server "$NVIM" -c DiffviewOpen)'
     context: 'files'
     output: terminal
-  - key: '<c-p>'
-    command: 'git add --patch'
-    context: 'files'
+
+  - key: 'C'
+    command: 'git branch -r | sed "s/origin\///" | fzf --prompt="Select branch: " | xargs -I {} git checkout {}'
+    context: 'localBranches'
     output: terminal
-  - key: "F"
-    description: "Fetch and prune"
-    command: "git fetch --prune"
-    context: "localBranches"
-    output: log
   - key: "<c-r>"
     command: "git reset --hard @{upstream}"
     description: "Reset hard the local branch with its upstream"
     context: "localBranches"
     output: log
+
   - key: "<c-u>"
     command: "git reset --soft HEAD^"
     description: "Uncommit selected commit and put the changes back in the working tree"
     context: "commits"
     output: log
-  - key: "<c-f>"
-    command: "source $HOME/.zplug/repos/wfxr/forgit/forgit.plugin.zsh && forgit::log"
-    description: "Fuzzy find a commit"
-    context: "global"
-    output: terminal
-  - key: "<c-x>"
-    command: "f() { CURRENT=`git rev-parse --abbrev-ref HEAD`; git checkout main; git pull; git branch -d $CURRENT; }; if [[ {{index .PromptResponses 0}} = 'Yes' ]]; then f; else echo Canceled; fi"
-    description: "Pull main and delete current branch (after the PR got merged)"
-    context: "localBranches"
-    loadingText: "Pulling latest main and deleting ..."
-    prompts:
-      - type: "menu"
-        title: "Are you sure you want to delete the current branch?"
-        options:
-          - value: "Yes"
-          - value: "No"
-    output: log
-  - key: "<c-f>"
-    description: "fetch a remote branch as a new local branch"
-    command: "git fetch {{index .SelectedRemote.Name }} {{index .PromptResponses 0}}:{{index .PromptResponses 1}}"
-    context: "remotes"
-    prompts:
-      - type: "input"
-        title: "Remote Branch Name"
-        initialValue: ""
-      - type: "input"
-        title: "New Local Branch Name"
-        initialValue: ""
-    loadingText: "fetching branch"
-    # Blame via tig
+
+  # Blame via tig
   - key: b
     command: tig blame -- {{.SelectedFile.Name}}
     context: files
@@ -101,6 +66,7 @@ customCommands:
     command: tig blame -- {{.SelectedCommitFile.Name}}
     context: commitFiles
     description: blame file at tree
+
   # File history via tig
   - key: t
     command: tig {{.SelectedSubCommit.Sha}} -- {{.SelectedCommitFile.Name}}
@@ -110,6 +76,7 @@ customCommands:
     command: tig -- {{.SelectedFile.Name}}
     context: files
     description: tig file (history of commits affecting file)
+
   # Browse files at revision via tig
   - key: t
     command: tig show {{.SelectedSubCommit.Sha}}
