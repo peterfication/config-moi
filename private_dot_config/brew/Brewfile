@@ -25,6 +25,8 @@ cask 'xnviewmp' # Image viewer
 cask 'thaw'
 
 # AI
+cask 'claude'
+cask 'claude-code'
 cask 'codex'
 brew 'codex-acp'
 cask 'copilot-cli'
