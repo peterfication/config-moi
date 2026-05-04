@@ -166,7 +166,7 @@ cmd-alt-shift-ctrl-r = 'exec-and-forget ~/.local/bin/aerospace-swap-external-wor
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 cmd-alt-shift-ctrl-p = 'mode service'
 cmd-alt-shift-ctrl-m = 'mode move'
-cmd-alt-shift-ctrl-q = 'mode summon'
+cmd-alt-shift-ctrl-s = 'mode summon'
 
 [mode.move.binding]
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
