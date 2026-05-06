@@ -36,6 +36,11 @@ customCommands:
     command: '[ -z "$NVIM" ] && (nvim -c DiffviewOpen) || (nvim --server "$NVIM" -c DiffviewOpen)'
     context: 'files'
     output: terminal
+  - key: 'P'
+    command: 'pbpaste | git apply -'
+    description: 'Apply git patch from clipboard'
+    context: 'files'
+    output: log
 
   - key: 'C'
     command: 'git branch -r | sed "s/origin\///" | fzf --prompt="Select branch: " | xargs -I {} git checkout {}'
