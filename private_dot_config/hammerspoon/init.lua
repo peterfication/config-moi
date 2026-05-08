@@ -7,7 +7,8 @@ hs.loadSpoon("FnMate")
 
 hs.loadSpoon("Caffeine")
 spoon.Caffeine:start()
-hs.hotkey.bind({ "alt", "ctrl", "cmd", "shift" }, "ö", function()
+
+local function toggleCaffeine()
 	if hs.caffeinate.get("displayIdle") then
 		hs.alert.show("Caffeine off")
 	else
@@ -15,6 +16,10 @@ hs.hotkey.bind({ "alt", "ctrl", "cmd", "shift" }, "ö", function()
 	end
 
 	spoon.Caffeine:clicked()
-end)
+end
 
-require("hyper_space").setup()
+hs.hotkey.bind({ "alt", "ctrl", "cmd", "shift" }, "ö", toggleCaffeine)
+
+require("hyper_space").setup({
+	toggleCaffeine = toggleCaffeine,
+})

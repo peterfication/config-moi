@@ -1,6 +1,7 @@
 local M = {}
 
-function M.setup()
+function M.setup(opts)
+	opts = opts or {}
 	local home = os.getenv("HOME")
 	local downloadsPath = home .. "/Downloads"
 	local documentsPath = home .. "/Documents"
@@ -33,6 +34,8 @@ function M.setup()
 	local hyperSpaceF = hs.hotkey.modal.new()
 	-- Hyper+Space+T mode for Terminal
 	local hyperSpaceT = hs.hotkey.modal.new()
+	-- Hyper+Space+M mode for Menu
+	local hyperSpaceM = hs.hotkey.modal.new()
 
 	-- Add key binding for Hyper+Space+F mode (Finder)
 	local function bindHyperSpaceF(mods, key, path)
@@ -48,6 +51,14 @@ function M.setup()
 		hyperSpaceT:bind(mods, key, function()
 			openGhostty(path)
 			hyperSpaceT:exit()
+			hyperSpace:exit()
+		end)
+	end
+
+	local function bindHyperSpaceM(mods, key, action)
+		hyperSpaceM:bind(mods, key, function()
+			action()
+			hyperSpaceM:exit()
 			hyperSpace:exit()
 		end)
 	end
@@ -83,6 +94,11 @@ function M.setup()
 		hs.alert.show("Hyper+Space+T mode (Terminal)")
 	end)
 
+	hyperSpace:bind({}, "m", function()
+		hyperSpaceM:enter()
+		hs.alert.show("Hyper+Space+M mode (Menu)")
+	end)
+
 	hyperSpace:bind({}, "escape", function()
 		hyperSpace:exit()
 	end)
@@ -94,6 +110,10 @@ function M.setup()
 		hyperSpaceT:exit()
 		hyperSpace:exit()
 	end)
+	hyperSpaceM:bind({}, "escape", function()
+		hyperSpaceM:exit()
+		hyperSpace:exit()
+	end)
 
 	bindHyperSpaceF({}, "d", downloadsPath)
 	bindHyperSpaceF({ "shift" }, "d", documentsPath)
@@ -102,6 +122,10 @@ function M.setup()
 	bindHyperSpaceT({}, "d", downloadsPath)
 	bindHyperSpaceT({ "shift" }, "d", documentsPath)
 	bindHyperSpaceT({}, "s", screenshotsPath)
+
+	if opts.toggleCaffeine then
+		bindHyperSpaceM({}, "c", opts.toggleCaffeine)
+	end
 end
 
 return M
