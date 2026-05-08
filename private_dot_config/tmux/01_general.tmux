@@ -21,3 +21,6 @@ set-option -g allow-rename off
 
 # Set tmux TERM
 set-option -g default-terminal "tmux-256color"
+
+# For terminal applications to receive focus events
+set -g focus-events on
