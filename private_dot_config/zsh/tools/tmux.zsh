@@ -24,24 +24,30 @@ fi
 # https://gist.github.com/sdondley/b01cc5bb1169c8c83401e438a652b84e
 
 function tmux_new_with_name() {
-  for TS_DIR in $1; do
-    DIR_NAME=`echo $TS_DIR | grep -o "[a-zA-Z0-9_.-]*$" | sed -r 's/[.]+/-/g'`
-    echo "Create session '${DIR_NAME}' with window 'nvim' and folder '${TS_DIR}'"
-    eval "tmux new-session -d -c ${TS_DIR} -s ${DIR_NAME} -n nvim"
-    eval "tmux send-keys -t 1.0 nvim Enter"
-  done
+  local ts_dir="$1"
+  local dir_name="${ts_dir:t}"
+  dir_name="${dir_name//./-}"
+  dir_name="${dir_name// /-}"
+
+  echo "Create session '${dir_name}' with window 'nvim' and folder '${ts_dir}'"
+  tmux new-session -d -c "$ts_dir" -s "$dir_name" -n nvim
+  tmux send-keys -t "${dir_name}:nvim" nvim Enter
 }
 
 function ts() {
-  tmux_new_with_name `pwd`
-  DIR_NAME=`pwd | grep -o "[a-zA-Z0-9._-]*$" | sed -r 's/[.]+/-/g'`
-  tmux a -t $DIR_NAME
+  local dir_name="${PWD:t}"
+  dir_name="${dir_name//./-}"
+  dir_name="${dir_name// /-}"
+
+  tmux_new_with_name "$PWD"
+  tmux a -t "$dir_name"
 }
 
 # This function is for tmux session creations. See tmux/04_mappings.tmux
 function ts_from_arg() {
-  tmux_new_with_name $1
-  DIR_NAME=`$1 | grep -o "[a-zA-Z0-9._-]*$" | sed -r 's/[.]+/-/g'`
+  local ts_dir="$1"
+
+  tmux_new_with_name "$ts_dir"
   # tmux -2 a -t $DIR_NAME
 }
 

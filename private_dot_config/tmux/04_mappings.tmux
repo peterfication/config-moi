@@ -5,13 +5,13 @@ bind r source-file ~/.config/tmux/tmux.conf \; display "Config Reloaded!"
 #### SESSIONS ####
 
 # Switch sessions with the help of fzf
-bind-key C-f run-shell -b "tmux ls -F \"##S\" | fzf-tmux -- --header '[Switch session]' | xargs tmux switch -t"
+bind-key C-f run-shell -b 'selected=$(tmux ls -F "##S" | fzf-tmux -- --header "[Switch session]") || exit 0; [ -n "$selected" ] && tmux switch-client -t "$selected"'
 
 # Kill sessions with the help of fzf
-bind-key C-d run-shell -b "tmux ls -F \"##S\" | fzf-tmux -- --header '[Kill session]' | xargs tmux kill-session -t"
+bind-key C-d run-shell -b 'selected=$(tmux ls -F "##S" | fzf-tmux -- --header "[Kill session]") || exit 0; [ -n "$selected" ] && tmux kill-session -t "$selected"'
 
 # A key binding that opens the icd history and on enter creates a ts session with this dir
-bind-key C-t run-shell -b "cat $TMUX_SESSIONS_FILE | fzf-tmux -- --header '[Create session]' | xargs -0 bash -c 'source ~/.config/zsh/tools/tmux.zsh && tmux display \"Session created for $@\" && ts_from_arg \"$@\"' - "
+bind-key C-t run-shell -b 'selected=$(cat "$TMUX_SESSIONS_FILE" | fzf-tmux -- --header "[Create session]") || exit 0; [ -n "$selected" ] && zsh -lc '\''source ~/.config/zsh/tools/tmux.zsh && tmux display "Session created for $1" && ts_from_arg "$1"'\'' _ "$selected"'
 
 #### WINDOWNS ####
 
