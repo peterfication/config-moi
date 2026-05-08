@@ -126,6 +126,9 @@ function M.setup(opts)
 	if opts.toggleCaffeine then
 		bindHyperSpaceM({}, "c", opts.toggleCaffeine)
 	end
+	if opts.toggleTailscale then
+		bindHyperSpaceM({}, "t", opts.toggleTailscale)
+	end
 end
 
 return M
