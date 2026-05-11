@@ -63,6 +63,11 @@ use = "yazi-rs/plugins:zoom"
 rev = "1962818"
 hash = "fa268cb59989a87780605fdcfb8d99a9"
 
+[[plugin.deps]]
+use = "KKV9/compress"
+rev = "46a6b9f"
+hash = "771af2becc575a3f43d0542de823969d"
+
 [[flavor.deps]]
 use = "peterfication/solarized"
 rev = "b652f3d"

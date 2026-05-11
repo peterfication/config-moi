@@ -41,6 +41,10 @@ prepend_keymap = [
   # Plugin: https://github.com/yaqihou/nav-parent-panel.yazi
   { on = "<C-k>", run = "plugin nav-parent-panel prev", desc = "Go to previous sibling directory" },
   { on = "<C-j>", run = "plugin nav-parent-panel next", desc = "Go to next sibling directory" },
+
+  # Plugin: https://github.com/KKV9/compress.yazi
+  { on = ["c", "a", "a"], run = "plugin compress", desc = "Archive selected files" },
+  { on = ["c", "a", "p"], run = "plugin compress -p", desc = "Archive selected files (password protected)" },
 ]
 
 [input]
