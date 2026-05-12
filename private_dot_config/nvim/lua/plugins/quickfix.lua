@@ -73,12 +73,17 @@ return {
       {
         "<Leader>xxx",
         "<CMD>Trouble diagnostics toggle filter.buf=0 filter.severity=vim.diagnostic.severity.ERROR<CR>",
-        desc = "Toggle document diagnostics",
+        desc = "Toggle document diagnostics ERROR",
       },
       {
         "<Leader>xxw",
         "<CMD>Trouble diagnostics toggle filter.buf=0 filter.severity=vim.diagnostic.severity.WARN<CR>",
-        desc = "Toggle document diagnostics",
+        desc = "Toggle document diagnostics WARN",
+      },
+      {
+        "<Leader>xxi",
+        "<CMD>Trouble diagnostics toggle filter.buf=0 filter.severity=vim.diagnostic.severity.INFO<CR>",
+        desc = "Toggle document diagnostics INFO",
       },
       { "<Leader>xxe", "<CMD>Telescope diagnostics<CR>", desc = "Telescope document diagnostics" },
     },
