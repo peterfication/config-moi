@@ -1,5 +1,14 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 
+source ~/.config/zsh/00_path.zsh
+source ~/.config/zsh/01_languages.zsh
+
+# Agent/tool shells often start zsh without a real TTY. Skip plugin and prompt
+# setup there so non-interactive commands don't load zcomet or completion code.
+if [[ ! -o interactive || ! -t 0 || ! -t 1 ]]; then
+  return
+fi
+
 export ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
 mkdir -p "$ZSH_CACHE_DIR"
 mkdir -p "$ZSH_CACHE_DIR/completions"
@@ -12,8 +21,6 @@ fi
 
 source ${ZCOMET_DIR}/bin/zcomet.zsh
 
-source ~/.config/zsh/00_path.zsh
-source ~/.config/zsh/01_languages.zsh
 source ~/.config/zsh/02_plugins.zsh
 source ~/.config/zsh/03_general.zsh
 source ~/.config/zsh/04_alias.zsh

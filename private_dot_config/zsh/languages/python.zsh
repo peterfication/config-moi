@@ -1,4 +1,4 @@
-if command -v uv &> /dev/null; then
+if command -v uv &> /dev/null && (( $+functions[compdef] )); then
   # Make `uv` work with autocomplete just like `python` - see https://github.com/astral-sh/uv/issues/8432
   _uv_run_mod() {
       if [[ "$words[2]" == "run" && "$words[CURRENT]" != -* ]]; then
