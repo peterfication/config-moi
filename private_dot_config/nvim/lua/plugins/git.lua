@@ -9,10 +9,62 @@ return {
 
   {
     "FabijanZulj/blame.nvim",
-    config = true,
+    config = function()
+      require("blame").setup({
+        date_format = "%Y-%m-%d",
+      })
+
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "BlameViewOpened",
+        callback = function()
+          local blame = require("blame")
+          local view = blame.last_opened_view
+          if not view or not view.blame_window then
+            return
+          end
+
+          local buf = vim.api.nvim_win_get_buf(view.blame_window)
+          local opts = { buffer = buf, silent = true }
+
+          local function get_commit()
+            local row = vim.api.nvim_win_get_cursor(view.blame_window)[1]
+            return view.blamed_lines and view.blamed_lines[row] or nil
+          end
+
+          -- Add localleader keymaps but with a description
+          vim.keymap.set("n", "<LocalLeader>i", function()
+            view:open_commit_info()
+          end, vim.tbl_extend("force", opts, { desc = "Open commit info popup" }))
+          vim.keymap.set("n", "<LocalLeader><TAB>", function()
+            view:blame_stack_push()
+          end, vim.tbl_extend("force", opts, { desc = "Push blame stack" }))
+          vim.keymap.set("n", "<LocalLeader><BS>", function()
+            view:blame_stack_pop()
+          end, vim.tbl_extend("force", opts, { desc = "Pop blame stack" }))
+          vim.keymap.set("n", "<LocalLeader><CR>", function()
+            view:show_full_commit()
+          end, vim.tbl_extend("force", opts, { desc = "Show full commit" }))
+          vim.keymap.set("n", "<LocalLeader>y", function()
+            view:copy_hash()
+          end, vim.tbl_extend("force", opts, { desc = "Copy commit hash" }))
+          vim.keymap.set("n", "<LocalLeader>o", function()
+            view:open_in_browser()
+          end, vim.tbl_extend("force", opts, { desc = "Open commit in browser" }))
+
+          vim.keymap.set("n", "<LocalLeader>d", function()
+            local commit = get_commit()
+            if not commit then
+              return
+            end
+
+            vim.cmd("DiffviewOpen " .. commit.hash .. "^!")
+          end, { buffer = buf, silent = true, desc = "Open selected commit in Diffview" })
+        end,
+      })
+    end,
     cmd = "BlameToggle",
     keys = {
-      { "<Leader>GV", "<CMD>BlameToggle<CR>", desc = "Open Git blame" },
+      { "<Leader>GBB", "<CMD>BlameToggle<CR>", desc = "Open Git blame sidebar" },
     },
   },
 
@@ -72,26 +124,24 @@ return {
       end
 
       return {
+        { "<Leader>GD", desc = "DiffView" },
         {
-          "<Leader>GG",
-          desc = "DiffView",
-        },
-        {
-          "<Leader>GGF",
+          "<Leader>GDF",
           ":DiffviewFileHistory %<CR>",
           desc = "Open DiffView with the Git history of the current file",
         },
         {
-          "<Leader>GGM",
+          "<Leader>GDM",
           ":DiffviewOpen<CR>",
           desc = "Open DiffView (e.g. for merge conflicts)",
         },
         {
-          "<Leader>GGR",
+          "<Leader>GDR",
           ":DiffviewOpen origin/main...HEAD<CR>",
           desc = "Open DiffView for current branch against main (like a PR)",
         },
-        { "<Leader>GB", tig_blame_term_open, desc = "Open tig for current file" },
+        { "<Leader>GB", desc = "Git blame" },
+        { "<Leader>GBT", tig_blame_term_open, desc = "Open tig for current file" },
       }
     end,
   },
