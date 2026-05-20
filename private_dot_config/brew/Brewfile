@@ -21,8 +21,8 @@ cask 'nikitabobko/tap/aerospace'
 cask 'spotify'
 cask 'stats' # https://github.com/exelban/stats
 cask 'tableplus'
-cask 'xnviewmp' # Image viewer
 cask 'thaw'
+cask 'xnviewmp' # Image viewer
 
 # AI
 cask 'claude'
