@@ -15,7 +15,9 @@ with pkgs; [
   bat # https://github.com/sharkdp/bat
   bitwarden-cli # https://github.com/bitwarden/clients
   chezmoi # https://www.chezmoi.io
+  pkgsUnstable.colima # https://github.com/abiosoft/colima
   curl
+  docker
   delta # https://github.com/dandavison/delta
   direnv # https://github.com/direnv/direnv
   duckdb # https://github.com/duckdb/duckdb

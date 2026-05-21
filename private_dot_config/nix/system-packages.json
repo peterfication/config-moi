@@ -28,6 +28,10 @@
     "version": "2.66.2"
   },
   {
+    "name": "colima",
+    "version": "0.10.1"
+  },
+  {
     "name": "curl",
     "version": "8.19.0"
   },
@@ -70,6 +74,10 @@
   {
     "name": "dive",
     "version": "0.13.1"
+  },
+  {
+    "name": "docker",
+    "version": "28.5.2"
   },
   {
     "name": "duckdb",
