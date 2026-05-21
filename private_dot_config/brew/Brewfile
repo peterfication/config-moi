@@ -26,12 +26,12 @@ cask 'thaw'
 cask 'xnviewmp' # Image viewer
 
 # AI
+cask 'antigravity-cli'
 cask 'claude'
 cask 'claude-code'
 cask 'codex'
 brew 'codex-acp'
 cask 'copilot-cli'
-brew 'gemini-cli'
 cask 'zed' # https://github.com/zed-industries/zed
 
 # Manuall install needed because of --no-quarantine
