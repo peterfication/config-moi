@@ -5,6 +5,7 @@ function M.setup(opts)
 	local home = os.getenv("HOME")
 	local downloadsPath = home .. "/Downloads"
 	local documentsPath = home .. "/Documents"
+	local googleDrivePath = home .. "/Google Drive"
 	local screenshotsPath = home .. "/Pictures/Screenshots"
 
 	local function openPath(path)
@@ -117,10 +118,12 @@ function M.setup(opts)
 
 	bindHyperSpaceF({}, "d", downloadsPath)
 	bindHyperSpaceF({ "shift" }, "d", documentsPath)
+	bindHyperSpaceF({}, "g", googleDrivePath)
 	bindHyperSpaceF({}, "s", screenshotsPath)
 
 	bindHyperSpaceT({}, "d", downloadsPath)
 	bindHyperSpaceT({ "shift" }, "d", documentsPath)
+	bindHyperSpaceT({}, "g", googleDrivePath)
 	bindHyperSpaceT({}, "s", screenshotsPath)
 
 	if opts.toggleCaffeine then
