@@ -21,4 +21,4 @@ vim.g.autoformat = false
 
 vim.opt.spelllang = { "en", "de" }
 
-vim.opt.colorcolumn = "100"
+vim.opt.colorcolumn = "100,120"
