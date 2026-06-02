@@ -8,8 +8,8 @@ max_height = 3200
 
 [plugin]
 prepend_fetchers = [
-  { group = "git", url = "*", run  = "git" },
-  { group = "git", url = "*/", run  = "git" },
+  { id = "git1", group = "git", url = "*", run  = "git" },
+  { id = "git2", group = "git", url = "*/", run  = "git" },
 ]
 prepend_previewers = [
   { url = "*/", run = "mux eza_tree_1 eza_tree_2 eza_tree_3 eza_tree_4" },
