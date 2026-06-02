@@ -116,6 +116,10 @@
     "version": "76.1"
   },
   {
+    "name": "imagemagick",
+    "version": "7.1.2-18"
+  },
+  {
     "name": "iterm2",
     "version": "3.5.14"
   },

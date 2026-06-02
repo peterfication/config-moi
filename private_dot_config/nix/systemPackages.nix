@@ -27,6 +27,7 @@ with pkgs; [
   fzf # https://github.com/junegunn/fzf
   pkgsUnstable.gh # https://cli.github.com/
   pkgsUnstable.ghostty-bin # https://github.com/ghostty-org/ghostty
+  imagemagick # https://github.com/imagemagick/imagemagick
   iterm2 # https://github.com/gnachman/iTerm2
   jjui # https://github.com/idursun/jjui
   jq # https://github.com/jqlang/jq
