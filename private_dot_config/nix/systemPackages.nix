@@ -23,6 +23,7 @@ with pkgs; [
   duckdb # https://github.com/duckdb/duckdb
   eza # https://github.com/eza-community/eza
   fd # https://github.com/sharkdp/fd
+  ffmpeg # https://ffmpeg.org/
   fpp # https://github.com/facebook/pathpicker
   fzf # https://github.com/junegunn/fzf
   pkgsUnstable.gh # https://cli.github.com/

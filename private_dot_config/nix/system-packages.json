@@ -96,6 +96,10 @@
     "version": "10.3.0"
   },
   {
+    "name": "ffmpeg",
+    "version": "8.0"
+  },
+  {
     "name": "fpp",
     "version": "0.9.5"
   },
