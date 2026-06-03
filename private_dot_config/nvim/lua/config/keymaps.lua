@@ -18,6 +18,7 @@ map("n", "<Leader>8", "8gt", { desc = "Go to tab 8" })
 map("n", "<Leader>9", "9gt", { desc = "Go to tab 9" })
 
 map("n", "<Leader>bw", ":w<CR>", { silent = true, desc = "Safe/write current buffer" })
+map("n", "<Leader>baw", ":noautocmd w<CR>", { silent = true, desc = "Write current buffer without autocmds" })
 map("n", "<Leader>bW", ":wa<CR>", { silent = true, desc = "Safe/write all buffers" })
 map("n", "<Leader>br", ":e<CR>", { silent = true, desc = "Refresh current buffer" })
 map("n", "<Leader>bc", ":bufdo bd<CR>", { silent = true, desc = "Delete/clear all buffers" })
