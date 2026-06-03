@@ -79,6 +79,23 @@ local function open_new_terminal()
   toggleterm.toggle(next_index)
 end
 
+local function show_current_file_in_leaf_md()
+  local file = vim.api.nvim_buf_get_name(0)
+  if file == "" then
+    vim.notify("Cannot open unnamed buffer in leaf-md", vim.log.levels.WARN)
+    return
+  end
+
+  local Terminal = require("toggleterm.terminal").Terminal
+  Terminal:new({
+    display_name = "leaf-md",
+    cmd = "leaf " .. vim.fn.shellescape(file),
+    direction = "float",
+    close_on_exit = true,
+    hidden = true,
+  }):toggle()
+end
+
 local function show_content_in_lnav()
   local current_id = vim.b.toggle_number
   if current_id == nil then
@@ -158,19 +175,20 @@ return {
     keys = {
       -- Because of lazy loading, <C-t> from the opts.open_mapping is not loaded, so it needs
       -- to be redefined here.
-      { "<C-t>",      "<CMD>ToggleTerm<CR>",                                   { desc = "Toggle ToggleTerm" } },
+      { "<C-t>", "<CMD>ToggleTerm<CR>", { desc = "Toggle ToggleTerm" } },
 
-      { "<Leader>t1", "<CMD>ToggleTerm 1<CR>",                                 desc = "Open terminal 1" },
-      { "<Leader>t2", "<CMD>ToggleTerm 2<CR>",                                 desc = "Open terminal 2" },
-      { "<Leader>t3", "<CMD>ToggleTerm 3<CR>",                                 desc = "Open terminal 3" },
-      { "<Leader>t4", "<CMD>ToggleTerm 4<CR>",                                 desc = "Open terminal 4" },
-      { "<Leader>t5", "<CMD>ToggleTerm 5<CR>",                                 desc = "Open terminal 5" },
-      { "<Leader>t6", "<CMD>ToggleTerm 6<CR>",                                 desc = "Open terminal 6" },
-      { "<Leader>t7", "<CMD>ToggleTerm 7<CR>",                                 desc = "Open terminal 7" },
-      { "<Leader>t8", "<CMD>ToggleTerm 8<CR>",                                 desc = "Open terminal 8" },
-      { "<Leader>t9", "<CMD>ToggleTerm 9<CR>",                                 desc = "Open terminal 9" },
-      { "<Leader>te", "<CMD>TermSelect<CR>",                                   desc = "Select terminal to show" },
-      { "<Leader>tn", open_new_terminal,                                       desc = "Open a new terminal" },
+      { "<Leader>t1", "<CMD>ToggleTerm 1<CR>", desc = "Open terminal 1" },
+      { "<Leader>t2", "<CMD>ToggleTerm 2<CR>", desc = "Open terminal 2" },
+      { "<Leader>t3", "<CMD>ToggleTerm 3<CR>", desc = "Open terminal 3" },
+      { "<Leader>t4", "<CMD>ToggleTerm 4<CR>", desc = "Open terminal 4" },
+      { "<Leader>t5", "<CMD>ToggleTerm 5<CR>", desc = "Open terminal 5" },
+      { "<Leader>t6", "<CMD>ToggleTerm 6<CR>", desc = "Open terminal 6" },
+      { "<Leader>t7", "<CMD>ToggleTerm 7<CR>", desc = "Open terminal 7" },
+      { "<Leader>t8", "<CMD>ToggleTerm 8<CR>", desc = "Open terminal 8" },
+      { "<Leader>t9", "<CMD>ToggleTerm 9<CR>", desc = "Open terminal 9" },
+      { "<Leader>te", "<CMD>TermSelect<CR>", desc = "Select terminal to show" },
+      { "<Leader>tm", show_current_file_in_leaf_md, desc = "Open current file in leaf-md" },
+      { "<Leader>tn", open_new_terminal, desc = "Open a new terminal" },
 
       { "<Leader>gd", ':8TermExec cmd="lazydocker; exit" direction=float<CR>', desc = "Open lazydocker" },
 
