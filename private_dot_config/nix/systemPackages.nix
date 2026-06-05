@@ -56,6 +56,7 @@ with pkgs; [
   pkgsUnstable.yazi # https://github.com/sxyazi/yazi
   watch
   pkgsUnstable.whosthere # https://github.com/ramonvermeulen/whosthere
+  wireshark # https://www.wireshark.org/
   zoxide # https://github.com/ajeetdsouza/zoxide
 
   # Container tooling

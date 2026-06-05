@@ -248,6 +248,10 @@
     "version": "0.8.2"
   },
   {
+    "name": "wireshark-qt",
+    "version": "4.6.4"
+  },
+  {
     "name": "yazi",
     "version": "26.5.6"
   },
