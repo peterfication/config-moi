@@ -37,7 +37,7 @@ with pkgs; [
   pkgsUnstable.lazygit # https://github.com/jesseduffield/lazygit
   pkgsUnstable.lefthook # https://github.com/evilmartians/lefthook
   lnav # https://github.com/tstack/lnav
-  mise # https://github.com/jdx/mise
+  pkgsUnstable.mise # https://github.com/jdx/mise
   ncftp # https://www.ncftp.com/ncftp/
   _1password-cli # https://developer.1password.com/docs/cli/
   pkgsUnstable.neovim # https://github.com/neovim/neovim
