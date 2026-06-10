@@ -8,6 +8,34 @@ hs.loadSpoon("FnMate")
 hs.loadSpoon("Caffeine")
 spoon.Caffeine:start()
 
+local current_id, threshold
+Swipe = hs.loadSpoon("Swipe")
+Swipe:start(4, function(direction, distance, id)
+    if id == current_id then
+        if distance > threshold then
+            -- only trigger once per swipe
+            threshold = math.huge
+
+            -- NOTE: left swipe is right movement in Aerospace, and right swipe is left movement in Aerospace
+            if direction == "left" then
+                -- Trigger Aerospace right (hyper+k)
+                hs.eventtap.keyStroke({ "ctrl", "alt", "cmd", "shift" }, "k")
+            elseif direction == "right" then
+                -- Trigger Aerospace left (hyper+j)
+                hs.eventtap.keyStroke({ "ctrl", "alt", "cmd", "shift" }, "j")
+            elseif direction == "up" then
+		            -- no-op
+            elseif direction == "down" then
+		            -- no-op
+            end
+        end
+    else
+        current_id = id
+        -- swipe distance > 20% of trackpad
+        threshold = 0.1
+    end
+end)
+
 local tailscaleBin = "/usr/local/bin/tailscale"
 
 local function toggleCaffeine()
