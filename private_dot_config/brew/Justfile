@@ -9,3 +9,11 @@ brew-install:
 # Install all tools from Brewfile.local if it exists
 brew-install-local:
   [ -f ~/.config/brew/Brewfile.local ] && brew bundle install --file ~/.config/brew/Brewfile.local
+
+# List installed packages with versions
+brew-list:
+  brew ls --versions
+
+# List installed packages with versions in JSON
+brew-list-json:
+  brew ls --versions --json | jq "."
