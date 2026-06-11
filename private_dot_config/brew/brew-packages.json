@@ -3,7 +3,7 @@
     "name": "1password",
     "type": "cask",
     "versions": [
-      "8.12.0"
+      "8.12.22"
     ]
   },
   {
@@ -24,7 +24,7 @@
     "name": "claude",
     "type": "cask",
     "versions": [
-      "1.11847.5,9692f0b44ffa0158a501a91309e361c0d48ed8e4"
+      "1.12603.0,a6acd22aa0899d30b355d41d9f7764aa925b0758"
     ]
   },
   {
@@ -206,7 +206,7 @@
     "name": "tmux-fingers",
     "type": "formula",
     "versions": [
-      "2.6.1"
+      "2.7.1"
     ]
   },
   {
