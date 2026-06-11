@@ -2,14 +2,14 @@
 brew 'syncthing' # https://github.com/syncthing/syncthing
 
 # Packages that are not available on https://search.nixos.org/packages
-brew 'domcyrus/rustnet/rustnet' # https://github.com/domcyrus/rustnet
+brew 'domcyrus/rustnet/rustnet', trusted: true # https://github.com/domcyrus/rustnet
 brew 'leaf-md' # https://github.com/rivolink/leaf
 brew 'quien' # https://github.com/retlehs/quien
 brew 'rv' # https://github.com/spinel-coop/rv uv for Ruby
 brew 'switchaudio-osx' # https://github.com/deweller/switchaudio-osx
-brew 'veeso/termscp/termscp' # https://github.com/veeso/termscp
-brew 'macos-fuse-t/homebrew-cask/fuse-t' # https://github.com/macos-fuse-t/fuse-t
-brew 'macos-fuse-t/homebrew-cask/sshfs-fuse-t'
+brew 'veeso/termscp/termscp', trusted: true # https://github.com/veeso/termscp
+brew 'macos-fuse-t/homebrew-cask/fuse-t', trusted: true # https://github.com/macos-fuse-t/fuse-t
+brew 'macos-fuse-t/homebrew-cask/sshfs-fuse-t', trusted: true
 
 cask '1password'
 cask 'alfred'
@@ -21,7 +21,7 @@ cask 'iina' # Video player
 cask 'karabiner-elements'
 cask 'meetingbar' # https://github.com/leits/MeetingBar
 cask 'mqttx' # https://github.com/emqx/MQTTX
-cask 'nikitabobko/tap/aerospace'
+cask 'nikitabobko/tap/aerospace', trusted: true
 cask 'spotify'
 cask 'stats' # https://github.com/exelban/stats
 cask 'tableplus'
