@@ -1,7 +1,7 @@
 [
   {
     "name": "1password-cli",
-    "version": "2.32.0"
+    "version": "2.34.0"
   },
   {
     "name": "age",
@@ -13,7 +13,7 @@
   },
   {
     "name": "bash-interactive",
-    "version": "5.3p3"
+    "version": "5.3p9"
   },
   {
     "name": "bat",
@@ -21,11 +21,11 @@
   },
   {
     "name": "bitwarden-cli",
-    "version": "2025.11.0"
+    "version": "2026.4.2"
   },
   {
     "name": "chezmoi",
-    "version": "2.66.2"
+    "version": "2.70.3"
   },
   {
     "name": "colima",
@@ -33,7 +33,7 @@
   },
   {
     "name": "curl",
-    "version": "8.19.0"
+    "version": "8.20.0"
   },
   {
     "name": "darwin-help",
@@ -65,7 +65,7 @@
   },
   {
     "name": "delta",
-    "version": "0.18.2"
+    "version": "0.19.2"
   },
   {
     "name": "direnv",
@@ -77,11 +77,11 @@
   },
   {
     "name": "docker",
-    "version": "28.5.2"
+    "version": "29.5.2"
   },
   {
     "name": "duckdb",
-    "version": "1.4.3"
+    "version": "1.5.2"
   },
   {
     "name": "extract_url",
@@ -93,11 +93,11 @@
   },
   {
     "name": "fd",
-    "version": "10.3.0"
+    "version": "10.4.2"
   },
   {
     "name": "ffmpeg",
-    "version": "8.0"
+    "version": "8.1"
   },
   {
     "name": "fpp",
@@ -105,7 +105,7 @@
   },
   {
     "name": "fzf",
-    "version": "0.67.0"
+    "version": "0.72.0"
   },
   {
     "name": "gh",
@@ -121,15 +121,15 @@
   },
   {
     "name": "imagemagick",
-    "version": "7.1.2-18"
+    "version": "7.1.2-23"
   },
   {
     "name": "iterm2",
-    "version": "3.5.14"
+    "version": "3.6.10"
   },
   {
     "name": "jjui",
-    "version": "0.9.9"
+    "version": "0.10.6"
   },
   {
     "name": "jq",
@@ -137,11 +137,11 @@
   },
   {
     "name": "jujutsu",
-    "version": "0.35.0"
+    "version": "0.41.0"
   },
   {
     "name": "just",
-    "version": "1.43.1"
+    "version": "1.51.0"
   },
   {
     "name": "lazygit",
@@ -153,7 +153,7 @@
   },
   {
     "name": "lnav",
-    "version": "0.13.2"
+    "version": "0.14.0"
   },
   {
     "name": "mise",
@@ -169,15 +169,15 @@
   },
   {
     "name": "openssl",
-    "version": "3.6.1"
+    "version": "3.6.2"
   },
   {
     "name": "peco",
-    "version": "0.5.11"
+    "version": "0.6.0"
   },
   {
     "name": "podman",
-    "version": "5.7.0"
+    "version": "5.8.2"
   },
   {
     "name": "podman-compose",
@@ -185,23 +185,27 @@
   },
   {
     "name": "podman-tui",
-    "version": "1.9.0"
+    "version": "1.11.1"
   },
   {
     "name": "postgresql",
-    "version": "16.13"
+    "version": "16.14"
   },
   {
     "name": "postgresql",
-    "version": "17.9"
+    "version": "17.10"
+  },
+  {
+    "name": "procps",
+    "version": "4.0.6"
   },
   {
     "name": "rclone",
-    "version": "1.72.1"
+    "version": "1.74.2"
   },
   {
     "name": "redis",
-    "version": "8.2.3"
+    "version": "8.8.0"
   },
   {
     "name": "restic",
@@ -213,7 +217,7 @@
   },
   {
     "name": "samba",
-    "version": "4.22.6"
+    "version": "4.23.8"
   },
   {
     "name": "sshs",
@@ -221,7 +225,7 @@
   },
   {
     "name": "starship",
-    "version": "1.24.2"
+    "version": "1.25.1"
   },
   {
     "name": "texinfo-interactive",
@@ -237,11 +241,7 @@
   },
   {
     "name": "vim",
-    "version": "9.1.2148"
-  },
-  {
-    "name": "watch-procps",
-    "version": "4.0.4"
+    "version": "9.2.0389"
   },
   {
     "name": "whosthere",
@@ -249,7 +249,7 @@
   },
   {
     "name": "wireshark-qt",
-    "version": "4.6.4"
+    "version": "4.6.6"
   },
   {
     "name": "yazi",
@@ -257,10 +257,10 @@
   },
   {
     "name": "zoxide",
-    "version": "0.9.8"
+    "version": "0.9.9"
   },
   {
     "name": "zsh",
-    "version": "5.9"
+    "version": "5.9.1"
   }
 ]
