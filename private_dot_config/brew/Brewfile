@@ -13,6 +13,7 @@ brew 'macos-fuse-t/homebrew-cask/sshfs-fuse-t'
 
 cask '1password'
 cask 'alfred'
+cask 'eurkey-next' # https://eurkey-macos.eu/
 cask 'firefox'
 cask 'google-chrome'
 cask 'hammerspoon'
