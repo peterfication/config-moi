@@ -256,6 +256,10 @@
     "version": "3.6a"
   },
   {
+    "name": "ueberzugpp",
+    "version": "2.9.10"
+  },
+  {
     "name": "uv",
     "version": "0.11.17"
   },

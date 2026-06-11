@@ -56,6 +56,7 @@ with pkgs; [
   starship # https://github.com/starship/starship
   tmux
   extract_url # https://www.memoryhole.net/~kyle/extract_url/
+  ueberzugpp # https://github.com/jstkdng/ueberzugpp
   pkgsUnstable.uv # https://github.com/astral-sh/uv
   vim
   pkgsUnstable.yazi # https://github.com/sxyazi/yazi
