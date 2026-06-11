@@ -44,6 +44,7 @@ with pkgs; [
   natscli # https://nats.io/
   nats-server # https://nats.io/
   _1password-cli # https://developer.1password.com/docs/cli/
+  _1password-gui
   pkgsUnstable.neovim # https://github.com/neovim/neovim
   peco # https://github.com/peco/peco interactive grep
   rclone # https://rclone.org/

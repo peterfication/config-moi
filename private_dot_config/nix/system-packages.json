@@ -1,5 +1,9 @@
 [
   {
+    "name": "1password",
+    "version": "8.12.21"
+  },
+  {
     "name": "1password-cli",
     "version": "2.34.0"
   },

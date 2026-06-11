@@ -1,12 +1,5 @@
 [
   {
-    "name": "1password",
-    "type": "cask",
-    "versions": [
-      "8.12.22"
-    ]
-  },
-  {
     "name": "alfred",
     "type": "cask",
     "versions": [
