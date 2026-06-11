@@ -40,3 +40,9 @@ cask 'zed' # https://github.com/zed-industries/zed
 # Manuall install needed because of --no-quarantine
 # brew 'glance-chamburr' # QuickLook collection https://github.com/chamburr/glance
 # brew install --no-quarantine glance-chamburr
+# cask 'darktable' --no-quarantine # https://www.darktable.org/
+# cask 'openemu' --no-quarantine # https://openemu.org/
+
+# OLD
+# brew 'derailed/popeye/popeye', trusted: true # https://github.com/derailed/popeye
+# brew 'FelixKratz/formulae/sketchybar', trusted: true # https://github.com/felixkratz/sketchybar

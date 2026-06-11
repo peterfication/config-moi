@@ -1,32 +1,10 @@
-tap 'adoptopenjdk/openjdk'
-tap 'buo/cask-upgrade'
-tap 'derailed/popeye'
-tap 'fluxcd/tap'
-tap 'homebrew/bundle'
-tap 'homebrew/cask'
-tap 'homebrew/core'
-tap 'homebrew/services'
-# tap 'jandedobbeleer/oh-my-posh' # Powerlevel10k is better
-tap 'jesseduffield/lazydocker'
-tap 'koekeishiya/formulae'
-tap 'mergestat/mergestat'
-tap 'ms-jpq/sad'
-tap 'weaveworks/tap'
-
 brew 'act'
 brew 'amethyst'
-brew 'ansible'
 brew 'aom'
 brew 'autoconf'
 brew 'automake'
-brew 'autopep8'
-brew 'aws-nuke'
-brew 'awscli'
 brew 'bash'
 brew 'bash-completion'
-brew 'bash-language-server'
-brew 'bat' # cat/less replacement written in Rust
-brew 'borgbackup'
 brew 'bottom'
 brew 'btop'
 brew 'cdparanoia'
@@ -39,24 +17,17 @@ brew 'coreutils'
 brew 'ctags'
 brew 'curl'
 brew 'd2' # Diagramming tool https://d2lang.com/
-brew 'derailed/popeye/popeye'
 brew 'difftastic'
 brew 'dog' # Modern replacement for dig
 brew 'dos2unix'
 brew 'dua-cli' # Disk usage analyzer
 brew 'duf'
 brew 'dust' # du -sh replacement
-brew 'elixir-ls'
 brew 'fastlane'
 brew 'ffmpeg'
-brew 'fluxcd/tap/flux', link: false
 brew 'flyctl'
 brew 'fpp' # PathPicker
-brew 'macos-fuse-t/homebrew-cask/fuse-t'
-brew 'macos-fuse-t/homebrew-cask/fuse-t-sshfs' # Alternative to the normal sshfs from https://github.com/libfuse/sshfs
 brew 'fx'
-brew 'gh'
-brew 'git'
 brew 'git-absorb' # Also see https://github.com/jesseduffield/lazygit/blob/master/docs/dev/Find_Base_Commit_For_Fixup_Design.md
 brew 'git-crypt'
 brew 'git-extras'
@@ -66,7 +37,6 @@ brew 'gitui'
 brew 'gnu-sed'
 brew 'gnupg'
 brew 'gnutls'
-brew 'go'
 brew 'gource' # Git history visualization
 brew 'gping' # ping but with a graph
 brew 'gradle'
@@ -80,9 +50,7 @@ brew 'htop'
 brew 'imagemagick'
 # brew 'jandedobbeleer/oh-my-posh/oh-my-posh' # Powerlevel10k is better
 brew 'jc' # https://github.com/kellyjonbrazil/jc - JSON CLI output
-brew 'jesseduffield/lazydocker/lazydocker'
 brew 'jpeg-xl'
-brew 'jq'
 brew 'k9s'
 # brew 'koekeishiya/formulae/yabai' # Tiling window manager (requires to much security permissions)
 brew 'kubernetes-cli'
@@ -100,7 +68,6 @@ brew 'lsof'
 brew 'lua-language-server'
 brew 'luarocks'
 brew 'mas' # A command-line interface for the Mac App Store
-brew 'mergestat/mergestat/mergestat'
 brew 'mosh'
 brew 'ms-jpq/sad/sad'
 brew 'netcat' # GNU nc - Tutorial: https://blog.ikuamike.io/posts/2021/netcat/
@@ -109,28 +76,16 @@ brew 'nmap' # Network Mapper https://nmap.org/
 # - https://github.com/vi/websocat
 # - https://linux.die.net/man/1/socat
 brew 'nnn' # Terminal file manager
-brew 'peterfication/num-peek/num-peek' # Peek into *.npy files
 brew 'nvm'
-brew 'openjdk'
-brew 'openjdk@11'
 brew 'openssl@3'
 brew 'equinix-labs/otel-cli/otel-cli'
 brew 'CtrlSpice/homebrew-otel-desktop-viewer/otel-desktop-viewer'
 brew 'pandoc'
 brew 'pinentry-mac'
-brew 'podman'
-brew 'podman-tui'
-brew 'protobuf'
-brew 'pyenv'
-brew 'pyright'
-brew 'python@3.9'
 brew 'qrencode'
 brew 'readline', link: true
-brew 'redis'
 brew 'restic' # Backup tool
 brew 'rlwrap'
-brew 'rubyfmt'
-brew 'rust-analyzer'
 brew 'sniffnet' # Network monitoring tool
 brew 'stern' # Tail multiple Kubernets pods and containers
 brew 'sqlite'
@@ -139,23 +94,15 @@ brew 'stylua' # Lua formatter
 brew 'FelixKratz/formulae/svim' # SketchyVim: Vim mode for every Mac OS input field
 # Maybe check out https://github.com/cknadler/vim-anywhere as an alternative
 # OR https://github.com/D00mch/osx-vimr-anywhere
-brew 'termscp' # FTP/SCP client with a terminal UI
-brew 'terraform-docs'
-brew 'terraform-ls' # Terraform language server
-brew 'tfenv' # For managing Terraform versions
-brew 'tflint' # Terraform linter
 brew 'tidy-viewer' # View things nicely formatted in the Terminal, e.g. CSVs
 brew 'tig' # Git text interface
-brew 'tinted-theming/tinted/tinty'
 brew 'tree'
 brew 'urlview' # For tmux URLs selection
 brew 'viu' # Image preview in the terminal
 brew 'watch'
 brew 'watchexec'
 brew 'watchman'
-brew 'weaveworks/tap/eksctl'
 brew 'wget'
-brew 'ramonvermeulen/whosthere/whosthere' # network scanner TUI
 brew 'youtube-dl'
 brew 'yt-dlp'
 brew 'zbar' # QR code reader with zbarimg
@@ -181,38 +128,27 @@ brew 'zsh-completions'
 # QuickLook plugins
 cask 'qlmarkdown'
 
-cask 'alacritty'
 cask 'applite' # Homebrew GUI https://github.com/milanvarady/Applite
-cask 'android-commandlinetools'
-cask 'android-platform-tools'
 cask 'balenaetcher' # Flash USB drives
 cask 'cyberduck'
-cask 'darktable'
 cask 'eqmac'
 cask 'flipper'
 cask 'flowvision' # Fotos viewer
-cask 'flux'
 cask 'gitify'
 cask 'keycastr' # Show key presses in the screen
-cask 'kitty'
 cask 'kiwix'
 cask 'knockknock'
-cask 'macfuse'
-cask 'microsoft-auto-update'
-cask 'microsoft-office'
 cask 'modern-csv'
 cask 'neovide'
 cask 'netiquette'
 cask 'netnewswire' # RSS reader
 cask 'oversight'
 cask 'pingid'
-cask 'rar'
 # cask 'shortcat' Vimium style UI click triggering for Mac OS
 cask 'signal'
 cask 'sloth'
 cask 'sweet-home3d'
 cask 'temurin'
-cask 'thaw' # Fork of ice (menu bar manager)
 cask 'transmission' # torrent client
 cask 'unity-hub'
 cask 'utm'
@@ -222,10 +158,8 @@ cask 'vlc'
 cask 'vmware-fusion'
 cask 'webtorrent'
 cask 'xbar'
-cask 'xld' # X Lossless Decoder - CD ripper
 
 # Games
-cask 'openemu'
 cask 'openra'
 cask 'widelands'
 
