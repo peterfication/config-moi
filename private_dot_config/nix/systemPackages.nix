@@ -36,6 +36,7 @@ with pkgs; [
   jujutsu # https://jj-vcs.github.io/jj/latest/
   just # https://github.com/casey/just
   pkgsUnstable.lazygit # https://github.com/jesseduffield/lazygit
+  pkgsUnstable.lazydocker # https://github.com/jesseduffield/lazydocker
   pkgsUnstable.lefthook # https://github.com/evilmartians/lefthook
   lnav # https://github.com/tstack/lnav
   pkgsUnstable.mise # https://github.com/jdx/mise

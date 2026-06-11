@@ -148,6 +148,10 @@
     "version": "1.51.0"
   },
   {
+    "name": "lazydocker",
+    "version": "0.25.2"
+  },
+  {
     "name": "lazygit",
     "version": "0.62.2"
   },
