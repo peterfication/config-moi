@@ -7,13 +7,6 @@
     ]
   },
   {
-    "name": "aerospace",
-    "type": "cask",
-    "versions": [
-      "0.20.3-Beta"
-    ]
-  },
-  {
     "name": "alfred",
     "type": "cask",
     "versions": [

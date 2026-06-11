@@ -10,6 +10,7 @@ with pkgs; [
   postgresql_17
   redis
 
+  pkgsUnstable.aerospace # https://github.com/nikitabobko/AeroSpace
   age # https://github.com/FiloSottile/age
   arp-scan # https://github.com/royhills/arp-scan
   bat # https://github.com/sharkdp/bat

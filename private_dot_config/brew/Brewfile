@@ -21,7 +21,6 @@ cask 'iina' # Video player
 cask 'karabiner-elements'
 cask 'meetingbar' # https://github.com/leits/MeetingBar
 cask 'mqttx' # https://github.com/emqx/MQTTX
-cask 'nikitabobko/tap/aerospace', trusted: true
 cask 'spotify'
 cask 'stats' # https://github.com/exelban/stats
 cask 'tableplus'
