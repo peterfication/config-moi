@@ -40,6 +40,8 @@ with pkgs; [
   lnav # https://github.com/tstack/lnav
   pkgsUnstable.mise # https://github.com/jdx/mise
   ncftp # https://www.ncftp.com/ncftp/
+  natscli # https://nats.io/
+  nats-server # https://nats.io/
   _1password-cli # https://developer.1password.com/docs/cli/
   pkgsUnstable.neovim # https://github.com/neovim/neovim
   peco # https://github.com/peco/peco interactive grep
