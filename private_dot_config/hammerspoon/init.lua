@@ -101,8 +101,6 @@ local function toggleTailscale()
 	end)
 end
 
-hs.hotkey.bind({ "alt", "ctrl", "cmd", "shift" }, "ö", toggleCaffeine)
-
 require("hyper_space").setup({
 	toggleCaffeine = toggleCaffeine,
 	toggleTailscale = toggleTailscale,
