@@ -203,6 +203,13 @@
     ]
   },
   {
+    "name": "tmux-fingers",
+    "type": "formula",
+    "versions": [
+      "2.6.1"
+    ]
+  },
+  {
     "name": "xnviewmp",
     "type": "cask",
     "versions": [

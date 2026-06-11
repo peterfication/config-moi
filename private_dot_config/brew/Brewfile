@@ -10,6 +10,7 @@ brew 'switchaudio-osx' # https://github.com/deweller/switchaudio-osx
 brew 'veeso/termscp/termscp', trusted: true # https://github.com/veeso/termscp
 brew 'macos-fuse-t/homebrew-cask/fuse-t', trusted: true # https://github.com/macos-fuse-t/fuse-t
 brew 'macos-fuse-t/homebrew-cask/sshfs-fuse-t', trusted: true
+brew 'morantron/tmux-fingers/tmux-fingers', trusted: true # https://github.com/Morantron/tmux-fingers
 
 cask '1password'
 cask 'alfred'
