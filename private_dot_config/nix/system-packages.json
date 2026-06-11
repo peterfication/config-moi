@@ -276,6 +276,10 @@
     "version": "4.6.6"
   },
   {
+    "name": "xld",
+    "version": "20250302"
+  },
+  {
     "name": "yazi",
     "version": "26.5.6"
   },

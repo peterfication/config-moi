@@ -18,9 +18,9 @@ with pkgs; [
   chezmoi # https://www.chezmoi.io
   pkgsUnstable.colima # https://github.com/abiosoft/colima
   curl
-  docker
   delta # https://github.com/dandavison/delta
   direnv # https://github.com/direnv/direnv
+  docker
   duckdb # https://github.com/duckdb/duckdb
   eza # https://github.com/eza-community/eza
   fd # https://github.com/sharkdp/fd
@@ -63,6 +63,7 @@ with pkgs; [
   watch
   pkgsUnstable.whosthere # https://github.com/ramonvermeulen/whosthere
   wireshark # https://www.wireshark.org/
+  xld # https://tmkk.undo.jp/xld/index_e.html
   zoxide # https://github.com/ajeetdsouza/zoxide
 
   # Container tooling
