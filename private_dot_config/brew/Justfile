@@ -5,6 +5,7 @@ brew-default:
 # Install all tools from Brewfile
 brew-install:
   brew bundle install --file ~/.config/brew/Brewfile
+  just brew-packages-json
 
 # Install all tools from Brewfile.local if it exists
 brew-install-local:
@@ -17,3 +18,8 @@ brew-list:
 # List installed packages with versions in JSON
 brew-list-json:
   brew ls --versions --json | jq "."
+
+# Export versions for packages declared in Brewfile
+brew-packages-json OUTPUT_PATH="~/.config/brew/brew-packages.json":
+  ~/.config/brew/export_packages_json.sh {{OUTPUT_PATH}}
+  chezmoi add {{OUTPUT_PATH}}
