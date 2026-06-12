@@ -35,6 +35,7 @@ cask 'claude-code'
 cask 'codex'
 brew 'codex-acp'
 cask 'copilot-cli'
+brew 'opencode' # https://github.com/anomalyco/opencode
 cask 'zed' # https://github.com/zed-industries/zed
 
 # Manuall install needed because of --no-quarantine

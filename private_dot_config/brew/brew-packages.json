@@ -126,6 +126,13 @@
     ]
   },
   {
+    "name": "opencode",
+    "type": "formula",
+    "versions": [
+      "1.17.3"
+    ]
+  },
+  {
     "name": "quien",
     "type": "formula",
     "versions": [
