@@ -32,6 +32,12 @@ gui:
 promptToReturnFromSubprocess: false # removes "press enter to return to lazygit" popup
 
 customCommands:
+  - key: 'T'
+    command: 'tmux-worktree-open {{.SelectedWorktree.Path | quote}}'
+    description: 'Open worktree tmux session'
+    context: 'worktrees'
+    output: terminal
+
   - key: '<c-d>'
     command: '[ -z "$NVIM" ] && (nvim -c DiffviewOpen) || (nvim --server "$NVIM" -c DiffviewOpen)'
     context: 'files'

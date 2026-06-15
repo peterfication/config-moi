@@ -1,0 +1,488 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+usage() {
+    cat <<'EOF'
+Usage: git-worktree-new [options] [task]
+
+Create a branch, worktree, local bootstrap files, development environments,
+and a tmux session for a unit of work.
+
+Options:
+  --base REF           Base ref (default: origin/dev, origin/main, origin/master)
+  --branch NAME        Branch name (default: task)
+  --worktree-dir PATH  Worktree path (default: ../<project>-worktrees/<task>)
+  --seed-venv          Seed non-uv .venv (default; retained for compatibility)
+  --fresh-venv         Do not seed a non-uv .venv from the source worktree
+  --no-fetch           Do not fetch origin before selecting the base ref
+  --no-python          Skip Python environment setup
+  --seed-node-modules  Seed node_modules (default; retained for compatibility)
+  --fresh-node-modules Do not seed node_modules from the source worktree
+  --no-node            Skip Node/TypeScript dependency installation
+  --no-tmux            Do not create or switch to a tmux session
+  -h, --help           Show this help
+
+Local files:
+  Existing .envrc and .lazy.lua files are copied by default. Add a tracked
+  .worktree-files manifest to the source repository for more files:
+
+    copy .env
+    copy .env.local
+    link path/to/local-config
+EOF
+}
+
+die() {
+    printf "git-worktree-new: %s\n" "$*" >&2
+    exit 1
+}
+
+require_command() {
+    command -v "$1" >/dev/null 2>&1 || die "missing required command: $1"
+}
+
+slugify() {
+    printf "%s" "$1" |
+        tr '[:upper:]' '[:lower:]' |
+        sed -E 's#[^a-z0-9._-]+#-#g; s#^-+##; s#-+$##'
+}
+
+absolute_path() {
+    local path="$1"
+    local parent
+
+    if [[ "$path" = /* ]]; then
+        printf "%s" "$path"
+        return
+    fi
+
+    parent="$(dirname "$path")"
+    mkdir -p "$parent"
+    printf "%s/%s" "$(cd "$parent" && pwd -P)" "$(basename "$path")"
+}
+
+choose_base_ref() {
+    local ref
+
+    if [[ -n "$base_ref" ]]; then
+        git rev-parse --verify --quiet "${base_ref}^{commit}" >/dev/null ||
+            die "base ref does not resolve to a commit: $base_ref"
+        printf "%s" "$base_ref"
+        return
+    fi
+
+    for ref in origin/dev origin/main origin/master dev main master; do
+        if git rev-parse --verify --quiet "${ref}^{commit}" >/dev/null; then
+            printf "%s" "$ref"
+            return
+        fi
+    done
+
+    die "could not find dev, main, or master on origin or locally; pass --base"
+}
+
+validate_local_path() {
+    local path="$1"
+
+    [[ -n "$path" ]] || die "empty path in .worktree-files"
+    [[ "$path" != /* ]] || die "paths in .worktree-files must be relative: $path"
+
+    case "/$path/" in
+        */../*) die "paths in .worktree-files cannot contain '..': $path" ;;
+    esac
+}
+
+bootstrap_one() {
+    local mode="$1"
+    local relative_path="$2"
+    local source_path
+    local target_path
+
+    validate_local_path "$relative_path"
+    source_path="$source_root/$relative_path"
+    target_path="$worktree_path/$relative_path"
+
+    [[ -e "$source_path" || -L "$source_path" ]] || {
+        printf "Skipping missing local file: %s\n" "$relative_path"
+        return
+    }
+
+    if [[ -e "$target_path" || -L "$target_path" ]]; then
+        printf "Skipping existing worktree file: %s\n" "$relative_path"
+        return
+    fi
+
+    mkdir -p "$(dirname "$target_path")"
+    case "$mode" in
+        copy)
+            cp -a "$source_path" "$target_path"
+            ;;
+        link)
+            ln -s "$source_path" "$target_path"
+            ;;
+        *)
+            die "unknown .worktree-files mode '$mode' for $relative_path"
+            ;;
+    esac
+    printf "%s: %s\n" "${mode^}" "$relative_path"
+}
+
+bootstrap_local_files() {
+    local manifest="$source_root/.worktree-files"
+    local line
+    local mode
+    local relative_path
+
+    bootstrap_one copy ".envrc"
+    bootstrap_one copy ".lazy.lua"
+
+    [[ -f "$manifest" ]] || return 0
+
+    while IFS= read -r line || [[ -n "$line" ]]; do
+        line="${line#"${line%%[![:space:]]*}"}"
+        [[ -n "$line" && "${line:0:1}" != "#" ]] || continue
+
+        mode="${line%%[[:space:]]*}"
+        relative_path="${line#"$mode"}"
+        relative_path="${relative_path#"${relative_path%%[![:space:]]*}"}"
+        bootstrap_one "$mode" "$relative_path"
+    done <"$manifest"
+}
+
+is_uv_project() {
+    if [[ -f "$worktree_path/uv.lock" ]]; then
+        return 0
+    fi
+
+    [[ -f "$worktree_path/pyproject.toml" ]] &&
+        grep -Eq '^\[tool\.uv(\.[^]]+)?\][[:space:]]*$' \
+            "$worktree_path/pyproject.toml"
+}
+
+is_python_project() {
+    [[ -f "$worktree_path/pyproject.toml" ||
+        -f "$worktree_path/setup.py" ||
+        -f "$worktree_path/setup.cfg" ]] ||
+        compgen -G "$worktree_path/requirements*.txt" >/dev/null
+}
+
+setup_python() {
+    local source_python="$source_root/.venv/bin/python"
+    local requirements_file
+
+    if is_uv_project; then
+        require_command uv
+        printf "Running uv sync in %s\n" "$worktree_path"
+        (cd "$worktree_path" && uv sync)
+        return
+    fi
+
+    is_python_project || return 0
+    require_command python3
+
+    printf "Creating fresh virtualenv: %s/.venv\n" "$worktree_path"
+    python3 -m venv "$worktree_path/.venv"
+
+    if [[ "$seed_venv" == true && -x "$source_python" ]]; then
+        printf "Seeding virtualenv from source .venv package list\n"
+        requirements_file="$(mktemp "${TMPDIR:-/tmp}/worktree-venv.XXXXXX")"
+        "$source_python" -m pip freeze >"$requirements_file"
+        if [[ -s "$requirements_file" ]]; then
+            "$worktree_path/.venv/bin/python" -m pip install -r "$requirements_file"
+        fi
+        rm -f "$requirements_file"
+    elif [[ "$seed_venv" == true ]]; then
+        printf "No source .venv found; leaving the new virtualenv unseeded\n"
+    fi
+}
+
+package_manager_from_metadata() {
+    local package_manager
+
+    package_manager="$(
+        node -e '
+            const fs = require("fs");
+            const packageJson = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));
+            process.stdout.write(packageJson.packageManager || "");
+        ' "$worktree_path/package.json"
+    )"
+
+    case "$package_manager" in
+        npm@*) printf "npm" ;;
+        yarn@*) printf "yarn" ;;
+        pnpm@*) printf "pnpm" ;;
+        bun@*) printf "bun" ;;
+        "") return 1 ;;
+        *)
+            printf "git-worktree-new: unsupported packageManager value: %s\n" \
+                "$package_manager" >&2
+            return 2
+            ;;
+    esac
+}
+
+detect_package_manager() {
+    local metadata_manager
+    local metadata_status
+
+    if metadata_manager="$(package_manager_from_metadata)"; then
+        printf "%s" "$metadata_manager"
+        return
+    else
+        metadata_status=$?
+    fi
+    [[ "$metadata_status" -eq 1 ]] || return "$metadata_status"
+
+    if [[ -f "$worktree_path/pnpm-lock.yaml" ]]; then
+        printf "pnpm"
+    elif [[ -f "$worktree_path/yarn.lock" ]]; then
+        printf "yarn"
+    elif [[ -f "$worktree_path/package-lock.json" ||
+        -f "$worktree_path/npm-shrinkwrap.json" ]]; then
+        printf "npm"
+    elif [[ -f "$worktree_path/bun.lock" ||
+        -f "$worktree_path/bun.lockb" ]]; then
+        printf "bun"
+    else
+        printf "npm"
+    fi
+}
+
+run_package_manager() {
+    local package_manager="$1"
+    shift
+
+    if command -v "$package_manager" >/dev/null 2>&1; then
+        (cd "$worktree_path" && "$package_manager" "$@")
+        return
+    fi
+
+    if [[ "$package_manager" == "yarn" || "$package_manager" == "pnpm" ]] &&
+        command -v corepack >/dev/null 2>&1; then
+        (cd "$worktree_path" && corepack "$package_manager" "$@")
+        return
+    fi
+
+    die "missing required command: $package_manager"
+}
+
+seed_node_modules_from_source() {
+    local source_node_modules="$source_root/node_modules"
+    local target_node_modules="$worktree_path/node_modules"
+
+    [[ "$seed_node_modules" == true ]] || return 0
+    [[ -f "$worktree_path/package.json" ]] || return 0
+    if [[ ! -d "$source_node_modules" ]]; then
+        printf "No source node_modules found; installing without a seed\n"
+        return
+    fi
+
+    printf "Seeding node_modules from source worktree\n"
+    if [[ "$(uname -s)" == "Darwin" ]] &&
+        cp -cR "$source_node_modules" "$target_node_modules" 2>/dev/null; then
+        printf "Seeded node_modules using a copy-on-write clone\n"
+        return
+    fi
+
+    rm -rf "$target_node_modules"
+    cp -a "$source_node_modules" "$target_node_modules"
+    printf "Seeded node_modules using a regular copy\n"
+}
+
+setup_node() {
+    local package_manager
+
+    [[ -f "$worktree_path/package.json" ]] || return 0
+    require_command node
+    package_manager="$(detect_package_manager)"
+
+    printf "Installing Node dependencies with %s\n" "$package_manager"
+    case "$package_manager" in
+        pnpm)
+            if [[ -f "$worktree_path/pnpm-lock.yaml" ]]; then
+                run_package_manager pnpm install --frozen-lockfile
+            else
+                run_package_manager pnpm install
+            fi
+            ;;
+        yarn)
+            if [[ -f "$worktree_path/yarn.lock" ]]; then
+                run_package_manager yarn install --immutable
+            else
+                run_package_manager yarn install
+            fi
+            ;;
+        npm)
+            if [[ -f "$worktree_path/package-lock.json" ||
+                -f "$worktree_path/npm-shrinkwrap.json" ]]; then
+                if [[ "$seed_node_modules" == true &&
+                    -d "$worktree_path/node_modules" ]]; then
+                    run_package_manager npm install --prefer-offline --no-audit --no-fund
+                else
+                    run_package_manager npm ci
+                fi
+            else
+                run_package_manager npm install
+            fi
+            ;;
+        bun)
+            if [[ -f "$worktree_path/bun.lock" ||
+                -f "$worktree_path/bun.lockb" ]]; then
+                run_package_manager bun install --frozen-lockfile
+            else
+                run_package_manager bun install
+            fi
+            ;;
+    esac
+}
+
+start_tmux() {
+    require_command tmux-worktree-open
+    tmux-worktree-open "$worktree_path"
+}
+
+main() {
+    local task=""
+    local branch_name=""
+    local requested_path=""
+    local base_ref=""
+    local fetch_origin=true
+    local setup_python_env=true
+    local setup_node_env=true
+    local seed_node_modules=true
+    local start_tmux_session=true
+    local seed_venv=true
+    local common_git_dir
+    local project_root
+    local project_name
+    local task_slug
+    local worktree_path
+    local session_name
+    local selected_base
+    local source_root
+
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --base)
+                [[ $# -ge 2 ]] || die "--base requires a value"
+                base_ref="$2"
+                shift 2
+                ;;
+            --branch)
+                [[ $# -ge 2 ]] || die "--branch requires a value"
+                branch_name="$2"
+                shift 2
+                ;;
+            --worktree-dir)
+                [[ $# -ge 2 ]] || die "--worktree-dir requires a value"
+                requested_path="$2"
+                shift 2
+                ;;
+            --seed-venv)
+                seed_venv=true
+                shift
+                ;;
+            --fresh-venv)
+                seed_venv=false
+                shift
+                ;;
+            --no-fetch)
+                fetch_origin=false
+                shift
+                ;;
+            --no-python)
+                setup_python_env=false
+                shift
+                ;;
+            --no-node)
+                setup_node_env=false
+                shift
+                ;;
+            --seed-node-modules)
+                seed_node_modules=true
+                shift
+                ;;
+            --fresh-node-modules)
+                seed_node_modules=false
+                shift
+                ;;
+            --no-tmux)
+                start_tmux_session=false
+                shift
+                ;;
+            -h | --help)
+                usage
+                exit 0
+                ;;
+            -*)
+                die "unknown option: $1"
+                ;;
+            *)
+                [[ -z "$task" ]] || die "only one task argument is supported"
+                task="$1"
+                shift
+                ;;
+        esac
+    done
+
+    require_command git
+    git rev-parse --is-inside-work-tree >/dev/null 2>&1 ||
+        die "run this command from inside a Git worktree"
+
+    source_root="$(git rev-parse --show-toplevel)"
+    common_git_dir="$(git rev-parse --path-format=absolute --git-common-dir)"
+    project_root="$(dirname "$common_git_dir")"
+    project_name="$(basename "$project_root")"
+
+    if [[ -z "$task" ]]; then
+        read -r -p "Task/branch name: " task
+    fi
+    [[ -n "$task" ]] || die "task cannot be empty"
+
+    branch_name="${branch_name:-$task}"
+    git check-ref-format --branch "$branch_name" >/dev/null 2>&1 ||
+        die "invalid branch name: $branch_name"
+    git show-ref --verify --quiet "refs/heads/$branch_name" &&
+        die "local branch already exists: $branch_name"
+
+    task_slug="$(slugify "$task")"
+    [[ -n "$task_slug" ]] || die "task does not produce a usable folder name"
+
+    if [[ -n "$requested_path" ]]; then
+        worktree_path="$(absolute_path "$requested_path")"
+    else
+        worktree_path="$(dirname "$project_root")/${project_name}-worktrees/$task_slug"
+    fi
+    [[ ! -e "$worktree_path" ]] || die "worktree path already exists: $worktree_path"
+
+    session_name="$(slugify "${project_name}-$(basename "$worktree_path")")"
+    [[ -n "$session_name" ]] || die "could not create a tmux session name"
+
+    if [[ "$fetch_origin" == true ]] &&
+        git remote get-url origin >/dev/null 2>&1; then
+        printf "Fetching origin...\n"
+        git fetch origin --prune
+    fi
+
+    selected_base="$(choose_base_ref)"
+    printf "Creating branch '%s' from '%s'\n" "$branch_name" "$selected_base"
+    printf "Worktree: %s\n" "$worktree_path"
+    git worktree add -b "$branch_name" "$worktree_path" "$selected_base"
+
+    bootstrap_local_files
+    if [[ "$setup_python_env" == true ]]; then
+        setup_python
+    fi
+    if [[ "$setup_node_env" == true ]]; then
+        seed_node_modules_from_source
+        setup_node
+    fi
+
+    printf "Created %s on branch %s\n" "$worktree_path" "$branch_name"
+    if [[ "$start_tmux_session" == true ]]; then
+        printf "Starting tmux session: %s\n" "$session_name"
+        start_tmux
+    fi
+}
+
+main "$@"
