@@ -33,6 +33,8 @@ Options:
   --seed-node-modules  Seed node_modules (default; retained for compatibility)
   --fresh-node-modules Do not seed node_modules from the source worktree
   --no-node            Skip Node/TypeScript dependency installation
+  --dvc-checkout       Materialize DVC outputs from the shared local cache
+  --no-dvc             Skip shared DVC cache configuration
   --no-tmux            Do not create or switch to a tmux session
   -h, --help           Show this help
 
@@ -382,6 +384,79 @@ setup_node() {
     esac
 }
 
+run_dvc() {
+    local working_directory="$1"
+    shift
+
+    if [[ -x "$worktree_path/.venv/bin/dvc" ]]; then
+        (cd "$working_directory" && "$worktree_path/.venv/bin/dvc" "$@")
+        return
+    fi
+
+    if [[ -x "$worktree_path/.venv/bin/python" ]] &&
+        "$worktree_path/.venv/bin/python" -c 'import dvc' >/dev/null 2>&1; then
+        (cd "$working_directory" && "$worktree_path/.venv/bin/python" -m dvc "$@")
+        return
+    fi
+
+    if [[ -x "$source_root/.venv/bin/dvc" ]]; then
+        (cd "$working_directory" && "$source_root/.venv/bin/dvc" "$@")
+        return
+    fi
+
+    if [[ -x "$source_root/.venv/bin/python" ]] &&
+        "$source_root/.venv/bin/python" -c 'import dvc' >/dev/null 2>&1; then
+        (cd "$working_directory" && "$source_root/.venv/bin/python" -m dvc "$@")
+        return
+    fi
+
+    require_command dvc
+    (cd "$working_directory" && dvc "$@")
+}
+
+setup_dvc() {
+    local dvc_dir
+    local dvc_project_root
+    local relative_path
+    local source_project_root
+    local source_cache_dir
+
+    while IFS= read -r dvc_dir; do
+        dvc_project_root="$(dirname "$dvc_dir")"
+        relative_path="${dvc_project_root#"$worktree_path"}"
+        relative_path="${relative_path#/}"
+
+        if [[ -n "$relative_path" ]]; then
+            source_project_root="$source_root/$relative_path"
+        else
+            source_project_root="$source_root"
+        fi
+
+        printf "Resolving shared DVC cache for %s\n" "${relative_path:-.}"
+        source_cache_dir="$(run_dvc "$source_project_root" cache dir)"
+        [[ -n "$source_cache_dir" ]] || die "DVC returned an empty cache directory for $source_project_root"
+
+        if [[ "$source_cache_dir" != /* ]]; then
+            source_cache_dir="$(
+                cd "$source_project_root/.dvc" &&
+                    cd "$source_cache_dir" &&
+                    pwd -P
+            )"
+        fi
+
+        printf "Using shared DVC cache: %s\n" "$source_cache_dir"
+        run_dvc "$dvc_project_root" config --local cache.dir "$source_cache_dir"
+        if [[ "$(uname -s)" == "Darwin" ]]; then
+            run_dvc "$dvc_project_root" config --local cache.type reflink,copy
+        fi
+
+        if [[ "$checkout_dvc_data" == true ]]; then
+            printf "Checking out DVC data from the shared cache\n"
+            run_dvc "$dvc_project_root" checkout
+        fi
+    done < <(find "$worktree_path" -maxdepth 3 -name ".dvc" -type d)
+}
+
 start_tmux() {
     require_command tmux-worktree-open
     tmux-worktree-open "$worktree_path"
@@ -395,6 +470,8 @@ main() {
     local fetch_origin=true
     local setup_python_env=true
     local setup_node_env=true
+    local setup_dvc_data=true
+    local checkout_dvc_data=false
     local seed_node_modules=true
     local start_tmux_session=true
     local seed_venv=true
@@ -442,6 +519,14 @@ main() {
                 ;;
             --no-node)
                 setup_node_env=false
+                shift
+                ;;
+            --no-dvc)
+                setup_dvc_data=false
+                shift
+                ;;
+            --dvc-checkout)
+                checkout_dvc_data=true
                 shift
                 ;;
             --seed-node-modules)
@@ -533,6 +618,10 @@ main() {
         seed_node_modules_from_source
         current_stage="installing Node dependencies"
         setup_node
+    fi
+    if [[ "$setup_dvc_data" == true ]]; then
+        current_stage="setting up the shared DVC cache"
+        setup_dvc
     fi
 
     printf "Created %s on branch %s\n" "$worktree_path" "$branch_name"

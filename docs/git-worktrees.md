@@ -90,4 +90,18 @@ Be aware that pnpm already benefits from its shared store, Yarn may use
 Plug'n'Play without `node_modules`, and native dependencies can require the
 package manager's reconciliation step.
 
+## DVC
+
+Projects with a `.dvc` directory automatically reuse the source worktree's
+effective DVC cache. The command writes the absolute cache path to the new
+worktree's Git-ignored `.dvc/config.local` and uses `reflink,copy` on macOS.
+
+Data is not materialized by default, keeping worktree creation fast for tasks
+that do not use DVC outputs. Pass `--dvc-checkout` to run `dvc checkout` from
+the existing local cache. The command deliberately does not run `dvc pull`; if
+an object is missing, checkout fails instead of starting an unexpected
+download. Use `--no-dvc` to skip shared-cache configuration entirely.
+
+All worktrees depend on the shared cache, so use `dvc gc` carefully.
+
 Run `git-worktree-new --help` for path, branch, and tmux overrides.
