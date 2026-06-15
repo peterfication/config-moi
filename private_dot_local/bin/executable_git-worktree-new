@@ -1,6 +1,20 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
+current_stage="initialization"
+
+report_error() {
+    local exit_code="$1"
+    local line_number="$2"
+    local command="$3"
+
+    printf "\ngit-worktree-new: failed during %s\n" "$current_stage" >&2
+    printf "  line %s: %s\n" "$line_number" "$command" >&2
+    printf "  exit status: %s\n" "$exit_code" >&2
+}
+
+trap 'report_error "$?" "$LINENO" "$BASH_COMMAND"' ERR
+
 usage() {
     cat <<'EOF'
 Usage: git-worktree-new [options] [task]
@@ -12,7 +26,7 @@ Options:
   --base REF           Base ref (default: origin/dev, origin/main, origin/master)
   --branch NAME        Branch name (default: task)
   --worktree-dir PATH  Worktree path (default: ../<project>-worktrees/<task>)
-  --seed-venv          Seed non-uv .venv (default; retained for compatibility)
+  --seed-venv          Copy source site-packages (default; compatibility flag)
   --fresh-venv         Do not seed a non-uv .venv from the source worktree
   --no-fetch           Do not fetch origin before selecting the base ref
   --no-python          Skip Python environment setup
@@ -166,9 +180,28 @@ is_python_project() {
         compgen -G "$worktree_path/requirements*.txt" >/dev/null
 }
 
+copy_directory_contents() {
+    local source_dir="$1"
+    local target_dir="$2"
+
+    [[ -d "$source_dir" ]] || die "source directory does not exist: $source_dir"
+    mkdir -p "$target_dir"
+
+    if [[ "$(uname -s)" == "Darwin" ]] &&
+        cp -cR "$source_dir/." "$target_dir/" 2>/dev/null; then
+        return
+    fi
+
+    cp -a "$source_dir/." "$target_dir/"
+}
+
 setup_python() {
     local source_python="$source_root/.venv/bin/python"
-    local requirements_file
+    local venv_python
+    local source_purelib
+    local source_platlib
+    local target_purelib
+    local target_platlib
 
     if is_uv_project; then
         require_command uv
@@ -178,19 +211,32 @@ setup_python() {
     fi
 
     is_python_project || return 0
-    require_command python3
+    if [[ -x "$source_python" ]]; then
+        venv_python="$source_python"
+    else
+        require_command python3
+        venv_python="$(command -v python3)"
+    fi
 
-    printf "Creating fresh virtualenv: %s/.venv\n" "$worktree_path"
-    python3 -m venv "$worktree_path/.venv"
+    printf "Creating virtualenv with %s\n" "$venv_python"
+    "$venv_python" -m venv "$worktree_path/.venv"
 
     if [[ "$seed_venv" == true && -x "$source_python" ]]; then
-        printf "Seeding virtualenv from source .venv package list\n"
-        requirements_file="$(mktemp "${TMPDIR:-/tmp}/worktree-venv.XXXXXX")"
-        "$source_python" -m pip freeze >"$requirements_file"
-        if [[ -s "$requirements_file" ]]; then
-            "$worktree_path/.venv/bin/python" -m pip install -r "$requirements_file"
+        source_purelib="$("$source_python" -c \
+            'import sysconfig; print(sysconfig.get_path("purelib"))')"
+        source_platlib="$("$source_python" -c \
+            'import sysconfig; print(sysconfig.get_path("platlib"))')"
+        target_purelib="$("$worktree_path/.venv/bin/python" -c \
+            'import sysconfig; print(sysconfig.get_path("purelib"))')"
+        target_platlib="$("$worktree_path/.venv/bin/python" -c \
+            'import sysconfig; print(sysconfig.get_path("platlib"))')"
+
+        printf "Copying site-packages from source .venv\n"
+        copy_directory_contents "$source_purelib" "$target_purelib"
+        if [[ "$source_platlib" != "$source_purelib" ||
+            "$target_platlib" != "$target_purelib" ]]; then
+            copy_directory_contents "$source_platlib" "$target_platlib"
         fi
-        rm -f "$requirements_file"
     elif [[ "$seed_venv" == true ]]; then
         printf "No source .venv found; leaving the new virtualenv unseeded\n"
     fi
@@ -426,6 +472,7 @@ main() {
     done
 
     require_command git
+    current_stage="checking the current repository"
     git rev-parse --is-inside-work-tree >/dev/null 2>&1 ||
         die "run this command from inside a Git worktree"
 
@@ -435,8 +482,11 @@ main() {
     project_name="$(basename "$project_root")"
 
     if [[ -z "$task" ]]; then
-        read -r -p "Task/branch name: " task
+        current_stage="reading the task name"
+        read -r -p "Task/branch name: " task ||
+            die "could not read the task name"
     fi
+    current_stage="validating the task and branch names"
     [[ -n "$task" ]] || die "task cannot be empty"
 
     branch_name="${branch_name:-$task}"
@@ -460,26 +510,34 @@ main() {
 
     if [[ "$fetch_origin" == true ]] &&
         git remote get-url origin >/dev/null 2>&1; then
+        current_stage="fetching origin"
         printf "Fetching origin...\n"
         git fetch origin --prune
     fi
 
+    current_stage="selecting the base branch"
     selected_base="$(choose_base_ref)"
     printf "Creating branch '%s' from '%s'\n" "$branch_name" "$selected_base"
     printf "Worktree: %s\n" "$worktree_path"
+    current_stage="creating the Git worktree"
     git worktree add -b "$branch_name" "$worktree_path" "$selected_base"
 
+    current_stage="copying local bootstrap files"
     bootstrap_local_files
     if [[ "$setup_python_env" == true ]]; then
+        current_stage="setting up the Python environment"
         setup_python
     fi
     if [[ "$setup_node_env" == true ]]; then
+        current_stage="seeding Node dependencies"
         seed_node_modules_from_source
+        current_stage="installing Node dependencies"
         setup_node
     fi
 
     printf "Created %s on branch %s\n" "$worktree_path" "$branch_name"
     if [[ "$start_tmux_session" == true ]]; then
+        current_stage="opening the tmux session"
         printf "Starting tmux session: %s\n" "$session_name"
         start_tmux
     fi

@@ -52,11 +52,19 @@ independent file; `link` keeps one shared source file.
 Projects with `uv.lock` or a `[tool.uv]` table run `uv sync`, producing one
 `.venv` per worktree.
 
-Other Python projects get a fresh `.venv` via `python3 -m venv`. When the
-current worktree has a `.venv`, its packages are seeded into the new
-environment by default. This rebuilds from `pip freeze` instead of copying the
-virtualenv, avoiding stale absolute paths in scripts. Use `--fresh-venv` to
-disable seeding or `--no-python` to skip environment setup.
+For other Python projects, the current worktree's `.venv/bin/python` creates
+the new `.venv`, keeping the Python implementation and version aligned. Its
+`purelib` and `platlib` site-packages are then cloned or copied into the new
+environment by default. On macOS/APFS this first attempts a copy-on-write
+clone. This avoids dependency resolution and preserves complex or locally
+built packages.
+
+Only site-packages are copied, not the source venv's `bin` scripts, because
+those scripts contain absolute shebang paths. Package entry-point commands may
+therefore need regeneration with the project's normal install command. Also
+check editable-install `.pth` files, which may reference the source worktree.
+Use `--fresh-venv` to disable package copying or `--no-python` to skip
+environment setup.
 
 ## TypeScript and Node
 

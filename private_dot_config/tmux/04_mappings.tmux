@@ -60,4 +60,4 @@ set -g @fingers-key m
 bind-key C-c new-window -c "#{pane_current_path}" "codex"
 
 # Create a Git worktree and switch to its project/task tmux session
-bind-key W display-popup -E -d "#{pane_current_path}" -xC -yC -w 90% -h 90% "git-worktree-new"
+bind-key W display-popup -E -d "#{pane_current_path}" -xC -yC -w 90% -h 90% 'git-worktree-new || { exit_code=$?; printf "\nWorktree creation failed. Press Enter to close."; read -r _; exit $exit_code; }'
