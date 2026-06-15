@@ -5,7 +5,7 @@
 Tap `ä` to type `ä`. Hold `ä` to activate the programming layer.
 
 ```text
-          e → =    r → $    t → +    z → *    u → &    i → ?
+          e → =    r → $    t → +    z → *    u → &    i → !    o → ?
 
 a → ^    s → {    d → (    f → [    g → /    h → \    j → ]    k → )    l → }
 
