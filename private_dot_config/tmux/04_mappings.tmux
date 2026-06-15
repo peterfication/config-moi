@@ -58,3 +58,6 @@ set -g @fingers-key m
 
 # Open a new window in the current path and start Codex
 bind-key C-c new-window -c "#{pane_current_path}" "codex"
+
+# Create a Git worktree and switch to its project/task tmux session
+bind-key W display-popup -E -d "#{pane_current_path}" -xC -yC -w 90% -h 90% "git-worktree-new"
