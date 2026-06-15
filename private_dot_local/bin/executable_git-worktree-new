@@ -337,21 +337,8 @@ setup_node() {
 }
 
 start_tmux() {
-    require_command tmux
-    require_command nvim
-
-    if tmux has-session -t "=$session_name" 2>/dev/null; then
-        die "tmux session already exists: $session_name"
-    fi
-
-    tmux new-session -d -c "$worktree_path" -s "$session_name" -n nvim
-    tmux send-keys -t "=$session_name:nvim" nvim Enter
-
-    if [[ -n "${TMUX:-}" ]]; then
-        tmux switch-client -t "=$session_name"
-    else
-        tmux attach-session -t "=$session_name"
-    fi
+    require_command tmux-worktree-open
+    tmux-worktree-open "$worktree_path"
 }
 
 main() {
@@ -468,7 +455,7 @@ main() {
     fi
     [[ ! -e "$worktree_path" ]] || die "worktree path already exists: $worktree_path"
 
-    session_name="$(slugify "${project_name}-${task_slug}")"
+    session_name="$(slugify "${project_name}-$(basename "$worktree_path")")"
     [[ -n "$session_name" ]] || die "could not create a tmux session name"
 
     if [[ "$fetch_origin" == true ]] &&

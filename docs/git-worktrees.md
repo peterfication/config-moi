@@ -15,6 +15,13 @@ By default this creates:
 - tmux session `<project>-feature-my-task`
 - an `nvim` window rooted in the new worktree
 
+In Lazygit's worktrees panel, press `T` to open the selected worktree's tmux
+session. This calls
+[`tmux-worktree-open`](../private_dot_local/bin/executable_tmux-worktree-open),
+which creates the standard `nvim` session when it does not already exist and
+then switches to it. This recreates sessions after a restart without restoring
+tmux server state.
+
 The base branch is selected in this order:
 
 1. `origin/dev`
