@@ -31,7 +31,7 @@
     "name": "codex",
     "type": "cask",
     "versions": [
-      "0.139.0"
+      "0.140.0"
     ]
   },
   {
@@ -101,7 +101,7 @@
     "name": "leaf-md",
     "type": "formula",
     "versions": [
-      "1.24.1"
+      "1.24.2"
     ]
   },
   {
@@ -129,7 +129,7 @@
     "name": "opencode",
     "type": "formula",
     "versions": [
-      "1.17.3"
+      "1.17.5"
     ]
   },
   {
@@ -171,7 +171,7 @@
     "name": "stats",
     "type": "cask",
     "versions": [
-      "3.0.1"
+      "3.0.3"
     ]
   },
   {
@@ -192,7 +192,7 @@
     "name": "tableplus",
     "type": "cask",
     "versions": [
-      "7.1.8,718"
+      "7.2.2,722"
     ]
   },
   {

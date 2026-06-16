@@ -3,15 +3,15 @@ brew 'syncthing' # https://github.com/syncthing/syncthing
 
 # Packages that are not available on https://search.nixos.org/packages
 brew 'domcyrus/rustnet/rustnet', trusted: true # https://github.com/domcyrus/rustnet
+brew 'macos-fuse-t/homebrew-cask/fuse-t', trusted: true # https://github.com/macos-fuse-t/fuse-t
+brew 'macos-fuse-t/homebrew-cask/sshfs-fuse-t', trusted: true
 brew 'leaf-md' # https://github.com/rivolink/leaf
 brew 'peterfication/num-peek/num-peek', trusted: true # Peek into *.npy files
 brew 'quien' # https://github.com/retlehs/quien
 brew 'rv' # https://github.com/spinel-coop/rv uv for Ruby
 brew 'switchaudio-osx' # https://github.com/deweller/switchaudio-osx
-brew 'veeso/termscp/termscp', trusted: true # https://github.com/veeso/termscp
-brew 'macos-fuse-t/homebrew-cask/fuse-t', trusted: true # https://github.com/macos-fuse-t/fuse-t
-brew 'macos-fuse-t/homebrew-cask/sshfs-fuse-t', trusted: true
 brew 'morantron/tmux-fingers/tmux-fingers', trusted: true # https://github.com/Morantron/tmux-fingers
+brew 'veeso/termscp/termscp', trusted: true # https://github.com/veeso/termscp
 
 cask 'alfred'
 cask 'eurkey-next' # https://eurkey-macos.eu/
