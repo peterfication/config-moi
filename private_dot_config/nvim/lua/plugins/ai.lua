@@ -8,6 +8,20 @@ if true then
             enabled = true,
             create = "window",
           },
+          tools = {
+            antigravity = {
+              cmd = { "agy" },
+              is_proc = "\\<agy\\>",
+              resume = { "--continue" },
+              continue = { "--continue" },
+              url = "https://antigravity.google/docs/cli-overview",
+              format = function(text)
+                require("sidekick.text").transform(text, function(str)
+                  return str:find("[^%w/_%.%-]") and ('"' .. str .. '"') or str
+                end, "SidekickLocFile")
+              end,
+            },
+          },
         },
       },
     },
@@ -20,7 +34,7 @@ return {
     opts = {
       auto_insert_mode = false,
       window = {
-        layout = "float",  -- 'vertical', 'horizontal', 'float'
+        layout = "float", -- 'vertical', 'horizontal', 'float'
         border = "double", -- 'none', single', 'double', 'rounded', 'solid', 'shadow'
         width = 0.9,
         height = 0.8,
