@@ -48,4 +48,4 @@ bind-key C-g display-popup -E -d "#{pane_current_path}" -xC -yC -w 90% -h 90% "l
 bind-key C-c new-window -c "#{pane_current_path}" "codex"
 
 # Create a Git worktree and switch to its project/task tmux session
-bind-key W display-popup -E -d "#{pane_current_path}" -xC -yC -w 90% -h 90% 'git-worktree-new || { exit_code=$?; printf "\nWorktree creation failed. Press Enter to close."; read -r _; exit $exit_code; }'
+bind-key W display-popup -E -d "#{pane_current_path}" -xC -yC -w 90% -h 90% 'bash -c "set -o pipefail; git-worktree-new 2>&1 | tee /tmp/git-worktree-new.log" || less /tmp/git-worktree-new.log'
