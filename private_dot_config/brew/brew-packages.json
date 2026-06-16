@@ -150,14 +150,14 @@
     "name": "rv",
     "type": "formula",
     "versions": [
-      "0.5.3"
+      "0.6.0"
     ]
   },
   {
     "name": "spotify",
     "type": "cask",
     "versions": [
-      "1.2.90.451"
+      "1.2.92.148"
     ]
   },
   {
