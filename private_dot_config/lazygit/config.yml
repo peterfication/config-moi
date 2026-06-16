@@ -14,9 +14,6 @@ os:
   shellFunctionsFile: ~/.config/lazygit/env.sh
 
 keybinding:
-  # I remaped Hyper+, and Hyper+. for []
-  # universal:
-  #   nextTab: "<c-n>"
   files:
     openStatusFilter: "<c-p>"
 
@@ -52,6 +49,11 @@ customCommands:
     command: 'git branch -r | sed "s/origin\///" | fzf --prompt="Select branch: " | xargs -I {} git checkout {}'
     context: 'localBranches'
     output: terminal
+  - key: 'y'
+    command: 'echo -n "{{.SelectedLocalBranch.Name}}" | pbcopy && echo "Copied: {{.SelectedLocalBranch.Name}}"'
+    description: 'Copy branch name to clipboard'
+    context: 'localBranches'
+    output: log
   - key: "<c-r>"
     command: "git reset --hard @{upstream}"
     description: "Reset hard the local branch with its upstream"
