@@ -10,7 +10,7 @@ git-worktree-new feature/my-task
 
 By default this creates:
 
-- branch `feature/my-task`
+- branch `wt/feature/my-task`
 - worktree `../<project>-worktrees/feature-my-task`
 - tmux session `<project>-feature-my-task`
 - an `nvim` window rooted in the new worktree

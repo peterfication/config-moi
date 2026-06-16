@@ -24,7 +24,7 @@ and a tmux session for a unit of work.
 
 Options:
   --base REF           Base ref (default: origin/dev, origin/main, origin/master)
-  --branch NAME        Branch name (default: task)
+  --branch NAME        Branch name (default: wt/<task>)
   --worktree-dir PATH  Worktree path (default: ../<project>-worktrees/<task>)
   --seed-venv          Copy source site-packages (default; compatibility flag)
   --fresh-venv         Do not seed a non-uv .venv from the source worktree
@@ -580,7 +580,13 @@ main() {
     current_stage="validating the task and branch names"
     [[ -n "$task" ]] || die "task cannot be empty"
 
-    branch_name="${branch_name:-$task}"
+    if [[ -z "$branch_name" ]]; then
+        if [[ "$task" == wt/* ]]; then
+            branch_name="$task"
+        else
+            branch_name="wt/$task"
+        fi
+    fi
     git check-ref-format --branch "$branch_name" >/dev/null 2>&1 ||
         die "invalid branch name: $branch_name"
     git show-ref --verify --quiet "refs/heads/$branch_name" &&
