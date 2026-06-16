@@ -26,6 +26,8 @@ set-option -g default-terminal "tmux-256color"
 # pass supported terminal escape sequences through tmux.
 set -as terminal-features ',xterm-ghostty*:progressbar'
 set -g allow-passthrough on
+set -g set-titles on
+set -g set-titles-string '#S:#I #W'
 
 # For terminal applications to receive focus events
 set -g focus-events on
