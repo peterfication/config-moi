@@ -22,9 +22,6 @@ set-option -g allow-rename off
 # Set tmux TERM
 set-option -g default-terminal "tmux-256color"
 
-# Tell tmux that Ghostty supports terminal progress bars and allow programs to
-# pass supported terminal escape sequences through tmux.
-set -as terminal-features ',xterm-ghostty*:progressbar'
 set -g allow-passthrough on
 set -g set-titles on
 set -g set-titles-string '#S:#I #W'
