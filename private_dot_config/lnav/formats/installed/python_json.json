@@ -1,0 +1,37 @@
+{
+  "$schema": "https://lnav.org/schemas/format-v1.schema.json",
+  "python_json_log": {
+    "title": "Python JSON Log",
+    "description": "Structured JSON logs from the Python app",
+    "file-pattern": "\\.log$",
+    "json": true,
+    "timestamp-field": "timestamp",
+    "level-field": "level",
+    "level": {
+      "info": "info",
+      "error": "error",
+      "warning": "warning",
+      "debug": "debug",
+      "critical": "critical"
+    },
+    "line-format": [
+      { "field": "timestamp" },
+      " ",
+      { "field": "level", "min-width": 5 },
+      " [",
+      { "field": "component" },
+      "] ",
+      { "field": "event" }
+    ],
+    "value": {
+      "component":   { "kind": "string", "identifier": true },
+      "external_id": { "kind": "string", "identifier": true },
+      "event":       { "kind": "string" }
+    },
+    "sample": [
+      {
+        "line": "{\"component\": \"measurement_runner\", \"external_id\": \"cli-019edb25-5b92-70e5-8ffc-71c3253fb94d\", \"event\": \"Starting measurement run\", \"timestamp\": \"2026-06-18T14:31:59.124607Z\", \"level\": \"info\"}"
+      }
+    ]
+  }
+}
