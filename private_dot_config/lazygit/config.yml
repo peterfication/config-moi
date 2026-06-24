@@ -18,12 +18,14 @@ keybinding:
     openStatusFilter: "<c-p>"
 
 gui:
-  branchColors:
-    'main': '#11aaff'
-    'master': '#11aaff'
-    'develop': '#11aaff'
-    'staging': '#11aaff'
-    'integration': '#11aaff'
+  branchColorPatterns:
+    '^main$': '#11aaff'
+    '^master$': '#11aaff'
+    '^develop$': '#11aaff'
+    '^dev$': '#11aaff'
+    '^staging$': '#11aaff'
+    '^integration$': '#11aaff'
+    '^wt/': 'yellow'
   showIcons: true
 
 promptToReturnFromSubprocess: false # removes "press enter to return to lazygit" popup
