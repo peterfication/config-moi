@@ -618,6 +618,10 @@ main() {
     printf "Worktree: %s\n" "$worktree_path"
     current_stage="creating the Git worktree"
     git worktree add -b "$branch_name" "$worktree_path" "$selected_base"
+    current_stage="removing automatic upstream configuration"
+    if git -C "$worktree_path" rev-parse --abbrev-ref --symbolic-full-name "@{upstream}" >/dev/null 2>&1; then
+        git -C "$worktree_path" branch --unset-upstream "$branch_name"
+    fi
 
     current_stage="copying local bootstrap files"
     bootstrap_local_files
