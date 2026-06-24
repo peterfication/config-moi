@@ -1,6 +1,11 @@
 --- === FnMate ===
 ---
---- Use Fn + `h/l/j/k` as arrow keys, `space` as enter, `z/u/i/o` as mouse wheel, `,/.` as left/right click.
+--- Use Fn + (German keyboard)
+---   - `h/l/j/k` as arrow keys,
+---   - `space` as enter,
+---   - `-` as backspace,
+---   - `z/u/i/o` as mouse wheel,
+---   - `,/.` as left/right click.
 ---
 --- Download: [https://github.com/Hammerspoon/Spoons/raw/master/Spoons/FnMate.spoon.zip](https://github.com/Hammerspoon/Spoons/raw/master/Spoons/FnMate.spoon.zip)
 
@@ -26,6 +31,8 @@ function obj:init()
       return true, { hs.eventtap.event.newKeyEvent({}, "up", true) }
     elseif event:getFlags()["fn"] and event:getCharacters() == " " then
       return true, { hs.eventtap.event.newKeyEvent({}, "return", true) }
+    elseif event:getFlags()["fn"] and event:getCharacters() == "-" then
+      return true, { hs.eventtap.event.newKeyEvent({}, "delete", true) }
     elseif event:getFlags()["fn"] and event:getCharacters() == "z" then
       return true, { hs.eventtap.event.newScrollEvent({ 3, 0 }, {}, "line") }
     elseif event:getFlags()["fn"] and event:getCharacters() == "o" then
