@@ -33,6 +33,8 @@ return {
         -- Protobufs
         -- "buf",
         "protols",
+        "just-lsp",
+        "gh-actions-language-server",
       },
     },
   },
