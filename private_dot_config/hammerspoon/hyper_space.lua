@@ -7,6 +7,7 @@ function M.setup(opts)
 	local documentsPath = home .. "/Documents"
 	local googleDrivePath = home .. "/Google Drive"
 	local screenshotsPath = home .. "/Pictures/Screenshots"
+  local iCloudDrivePath = home .. "/Library/Mobile Documents/com~apple~CloudDocs/tmp/"
 
 	local function openPath(path)
 		hs.task.new("/usr/bin/open", nil, { path }):start()
@@ -119,11 +120,13 @@ function M.setup(opts)
 	bindHyperSpaceF({}, "d", downloadsPath)
 	bindHyperSpaceF({ "shift" }, "d", documentsPath)
 	bindHyperSpaceF({}, "g", googleDrivePath)
+  bindHyperSpaceF({}, "i", iCloudDrivePath)
 	bindHyperSpaceF({}, "s", screenshotsPath)
 
 	bindHyperSpaceT({}, "d", downloadsPath)
 	bindHyperSpaceT({ "shift" }, "d", documentsPath)
 	bindHyperSpaceT({}, "g", googleDrivePath)
+  bindHyperSpaceT({}, "i", iCloudDrivePath)
 	bindHyperSpaceT({}, "s", screenshotsPath)
 
 	if opts.toggleCaffeine then
