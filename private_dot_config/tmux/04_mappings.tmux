@@ -44,6 +44,9 @@ bind p paste-buffer
 # Lazygit pop-up
 bind-key C-g display-popup -E -d "#{pane_current_path}" -xC -yC -w 90% -h 90% "lazygit"
 
+# Open a new window in the current path and start Yazi
+bind-key y new-window -c "#{pane_current_path}" 'zsh -lic "y"'
+
 # Open a new window in the current path and start Codex
 bind-key C-c new-window -c "#{pane_current_path}" "codex"
 
