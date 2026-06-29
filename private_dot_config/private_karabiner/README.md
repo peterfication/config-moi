@@ -39,7 +39,7 @@ a → Shift    s → Control    d → Option    f → Command
 
 h → Left    j → Down    k → Up    l → Right
 
-space → Return    - → Backspace
+space → Return    b → Backspace    n → Tab
 
 z/o → vertical scroll    u/i → horizontal scroll
 

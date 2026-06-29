@@ -662,10 +662,18 @@
                             },
                             {
                                 "from": {
-                                    "key_code": "slash",
+                                    "key_code": "b",
                                     "modifiers": { "mandatory": ["fn"], "optional": ["any"] }
                                 },
                                 "to": [{ "key_code": "delete_or_backspace" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "n",
+                                    "modifiers": { "mandatory": ["fn"], "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "tab" }],
                                 "type": "basic"
                             },
                             {
