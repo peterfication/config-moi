@@ -50,6 +50,8 @@ main() {
 
     if [[ "$worktree_path" == "$project_root" ]]; then
         session_name="$(slugify "$project_name")"
+    elif [[ "$worktree_name" == "$project_name"-* ]]; then
+        session_name="$(slugify "$worktree_name")"
     else
         session_name="$(slugify "${project_name}-${worktree_name}")"
     fi

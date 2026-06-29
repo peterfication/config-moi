@@ -25,7 +25,7 @@ and a tmux session for a unit of work.
 Options:
   --base REF           Base ref (default: origin/dev, origin/main, origin/master)
   --branch NAME        Branch name (default: wt/<task>)
-  --worktree-dir PATH  Worktree path (default: ../<project>-worktrees/<task>)
+  --worktree-dir PATH  Worktree path (default: ../<project>-worktrees/<project>-<task>)
   --seed-venv          Copy source site-packages (default; compatibility flag)
   --fresh-venv         Do not seed a non-uv .venv from the source worktree
   --no-fetch           Do not fetch origin before selecting the base ref
@@ -486,7 +486,6 @@ main() {
     local project_name
     local task_slug
     local worktree_path
-    local session_name
     local selected_base
     local source_root
 
@@ -598,12 +597,9 @@ main() {
     if [[ -n "$requested_path" ]]; then
         worktree_path="$(absolute_path "$requested_path")"
     else
-        worktree_path="$(dirname "$project_root")/${project_name}-worktrees/$task_slug"
+        worktree_path="$(dirname "$project_root")/${project_name}-worktrees/${project_name}-${task_slug}"
     fi
     [[ ! -e "$worktree_path" ]] || die "worktree path already exists: $worktree_path"
-
-    session_name="$(slugify "${project_name}-$(basename "$worktree_path")")"
-    [[ -n "$session_name" ]] || die "could not create a tmux session name"
 
     if [[ "$fetch_origin" == true ]] &&
         git remote get-url origin >/dev/null 2>&1; then
@@ -643,7 +639,7 @@ main() {
     printf "Created %s on branch %s\n" "$worktree_path" "$branch_name"
     if [[ "$start_tmux_session" == true ]]; then
         current_stage="opening the tmux session"
-        printf "Starting tmux session: %s\n" "$session_name"
+        printf "Opening tmux session for %s\n" "$worktree_path"
         start_tmux
     fi
 }
