@@ -1,0 +1,18 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+  "runtime.version": "Lua 5.4",
+  "diagnostics.disable": [
+    "undefined-doc-name"
+  ],
+  "diagnostics.globals": [
+    "LazyVim",
+    "Snacks",
+    "hs",
+    "spoon",
+    "vim",
+    "ya"
+  ],
+  "workspace.ignoreDir": [
+    "private_dot_config/hammerspoon/Spoons"
+  ]
+}

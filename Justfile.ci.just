@@ -20,7 +20,7 @@ ci-lua-format:
 
 # Lint Lua files
 ci-lua-lint:
-  luacheck private_dot_config/nvim private_dot_config/hammerspoon private_dot_config/yazi
+  mise exec -- lua-language-server --check=. --checklevel=Warning --check_format=pretty --configpath=.luarc.json --logpath=/tmp/lua-language-server-log --metapath=/tmp/lua-language-server-meta
 
 ci-sh: ci-shell-format ci-shellcheck
 
