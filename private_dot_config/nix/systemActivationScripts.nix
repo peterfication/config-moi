@@ -5,6 +5,8 @@ with pkgs; {
   postActivation = {
     text = ''
       echo ""
+      sudo -u "$(logname)" /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+
       chezmoi_config_file_path="/Users/$(logname)/.config/chezmoi/chezmoi.toml"
       if [ -f "$chezmoi_config_file_path" ]; then
         echo "Found chezmoi config file at $chezmoi_config_file_path"
