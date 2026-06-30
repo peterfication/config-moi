@@ -4,6 +4,7 @@ default:
 import 'private_dot_config/brew/Justfile'
 import 'private_dot_config/nix/Justfile'
 import 'private_dot_config/nvim/Justfile'
+import 'private_dot_config/private_karabiner/Justfile'
 
 # Chezmoi diff
 diff:

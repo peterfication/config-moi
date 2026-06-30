@@ -1,0 +1,21 @@
+{
+  "tasks": {
+    "karabiner-generate": "deno run -P ./karabiner.ts"
+  },
+  "imports": {
+    "karabiner-ts": "https://deno.land/x/karabinerts@1.38.0/deno.ts"
+  },
+  "fmt": {
+    "lineWidth": 100
+  },
+  "permissions": {
+    "default": {
+      "read": [
+        "./karabiner_new.json"
+      ],
+      "write": [
+        "./karabiner_new.json"
+      ]
+    }
+  }
+}

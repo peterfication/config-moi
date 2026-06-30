@@ -1,5 +1,7 @@
 # Karabiner-Elements
 
+Set up with [karabiner.ts](https://karabiner.ts.evanliu.dev/).
+
 ## Programming layer
 
 Tap `ä` to type `ä`. Hold `ä` to activate the programming layer.
