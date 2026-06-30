@@ -120,28 +120,6 @@ const rules: Rule[] = [
     ],
   },
   {
-    description: "OE: tap = ö, hold = number and navigation layer",
-    manipulators: [
-      holdLayerManipulator("oe_number_layer", "semicolon"),
-      ...layerMappings("oe_number_layer", [
-        ["caps_lock", toKey("0")], // 0
-        ["a", toKey("1")], // 1
-        ["s", toKey("2")], // 2
-        ["d", toKey("3")], // 3
-        ["f", toKey("4")], // 4
-        ["g", toKey("5")], // 5
-        ["h", toKey("6")], // 6
-        ["j", toKey("7")], // 7
-        ["k", toKey("8")], // 8
-        ["l", toKey("9")], // 9
-        ["y", toKey("left_arrow")], // Left Arrow; physical z on German layout
-        ["u", toKey("down_arrow")], // Down Arrow
-        ["i", toKey("up_arrow")], // Up Arrow
-        ["o", toKey("right_arrow")], // Right Arrow
-      ]),
-    ],
-  },
-  {
     description: "CAPS_LOCK: tap = Escape, hold = Ctrl+Shift+Alt",
     enabled: false,
     manipulators: [
@@ -155,34 +133,6 @@ const rules: Rule[] = [
         to_if_held_down: [toKey("left_control", ["left_shift", "left_option"])], // Ctrl+Shift+Alt
         type: "basic",
       },
-    ],
-  },
-  {
-    description: "AE: tap = ä, hold = programming layer",
-    manipulators: [
-      holdLayerManipulator("ae_programming_layer", "quote"),
-      ...layerMappings("ae_programming_layer", [
-        ["s", toKey("8", ["right_option"])], // {
-        ["d", toKey("8", ["right_shift"])], // (
-        ["f", toKey("5", ["right_option"])], // [
-        ["j", toKey("6", ["right_option"])], // ]
-        ["k", toKey("9", ["right_shift"])], // )
-        ["l", toKey("9", ["right_option"])], // }
-        ["g", toKey("7", ["right_shift"])], // /
-        ["b", toKey("7", ["right_option"])], // |
-        ["h", toKey("7", ["right_option", "right_shift"])], // \
-        ["v", toKey("backslash", ["right_shift"])], // '
-        ["n", toKey("2", ["right_shift"])], // "
-        ["y", toKey("close_bracket", ["right_shift"])], // *; physical z on German layout
-        ["t", toKey("close_bracket")], // +
-        ["u", toKey("6", ["right_shift"])], // &
-        ["r", toKey("4", ["right_shift"])], // $
-        ["e", toKey("0", ["right_shift"])], // =
-        ["i", toKey("1", ["right_shift"])], // !
-        ["o", toKey("hyphen", ["right_shift"])], // ?
-        ["m", toKey("equal_sign", ["right_shift"])], // `
-        ["a", toKey("non_us_backslash")], // ^
-      ]),
     ],
   },
   {
@@ -244,6 +194,56 @@ const rules: Rule[] = [
       fnKeyManipulator("i", { mouse_key: { horizontal_wheel: 32 } }),
       fnKeyManipulator("comma", { pointing_button: "button1" }),
       fnKeyManipulator("period", { pointing_button: "button2" }),
+    ],
+  },
+  {
+    description: "OE: tap = ö, hold = number and navigation layer",
+    manipulators: [
+      holdLayerManipulator("oe_number_layer", "semicolon"),
+      ...layerMappings("oe_number_layer", [
+        ["caps_lock", toKey("0")], // 0
+        ["a", toKey("1")], // 1
+        ["s", toKey("2")], // 2
+        ["d", toKey("3")], // 3
+        ["f", toKey("4")], // 4
+        ["g", toKey("5")], // 5
+        ["h", toKey("6")], // 6
+        ["j", toKey("7")], // 7
+        ["k", toKey("8")], // 8
+        ["l", toKey("9")], // 9
+        ["y", toKey("left_arrow")], // Left Arrow; physical z on German layout
+        ["u", toKey("down_arrow")], // Down Arrow
+        ["i", toKey("up_arrow")], // Up Arrow
+        ["o", toKey("right_arrow")], // Right Arrow
+      ]),
+    ],
+  },
+  {
+    description: "AE: tap = ä, hold = programming layer",
+    manipulators: [
+      holdLayerManipulator("ae_programming_layer", "quote"),
+      ...layerMappings("ae_programming_layer", [
+        ["s", toKey("8", ["right_option"])], // {
+        ["d", toKey("8", ["right_shift"])], // (
+        ["f", toKey("5", ["right_option"])], // [
+        ["j", toKey("6", ["right_option"])], // ]
+        ["k", toKey("9", ["right_shift"])], // )
+        ["l", toKey("9", ["right_option"])], // }
+        ["g", toKey("7", ["right_shift"])], // /
+        ["b", toKey("7", ["right_option"])], // |
+        ["h", toKey("7", ["right_option", "right_shift"])], // \
+        ["v", toKey("backslash", ["right_shift"])], // '
+        ["n", toKey("2", ["right_shift"])], // "
+        ["y", toKey("close_bracket", ["right_shift"])], // *; physical z on German layout
+        ["t", toKey("close_bracket")], // +
+        ["u", toKey("6", ["right_shift"])], // &
+        ["r", toKey("4", ["right_shift"])], // $
+        ["e", toKey("0", ["right_shift"])], // =
+        ["i", toKey("1", ["right_shift"])], // !
+        ["o", toKey("hyphen", ["right_shift"])], // ?
+        ["m", toKey("equal_sign", ["right_shift"])], // `
+        ["a", toKey("non_us_backslash")], // ^
+      ]),
     ],
   },
 ];
