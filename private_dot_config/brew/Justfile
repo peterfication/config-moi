@@ -4,8 +4,7 @@ brew-default:
 
 # Install all tools from Brewfile
 brew-install:
-  brew bundle install --file ~/.config/brew/Brewfile
-  just brew-packages-json
+  brew bundle install --file ~/.config/brew/Brewfile; just brew-packages-json
 
 # Install all tools from Brewfile.local if it exists
 brew-install-local:
