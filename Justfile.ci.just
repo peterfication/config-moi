@@ -1,5 +1,5 @@
 # Run all CI tasks
-ci: ci-sh ci-json-check ci-toml-check ci-lua-format ci-yaml-format ci-modules
+ci: ci-sh ci-json-check ci-toml-check ci-lua-format ci-yaml ci-modules
 
 ci-modules: karabiner-ci nix-ci
 
@@ -30,6 +30,12 @@ ci-shell-format:
 ci-toml-check:
   taplo check '**/*.toml'
 
+ci-yaml: ci-yaml-format ci-yaml-lint
+
 # Format YAML files
 ci-yaml-format:
-  yamlfmt .
+  mise exec -- yamlfmt .
+
+# Lint YAML files
+ci-yaml-lint:
+  mise exec -- yamllint .
