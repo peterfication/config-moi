@@ -17,21 +17,21 @@
     "name": "claude",
     "type": "cask",
     "versions": [
-      "1.12603.1,3df4fd263723119bc45f0af2d784afd5055e2ba9"
+      "1.17282.0,22fd1c1312a1ddabf60cd82636bd3f35dd703406"
     ]
   },
   {
     "name": "claude-code",
     "type": "cask",
     "versions": [
-      "2.1.153"
+      "2.1.185"
     ]
   },
   {
     "name": "codex",
     "type": "cask",
     "versions": [
-      "0.140.0"
+      "0.142.4"
     ]
   },
   {
@@ -59,7 +59,7 @@
     "name": "firefox",
     "type": "cask",
     "versions": [
-      "151.0.4"
+      "152.0.3"
     ]
   },
   {
@@ -80,7 +80,7 @@
     "name": "google-chrome",
     "type": "cask",
     "versions": [
-      "149.0.7827.115"
+      "149.0.7827.201"
     ]
   },
   {
@@ -94,21 +94,21 @@
     "name": "iina",
     "type": "cask",
     "versions": [
-      "1.4.3"
+      "1.4.4"
     ]
   },
   {
     "name": "karabiner-elements",
     "type": "cask",
     "versions": [
-      "15.9.0"
+      "16.0.0"
     ]
   },
   {
     "name": "leaf-md",
     "type": "formula",
     "versions": [
-      "1.24.2"
+      "1.25.0"
     ]
   },
   {
@@ -136,21 +136,21 @@
     "name": "opencode",
     "type": "formula",
     "versions": [
-      "1.17.5"
+      "1.17.10"
     ]
   },
   {
     "name": "quien",
     "type": "formula",
     "versions": [
-      "0.11.0"
+      "0.12.0"
     ]
   },
   {
     "name": "rustnet",
     "type": "formula",
     "versions": [
-      "1.3.0"
+      "1.4.0"
     ]
   },
   {
@@ -178,7 +178,7 @@
     "name": "stats",
     "type": "cask",
     "versions": [
-      "3.0.3"
+      "3.0.5"
     ]
   },
   {
@@ -199,7 +199,7 @@
     "name": "tableplus",
     "type": "cask",
     "versions": [
-      "7.2.2,722"
+      "26.6.0,730"
     ]
   },
   {
@@ -234,14 +234,14 @@
     "name": "xnviewmp",
     "type": "cask",
     "versions": [
-      "1.11.2"
+      "1.11.5"
     ]
   },
   {
     "name": "zed",
     "type": "cask",
     "versions": [
-      "1.6.3"
+      "1.8.2"
     ]
   }
 ]
