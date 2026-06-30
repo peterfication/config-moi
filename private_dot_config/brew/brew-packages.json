@@ -63,6 +63,13 @@
     ]
   },
   {
+    "name": "flux-app",
+    "type": "cask",
+    "versions": [
+      "42.2"
+    ]
+  },
+  {
     "name": "fuse-t",
     "type": "cask",
     "versions": [

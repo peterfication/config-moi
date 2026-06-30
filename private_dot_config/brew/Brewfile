@@ -17,6 +17,7 @@ brew 'veeso/termscp/termscp', trusted: true # https://github.com/veeso/termscp
 cask 'alfred'
 cask 'eurkey-next' # https://eurkey-macos.eu/
 cask 'firefox'
+cask 'flux-app' # https://justgetflux.com/
 cask 'google-chrome'
 cask 'hammerspoon'
 cask 'iina' # Video player
