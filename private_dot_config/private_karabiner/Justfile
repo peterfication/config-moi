@@ -1,3 +1,6 @@
+# All CI tasks for karabiner
+karabiner-ci: karabiner-generate
+
 # Generate the karabiner.json file from the karabiner.ts file
 karabiner-generate:
   cd private_dot_config/private_karabiner && deno task karabiner-generate

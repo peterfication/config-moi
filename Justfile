@@ -6,6 +6,8 @@ import 'private_dot_config/nix/Justfile'
 import 'private_dot_config/nvim/Justfile'
 import 'private_dot_config/private_karabiner/Justfile'
 
+ci: karabiner-ci
+
 # Chezmoi diff
 diff:
   just vscode-extensions-pretty
