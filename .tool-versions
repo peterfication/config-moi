@@ -1,4 +1,5 @@
 deno 2.9.0
+aqua:mvdan/sh 3.13.1
 aqua:koalaman/shellcheck 0.11.0
 aqua:JohnnyMorganz/StyLua 2.5.2
 aqua:tamasfe/taplo 0.10.0
