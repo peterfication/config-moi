@@ -5,7 +5,7 @@ return {
     priority = 1000,
     ---@type solarized.config
     opts = {
-      on_highlights = function(colors)
+      on_highlights = function(_colors)
         return {
           DiagnosticUnderlineError = { undercurl = true },
           DiagnosticUnderlineWarn = { undercurl = true },

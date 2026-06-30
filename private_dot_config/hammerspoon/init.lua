@@ -6,8 +6,8 @@ hs.loadSpoon("Caffeine")
 spoon.Caffeine:start()
 
 local current_id, threshold
-Swipe = hs.loadSpoon("Swipe")
-Swipe:start(4, function(direction, distance, id)
+local swipe = hs.loadSpoon("Swipe")
+swipe:start(4, function(direction, distance, id)
 	if id == current_id then
 		if distance > threshold then
 			-- only trigger once per swipe
@@ -20,10 +20,10 @@ Swipe:start(4, function(direction, distance, id)
 			elseif direction == "right" then
 				-- Trigger Aerospace left (hyper+j)
 				hs.eventtap.keyStroke({ "ctrl", "alt", "cmd", "shift" }, "j")
-			elseif direction == "up" then
-			-- no-op
-			elseif direction == "down" then
-				-- no-op
+				-- elseif direction == "up" then
+				-- 	-- ...
+				-- elseif direction == "down" then
+				-- 	-- ...
 			end
 		end
 	else

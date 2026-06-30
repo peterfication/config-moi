@@ -45,8 +45,9 @@ return {
             },
           },
           preview = {
+            -- luacheck: ignore 631
             -- From https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#use-terminal-image-viewer-to-preview-images
-            mime_hook = function(filepath, bufnr, opts)
+            mime_hook = function(filepath, bufnr, _preview_opts)
               local is_image = function(img_filepath)
                 local image_extensions = { "png", "jpg" } -- Supported image formats
                 local split_path = vim.split(img_filepath:lower(), ".", { plain = true })
