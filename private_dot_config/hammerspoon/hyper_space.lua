@@ -7,27 +7,29 @@ function M.setup(opts)
 	local documentsPath = home .. "/Documents"
 	local googleDrivePath = home .. "/Google Drive"
 	local screenshotsPath = home .. "/Pictures/Screenshots"
-  local iCloudDrivePath = home .. "/Library/Mobile Documents/com~apple~CloudDocs/tmp/"
+	local iCloudDrivePath = home .. "/Library/Mobile Documents/com~apple~CloudDocs/tmp/"
 
 	local function openPath(path)
 		hs.task.new("/usr/bin/open", nil, { path }):start()
 	end
 
 	local function openGhostty(path)
-		hs.task.new("/usr/bin/osascript", nil, {
-			"-e",
-			'tell application "Ghostty"',
-			"-e",
-			"activate",
-			"-e",
-			"set cfg to new surface configuration",
-			"-e",
-			('set initial working directory of cfg to "%s"'):format(path),
-			"-e",
-      "set win to new window with configuration cfg",
-			"-e",
-			"end tell",
-		}):start()
+		hs.task
+			.new("/usr/bin/osascript", nil, {
+				"-e",
+				'tell application "Ghostty"',
+				"-e",
+				"activate",
+				"-e",
+				"set cfg to new surface configuration",
+				"-e",
+				('set initial working directory of cfg to "%s"'):format(path),
+				"-e",
+				"set win to new window with configuration cfg",
+				"-e",
+				"end tell",
+			})
+			:start()
 	end
 
 	-- Hyper+Space mode
@@ -120,13 +122,13 @@ function M.setup(opts)
 	bindHyperSpaceF({}, "d", downloadsPath)
 	bindHyperSpaceF({ "shift" }, "d", documentsPath)
 	bindHyperSpaceF({}, "g", googleDrivePath)
-  bindHyperSpaceF({}, "i", iCloudDrivePath)
+	bindHyperSpaceF({}, "i", iCloudDrivePath)
 	bindHyperSpaceF({}, "s", screenshotsPath)
 
 	bindHyperSpaceT({}, "d", downloadsPath)
 	bindHyperSpaceT({ "shift" }, "d", documentsPath)
 	bindHyperSpaceT({}, "g", googleDrivePath)
-  bindHyperSpaceT({}, "i", iCloudDrivePath)
+	bindHyperSpaceT({}, "i", iCloudDrivePath)
 	bindHyperSpaceT({}, "s", screenshotsPath)
 
 	if opts.toggleCaffeine then

@@ -13,7 +13,7 @@ return {
       end)
     end,
     keys = {
-      { "ga",  group = "Text Case" },
+      { "ga", group = "Text Case" },
       { "ga.", "<CMD>TextCaseOpenTelescope<CR>", mode = { "n", "x" }, desc = "Telescope" },
       {
         "gar",

@@ -1,3 +1,3 @@
 return {
-  { key = "t", path = "~/tmp", desc = "~/tmp" },
+	{ key = "t", path = "~/tmp", desc = "~/tmp" },
 }
