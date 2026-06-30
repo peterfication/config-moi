@@ -16,7 +16,7 @@ ci-lua: ci-lua-format ci-lua-lint
 
 # Format Lua files
 ci-lua-format:
-  stylua private_dot_config/nvim private_dot_config/hammerspoon private_dot_config/yazi
+  mise exec -- stylua private_dot_config/nvim private_dot_config/hammerspoon private_dot_config/yazi
 
 # Lint Lua files
 ci-lua-lint:
@@ -26,15 +26,15 @@ ci-sh: ci-shell-format ci-shellcheck
 
 # Check shell scripts
 ci-shellcheck:
-  shellcheck scripts/*.sh private_dot_local/bin/executable_* private_dot_config/*/executable_*.sh
+  mise exec -- shellcheck scripts/*.sh private_dot_local/bin/executable_* private_dot_config/*/executable_*.sh
 
 # Check formatting of Shell scripts
 ci-shell-format:
-  shfmt -w scripts/*.sh private_dot_local/bin/executable_* private_dot_config/*/executable_*.sh
+  mise exec -- shfmt -w scripts/*.sh private_dot_local/bin/executable_* private_dot_config/*/executable_*.sh
 
 # Check TOML files
 ci-toml-check:
-  taplo check '**/*.toml'
+  mise exec -- taplo check '**/*.toml'
 
 ci-yaml: ci-yaml-format ci-yaml-lint
 
