@@ -26,7 +26,7 @@ type Rule = {
   manipulators: Manipulator[];
 };
 
-const karabinerJsonPath = new URL("./karabiner_new.json", import.meta.url).pathname;
+const karabinerJsonPath = new URL("./private_karabiner.json", import.meta.url).pathname;
 
 const optionalAny = { optional: ["any"] };
 const fnAny = { mandatory: ["fn"], optional: ["any"] };

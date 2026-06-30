@@ -11,10 +11,10 @@
   "permissions": {
     "default": {
       "read": [
-        "./karabiner_new.json"
+        "./private_karabiner.json"
       ],
       "write": [
-        "./karabiner_new.json"
+        "./private_karabiner.json"
       ]
     }
   }
