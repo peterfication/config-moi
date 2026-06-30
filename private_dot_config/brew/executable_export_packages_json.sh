@@ -6,20 +6,20 @@ BREWFILE="${BREWFILE:-"$SCRIPT_DIR/Brewfile"}"
 OUTPUT_PATH="${1:-"$SCRIPT_DIR/brew-packages.json"}"
 
 for command_name in brew jq; do
-  if ! command -v "$command_name" >/dev/null 2>&1; then
-    printf 'Error: required command not found: %s\n' "$command_name" >&2
-    exit 1
-  fi
+	if ! command -v "$command_name" >/dev/null 2>&1; then
+		printf 'Error: required command not found: %s\n' "$command_name" >&2
+		exit 1
+	fi
 done
 
 if [[ ! -r "$BREWFILE" ]]; then
-  printf 'Error: Brewfile not readable: %s\n' "$BREWFILE" >&2
-  exit 1
+	printf 'Error: Brewfile not readable: %s\n' "$BREWFILE" >&2
+	exit 1
 fi
 
 declarations_json="$(
-  sed -En "s/^[[:space:]]*(brew|cask)[[:space:]]+['\"]([^'\"]+)['\"].*/\\1	\\2/p" "$BREWFILE" |
-    jq -Rn '
+	sed -En "s/^[[:space:]]*(brew|cask)[[:space:]]+['\"]([^'\"]+)['\"].*/\\1	\\2/p" "$BREWFILE" |
+		jq -Rn '
       [
         inputs
         | split("\t")
@@ -35,9 +35,9 @@ declarations_json="$(
 installed_json="$(brew list --versions --json)"
 
 json="$(
-  jq -n \
-    --argjson declarations "$declarations_json" \
-    --argjson installed "$installed_json" '
+	jq -n \
+		--argjson declarations "$declarations_json" \
+		--argjson installed "$installed_json" '
       def installed_packages:
         (
           $installed.formulae[]
@@ -75,9 +75,9 @@ json="$(
 )"
 
 missing="$(
-  jq -nr \
-    --argjson declarations "$declarations_json" \
-    --argjson installed "$installed_json" '
+	jq -nr \
+		--argjson declarations "$declarations_json" \
+		--argjson installed "$installed_json" '
       [
         $installed.formulae[].name,
         $installed.casks[].token
@@ -90,14 +90,14 @@ missing="$(
 )"
 
 if [[ -n "$missing" ]]; then
-  printf 'Warning: Brewfile entries not installed:\n%s\n' "$missing" >&2
+	printf 'Warning: Brewfile entries not installed:\n%s\n' "$missing" >&2
 fi
 
 json="$(printf '%s\n' "$json" | jq -S .)"
 
 if [[ "$OUTPUT_PATH" == "-" ]]; then
-  printf '%s\n' "$json"
+	printf '%s\n' "$json"
 else
-  printf '%s\n' "$json" > "$OUTPUT_PATH"
-  printf 'Wrote Homebrew package versions to %s\n' "$OUTPUT_PATH"
+	printf '%s\n' "$json" >"$OUTPUT_PATH"
+	printf 'Wrote Homebrew package versions to %s\n' "$OUTPUT_PATH"
 fi

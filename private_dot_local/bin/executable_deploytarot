@@ -11,171 +11,171 @@ set -Eeuo pipefail
 readonly API_BASE_URL="https://deploytarot.com/api/reading"
 
 readonly ROLES=(
-    "junior-dev"
-    "senior-dev"
-    "tech-lead"
-    "eng-manager"
-    "vp-eng"
-    "sre"
-    "devops"
-    "dba"
-    "qa"
-    "security"
-    "product-manager"
-    "stakeholder"
-    "intern"
-    "contractor"
-    "hr"
-    "ceo"
-    "cto"
-    "ciso"
-    "data-scientist"
-    "designer"
-    "consultant"
-    "business-analyst"
-    "client"
-    "cleaning-lady"
-    "receptionist"
-    "doc-writer"
-    "rubber-duck"
-    "shadow-it"
-    "ai-agent"
-    "tarot-reader"
+	"junior-dev"
+	"senior-dev"
+	"tech-lead"
+	"eng-manager"
+	"vp-eng"
+	"sre"
+	"devops"
+	"dba"
+	"qa"
+	"security"
+	"product-manager"
+	"stakeholder"
+	"intern"
+	"contractor"
+	"hr"
+	"ceo"
+	"cto"
+	"ciso"
+	"data-scientist"
+	"designer"
+	"consultant"
+	"business-analyst"
+	"client"
+	"cleaning-lady"
+	"receptionist"
+	"doc-writer"
+	"rubber-duck"
+	"shadow-it"
+	"ai-agent"
+	"tarot-reader"
 )
 
 readonly INTENTS=(
-    "full-release"
-    "new-feature"
-    "hotfix-prod"
-    "quick-fix"
-    "refactor"
-    "dependency-update"
-    "db-migration"
-    "infra-change"
-    "rollback"
-    "config-change"
-    "feature-flag"
-    "api-release"
-    "auth-rewrite"
-    "security-patch"
-    "performance"
-    "mobile-release"
-    "ab-test"
-    "ai-integration"
-    "gdpr-compliance"
-    "deprecation"
-    "sunset"
-    "open-source"
-    "redesign"
-    "rebranding"
-    "public-doc-release"
-    "seo-optimization"
-    "ipo"
-    "just-vibes"
+	"full-release"
+	"new-feature"
+	"hotfix-prod"
+	"quick-fix"
+	"refactor"
+	"dependency-update"
+	"db-migration"
+	"infra-change"
+	"rollback"
+	"config-change"
+	"feature-flag"
+	"api-release"
+	"auth-rewrite"
+	"security-patch"
+	"performance"
+	"mobile-release"
+	"ab-test"
+	"ai-integration"
+	"gdpr-compliance"
+	"deprecation"
+	"sunset"
+	"open-source"
+	"redesign"
+	"rebranding"
+	"public-doc-release"
+	"seo-optimization"
+	"ipo"
+	"just-vibes"
 )
 
 require_command() {
-    local -r command_name="$1"
+	local -r command_name="$1"
 
-    if ! command -v "$command_name" >/dev/null 2>&1; then
-        printf "Missing required command: %s\n" "$command_name" >&2
-        exit 1
-    fi
+	if ! command -v "$command_name" >/dev/null 2>&1; then
+		printf "Missing required command: %s\n" "$command_name" >&2
+		exit 1
+	fi
 }
 
 pick_with_fzf() {
-    local -r prompt="$1"
-    shift
-    local selection
+	local -r prompt="$1"
+	shift
+	local selection
 
-    selection="$(printf '%s\n' "$@" | fzf --prompt="${prompt}> " --height=40% --layout=reverse --border)"
+	selection="$(printf '%s\n' "$@" | fzf --prompt="${prompt}> " --height=40% --layout=reverse --border)"
 
-    if [[ -z "$selection" ]]; then
-        printf "No selection made for %s.\n" "$prompt" >&2
-        exit 1
-    fi
+	if [[ -z "$selection" ]]; then
+		printf "No selection made for %s.\n" "$prompt" >&2
+		exit 1
+	fi
 
-    printf "%s" "$selection"
+	printf "%s" "$selection"
 }
 
 urlencode() {
-    python3 -c 'import sys, urllib.parse; print(urllib.parse.quote(sys.argv[1], safe=""))' "$1"
+	python3 -c 'import sys, urllib.parse; print(urllib.parse.quote(sys.argv[1], safe=""))' "$1"
 }
 
 parse_json_field() {
-    local -r field_name="$1"
+	local -r field_name="$1"
 
-    jq -r --arg field_name "$field_name" '.[$field_name] // ""'
+	jq -r --arg field_name "$field_name" '.[$field_name] // ""'
 }
 
 print_cards() {
-    jq -r '
+	jq -r '
         .cards[]
         | "• \(.position_label): \(.name) \((if .reversed then "reversed" else "upright" end))\n  \(.narrative)"
     '
 }
 
 open_url() {
-    local -r url="$1"
+	local -r url="$1"
 
-    if command -v open >/dev/null 2>&1; then
-        open "$url"
-        return
-    fi
+	if command -v open >/dev/null 2>&1; then
+		open "$url"
+		return
+	fi
 
-    if command -v xdg-open >/dev/null 2>&1; then
-        xdg-open "$url"
-        return
-    fi
+	if command -v xdg-open >/dev/null 2>&1; then
+		xdg-open "$url"
+		return
+	fi
 
-    printf "share_url: %s\n" "$url"
+	printf "share_url: %s\n" "$url"
 }
 
 main() {
-    require_command "curl"
-    require_command "fzf"
-    require_command "jq"
-    require_command "python3"
+	require_command "curl"
+	require_command "fzf"
+	require_command "jq"
+	require_command "python3"
 
-    local role
-    local intent
-    local response
-    local encoded_role
-    local encoded_intent
-    local share_url
-    # local verdict
-    local verdict_label
-    local verdict_text
+	local role
+	local intent
+	local response
+	local encoded_role
+	local encoded_intent
+	local share_url
+	# local verdict
+	local verdict_label
+	local verdict_text
 
-    role="$(pick_with_fzf "Role" "${ROLES[@]}")"
-    intent="$(pick_with_fzf "Intent" "${INTENTS[@]}")"
+	role="$(pick_with_fzf "Role" "${ROLES[@]}")"
+	intent="$(pick_with_fzf "Intent" "${INTENTS[@]}")"
 
-    encoded_role="$(urlencode "$role")"
-    encoded_intent="$(urlencode "$intent")"
-    response="$(curl -fsS "${API_BASE_URL}?role=${encoded_role}&intent=${encoded_intent}")"
+	encoded_role="$(urlencode "$role")"
+	encoded_intent="$(urlencode "$intent")"
+	response="$(curl -fsS "${API_BASE_URL}?role=${encoded_role}&intent=${encoded_intent}")"
 
-    share_url="$(printf '%s' "$response" | parse_json_field "share_url")"
-    # verdict="$(printf '%s' "$response" | parse_json_field "verdict")"
-    verdict_label="$(printf '%s' "$response" | parse_json_field "verdict_label")"
-    verdict_text="$(printf '%s' "$response" | parse_json_field "verdict_text")"
+	share_url="$(printf '%s' "$response" | parse_json_field "share_url")"
+	# verdict="$(printf '%s' "$response" | parse_json_field "verdict")"
+	verdict_label="$(printf '%s' "$response" | parse_json_field "verdict_label")"
+	verdict_text="$(printf '%s' "$response" | parse_json_field "verdict_text")"
 
-    printf "Role: %s\n" "$role"
-    printf "Intent: %s\n" "$intent"
-    echo ""
-    printf "Cards\n"
-    printf '%s' "$response" | print_cards
-    echo ""
-    printf "%s\n" "$verdict_label"
-    printf "%s\n" "$verdict_text"
+	printf "Role: %s\n" "$role"
+	printf "Intent: %s\n" "$intent"
+	echo ""
+	printf "Cards\n"
+	printf '%s' "$response" | print_cards
+	echo ""
+	printf "%s\n" "$verdict_label"
+	printf "%s\n" "$verdict_text"
 
-    if [[ -z "$share_url" ]]; then
-        printf "Response did not include share_url.\n" >&2
-        exit 1
-    fi
+	if [[ -z "$share_url" ]]; then
+		printf "Response did not include share_url.\n" >&2
+		exit 1
+	fi
 
-    echo ""
-    printf "Opening: %s\n" "$share_url"
-    open_url "$share_url"
+	echo ""
+	printf "Opening: %s\n" "$share_url"
+	open_url "$share_url"
 }
 
 main "$@"

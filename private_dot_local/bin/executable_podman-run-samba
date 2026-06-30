@@ -27,18 +27,18 @@ echo
 
 # Remove old container if it exists
 if podman container exists "${CONTAINER_NAME}"; then
-  podman rm -f "${CONTAINER_NAME}" >/dev/null
+	podman rm -f "${CONTAINER_NAME}" >/dev/null
 fi
 
 # https://github.com/ServerContainers/samba
 podman run --rm \
-  --name "${CONTAINER_NAME}" \
-  -e "ACCOUNT_${USER_NAME}=${USER_PASSWORD}" \
-  -e "SAMBA_CONF_WORKGROUP=WORKGROUP" \
-  -e "NETBIOS_DISABLE=true" \
-  -e "AVAHI_DISABLE=true" \
-  -e "WSDD2_DISABLE=true" \
-  -e "SAMBA_VOLUME_CONFIG_files=${SAMBA_VOLUME_CONFIG_FILES}" \
-  -p 1445:445 \
-  -v "${HOST_DATA_DIR}:/shares/files" \
-  "${IMAGE}"
+	--name "${CONTAINER_NAME}" \
+	-e "ACCOUNT_${USER_NAME}=${USER_PASSWORD}" \
+	-e "SAMBA_CONF_WORKGROUP=WORKGROUP" \
+	-e "NETBIOS_DISABLE=true" \
+	-e "AVAHI_DISABLE=true" \
+	-e "WSDD2_DISABLE=true" \
+	-e "SAMBA_VOLUME_CONFIG_files=${SAMBA_VOLUME_CONFIG_FILES}" \
+	-p 1445:445 \
+	-v "${HOST_DATA_DIR}:/shares/files" \
+	"${IMAGE}"

@@ -2,7 +2,7 @@
 set -Eeuo pipefail
 
 usage() {
-    cat <<'EOF'
+	cat <<'EOF'
 Usage: tmux-worktree-open [worktree-path]
 
 Open a Git worktree in its standard tmux session, creating the session with an
@@ -11,64 +11,64 @@ EOF
 }
 
 die() {
-    printf "tmux-worktree-open: %s\n" "$*" >&2
-    exit 1
+	printf "tmux-worktree-open: %s\n" "$*" >&2
+	exit 1
 }
 
 require_command() {
-    command -v "$1" >/dev/null 2>&1 || die "missing required command: $1"
+	command -v "$1" >/dev/null 2>&1 || die "missing required command: $1"
 }
 
 slugify() {
-    printf "%s" "$1" |
-        tr '[:upper:]' '[:lower:]' |
-        sed -E 's#\.#_#g; s#[^a-z0-9_-]+#-#g; s#^-+##; s#-+$##'
+	printf "%s" "$1" |
+		tr '[:upper:]' '[:lower:]' |
+		sed -E 's#\.#_#g; s#[^a-z0-9_-]+#-#g; s#^-+##; s#-+$##'
 }
 
 main() {
-    local requested_path="${1:-$PWD}"
-    local worktree_path
-    local common_git_dir
-    local project_root
-    local project_name
-    local worktree_name
-    local session_name
+	local requested_path="${1:-$PWD}"
+	local worktree_path
+	local common_git_dir
+	local project_root
+	local project_name
+	local worktree_name
+	local session_name
 
-    [[ $# -le 1 ]] || die "expected zero or one worktree path"
-    require_command git
-    require_command tmux
+	[[ $# -le 1 ]] || die "expected zero or one worktree path"
+	require_command git
+	require_command tmux
 
-    worktree_path="$(
-        cd "$requested_path" 2>/dev/null && git rev-parse --show-toplevel
-    )" || die "not a Git worktree: $requested_path"
-    common_git_dir="$(
-        git -C "$worktree_path" rev-parse --path-format=absolute --git-common-dir
-    )"
-    project_root="$(dirname "$common_git_dir")"
-    project_name="$(basename "$project_root")"
-    worktree_name="$(basename "$worktree_path")"
+	worktree_path="$(
+		cd "$requested_path" 2>/dev/null && git rev-parse --show-toplevel
+	)" || die "not a Git worktree: $requested_path"
+	common_git_dir="$(
+		git -C "$worktree_path" rev-parse --path-format=absolute --git-common-dir
+	)"
+	project_root="$(dirname "$common_git_dir")"
+	project_name="$(basename "$project_root")"
+	worktree_name="$(basename "$worktree_path")"
 
-    if [[ "$worktree_path" == "$project_root" ]]; then
-        session_name="$(slugify "$project_name")"
-    elif [[ "$worktree_name" == "$project_name"-* ]]; then
-        session_name="$(slugify "$worktree_name")"
-    else
-        session_name="$(slugify "${project_name}-${worktree_name}")"
-    fi
-    [[ -n "$session_name" ]] || die "could not create a tmux session name"
+	if [[ "$worktree_path" == "$project_root" ]]; then
+		session_name="$(slugify "$project_name")"
+	elif [[ "$worktree_name" == "$project_name"-* ]]; then
+		session_name="$(slugify "$worktree_name")"
+	else
+		session_name="$(slugify "${project_name}-${worktree_name}")"
+	fi
+	[[ -n "$session_name" ]] || die "could not create a tmux session name"
 
-    if ! tmux has-session -t "=$session_name" 2>/dev/null; then
-        require_command nvim
-        printf "Creating tmux session: %s\n" "$session_name"
-        tmux new-session -d -c "$worktree_path" -s "$session_name" -n nvim
-        tmux send-keys -t "=$session_name:nvim" nvim Enter
-    fi
+	if ! tmux has-session -t "=$session_name" 2>/dev/null; then
+		require_command nvim
+		printf "Creating tmux session: %s\n" "$session_name"
+		tmux new-session -d -c "$worktree_path" -s "$session_name" -n nvim
+		tmux send-keys -t "=$session_name:nvim" nvim Enter
+	fi
 
-    if [[ -n "${TMUX:-}" ]]; then
-        tmux switch-client -t "=$session_name"
-    else
-        tmux attach-session -t "=$session_name"
-    fi
+	if [[ -n "${TMUX:-}" ]]; then
+		tmux switch-client -t "=$session_name"
+	else
+		tmux attach-session -t "=$session_name"
+	fi
 }
 
 main "$@"

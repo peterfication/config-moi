@@ -3,7 +3,7 @@
 # This script is executed when either the mode changes,
 # or the commandline changes
 # This is just an example using sketchybar:
-# The variables $MODE and $CMDLINE hold the 
+# The variables $MODE and $CMDLINE hold the
 # current editor and cmdline info
 
 # COLOR=0xff9dd274

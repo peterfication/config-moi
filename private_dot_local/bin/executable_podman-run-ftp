@@ -10,7 +10,6 @@ IMAGE="docker.io/delfer/alpine-ftp-server:latest"
 HOST_DATA_DIR="${HOME}/tmp/ftp"
 mkdir -p "${HOST_DATA_DIR}"
 
-
 echo "Starting FTP server..."
 echo
 echo "Host: localhost"
@@ -26,17 +25,17 @@ echo
 
 # Remove old container if it exists
 if podman container exists "${CONTAINER_NAME}"; then
-  podman rm -f "${CONTAINER_NAME}" >/dev/null
+	podman rm -f "${CONTAINER_NAME}" >/dev/null
 fi
 
 # https://github.com/delfer/docker-alpine-ftp-server
 podman run --rm \
-  --name "${CONTAINER_NAME}" \
-  -e "USERS=${USER_NAME}|${USER_PASSWORD}" \
-  -e "ADDRESS=127.0.0.1" \
-  -e "MIN_PORT=21000" \
-  -e "MAX_PORT=21100" \
-  -p 2121:21 \
-  -p 21000-21100:21000-21100 \
-  -v "${HOST_DATA_DIR}:/ftp/ftpuser" \
-  "${IMAGE}"
+	--name "${CONTAINER_NAME}" \
+	-e "USERS=${USER_NAME}|${USER_PASSWORD}" \
+	-e "ADDRESS=127.0.0.1" \
+	-e "MIN_PORT=21000" \
+	-e "MAX_PORT=21100" \
+	-p 2121:21 \
+	-p 21000-21100:21000-21100 \
+	-v "${HOST_DATA_DIR}:/ftp/ftpuser" \
+	"${IMAGE}"

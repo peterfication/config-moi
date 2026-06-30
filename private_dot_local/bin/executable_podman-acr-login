@@ -2,23 +2,23 @@
 set -euo pipefail
 
 if ! command -v az >/dev/null 2>&1; then
-  echo "az command not found" >&2
-  exit 1
+	echo "az command not found" >&2
+	exit 1
 fi
 
 if ! command -v podman >/dev/null 2>&1; then
-  echo "podman command not found" >&2
-  exit 1
+	echo "podman command not found" >&2
+	exit 1
 fi
 
 if ! command -v jq >/dev/null 2>&1; then
-  echo "jq command not found" >&2
-  exit 1
+	echo "jq command not found" >&2
+	exit 1
 fi
 
 if [[ $# -ne 1 ]]; then
-  echo "usage: podman-acr-login <acr-name>" >&2
-  exit 1
+	echo "usage: podman-acr-login <acr-name>" >&2
+	exit 1
 fi
 
 name="$1"
@@ -27,11 +27,11 @@ token="$(jq -r '.accessToken // empty' <<<"${acr_login_output}")"
 login_server="$(jq -r '.loginServer // empty' <<<"${acr_login_output}")"
 
 if [[ -z "${token}" || -z "${login_server}" ]]; then
-  echo "failed to retrieve ACR token or login server for: ${name}" >&2
-  exit 1
+	echo "failed to retrieve ACR token or login server for: ${name}" >&2
+	exit 1
 fi
 
 podman login \
-  --username 00000000-0000-0000-0000-000000000000 \
-  --password "${token}" \
-  "${login_server}"
+	--username 00000000-0000-0000-0000-000000000000 \
+	--password "${token}" \
+	"${login_server}"

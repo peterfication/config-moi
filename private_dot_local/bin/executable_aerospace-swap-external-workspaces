@@ -23,15 +23,15 @@ monitors="$("$aerospace_bin" list-monitors --format "$monitor_format" 2>/dev/nul
 monitor_count="$(printf '%s\n' "$monitors" | awk 'NF { count += 1 } END { print count + 0 }')"
 
 case "$monitor_count" in
-  2)
-    target_monitors="$monitors"
-    ;;
-  3)
-    target_monitors="$(printf '%s\n' "$monitors" | awk -F '\t' 'tolower($2) !~ /built-in/')"
-    ;;
-  *)
-    exit 0
-    ;;
+2)
+	target_monitors="$monitors"
+	;;
+3)
+	target_monitors="$(printf '%s\n' "$monitors" | awk -F '\t' 'tolower($2) !~ /built-in/')"
+	;;
+*)
+	exit 0
+	;;
 esac
 
 target_count="$(printf '%s\n' "$target_monitors" | awk 'NF { count += 1 } END { print count + 0 }')"

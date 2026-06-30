@@ -28,20 +28,20 @@ in
 cd "$SCRIPT_DIR"
 
 json="$(
-  nix eval \
-    --json \
-    --impure \
-    --extra-experimental-features "nix-command flakes" \
-    --expr "$NIX_EXPR"
+	nix eval \
+		--json \
+		--impure \
+		--extra-experimental-features "nix-command flakes" \
+		--expr "$NIX_EXPR"
 )"
 
 if command -v jq >/dev/null 2>&1; then
-  json="$(printf '%s\n' "$json" | jq -S .)"
+	json="$(printf '%s\n' "$json" | jq -S .)"
 fi
 
 if [[ "$OUTPUT_PATH" == "-" ]]; then
-  printf '%s\n' "$json"
+	printf '%s\n' "$json"
 else
-  printf '%s\n' "$json" > "$OUTPUT_PATH"
-  printf 'Wrote system package versions to %s\n' "$OUTPUT_PATH"
+	printf '%s\n' "$json" >"$OUTPUT_PATH"
+	printf 'Wrote system package versions to %s\n' "$OUTPUT_PATH"
 fi
