@@ -39,7 +39,12 @@ return {
           end,
           copy_relative_file_path = function(state)
             local node = state.tree:get_node()
-            local content = node.path:sub(#state.path + 2)
+            local content = vim.fs.relpath(state.path, node.path) or node.path
+            vim.notify(vim.inspect({
+              state_path = state.path,
+              node_path = node.path,
+              relative_path = content,
+            }))
             vim.fn.setreg('"', content)
             vim.fn.setreg("1", content)
             vim.fn.setreg("+", content)
