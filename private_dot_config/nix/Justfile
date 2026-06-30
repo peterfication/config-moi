@@ -2,6 +2,13 @@
 nix-default:
   just --list
 
+# All CI tasks for nix
+nix-ci: nix-check
+
+# Check the nix flake
+nix-check:
+  nix flake check ./private_dot_config/nix --extra-experimental-features 'nix-command flakes'
+
 # Apply current macOS configuration
 nix-darwin-rebuild:
   sudo darwin-rebuild switch --flake ~/.config/nix#simple

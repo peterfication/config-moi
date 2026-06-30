@@ -1,5 +1,7 @@
 # Run all CI tasks
-ci: karabiner-ci ci-sh ci-json-check ci-toml-check ci-lua-format
+ci: ci-sh ci-json-check ci-toml-check ci-lua-format ci-modules
+
+ci-modules: karabiner-ci nix-ci
 
 ci-sh: ci-shell-format ci-shellcheck
 
