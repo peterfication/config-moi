@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Resources:
 # - https://github.com/herrbischoff/awesome-macos-command-line
 # - https://gist.github.com/brandonb927/3195465

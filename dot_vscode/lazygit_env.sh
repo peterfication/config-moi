@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 export EDITOR="code --wait"
 export GIT_EDITOR="code --wait"
 

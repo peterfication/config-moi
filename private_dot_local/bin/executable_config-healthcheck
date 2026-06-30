@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-readonly GREEN="$(printf '\033[32m')"
-readonly YELLOW="$(printf '\033[33m')"
-readonly RESET="$(printf '\033[0m')"
+GREEN="$(printf '\033[32m')"
+YELLOW="$(printf '\033[33m')"
+RESET="$(printf '\033[0m')"
+readonly GREEN YELLOW RESET
 
 check_file() {
     local -r label="$1"

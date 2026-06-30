@@ -143,7 +143,7 @@ main() {
     local encoded_role
     local encoded_intent
     local share_url
-    local verdict
+    # local verdict
     local verdict_label
     local verdict_text
 
@@ -155,7 +155,7 @@ main() {
     response="$(curl -fsS "${API_BASE_URL}?role=${encoded_role}&intent=${encoded_intent}")"
 
     share_url="$(printf '%s' "$response" | parse_json_field "share_url")"
-    verdict="$(printf '%s' "$response" | parse_json_field "verdict")"
+    # verdict="$(printf '%s' "$response" | parse_json_field "verdict")"
     verdict_label="$(printf '%s' "$response" | parse_json_field "verdict_label")"
     verdict_text="$(printf '%s' "$response" | parse_json_field "verdict_text")"
 

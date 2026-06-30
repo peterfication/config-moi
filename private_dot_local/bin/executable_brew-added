@@ -75,6 +75,7 @@ else
 fi
 
 extract_desc() {
+  # shellcheck disable=SC2016
   ruby -e '
     content = STDIN.read
 
