@@ -4,3 +4,21 @@ Host *
   UseKeychain yes
   AddKeysToAgent yes
   IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+
+# How to use two Github accounts on one machine with 1Password SSH agent
+Host github.com-other
+    HostName ssh.github.com
+    Port 443
+    User git
+    # The IdentityFile (public key) acts kind of as an SSH selector for the 1Password agent
+    # Export the public key from 1Password
+    IdentityFile ~/.ssh/id_ed25519_github.pub
+    IdentitiesOnly yes
+Host github.com-other
+    HostName ssh.github.com
+    Port 443
+    User git
+    # The IdentityFile (public key) acts kind of as an SSH selector for the 1Password agent
+    # Export the public key from 1Password
+    IdentityFile ~/.ssh/id_ed25519_github_other.pub
+    IdentitiesOnly yes
