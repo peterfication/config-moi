@@ -32,6 +32,7 @@ main() {
 	local project_root
 	local project_name
 	local worktree_name
+	local worktree_task
 	local session_name
 
 	[[ $# -le 1 ]] || die "expected zero or one worktree path"
@@ -50,10 +51,13 @@ main() {
 
 	if [[ "$worktree_path" == "$project_root" ]]; then
 		session_name="$(slugify "$project_name")"
-	elif [[ "$worktree_name" == "$project_name"-* ]]; then
+	elif [[ "$worktree_name" == "$project_name"-worktree-* ]]; then
 		session_name="$(slugify "$worktree_name")"
+	elif [[ "$worktree_name" == "$project_name"-* ]]; then
+		worktree_task="${worktree_name#"$project_name"-}"
+		session_name="$(slugify "${project_name}-worktree-${worktree_task}")"
 	else
-		session_name="$(slugify "${project_name}-${worktree_name}")"
+		session_name="$(slugify "${project_name}-worktree-${worktree_name}")"
 	fi
 	[[ -n "$session_name" ]] || die "could not create a tmux session name"
 

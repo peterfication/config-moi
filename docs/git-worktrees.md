@@ -12,7 +12,7 @@ By default this creates:
 
 - branch `wt/feature/my-task`
 - worktree `../<project>-worktrees/<project>-feature-my-task`
-- tmux session `<project>-feature-my-task`
+- tmux session `<project>-worktree-feature-my-task`
 - an `nvim` window rooted in the new worktree
 
 In Lazygit's worktrees panel, press `T` to open the selected worktree's tmux
