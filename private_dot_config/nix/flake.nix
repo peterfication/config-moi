@@ -13,6 +13,7 @@
     system = "aarch64-darwin";
     chezmoiUrl = "https://github.com/peterfication/config-moi.git";
     environmentVariables = import ./environmentVariables.nix;
+    loginItems = import ./loginItems.nix;
     localConfig = import ./local.nix;
     shellAliases = import ./shellAliases.nix;
     systemDefaults = import ./systemDefaults.nix;
@@ -39,6 +40,10 @@
       ];
       environment.shellAliases = shellAliases;
       environment.variables = environmentVariables pkgs;
+
+      launchd.user.agents = loginItems {
+        inherit pkgsUnstable;
+      };
 
       programs.zsh.enableCompletion = false;
       # Enable alternative shell support in nix-darwin.
