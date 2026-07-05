@@ -8,7 +8,7 @@ kill-process() {
   if [ "x$pid" != "x" ]
   then
     echo $pid | xargs sudo kill -${1:-9}
-    kp
+    kill-process
   fi
 }
 alias kp=kill-process
