@@ -186,6 +186,8 @@ const rules: Rule[] = [
       fnKeyManipulator("j", toKey("down_arrow")), // Down Arrow
       fnKeyManipulator("k", toKey("up_arrow")), // Up Arrow
       fnKeyManipulator("spacebar", toKey("return_or_enter")), // Return
+      fnKeyManipulator("right_command", toKey("tab")), // Tab
+      fnKeyManipulator("right_option", toKey("delete_or_backspace")), // Backspace
       fnKeyManipulator("b", toKey("delete_or_backspace")), // Backspace
       fnKeyManipulator("n", toKey("tab")), // Tab
       fnKeyManipulator("y", { mouse_key: { vertical_wheel: 32 } }),
