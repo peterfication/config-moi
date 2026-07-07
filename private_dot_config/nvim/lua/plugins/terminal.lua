@@ -191,6 +191,7 @@ return {
       { "<Leader>tn", open_new_terminal, desc = "Open a new terminal" },
 
       { "<Leader>gd", ':8TermExec cmd="lazydocker; exit" direction=float<CR>', desc = "Open lazydocker" },
+      { "<Leader>gD", ':8TermExec cmd="lazypodman; exit" direction=float<CR>', desc = "Open lazypodman" },
 
       -- NOTE: <Leader><ESC> would be a nice mapping but this will mess with spaces that
       -- that you want to enter.
