@@ -34,6 +34,19 @@ swipe:start(4, function(direction, distance, id)
 end)
 
 local tailscaleBin = "/usr/local/bin/tailscale"
+local tailscaleExitNodesByHost = {
+	["Peters-MacBook-Pro"] = "vpn",
+	default = "vpn",
+}
+
+local function trim(value)
+	return (value:gsub("^%s+", ""):gsub("%s+$", ""))
+end
+
+local function tailscaleExitNodeForHost()
+	local localHostName = trim(hs.execute("/usr/sbin/scutil --get LocalHostName") or "")
+	return tailscaleExitNodesByHost[localHostName] or tailscaleExitNodesByHost.default
+end
 
 local function toggleCaffeine()
 	if hs.caffeinate.get("displayIdle") then
@@ -98,7 +111,52 @@ local function toggleTailscale()
 	end)
 end
 
+local function toggleTailscaleExitNode()
+	runTailscale({ "debug", "prefs" }, function(exitCode, stdOut, stdErr)
+		if exitCode ~= 0 then
+			hs.alert.show("Tailscale prefs failed")
+			if stdErr and stdErr ~= "" then
+				print(stdErr)
+			end
+			return
+		end
+
+		local prefs = hs.json.decode(stdOut)
+		if not prefs then
+			hs.alert.show("Tailscale prefs unreadable")
+			return
+		end
+
+		local exitNode = tailscaleExitNodeForHost()
+		if not exitNode or exitNode == "" then
+			hs.alert.show("No Tailscale exit node configured")
+			return
+		end
+
+		local nextArgs = { "set", "--exit-node=" .. exitNode }
+		local nextLabel = "Tailscale exit node: " .. exitNode
+
+		if (prefs.ExitNodeID and prefs.ExitNodeID ~= "") or (prefs.ExitNodeIP and prefs.ExitNodeIP ~= "") then
+			nextArgs = { "set", "--exit-node=" }
+			nextLabel = "Tailscale exit node: off"
+		end
+
+		runTailscale(nextArgs, function(toggleExitCode, _, toggleErr)
+			if toggleExitCode == 0 then
+				hs.alert.show(nextLabel)
+				return
+			end
+
+			hs.alert.show("Tailscale exit node toggle failed")
+			if toggleErr and toggleErr ~= "" then
+				print(toggleErr)
+			end
+		end)
+	end)
+end
+
 require("hyper_space").setup({
 	toggleCaffeine = toggleCaffeine,
 	toggleTailscale = toggleTailscale,
+	toggleTailscaleExitNode = toggleTailscaleExitNode,
 })

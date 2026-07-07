@@ -137,6 +137,9 @@ function M.setup(opts)
 	if opts.toggleTailscale then
 		bindHyperSpaceM({}, "t", opts.toggleTailscale)
 	end
+	if opts.toggleTailscaleExitNode then
+		bindHyperSpaceM({}, "v", opts.toggleTailscaleExitNode)
+	end
 end
 
 return M
