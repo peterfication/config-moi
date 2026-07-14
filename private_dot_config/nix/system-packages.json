@@ -197,15 +197,15 @@
   },
   {
     "name": "podman",
-    "version": "5.8.2"
+    "version": "5.8.4"
   },
   {
     "name": "podman-compose",
-    "version": "1.5.0"
+    "version": "1.6.0"
   },
   {
     "name": "podman-tui",
-    "version": "1.11.1"
+    "version": "1.11.3"
   },
   {
     "name": "postgresql",

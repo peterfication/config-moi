@@ -16,7 +16,7 @@ with pkgs; [
   bat # https://github.com/sharkdp/bat
   bitwarden-cli # https://github.com/bitwarden/clients
   chezmoi # https://www.chezmoi.io
-  pkgsUnstable.colima # https://github.com/abiosoft/colima
+  colima # https://github.com/abiosoft/colima
   curl
   delta # https://github.com/dandavison/delta
   direnv # https://github.com/direnv/direnv
@@ -68,7 +68,7 @@ with pkgs; [
 
   # Container tooling
   dive # https://github.com/wagoodman/dive (Docker image inspection)
-  podman # https://github.com/containers/podman
-  podman-compose # https://github.com/containers/podman-compose
-  podman-tui # https://github.com/containers/podman-tui
+  pkgsUnstable.podman # https://github.com/containers/podman
+  pkgsUnstable.podman-compose # https://github.com/containers/podman-compose
+  pkgsUnstable.podman-tui # https://github.com/containers/podman-tui
 ]
