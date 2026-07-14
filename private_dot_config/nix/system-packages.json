@@ -9,7 +9,7 @@
   },
   {
     "name": "aerospace",
-    "version": "0.20.3-Beta"
+    "version": "0.21.2-Beta"
   },
   {
     "name": "age",
@@ -117,7 +117,7 @@
   },
   {
     "name": "gh",
-    "version": "2.93.0"
+    "version": "2.96.0"
   },
   {
     "name": "ghostty-bin",
@@ -157,7 +157,7 @@
   },
   {
     "name": "lazygit",
-    "version": "0.62.2"
+    "version": "0.63.0"
   },
   {
     "name": "lefthook",
@@ -169,7 +169,7 @@
   },
   {
     "name": "mise",
-    "version": "2026.6.0"
+    "version": "2026.7.4"
   },
   {
     "name": "nats-server",
@@ -185,7 +185,7 @@
   },
   {
     "name": "neovim",
-    "version": "0.12.2"
+    "version": "0.12.4"
   },
   {
     "name": "openssl",
@@ -261,7 +261,7 @@
   },
   {
     "name": "uv",
-    "version": "0.11.17"
+    "version": "0.11.26"
   },
   {
     "name": "vim",
