@@ -5,7 +5,7 @@ bind r source-file ~/.config/tmux/tmux.conf \; display "Config Reloaded!"
 #### SESSIONS ####
 
 # Switch sessions with the help of fzf
-bind-key C-f run-shell -b 'selected=$(tmux ls -F "##{session_activity}|##{t/p:session_activity}|##S" | sort -t"|" -k1,1nr | awk -F"|" "{print \$2 \"\t\" \$3}" | fzf-tmux -- --header "[Switch session]") || exit 0; target=$(printf "%s" "$selected" | awk -F "\t" "{print \$NF}"); [ -n "$target" ] && tmux switch-client -t "$target"'
+bind-key C-f run-shell -b 'selected=$(tmux ls -F "##{session_last_attached}|##{t/p:session_last_attached}|##S" | sort -t"|" -k1,1nr | awk -F"|" "{print \$2 \"\t\" \$3}" | fzf-tmux -p 100%,100% -- --header "[Switch session]" --delimiter="\t" --preview-window=right:80% --preview="tmux capture-pane -epJ -S -40 -t {2}:") || exit 0; target=$(printf "%s" "$selected" | awk -F "\t" "{print \$NF}"); [ -n "$target" ] && tmux switch-client -t "$target"'
 
 # Kill sessions with the help of fzf
 bind-key C-d run-shell -b 'selected=$(tmux ls -F "##S" | fzf-tmux -- --header "[Kill session]") || exit 0; [ -n "$selected" ] && tmux kill-session -t "$selected"'
