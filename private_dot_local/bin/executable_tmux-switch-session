@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
 
+# FZF_PREVIEW_LINES is expanded by fzf's preview shell, not this script.
+# shellcheck disable=SC2016
+preview_command='tmux capture-pane -ep -t {2}: | tail -n "${FZF_PREVIEW_LINES:-40}"'
+
 selected=$(
 	tmux ls -F '#{session_last_attached}|#{t/p:session_last_attached}|#{session_name}' |
 		sort -t '|' -k1,1nr |
@@ -8,7 +12,7 @@ selected=$(
 			--header '[Switch session]' \
 			--delimiter='\t' \
 			--preview-window=right:80% \
-			--preview='tmux capture-pane -epJ -S -40 -t {2}:'
+			--preview="$preview_command"
 ) || exit 0
 
 target=$(printf '%s' "$selected" | awk -F '\t' '{print $NF}')
