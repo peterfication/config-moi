@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+selected=$(
+	tmux ls -F '#{session_last_attached}|#{t/p:session_last_attached}|#{session_name}' |
+		sort -t '|' -k1,1nr |
+		awk -F '|' '{print $2 "\t" $3}' |
+		fzf-tmux -p 100%,100% -- \
+			--header '[Switch session]' \
+			--delimiter='\t' \
+			--preview-window=right:80% \
+			--preview='tmux capture-pane -epJ -S -40 -t {2}:'
+) || exit 0
+
+target=$(printf '%s' "$selected" | awk -F '\t' '{print $NF}')
+
+if [ -n "$target" ]; then
+	tmux switch-client -t "$target"
+fi
