@@ -1,0 +1,56 @@
+#!/usr/bin/env sh
+
+usage() {
+	cat <<'EOF'
+Usage: tmux-tool-state running|requires-input|finished|clear
+
+Set the current tmux pane title to a tool state rendered in the tmux window list.
+EOF
+}
+
+case "${1:-}" in
+	running|run)
+		title="tool:running"
+		;;
+	requires-input|input)
+		title="tool:requires-input"
+		;;
+	finished|done)
+		title="tool:finished"
+		;;
+	clear|reset)
+		title=""
+		;;
+	-h|--help|"")
+		usage
+		exit 0
+		;;
+	*)
+		usage >&2
+		exit 2
+		;;
+esac
+
+if [ -z "${TMUX:-}" ]; then
+	exit 0
+fi
+
+target="${TMUX_PANE:-}"
+
+if [ -n "$target" ]; then
+	if [ -z "$title" ]; then
+		tmux set-option -pt "$target" -u @tool-state
+	else
+		tmux set-option -pt "$target" @tool-state "$title"
+	fi
+
+	tmux select-pane -t "$target" -T "$title"
+else
+	if [ -z "$title" ]; then
+		tmux set-option -pu @tool-state
+	else
+		tmux set-option -p @tool-state "$title"
+	fi
+
+	tmux select-pane -T "$title"
+fi
