@@ -1,17 +1,60 @@
 #!/usr/bin/env sh
 
+list_sessions() {
+	tmux ls -F '#{session_last_attached}|#{t/p:session_last_attached}|#{?#{==:#{@tool-session-state},tool:running},●,#{?#{==:#{@tool-session-state},tool:requires-input},!,#{?#{==:#{@tool-session-state},tool:finished},✓, }}}|#{session_name}' |
+		sort -t '|' -k1,1nr |
+		awk -F '|' '{print $2 "\t" $3 " " $4 "\t" $4}'
+}
+
+shell_quote() {
+	printf "'%s'" "$(printf '%s' "$1" | sed "s/'/'\\\\''/g")"
+}
+
+case "${1:-}" in
+	--list)
+		list_sessions
+		exit 0
+		;;
+	-h|--help)
+		printf 'Usage: tmux-switch-session\n'
+		exit 0
+		;;
+esac
+
 # FZF_PREVIEW_LINES is expanded by fzf's preview shell, not this script.
 # shellcheck disable=SC2016
 preview_command='tmux capture-pane -ep -t {3}: | tail -n "${FZF_PREVIEW_LINES:-40}"'
+case "$0" in
+	*/*)
+		script_path=$0
+		;;
+	*)
+		script_path=$(command -v "$0" || command -v tmux-switch-session || printf '%s' "$0")
+		;;
+esac
+
+if [ -x "$script_path" ]; then
+	reload_command="$(shell_quote "$script_path") --list"
+else
+	reload_command="sh $(shell_quote "$script_path") --list"
+fi
+reload_action="reload-sync($reload_command)"
+# FZF_PORT and TMUX_SWITCH_SESSION_REFRESH_INTERVAL are expanded by fzf's
+# child shell.
+# shellcheck disable=SC2016
+refresh_command="while sleep \"\${TMUX_SWITCH_SESSION_REFRESH_INTERVAL:-0.5}\"; do curl -fsS -XPOST \"localhost:\$FZF_PORT\" -d $(shell_quote "$reload_action") >/dev/null 2>&1 || exit; done &"
 
 selected=$(
-	tmux ls -F '#{session_last_attached}|#{t/p:session_last_attached}|#{?#{==:#{@tool-session-state},tool:running},●,#{?#{==:#{@tool-session-state},tool:requires-input},!,#{?#{==:#{@tool-session-state},tool:finished},✓, }}}|#{session_name}' |
-		sort -t '|' -k1,1nr |
-		awk -F '|' '{print $2 "\t" $3 " " $4 "\t" $4}' |
+	list_sessions |
 		fzf-tmux -p 100%,100% -- \
 			--header '[Switch session]' \
 			--delimiter='\t' \
 			--with-nth=1,2 \
+			--id-nth=3 \
+			--track \
+			--listen \
+			--bind "start:execute-silent:$refresh_command" \
+			--bind "ctrl-r:$reload_action" \
 			--preview-window=right:80% \
 			--preview="$preview_command"
 ) || exit 0
