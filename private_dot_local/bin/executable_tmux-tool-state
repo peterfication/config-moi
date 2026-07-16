@@ -4,7 +4,7 @@ usage() {
 	cat <<'EOF'
 Usage: tmux-tool-state running|requires-input|finished|clear
 
-Set the current tmux pane title to a tool state rendered in the tmux window list.
+Set the current tmux pane and session to a tool state rendered in tmux lists.
 EOF
 }
 
@@ -38,6 +38,8 @@ fi
 target="${TMUX_PANE:-}"
 
 if [ -n "$target" ]; then
+	session_target="$(tmux display-message -p -t "$target" '#{session_id}')"
+
 	if [ -z "$title" ]; then
 		tmux set-option -pt "$target" -u @tool-state
 	else
@@ -46,6 +48,8 @@ if [ -n "$target" ]; then
 
 	tmux select-pane -t "$target" -T "$title"
 else
+	session_target="$(tmux display-message -p '#{session_id}')"
+
 	if [ -z "$title" ]; then
 		tmux set-option -pu @tool-state
 	else
@@ -53,4 +57,12 @@ else
 	fi
 
 	tmux select-pane -T "$title"
+fi
+
+if [ -n "$session_target" ]; then
+	if [ -z "$title" ]; then
+		tmux set-option -t "$session_target" -u @tool-session-state
+	else
+		tmux set-option -t "$session_target" @tool-session-state "$title"
+	fi
 fi

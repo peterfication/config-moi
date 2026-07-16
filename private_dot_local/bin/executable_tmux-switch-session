@@ -2,20 +2,21 @@
 
 # FZF_PREVIEW_LINES is expanded by fzf's preview shell, not this script.
 # shellcheck disable=SC2016
-preview_command='tmux capture-pane -ep -t {2}: | tail -n "${FZF_PREVIEW_LINES:-40}"'
+preview_command='tmux capture-pane -ep -t {3}: | tail -n "${FZF_PREVIEW_LINES:-40}"'
 
 selected=$(
-	tmux ls -F '#{session_last_attached}|#{t/p:session_last_attached}|#{session_name}' |
+	tmux ls -F '#{session_last_attached}|#{t/p:session_last_attached}|#{?#{==:#{@tool-session-state},tool:running},●,#{?#{==:#{@tool-session-state},tool:requires-input},!,#{?#{==:#{@tool-session-state},tool:finished},✓, }}}|#{session_name}' |
 		sort -t '|' -k1,1nr |
-		awk -F '|' '{print $2 "\t" $3}' |
+		awk -F '|' '{print $2 "\t" $3 " " $4 "\t" $4}' |
 		fzf-tmux -p 100%,100% -- \
 			--header '[Switch session]' \
 			--delimiter='\t' \
+			--with-nth=1,2 \
 			--preview-window=right:80% \
 			--preview="$preview_command"
 ) || exit 0
 
-target=$(printf '%s' "$selected" | awk -F '\t' '{print $NF}')
+target=$(printf '%s' "$selected" | awk -F '\t' '{print $3}')
 
 if [ -n "$target" ]; then
 	tmux switch-client -t "$target"
