@@ -1,3 +1,11 @@
 # Rewrite all HTTPS URLs for my-org to SSH URLs
 [url "git@github.com:my-org/"]
   insteadOf = "https://github.com/my-org/"
+
+# Rewrite organization SSH GitHub URLs to use the SSH key of a different account
+# via github.com-other.
+#
+# Needs to work together with ~/.ssh/config
+# See ./dot_ssh/config.local.example
+[url "git@github.com-other:other/"]
+  insteadOf = "git@github.com:other/"
