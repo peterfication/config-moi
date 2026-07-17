@@ -69,6 +69,13 @@ function M.setup(opts)
 
 	local hyperSpaceTimeout = nil
 
+	local function stopHyperSpaceTimeout()
+		if hyperSpaceTimeout then
+			hyperSpaceTimeout:stop()
+			hyperSpaceTimeout = nil
+		end
+	end
+
 	function hyperSpace:entered()
 		hs.alert.show("Hyper+Space mode")
 		hyperSpaceTimeout = hs.timer.doAfter(2, function()
@@ -79,26 +86,26 @@ function M.setup(opts)
 	end
 
 	function hyperSpace:exited()
-		if hyperSpaceTimeout then
-			hyperSpaceTimeout:stop()
-			hyperSpaceTimeout = nil
-		end
+		stopHyperSpaceTimeout()
 		hs.timer.doAfter(0.5, function()
 			hs.alert.closeAll()
 		end)
 	end
 
 	hyperSpace:bind({}, "f", function()
+		stopHyperSpaceTimeout()
 		hyperSpaceF:enter()
 		hs.alert.show("Hyper+Space+F mode (Finder)")
 	end)
 
 	hyperSpace:bind({}, "t", function()
+		stopHyperSpaceTimeout()
 		hyperSpaceT:enter()
 		hs.alert.show("Hyper+Space+T mode (Terminal)")
 	end)
 
 	hyperSpace:bind({}, "m", function()
+		stopHyperSpaceTimeout()
 		hyperSpaceM:enter()
 		hs.alert.show("Hyper+Space+M mode (Menu)")
 	end)
@@ -133,6 +140,9 @@ function M.setup(opts)
 
 	if opts.toggleCaffeine then
 		bindHyperSpaceM({}, "c", opts.toggleCaffeine)
+	end
+	if opts.disableFluxForHour then
+		bindHyperSpaceM({}, "f", opts.disableFluxForHour)
 	end
 	if opts.toggleTailscale then
 		bindHyperSpaceM({}, "t", opts.toggleTailscale)
