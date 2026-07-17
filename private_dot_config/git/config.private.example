@@ -1,0 +1,3 @@
+# Rewrite all HTTPS URLs for my-org to SSH URLs
+[url "git@github.com:my-org/"]
+  insteadOf = "https://github.com/my-org/"

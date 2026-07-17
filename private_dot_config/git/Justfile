@@ -1,0 +1,7 @@
+# List all available commands
+git-default:
+  just --list
+
+# Edit the encrypted private Git config file
+git-private-config-edit:
+  chezmoi edit ~/.config/git/config.private
