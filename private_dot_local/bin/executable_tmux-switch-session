@@ -42,7 +42,7 @@ reload_action="reload-sync($reload_command)"
 # FZF_PORT and TMUX_SWITCH_SESSION_REFRESH_INTERVAL are expanded by fzf's
 # child shell.
 # shellcheck disable=SC2016
-refresh_command="while sleep \"\${TMUX_SWITCH_SESSION_REFRESH_INTERVAL:-0.5}\"; do curl -fsS -XPOST \"localhost:\$FZF_PORT\" -d $(shell_quote "$reload_action") >/dev/null 2>&1 || exit; done &"
+refresh_command="while sleep \"\${TMUX_SWITCH_SESSION_REFRESH_INTERVAL:-1}\"; do curl -fsS -XPOST \"localhost:\$FZF_PORT\" -d $(shell_quote "$reload_action") >/dev/null 2>&1 || exit; done &"
 
 selected=$(
 	list_sessions |
