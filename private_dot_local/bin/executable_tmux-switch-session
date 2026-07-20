@@ -51,7 +51,6 @@ selected=$(
 			--delimiter='\t' \
 			--with-nth=1,2 \
 			--id-nth=3 \
-			--track \
 			--listen \
 			--bind "start:execute-silent:$refresh_command" \
 			--bind "ctrl-r:$reload_action" \
