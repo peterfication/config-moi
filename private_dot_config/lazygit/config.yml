@@ -63,6 +63,12 @@ customCommands:
     context: "localBranches"
     output: log
 
+  # Add --no-verify to reword
+  - key: R
+    command: git commit --allow-empty --amend --no-verify
+    description: "Reword current commit without hooks"
+    context: commits
+    output: terminal
   - key: "<c-u>"
     command: "git reset --soft HEAD^"
     description: "Uncommit selected commit and put the changes back in the working tree"
