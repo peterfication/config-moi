@@ -18,3 +18,4 @@ tags.lock
 console.rb
 .env
 .lazy.lua
+.claude/settings.local.json
