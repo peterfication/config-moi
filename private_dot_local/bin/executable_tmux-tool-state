@@ -9,26 +9,26 @@ EOF
 }
 
 case "${1:-}" in
-	running|run)
-		title="tool:running"
-		;;
-	requires-input|input)
-		title="tool:requires-input"
-		;;
-	finished|done)
-		title="tool:finished"
-		;;
-	clear|reset)
-		title=""
-		;;
-	-h|--help|"")
-		usage
-		exit 0
-		;;
-	*)
-		usage >&2
-		exit 2
-		;;
+running | run)
+	title="tool:running"
+	;;
+requires-input | input)
+	title="tool:requires-input"
+	;;
+finished | done)
+	title="tool:finished"
+	;;
+clear | reset)
+	title=""
+	;;
+-h | --help | "")
+	usage
+	exit 0
+	;;
+*)
+	usage >&2
+	exit 2
+	;;
 esac
 
 if [ -z "${TMUX:-}" ]; then

@@ -11,26 +11,26 @@ shell_quote() {
 }
 
 case "${1:-}" in
-	--list)
-		list_sessions
-		exit 0
-		;;
-	-h|--help)
-		printf 'Usage: tmux-switch-session\n'
-		exit 0
-		;;
+--list)
+	list_sessions
+	exit 0
+	;;
+-h | --help)
+	printf 'Usage: tmux-switch-session\n'
+	exit 0
+	;;
 esac
 
 # FZF_PREVIEW_LINES is expanded by fzf's preview shell, not this script.
 # shellcheck disable=SC2016
 preview_command='tmux capture-pane -ep -t {3}: | tail -n "${FZF_PREVIEW_LINES:-40}"'
 case "$0" in
-	*/*)
-		script_path=$0
-		;;
-	*)
-		script_path=$(command -v "$0" || command -v tmux-switch-session || printf '%s' "$0")
-		;;
+*/*)
+	script_path=$0
+	;;
+*)
+	script_path=$(command -v "$0" || command -v tmux-switch-session || printf '%s' "$0")
+	;;
 esac
 
 if [ -x "$script_path" ]; then
