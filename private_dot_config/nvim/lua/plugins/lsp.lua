@@ -24,6 +24,12 @@ return {
         desc = "Open definition in a new tab",
       },
     },
+    opts = {
+      servers = {
+        -- I'm using ty
+        pylsp = { enabled = false },
+      },
+    },
   },
 
   {
