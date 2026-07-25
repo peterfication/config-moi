@@ -7,7 +7,7 @@ function M.setup(opts)
 	local documentsPath = home .. "/Documents"
 	local googleDrivePath = home .. "/Google Drive"
 	local screenshotsPath = home .. "/Pictures/Screenshots"
-	local iCloudDrivePath = home .. "/Library/Mobile Documents/com~apple~CloudDocs/tmp/"
+	local iCloudDrivePath = home .. "/Library/Mobile Documents/com~apple~CloudDocs/"
 
 	local function openPath(path)
 		hs.task.new("/usr/bin/open", nil, { path }):start()

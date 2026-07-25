@@ -22,6 +22,7 @@ local bookmarks = {
 	{ key = "C", path = "~/config", desc = "~/config" },
 	{ key = "l", path = "~/.local", desc = "~/.local " },
 	{ key = "u", path = "~/coding", desc = "~/coding" },
+	{ key = "i", path = "~/Library/Mobile Documents/com~apple~CloudDocs/", desc = "iCloud Drive" },
 }
 local extra_bookmarks_path = home .. "/.config/yazi/local_bookmarks.lua"
 local extra_bookmarks = nil
