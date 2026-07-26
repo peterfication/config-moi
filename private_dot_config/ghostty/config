@@ -13,3 +13,7 @@ window-inherit-working-directory = false
 tab-inherit-working-directory = false
 split-inherit-working-directory = false
 working-directory = home
+
+# Automatically install the Ghostty terminfo on the remote host
+# or fall back to TERM=xterm-256color
+shell-integration-features = ssh-env,ssh-terminfo
