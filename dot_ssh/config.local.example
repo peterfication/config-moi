@@ -22,3 +22,10 @@ Host github.com-other
     # Export the public key from 1Password
     IdentityFile ~/.ssh/id_ed25519_github_other.pub
     IdentitiesOnly yes
+
+# If the server has no Ghostty term info installed (See "SetEnv TERM")
+Host some.server
+  HostName SomeServer
+  User username
+  Port 22
+  SetEnv TERM=xterm-256color
