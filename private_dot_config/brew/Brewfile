@@ -5,7 +5,7 @@ brew 'syncthing' # https://github.com/syncthing/syncthing
 brew 'domcyrus/rustnet/rustnet', trusted: true # https://github.com/domcyrus/rustnet
 brew 'macos-fuse-t/homebrew-cask/fuse-t', trusted: true # https://github.com/macos-fuse-t/fuse-t
 brew 'macos-fuse-t/homebrew-cask/sshfs-fuse-t', trusted: true
-brew 'leaf-md' # https://github.com/rivolink/leaf
+brew 'leaf-markdown-viewer' # https://github.com/rivolink/leaf
 brew 'peterfication/num-peek/num-peek', trusted: true # Peek into *.npy files
 brew 'quien' # https://github.com/retlehs/quien
 brew 'rv' # https://github.com/spinel-coop/rv uv for Ruby
