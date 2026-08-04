@@ -11,15 +11,14 @@ return {
     --   keys[#keys + 1] = { "H", "<cmd>echo 'hello'<cr>" }
     -- end,
     keys = {
-      { "gp", group = "Goto preview" },
-      { "gpd", group = "Goto preview definition" },
+      { "g<C-d>", group = "Goto definition" },
       {
-        "gpds",
+        "g<C-d>s",
         "<CMD>vsplit | lua vim.lsp.buf.definition()<CR>",
         desc = "Open definition in a new split",
       },
       {
-        "gpdt",
+        "g<C-d>t",
         "<CMD>tab split | lua vim.lsp.buf.definition()<CR>",
         desc = "Open definition in a new tab",
       },
