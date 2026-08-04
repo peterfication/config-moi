@@ -56,6 +56,7 @@ with pkgs; [
   sshs # https://github.com/quantumsheep/sshs
   starship # https://github.com/starship/starship
   tmux
+  pkgsUnstable.trivy # https://github.com/aquasecurity/trivy
   extract_url # https://www.memoryhole.net/~kyle/extract_url/
   ueberzugpp # https://github.com/jstkdng/ueberzugpp
   pkgsUnstable.uv # https://github.com/astral-sh/uv
