@@ -172,6 +172,10 @@
     "version": "0.14.0"
   },
   {
+    "name": "lua",
+    "version": "5.1.5"
+  },
+  {
     "name": "luarocks",
     "version": "3.13.0-1"
   },

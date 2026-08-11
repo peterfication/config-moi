@@ -40,6 +40,7 @@ with pkgs; [
   pkgsUnstable.lazydocker # https://github.com/jesseduffield/lazydocker
   pkgsUnstable.lefthook # https://github.com/evilmartians/lefthook
   lnav # https://github.com/tstack/lnav
+  lua5_1 # https://www.lua.org/
   luarocks # https://github.com/luarocks/luarocks
   pkgsUnstable.mise # https://github.com/jdx/mise
   ncftp # https://www.ncftp.com/ncftp/
