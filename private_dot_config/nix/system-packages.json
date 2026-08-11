@@ -172,6 +172,10 @@
     "version": "0.14.0"
   },
   {
+    "name": "luarocks",
+    "version": "3.13.0-1"
+  },
+  {
     "name": "mise",
     "version": "2026.7.4"
   },
