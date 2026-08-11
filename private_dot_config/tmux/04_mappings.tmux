@@ -16,7 +16,7 @@ bind-key C-t run-shell -b 'selected=$(cat "$TMUX_SESSIONS_FILE" | fzf-tmux -- --
 #### WINDOWNS ####
 
 # Switch windows with the help of fzf
-bind-key C-g run-shell -b "tmux list-windows -F \"##I:##W\" | fzf-tmux -- --header '[Switch window]' | cut -d \":\" -f 1 | xargs tmux select-window -t"
+bind-key C-w run-shell -b 'tmux-switch-window'
 
 # Switch windows
 bind C-n next-window
