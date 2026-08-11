@@ -288,6 +288,10 @@
     "version": "9.2.0389"
   },
   {
+    "name": "wget",
+    "version": "1.25.0"
+  },
+  {
     "name": "whosthere",
     "version": "0.8.2"
   },

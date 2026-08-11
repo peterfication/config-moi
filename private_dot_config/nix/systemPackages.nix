@@ -66,6 +66,7 @@ with pkgs; [
   vim
   pkgsUnstable.yazi # https://github.com/sxyazi/yazi
   watch
+  wget
   pkgsUnstable.whosthere # https://github.com/ramonvermeulen/whosthere
   wireshark # https://www.wireshark.org/
   xld # https://tmkk.undo.jp/xld/index_e.html
