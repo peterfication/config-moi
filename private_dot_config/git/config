@@ -1,5 +1,4 @@
 [core]
-  excludesfile = ~/.config/git/gitignore_global
   editor = nvim
   pager = delta
 
