@@ -9,7 +9,7 @@
   },
   {
     "name": "aerospace",
-    "version": "0.21.2-Beta"
+    "version": "0.21.3-Beta"
   },
   {
     "name": "age",
@@ -117,7 +117,7 @@
   },
   {
     "name": "gh",
-    "version": "2.96.0"
+    "version": "2.97.0"
   },
   {
     "name": "ghostty-bin",
@@ -125,7 +125,7 @@
   },
   {
     "name": "grype",
-    "version": "0.115.0"
+    "version": "0.116.1"
   },
   {
     "name": "icu4c",
@@ -161,11 +161,11 @@
   },
   {
     "name": "lazygit",
-    "version": "0.63.0"
+    "version": "0.64.0"
   },
   {
     "name": "lefthook",
-    "version": "2.1.5"
+    "version": "2.1.10"
   },
   {
     "name": "lnav",
@@ -181,7 +181,7 @@
   },
   {
     "name": "mise",
-    "version": "2026.7.4"
+    "version": "2026.8.3"
   },
   {
     "name": "nats-server",
@@ -273,7 +273,7 @@
   },
   {
     "name": "trivy",
-    "version": "0.72.0"
+    "version": "0.73.0"
   },
   {
     "name": "ueberzugpp",
@@ -281,7 +281,7 @@
   },
   {
     "name": "uv",
-    "version": "0.11.26"
+    "version": "0.12.3"
   },
   {
     "name": "vim",
@@ -293,7 +293,7 @@
   },
   {
     "name": "whosthere",
-    "version": "0.8.2"
+    "version": "0.8.3"
   },
   {
     "name": "wireshark-qt",
