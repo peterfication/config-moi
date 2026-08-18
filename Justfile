@@ -6,6 +6,7 @@ import 'private_dot_config/git/Justfile'
 import 'private_dot_config/nix/Justfile'
 import 'private_dot_config/nvim/Justfile'
 import 'private_dot_config/private_karabiner/Justfile'
+import 'Justfile.alfred.just'
 import 'Justfile.ci.just'
 
 # Chezmoi diff
