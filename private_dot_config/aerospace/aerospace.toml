@@ -1,32 +1,8 @@
-# It's not necessary to copy all keys to your config.
-# If the key is missing in your config, "default-config.toml" will serve as a fallback
-
+# See https://nikitabobko.github.io/AeroSpace/guide#configuring-aerospace
 config-version = 2
 
-# You can use it to add commands that run after AeroSpace startup.
-# 'after-startup-command' is run after 'after-login-command'
-# Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
-
 # Start AeroSpace at login
-start-at-login = false
-
-# Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
-enable-normalization-flatten-containers = true
-enable-normalization-opposite-orientation-for-nested-containers = true
-
-# See: https://nikitabobko.github.io/AeroSpace/guide#layouts
-# The 'accordion-padding' specifies the size of accordion padding
-# You can set 0 to disable the padding feature
-accordion-padding = 30
-
-# Possible values: tiles|accordion
-default-root-container-layout = 'tiles'
-
-# Possible values: horizontal|vertical|auto
-# 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
-#               tall monitor (anything higher than wide) gets vertical orientation
-default-root-container-orientation = 'auto'
+start-at-login = true
 
 # List of workspaces that should stay alive even when they contain no windows,
 # even when they are invisible.
@@ -38,26 +14,15 @@ persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
 key-mapping.preset = 'qwerty'
 
-# Gaps between windows (inner-*) and between monitor edges (outer-*).
-# Possible values:
-# - Constant:     gaps.outer.top = 8
-# - Per monitor:  gaps.outer.top = [{ monitor.main = 16 }, { monitor."some-pattern" = 32 }, 24]
-#                 In this example, 24 is a default value when there is no match.
-#                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
-#                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
-[gaps]
-inner.horizontal = 0
-inner.vertical =   0
-outer.left =       0
-outer.bottom =     0
-outer.top =        0
-outer.right =      0
-
 # See https://nikitabobko.github.io/AeroSpace/guide#exec-env-vars
 [exec]                   # Again, you don't need to copy all config sections to your config.
 inherit-env-vars = true  # If you don't touch "exec" section,
 [exec.env-vars]          # it will fallback to "default-config.toml"
 PATH = '/run/current-system/sw/bin:/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
+
+####################
+### Key bindings ###
+####################
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -110,28 +75,6 @@ cmd-alt-shift-ctrl-7 = 'workspace 7'
 cmd-alt-shift-ctrl-8 = 'workspace 8'
 cmd-alt-shift-ctrl-9 = 'workspace 9'
 cmd-alt-shift-ctrl-0 = 'workspace 10'
-# alt-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
-# alt-b = 'workspace B'
-# alt-c = 'workspace C'
-# alt-d = 'workspace D'
-# alt-e = 'workspace E'
-# alt-f = 'workspace F'
-# alt-g = 'workspace G'
-# alt-i = 'workspace I'
-# alt-m = 'workspace M'
-# alt-n = 'workspace N'
-# alt-o = 'workspace O'
-# alt-p = 'workspace P'
-# alt-q = 'workspace Q'
-# alt-r = 'workspace R'
-# alt-s = 'workspace S'
-# alt-t = 'workspace T'
-# alt-u = 'workspace U'
-# alt-v = 'workspace V'
-# alt-w = 'workspace W'
-# alt-x = 'workspace X'
-# alt-y = 'workspace Y'
-# alt-z = 'workspace Z'
 
 cmd-alt-shift-ctrl-j = "workspace prev"
 cmd-alt-shift-ctrl-k = "workspace next"
