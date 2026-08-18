@@ -30,6 +30,17 @@
 			<key>utf8</key>
 			<true/>
 		</dict>
+		<key>DBE55033-5F0C-408C-B852-CF7A165DE9FE</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>gh</string>
+			<key>text</key>
+			<string>Github Repos</string>
+			<key>url</key>
+			<string>https://github.com/search?q={query}&amp;type=repositories</string>
+		</dict>
 	</dict>
 </dict>
 </plist>
