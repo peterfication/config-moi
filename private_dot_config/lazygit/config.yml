@@ -1,13 +1,14 @@
 # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
 
 git:
-  pagers:
-    - pager: >-
+  diffRenderers:
+    - command: >-
         delta --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
-    - pager: diff-so-fancy
-    - pager: ydiff -p cat -s --wrap --width={{columnWidth}}
+    - command: diff-so-fancy
+    - command: ydiff -p cat -s --wrap --width={{columnWidth}}
       colorArg: never
-    - externalDiffCommand: difft --color=always
+    - command: difft --color=always
+      type: extDiff
   overrideGpg: true # Ignore GPG errors as I'm using a GPG agent
 
 os:
