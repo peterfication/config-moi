@@ -238,6 +238,13 @@
     ]
   },
   {
+    "name": "yt-dlp",
+    "type": "formula",
+    "versions": [
+      "2026.8.19"
+    ]
+  },
+  {
     "name": "zed",
     "type": "cask",
     "versions": [

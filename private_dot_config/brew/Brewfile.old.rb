@@ -103,8 +103,6 @@ brew 'watch'
 brew 'watchexec'
 brew 'watchman'
 brew 'wget'
-brew 'youtube-dl'
-brew 'yt-dlp'
 brew 'zbar' # QR code reader with zbarimg
 brew 'zellij'
 brew 'zlib'

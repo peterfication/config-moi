@@ -11,6 +11,7 @@ brew 'switchaudio-osx' # https://github.com/deweller/switchaudio-osx
 brew 'morantron/tmux-fingers/tmux-fingers', trusted: true # https://github.com/Morantron/tmux-fingers
 brew 'tpack' # https://github.com/tmuxpack/tpack
 brew 'veeso/termscp/termscp', trusted: true # https://github.com/veeso/termscp
+brew 'yt-dlp' # https://github.com/yt-dlp/yt-dlp
 
 cask 'alfred'
 cask 'eurkey-next' # https://eurkey-macos.eu/
