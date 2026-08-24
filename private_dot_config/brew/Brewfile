@@ -3,8 +3,6 @@ brew 'syncthing' # https://github.com/syncthing/syncthing
 
 # Packages that are not available on https://search.nixos.org/packages
 brew 'domcyrus/rustnet/rustnet', trusted: true # https://github.com/domcyrus/rustnet
-brew 'macos-fuse-t/homebrew-cask/fuse-t', trusted: true # https://github.com/macos-fuse-t/fuse-t
-brew 'macos-fuse-t/homebrew-cask/sshfs-fuse-t', trusted: true
 brew 'leaf-markdown-viewer' # https://github.com/rivolink/leaf
 brew 'peterfication/num-peek/num-peek', trusted: true # Peek into *.npy files
 brew 'quien' # https://github.com/retlehs/quien
@@ -29,6 +27,10 @@ cask 'stats' # https://github.com/exelban/stats
 cask 'tableplus'
 cask 'thaw'
 cask 'xnviewmp' # Image viewer
+
+# https://github.com/macos-fuse-t/fuse-t
+cask 'macos-fuse-t/homebrew-cask/fuse-t', trusted: true
+brew 'macos-fuse-t/homebrew-cask/sshfs-fuse-t', trusted: true
 
 # AI
 cask 'antigravity-cli'
