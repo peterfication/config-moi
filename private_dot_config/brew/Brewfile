@@ -12,6 +12,7 @@ brew 'morantron/tmux-fingers/tmux-fingers', trusted: true # https://github.com/M
 brew 'tpack' # https://github.com/tmuxpack/tpack
 brew 'usbtree' # https://github.com/gnomeria/usbtree
 brew 'veeso/termscp/termscp', trusted: true # https://github.com/veeso/termscp
+brew 'vi-sql' # https://github.com/kopecmaciej/vi-sql
 brew 'yt-dlp' # https://github.com/yt-dlp/yt-dlp
 
 cask 'alfred'

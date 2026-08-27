@@ -231,6 +231,13 @@
     ]
   },
   {
+    "name": "vi-sql",
+    "type": "formula",
+    "versions": [
+      "0.3.0"
+    ]
+  },
+  {
     "name": "xnviewmp",
     "type": "cask",
     "versions": [
