@@ -231,6 +231,13 @@
     ]
   },
   {
+    "name": "usbtree",
+    "type": "formula",
+    "versions": [
+      "0.1.1"
+    ]
+  },
+  {
     "name": "vi-sql",
     "type": "formula",
     "versions": [
