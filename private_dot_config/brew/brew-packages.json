@@ -199,7 +199,14 @@
     "name": "tableplus",
     "type": "cask",
     "versions": [
-      "26.9.6,762"
+      "26.9.12,770"
+    ]
+  },
+  {
+    "name": "tablepro",
+    "type": "cask",
+    "versions": [
+      "0.68.1"
     ]
   },
   {

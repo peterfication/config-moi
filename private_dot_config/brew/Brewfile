@@ -28,6 +28,7 @@ cask 'mqttx' # https://github.com/emqx/MQTTX
 cask 'spotify'
 cask 'stats' # https://github.com/exelban/stats
 cask 'tableplus'
+cask 'tablepro' # https://github.com/TableProApp/TablePro
 cask 'thaw'
 cask 'xnviewmp' # Image viewer
 
