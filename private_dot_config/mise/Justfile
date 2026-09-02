@@ -1,8 +1,10 @@
 # List all available commands
+[group('mise')]
 mise-default:
   just --list
 
 # Install global mise tools, update the global lockfile, and add it to chezmoi
+[group('mise')]
 mise-install:
   mise install --cd ~
   mise lock --global

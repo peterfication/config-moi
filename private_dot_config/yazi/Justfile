@@ -1,0 +1,15 @@
+# Re-add yazi package.toml file to chezmoi.
+[group('yazi')]
+yazi-add-package-toml:
+  chezmoi add ~/.config/yazi/package.toml
+
+# Upgrade yazi packages in package.toml file
+[group('yazi')]
+yazi-upgrade:
+  ya pkg upgrade
+
+# Clean all plugins and reinstall them
+[group('yazi')]
+yazi-reinstall:
+  rm -rf ~/.config/yazi/plugins
+  ya pkg install

@@ -1,7 +1,9 @@
 # List all available commands
+[group('git')]
 git-default:
   just --list
 
 # Edit the encrypted private Git config file
+[group('git')]
 git-private-config-edit:
   chezmoi edit ~/.config/git/config.private

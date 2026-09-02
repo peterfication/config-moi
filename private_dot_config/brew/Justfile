@@ -1,24 +1,30 @@
 # List all available commands
+[group('brew')]
 brew-default:
   just --list
 
 # Install all tools from Brewfile
+[group('brew')]
 brew-install:
   brew bundle install --file ~/.config/brew/Brewfile; just brew-packages-json
 
 # Install all tools from Brewfile.local if it exists
+[group('brew')]
 brew-install-local:
   [ -f ~/.config/brew/Brewfile.local ] && brew bundle install --file ~/.config/brew/Brewfile.local
 
 # List installed packages with versions
+[group('brew')]
 brew-list:
   brew ls --versions
 
 # List installed packages with versions in JSON
+[group('brew')]
 brew-list-json:
   brew ls --versions --json | jq "."
 
 # Export versions for packages declared in Brewfile
+[group('brew')]
 brew-packages-json OUTPUT_PATH="~/.config/brew/brew-packages.json":
   ~/.config/brew/export_packages_json.sh {{OUTPUT_PATH}}
   chezmoi add {{OUTPUT_PATH}}

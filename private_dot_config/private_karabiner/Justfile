@@ -1,10 +1,13 @@
 # All CI tasks for karabiner
+[group('karabiner')]
 karabiner-ci: karabiner-check karabiner-generate
 
 # Check karabiner TypeScript
+[group('karabiner')]
 karabiner-check:
   cd private_dot_config/private_karabiner && deno fmt --check karabiner.ts deno.json && deno check karabiner.ts
 
 # Generate the karabiner.json file from the karabiner.ts file
+[group('karabiner')]
 karabiner-generate:
   cd private_dot_config/private_karabiner && deno task karabiner-generate

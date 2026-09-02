@@ -1,0 +1,14 @@
+# Re-add the VSCode extensions.json (See script for more details)
+[group('vscode')]
+vscode-extensions-add:
+  (cd dot_vscode/extensions && ./extensions_add.sh)
+
+# Apply the changes to VSCode extensions.json
+[group('vscode')]
+vscode-extensions-apply:
+  chezmoi apply ~/.vscode/extensions/extensions.json
+
+# Format the VSCode extensions.json file so chezmoi diff is more meaningfull
+[group('vscode')]
+vscode-extensions-pretty:
+  prettier -w ~/.vscode/extensions/extensions.json
