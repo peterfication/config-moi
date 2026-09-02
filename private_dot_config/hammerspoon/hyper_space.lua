@@ -151,10 +151,14 @@ function M.setup(opts)
 		bindHyperSpaceM({}, "v", opts.toggleTailscaleExitNode)
 	end
 
-  -- Thaw shortcuts
-  -- See https://github.com/thaw-app/Thaw#integrations
-  bindHyperSpaceM({}, "h", function() hs.urlevent.openURL("thaw://toggle-hidden") end)
-  bindHyperSpaceM({}, "s", function() hs.urlevent.openURL("thaw://search") end)
+	-- Thaw shortcuts
+	-- See https://github.com/thaw-app/Thaw#integrations
+	bindHyperSpaceM({}, "h", function()
+		hs.urlevent.openURL("thaw://toggle-hidden")
+	end)
+	bindHyperSpaceM({}, "s", function()
+		hs.urlevent.openURL("thaw://search")
+	end)
 end
 
 return M
