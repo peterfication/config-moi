@@ -2,13 +2,16 @@
 idiomatic_version_file_enable_tools = ["python", "node"]
 
 [tools]
+# Languages and package managers
+go = "1.26.1"
 node = "24"
 npm = "11.11.0"
+ruby = "3.4.8"
 yarn = "4.1.0"
+
+# Tools
+"aqua:neovim/neovim" = "0.12.5"
+"github:kopecmaciej/vi-sql" = "v0.4.0" # https://github.com/kopecmaciej/vi-sql
 "npm:@mariozechner/pi-coding-agent" = "0.67.1"
 "npm:skills" = "1.4.3"
 prettier = "3.8.1"
-ruby = "3.4.8"
-go = "1.26.1"
-"aqua:neovim/neovim" = "0.12.5"
-"github:kopecmaciej/vi-sql" = "v0.4.0" # https://github.com/kopecmaciej/vi-sql
