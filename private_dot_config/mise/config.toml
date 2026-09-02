@@ -6,7 +6,7 @@ idiomatic_version_file_enable_tools = ["python", "node"]
 go = "1.26.1"
 node = "24"
 npm = "11.11.0"
-ruby = "3.4.8"
+ruby = "4.0.6"
 yarn = "4.1.0"
 
 # Tools
