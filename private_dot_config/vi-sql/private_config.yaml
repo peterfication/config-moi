@@ -1,23 +1,23 @@
 version: 0.3.0
 log:
-    path: /var/folders/nv/k5ffmcjx43gdyq221fgv8tp00000gn/T/vi-sql.log
-    level: info
-    prettyPrint: true
+  path: /var/folders/nv/k5ffmcjx43gdyq221fgv8tp00000gn/T/vi-sql.log
+  level: info
+  prettyPrint: true
 editor:
-    command: nvim
-    env: EDITOR
-    enabled: true
+  command: nvim
+  env: EDITOR
+  enabled: true
 ui:
-    schemaPanelWidth: 30
-    vimMode: true
+  schemaPanelWidth: 30
+  vimMode: true
 mcp:
-    enabled: false
-    port: 0
-    allowRead: false
-    allowWrite: false
+  enabled: false
+  port: 0
+  allowRead: false
+  allowWrite: false
 security:
-    method: keyring
+  method: keyring
 showConnectionPage: true
 styles:
-    nerdFont: true
-    currentStyle: default.yaml
+  nerdFont: true
+  currentStyle: default.yaml
