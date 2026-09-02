@@ -1,0 +1,9 @@
+# List all available commands
+mise-default:
+  just --list
+
+# Install global mise tools, update the global lockfile, and add it to chezmoi
+mise-install:
+  mise install --cd ~
+  mise lock --global
+  chezmoi add ~/.config/mise/mise.lock
