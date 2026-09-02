@@ -12,6 +12,6 @@ yarn = "4.1.0"
 # Tools
 "aqua:neovim/neovim" = "0.12.5"
 "github:kopecmaciej/vi-sql" = "v0.4.0" # https://github.com/kopecmaciej/vi-sql
-"npm:@mariozechner/pi-coding-agent" = "0.67.1"
+"github:earendil-works/pi" = "v0.84.4" # https://github.com/earendil-works/pi
 "npm:skills" = "1.4.3"
 prettier = "3.8.1"

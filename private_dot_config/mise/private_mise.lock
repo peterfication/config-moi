@@ -39,6 +39,45 @@ checksum = "sha256:de8625ba8cf65ebf40eb80a388ba1ec8e9c15b30218821e2c639119b05920
 url = "https://github.com/neovim/neovim/releases/download/v0.12.5/nvim-win64.zip"
 url_api = "https://api.github.com/repos/neovim/neovim/releases/assets/526503770"
 
+[[tools."github:earendil-works/pi"]]
+version = "0.84.4"
+backend = "github:earendil-works/pi"
+
+[tools."github:earendil-works/pi"."platforms.linux-arm64"]
+checksum = "sha256:135580f6b942151646e67b8b866d987d28ce3cff5a497030775ddd29659f943d"
+url = "https://github.com/earendil-works/pi/releases/download/v0.84.4/pi-linux-arm64.tar.gz"
+url_api = "https://api.github.com/repos/earendil-works/pi/releases/assets/534389947"
+
+[tools."github:earendil-works/pi"."platforms.linux-arm64-musl"]
+checksum = "sha256:135580f6b942151646e67b8b866d987d28ce3cff5a497030775ddd29659f943d"
+url = "https://github.com/earendil-works/pi/releases/download/v0.84.4/pi-linux-arm64.tar.gz"
+url_api = "https://api.github.com/repos/earendil-works/pi/releases/assets/534389947"
+
+[tools."github:earendil-works/pi"."platforms.linux-x64"]
+checksum = "sha256:c2f3c3e6a1850bd87654cc3ca8811013272397c3d042a4e2a64c43ee1b423972"
+url = "https://github.com/earendil-works/pi/releases/download/v0.84.4/pi-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/earendil-works/pi/releases/assets/534389946"
+
+[tools."github:earendil-works/pi"."platforms.linux-x64-musl"]
+checksum = "sha256:c2f3c3e6a1850bd87654cc3ca8811013272397c3d042a4e2a64c43ee1b423972"
+url = "https://github.com/earendil-works/pi/releases/download/v0.84.4/pi-linux-x64.tar.gz"
+url_api = "https://api.github.com/repos/earendil-works/pi/releases/assets/534389946"
+
+[tools."github:earendil-works/pi"."platforms.macos-arm64"]
+checksum = "sha256:c68e3ac4d05b4e282aaab2e6c76f161d3e9e68f19a22e38913cbfaadb6c800f0"
+url = "https://github.com/earendil-works/pi/releases/download/v0.84.4/pi-darwin-arm64.tar.gz"
+url_api = "https://api.github.com/repos/earendil-works/pi/releases/assets/534389952"
+
+[tools."github:earendil-works/pi"."platforms.macos-x64"]
+checksum = "sha256:7a042d6413065421387001a4986190a1a03186c95a695f4dee0bdc76e60de8f7"
+url = "https://github.com/earendil-works/pi/releases/download/v0.84.4/pi-darwin-x64.tar.gz"
+url_api = "https://api.github.com/repos/earendil-works/pi/releases/assets/534389948"
+
+[tools."github:earendil-works/pi"."platforms.windows-x64"]
+checksum = "sha256:03b2318774f18721e959d9f8f3340a9f942e7aa516fb7030d3007a12a40a4a97"
+url = "https://github.com/earendil-works/pi/releases/download/v0.84.4/pi-windows-x64.zip"
+url_api = "https://api.github.com/repos/earendil-works/pi/releases/assets/534389959"
+
 [[tools."github:kopecmaciej/vi-sql"]]
 version = "0.4.0"
 backend = "github:kopecmaciej/vi-sql"
@@ -163,10 +202,6 @@ url = "https://registry.npmjs.org/npm/-/npm-11.11.0.tgz"
 
 [tools.npm."platforms.macos-x64"]
 url = "https://registry.npmjs.org/npm/-/npm-11.11.0.tgz"
-
-[[tools."npm:@mariozechner/pi-coding-agent"]]
-version = "0.67.1"
-backend = "npm:@mariozechner/pi-coding-agent"
 
 [[tools."npm:skills"]]
 version = "1.4.3"
