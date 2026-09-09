@@ -1,0 +1,14 @@
+#!/bin/sh
+# First and last commit date per committer. Extra args are passed to git log
+# (e.g. --all to include every branch, or -- <path> to scope to a subtree).
+git log --pretty=%cI%x09%cn "$@" | awk -F'\t' '
+  {
+    if (!($2 in last)) last[$2] = $1   # git log is newest-first
+    first[$2] = $1
+    n[$2]++
+  }
+  END {
+    for (c in first)
+      printf "%-30s %s -> %s  (%d commits)\n", c, substr(first[c], 1, 10), substr(last[c], 1, 10), n[c]
+  }
+' | sort
