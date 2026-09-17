@@ -18,6 +18,9 @@ bind-key C-t run-shell -b 'selected=$(cat "$TMUX_SESSIONS_FILE" | fzf-tmux -- --
 # Switch windows with the help of fzf
 bind-key C-w run-shell -b 'tmux-switch-window'
 
+# Switch to a window running a coding agent
+bind-key C-a run-shell -b 'tmux-switch-window --agents'
+
 # Switch windows
 bind C-n next-window
 bind C-p previous-window

@@ -1,22 +1,40 @@
 #!/usr/bin/env sh
 
 list_windows() {
-	tmux list-windows -a -F '#{session_last_attached}|#{t/p:session_last_attached}|#{session_name}|#{window_index}:#{window_name}|#{session_id}|#{window_id}' |
+	tmux list-panes -a -F '#{session_last_attached}|#{t/p:session_last_attached}|#{session_name}|#{window_index}:#{window_name}|#{session_id}|#{window_id}|#{pane_current_command}|#{pane_start_command}|#{pane_title}' |
 		sort -t '|' -k1,1nr -k4,4n |
-		awk -F '|' '{print $2 "\t" $3 "\t" $4 "\t" $5 "\t" $6}'
+		awk -F '|' -v agents_only="$agents_only" -v agent_pattern="$agent_pattern" '
+			agents_only && tolower($7 " " $8 " " $9) !~ agent_pattern { next }
+			!seen[$6]++ { print $2 "\t" $3 "\t" $4 "\t" $5 "\t" $6 }
+		'
 }
 
 shell_quote() {
 	printf "'%s'" "$(printf '%s' "$1" | sed "s/'/'\\\\''/g")"
 }
 
+agents_only=0
+agent_pattern="${TMUX_AGENT_PATTERN:-(^|[^[:alnum:]_-])(codex|claude|pi|maki|opencode|aider)([^[:alnum:]_-]|$)}"
+header='[Switch window]'
+list_arg='--list'
+
 case "${1:-}" in
 --list)
 	list_windows
 	exit 0
 	;;
+--agents)
+	agents_only=1
+	header='[Switch agent window]'
+	list_arg='--list-agents'
+	;;
+--list-agents)
+	agents_only=1
+	list_windows
+	exit 0
+	;;
 -h | --help)
-	printf 'Usage: tmux-switch-window\n'
+	printf 'Usage: tmux-switch-window [--agents]\n'
 	exit 0
 	;;
 esac
@@ -34,9 +52,9 @@ case "$0" in
 esac
 
 if [ -x "$script_path" ]; then
-	reload_command="$(shell_quote "$script_path") --list"
+	reload_command="$(shell_quote "$script_path") $list_arg"
 else
-	reload_command="sh $(shell_quote "$script_path") --list"
+	reload_command="sh $(shell_quote "$script_path") $list_arg"
 fi
 reload_action="reload-sync($reload_command)"
 # FZF_PORT and TMUX_SWITCH_WINDOW_REFRESH_INTERVAL are expanded by fzf's
@@ -47,7 +65,7 @@ refresh_command="while sleep \"\${TMUX_SWITCH_WINDOW_REFRESH_INTERVAL:-1}\"; do 
 selected=$(
 	list_windows |
 		fzf-tmux -p 100%,100% -- \
-			--header '[Switch window]' \
+			--header "$header" \
 			--delimiter='\t' \
 			--with-nth=1,2,3 \
 			--id-nth=2,3 \
