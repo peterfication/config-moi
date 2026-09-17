@@ -23,3 +23,42 @@ map("n", "<Leader>bW", ":wa<CR>", { silent = true, desc = "Safe/write all buffer
 map("n", "<Leader>br", ":e<CR>", { silent = true, desc = "Refresh current buffer" })
 map("n", "<Leader>bc", ":bufdo bd<CR>", { silent = true, desc = "Delete/clear all buffers" })
 map("n", "<Leader>qA", ":qa!<CR>", { silent = true, desc = "Quit all without saving" })
+
+-- File copying keymaps
+
+-- File name of the current buffer
+local function current_file_name()
+  return vim.api.nvim_buf_get_name(0)
+end
+
+local function git_relative_path()
+  local file = current_file_name()
+  local root = LazyVim.root.git()
+  return vim.fs.relpath(root, file) or file
+end
+
+local function copy(value, label)
+  vim.fn.setreg("+", value)
+  vim.notify("Copied " .. label)
+end
+
+map("n", "<Leader>fyy", function()
+  local path = git_relative_path()
+  copy(path, "Git-relative file path: " .. path)
+end, { desc = "Yank Git-relative file path" })
+
+map("n", "<Leader>fyn", function()
+  local file_name = vim.fs.basename(current_file_name())
+  copy(file_name, "file name: " .. file_name)
+end, { desc = "Yank file name" })
+
+map("n", "<Leader>fya", function()
+  local agent_file_path = "@" .. git_relative_path()
+  copy(agent_file_path, "agent file reference: " .. agent_file_path)
+end, { desc = "Yank agent file reference" })
+
+map("n", "<Leader>fyc", function()
+  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  local file_path = git_relative_path()
+  copy(table.concat(lines, "\n"), "file contents of " .. file_path)
+end, { desc = "Yank file contents" })

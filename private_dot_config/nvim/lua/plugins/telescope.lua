@@ -207,7 +207,6 @@ return {
           desc = "Find files of currently open buffers",
         },
 
-        { "<Leader>f", group = "Search" },
         {
           "<Leader>ff",
           function()
