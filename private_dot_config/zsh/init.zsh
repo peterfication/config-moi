@@ -1,4 +1,5 @@
 export XDG_CONFIG_HOME="$HOME/.config"
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
 
 source ~/.config/zsh/00_path.zsh
 source ~/.config/zsh/01_languages.zsh
