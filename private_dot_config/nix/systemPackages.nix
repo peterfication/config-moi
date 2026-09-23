@@ -46,6 +46,7 @@ with pkgs; [
   ncftp # https://www.ncftp.com/ncftp/
   natscli # https://nats.io/
   nats-server # https://nats.io/
+  nmap  # https://nmap.org/
   _1password-cli # https://developer.1password.com/docs/cli/
   _1password-gui
   pkgsUnstable.neovim # https://github.com/neovim/neovim

@@ -200,6 +200,10 @@
     "version": "0.12.4"
   },
   {
+    "name": "nmap",
+    "version": "7.99"
+  },
+  {
     "name": "openssl",
     "version": "3.6.2"
   },
