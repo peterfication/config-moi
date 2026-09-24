@@ -39,6 +39,45 @@ checksum = "sha256:de8625ba8cf65ebf40eb80a388ba1ec8e9c15b30218821e2c639119b05920
 url = "https://github.com/neovim/neovim/releases/download/v0.12.5/nvim-win64.zip"
 url_api = "https://api.github.com/repos/neovim/neovim/releases/assets/526503770"
 
+[[tools."github:agavra/tuicr"]]
+version = "0.27.0"
+backend = "github:agavra/tuicr"
+
+[tools."github:agavra/tuicr"."platforms.linux-arm64"]
+checksum = "sha256:6f6bf1604159bc8644cadf73b9bace8441af183a574aa9f8db0a7b142a1c0e16"
+url = "https://github.com/agavra/tuicr/releases/download/v0.27.0/tuicr-0.27.0-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/agavra/tuicr/releases/assets/584421927"
+
+[tools."github:agavra/tuicr"."platforms.linux-arm64-musl"]
+checksum = "sha256:d0707f491cc8cdf0930fc1466029341d804a0105dd0b674f8dca33afb8366490"
+url = "https://github.com/agavra/tuicr/releases/download/v0.27.0/tuicr-0.27.0-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/agavra/tuicr/releases/assets/584422096"
+
+[tools."github:agavra/tuicr"."platforms.linux-x64"]
+checksum = "sha256:851c7671d85fd20dc77d30321b201093af9dcdfe45011ad1d51ae65a229da192"
+url = "https://github.com/agavra/tuicr/releases/download/v0.27.0/tuicr-0.27.0-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/agavra/tuicr/releases/assets/584422403"
+
+[tools."github:agavra/tuicr"."platforms.linux-x64-musl"]
+checksum = "sha256:f673ff709af2501c111216c95745395ae2bfedf3daa3d039539f9614a6ddb4e4"
+url = "https://github.com/agavra/tuicr/releases/download/v0.27.0/tuicr-0.27.0-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/agavra/tuicr/releases/assets/584422780"
+
+[tools."github:agavra/tuicr"."platforms.macos-arm64"]
+checksum = "sha256:170b2e5290435faaf663c9498b1385493df7c336646b74c9336388844e028dcf"
+url = "https://github.com/agavra/tuicr/releases/download/v0.27.0/tuicr-0.27.0-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/agavra/tuicr/releases/assets/584424400"
+
+[tools."github:agavra/tuicr"."platforms.macos-x64"]
+checksum = "sha256:c93a066b4c0d558ecb09ebad498f12b6c34fd95cad536ec5a05a4fec91be1850"
+url = "https://github.com/agavra/tuicr/releases/download/v0.27.0/tuicr-0.27.0-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/agavra/tuicr/releases/assets/584425453"
+
+[tools."github:agavra/tuicr"."platforms.windows-x64"]
+checksum = "sha256:c1d68e051b2fdbed1cf0c641bcb1b26f63ef7b9b2ce38d23035a2dd8c616819c"
+url = "https://github.com/agavra/tuicr/releases/download/v0.27.0/tuicr-0.27.0-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/agavra/tuicr/releases/assets/584426157"
+
 [[tools."github:earendil-works/pi"]]
 version = "0.84.4"
 backend = "github:earendil-works/pi"
