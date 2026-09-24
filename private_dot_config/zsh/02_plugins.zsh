@@ -8,6 +8,7 @@ zcomet load ohmyzsh plugins/eza
 zcomet load ohmyzsh plugins/fzf
 zcomet trigger git ohmyzsh plugins/git-extras
 zcomet load ohmyzsh plugins/mise
+zcomet load ohmyzsh plugins/per-directory-history # https://github.com/jimhester/per-directory-history
 zcomet load ohmyzsh plugins/zoxide
 
 zcomet load Aloxaf/fzf-tab
