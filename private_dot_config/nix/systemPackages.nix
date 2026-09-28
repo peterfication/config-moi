@@ -71,6 +71,7 @@ with pkgs; [
   pkgsUnstable.whosthere # https://github.com/ramonvermeulen/whosthere
   wireshark # https://www.wireshark.org/
   xld # https://tmkk.undo.jp/xld/index_e.html
+  yq # https://github.com/mikefarah/yq
   zoxide # https://github.com/ajeetdsouza/zoxide
 
   # Container tooling
