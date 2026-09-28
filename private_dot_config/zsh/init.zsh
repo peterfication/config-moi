@@ -7,6 +7,10 @@ source ~/.config/zsh/01_languages.zsh
 # Agent/tool shells often start zsh without a real TTY. Skip plugin and prompt
 # setup there so non-interactive commands don't load zcomet or completion code.
 if [[ ! -o interactive || ! -t 0 || ! -t 1 ]]; then
+  # mise is activated in 02_plugins.zsh which should not be fully loaded in agent
+  # shells, so this needs to be activated here separately
+  command -v mise >/dev/null && eval "$(mise activate zsh --shims)"
+
   return
 fi
 
