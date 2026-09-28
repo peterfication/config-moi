@@ -16,3 +16,4 @@ yarn = "4.1.0"
 "npm:skills" = "1.4.3"
 "github:agavra/tuicr" = "0.27.0" # https://github.com/agavra/tuicr
 prettier = "3.8.1"
+"aqua:astral-sh/ruff" = "0.16.9"
