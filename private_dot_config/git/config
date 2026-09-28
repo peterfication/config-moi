@@ -13,6 +13,7 @@
 
 [push]
   default = current
+  autoSetupRemote = true
 
 # If the Github remote is HTTPS, push to the SSH URL instead
 [url "git@github.com:"]
