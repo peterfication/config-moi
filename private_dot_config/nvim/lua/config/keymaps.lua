@@ -52,10 +52,16 @@ map("n", "<Leader>fyn", function()
   copy(file_name, "file name: " .. file_name)
 end, { desc = "Yank file name" })
 
-map("n", "<Leader>fya", function()
+map("n", "<Leader>fyaa", function()
   local agent_file_path = "@" .. git_relative_path()
   copy(agent_file_path, "agent file reference: " .. agent_file_path)
 end, { desc = "Yank agent file reference" })
+
+map("n", "<Leader>fyal", function()
+  local current_buffer_line = vim.api.nvim_win_get_cursor(0)[1]
+  local agent_file_path_with_line = "@" .. git_relative_path() .. "#L" .. current_buffer_line
+  copy(agent_file_path_with_line, "agent file line reference: " .. agent_file_path_with_line)
+end, { desc = "Yank agent file line reference" })
 
 map("n", "<Leader>fyc", function()
   local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
