@@ -41,6 +41,22 @@ return {
       end
     end,
   },
+  {
+    "cursortab/cursortab.nvim",
+    lazy = false,
+    build = "cd server && go build",
+    config = function()
+      require("cursortab").setup({
+        -- llama-server -hf mradermacher/zeta-2.1-GGUF --ctx-size 16384 --port 9999
+        provider = {
+          type = "zeta-2.1",
+          url = "http://localhost:9999",
+          -- Local model is slower than the 5s default
+          completion_timeout = 20000,
+        },
+      })
+    end,
+  },
 }
 
 -- return {

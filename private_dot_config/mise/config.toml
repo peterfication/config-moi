@@ -15,5 +15,6 @@ yarn = "4.1.0"
 "github:earendil-works/pi" = "v0.84.4" # https://github.com/earendil-works/pi
 "npm:skills" = "1.4.3"
 "github:agavra/tuicr" = "0.27.0" # https://github.com/agavra/tuicr
+"llama.cpp" = "8951" # https://github.com/ggml-org/llama.cpp (provides llama-server)
 prettier = "3.8.1"
 "aqua:astral-sh/ruff" = "0.16.9"
