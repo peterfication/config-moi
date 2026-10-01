@@ -243,6 +243,7 @@ const rules: Rule[] = [
         ["e", toKey("0", ["right_shift"])], // =
         ["i", toKey("1", ["right_shift"])], // !
         ["o", toKey("hyphen", ["right_shift"])], // ?
+        ["p", toKey("5", ["right_shift"])], // %
         ["m", toKey("equal_sign", ["right_shift"])], // `
         ["a", toKey("non_us_backslash")], // ^
       ]),
