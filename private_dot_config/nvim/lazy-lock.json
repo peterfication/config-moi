@@ -72,7 +72,7 @@
   "promise-async": { "branch": "main", "commit": "119e8961014c9bfaf1487bf3c2a393d254f337e2" },
   "quicker.nvim": { "branch": "master", "commit": "4a6883cb13fe097a20a046eb55f6dffd239276e3" },
   "render-markdown.nvim": { "branch": "main", "commit": "a778444a73080301a50c4a6f58c90d7e094dd59e" },
-  "review.nvim": { "branch": "mark-file-as-reviewed", "commit": "80ebcfdc7b7c0b5840863c3592684a33a543940f" },
+  "review.nvim": { "branch": "mark-file-as-reviewed", "commit": "6b82d6afb90b09773565cf563f9f7f9d994f05d1" },
   "rustaceanvim": { "branch": "main", "commit": "9499318abe813fd36da9be3bca4a52765f7c24f9" },
   "sidekick.nvim": { "branch": "main", "commit": "3d80a47e6375f6d647c9695d3afea6fa1b3275df" },
   "snacks.nvim": { "branch": "main", "commit": "882c996cf28183f4d63640de0b4c02ec886d01f2" },
