@@ -7,6 +7,14 @@ return {
           enabled = true,
           create = "window",
         },
+        nes = {
+          enabled = false,
+        },
+        copilot = {
+          status = {
+            enabled = false,
+          },
+        },
         tools = {
           antigravity = {
             cmd = { "agy" },
@@ -23,6 +31,15 @@ return {
         },
       },
     },
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = function(_, opts)
+      if opts.servers then
+        -- Disable copilot LSP
+        opts.servers.copilot = nil
+      end
+    end,
   },
 }
 
