@@ -5,7 +5,7 @@ return {
     -- See https://github.com/esmuellert/codediff.nvim#configuration
     opts = {
       diff = {
-        cycle_hunks_across_files = true, -- ]c/[c at file boundary hops to first/last hunk of next/prev file (explorer/history)
+        -- cycle_hunks_across_files = true, -- ]c/[c at file boundary hops to first/last hunk of next/prev file (explorer/history)
       },
       explorer = {
         view_mode = "tree", -- "list" or "tree"
@@ -22,8 +22,9 @@ return {
     },
   },
   {
-    "georgeguimaraes/review.nvim",
-    version = "*",
+    -- "georgeguimaraes/review.nvim",
+    "peterfication/review.nvim",
+    branch = "mark-file-as-reviewed",
     dependencies = {
       "esmuellert/codediff.nvim",
       "MunifTanjim/nui.nvim",
