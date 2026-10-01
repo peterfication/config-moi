@@ -1,5 +1,27 @@
 return {
   {
+    "esmuellert/codediff.nvim",
+    event = "VeryLazy",
+    -- See https://github.com/esmuellert/codediff.nvim#configuration
+    opts = {
+      diff = {
+        cycle_hunks_across_files = true, -- ]c/[c at file boundary hops to first/last hunk of next/prev file (explorer/history)
+      },
+      explorer = {
+        view_mode = "tree", -- "list" or "tree"
+      },
+
+      -- Keymaps in diff view
+      keymaps = {
+        view = {
+          -- This does not work because Gitsigns seems to load later and overwrites it
+          -- next_hunk = "]h",
+          -- prev_hunk = "[h",
+        },
+      },
+    },
+  },
+  {
     "georgeguimaraes/review.nvim",
     version = "*",
     dependencies = {
