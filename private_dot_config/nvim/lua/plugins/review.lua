@@ -4,8 +4,20 @@ return {
     event = "VeryLazy",
     -- See https://github.com/esmuellert/codediff.nvim#configuration
     opts = {
+      highlights = {
+        line_insert = "#1d3042",
+        line_delete = "#351d2b",
+        char_brightness = 1.5,
+      },
       diff = {
         -- cycle_hunks_across_files = true, -- ]c/[c at file boundary hops to first/last hunk of next/prev file (explorer/history)
+        gutter_signs = {
+          insert_text = "＋",
+          delete_text = "－",
+          highlight_numbers = true,
+          changed_priority = 100,
+          unchanged_priority = nil,
+        },
       },
       explorer = {
         view_mode = "tree", -- "list" or "tree"
@@ -14,9 +26,8 @@ return {
       -- Keymaps in diff view
       keymaps = {
         view = {
-          -- This does not work because Gitsigns seems to load later and overwrites it
-          -- next_hunk = "]h",
-          -- prev_hunk = "[h",
+          next_hunk = "<localleader>n",
+          prev_hunk = "<localleader>p",
         },
       },
     },
