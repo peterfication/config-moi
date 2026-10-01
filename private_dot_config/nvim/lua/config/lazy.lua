@@ -36,7 +36,7 @@ require("lazy").setup({
 
     { import = "lazyvim.plugins.extras.dap.core" },
 
-    { import = "lazyvim.plugins.extras.util.rest" }, -- HTTP client
+    { import = "lazyvim.plugins.extras.util.rest" }, -- kulala HTTP client
     { import = "lazyvim.plugins.extras.util.octo" }, -- GitHub integration
 
     { import = "lazyvim.plugins.extras.lang.markdown" },
