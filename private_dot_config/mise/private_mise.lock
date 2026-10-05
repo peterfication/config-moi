@@ -163,6 +163,45 @@ checksum = "sha256:03b2318774f18721e959d9f8f3340a9f942e7aa516fb7030d3007a12a40a4
 url = "https://github.com/earendil-works/pi/releases/download/v0.84.4/pi-windows-x64.zip"
 url_api = "https://api.github.com/repos/earendil-works/pi/releases/assets/534389959"
 
+[[tools."github:jesseduffield/lazygit"]]
+version = "0.65.1"
+backend = "github:jesseduffield/lazygit"
+
+[tools."github:jesseduffield/lazygit"."platforms.linux-arm64"]
+checksum = "sha256:49abecdf6adf4f2dfdb11bf7b9bfada267ea523612ed809d1c6d87f6c04000a7"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.65.1/lazygit_0.65.1_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/560658270"
+
+[tools."github:jesseduffield/lazygit"."platforms.linux-arm64-musl"]
+checksum = "sha256:49abecdf6adf4f2dfdb11bf7b9bfada267ea523612ed809d1c6d87f6c04000a7"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.65.1/lazygit_0.65.1_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/560658270"
+
+[tools."github:jesseduffield/lazygit"."platforms.linux-x64"]
+checksum = "sha256:02beacbcda0fa342e50ae3480ba8147307353af3fb28e1d5f790e02329c201a6"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.65.1/lazygit_0.65.1_linux_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/560658266"
+
+[tools."github:jesseduffield/lazygit"."platforms.linux-x64-musl"]
+checksum = "sha256:02beacbcda0fa342e50ae3480ba8147307353af3fb28e1d5f790e02329c201a6"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.65.1/lazygit_0.65.1_linux_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/560658266"
+
+[tools."github:jesseduffield/lazygit"."platforms.macos-arm64"]
+checksum = "sha256:65a367c6ea9a88efebaaf7998a6835eedb987e04916cef677264ff9b31b1b13e"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.65.1/lazygit_0.65.1_darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/560658243"
+
+[tools."github:jesseduffield/lazygit"."platforms.macos-x64"]
+checksum = "sha256:fde13daf583511aa24c42ca154911643231a5af784c7cdd8117264b2fc035b33"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.65.1/lazygit_0.65.1_darwin_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/560658244"
+
+[tools."github:jesseduffield/lazygit"."platforms.windows-x64"]
+checksum = "sha256:bed669be29204932560836a58dc6519ba43c10ea7dc7df63af8a1d96424e191d"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.65.1/lazygit_0.65.1_windows_x86_64.zip"
+url_api = "https://api.github.com/repos/jesseduffield/lazygit/releases/assets/560658241"
+
 [[tools."github:kopecmaciej/vi-sql"]]
 version = "0.4.0"
 backend = "github:kopecmaciej/vi-sql"
@@ -300,6 +339,14 @@ backend = "npm:prettier"
 version = "4.0.6"
 backend = "core:ruby"
 
+[tools.ruby."platforms.windows-x64"]
+checksum = "sha256:328d7a86bea2f4c432783025050c9ffa1c36fcfc54ebccc466b63450ec3af223"
+url = "https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-4.0.6-1/rubyinstaller-4.0.6-1-x64.7z"
+
+[[tools.ruby]]
+version = "4.0.6"
+backend = "core:ruby"
+
 [tools.ruby.options]
 compile = "false"
 precompiled_url = "jdx/ruby"
@@ -334,14 +381,6 @@ provenance = "github-attestations"
 [tools.ruby."platforms.macos-x64"]
 checksum = "sha256:837d299e8f7ddf2be31a229a7a7e019d354979825117989acb3b32b1a9be262a"
 url = "https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.6.tar.gz"
-
-[[tools.ruby]]
-version = "4.0.6"
-backend = "core:ruby"
-
-[tools.ruby."platforms.windows-x64"]
-checksum = "sha256:328d7a86bea2f4c432783025050c9ffa1c36fcfc54ebccc466b63450ec3af223"
-url = "https://github.com/oneclick/rubyinstaller2/releases/download/RubyInstaller-4.0.6-1/rubyinstaller-4.0.6-1-x64.7z"
 
 [[tools.yarn]]
 version = "4.1.0"

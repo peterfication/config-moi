@@ -10,6 +10,7 @@ ruby = "4.0.6"
 yarn = "4.1.0"
 
 # Tools
+"github:jesseduffield/lazygit" = "0.65.1"
 "aqua:neovim/neovim" = "0.12.5"
 "github:earendil-works/pi" = "v0.84.4" # https://github.com/earendil-works/pi
 prettier = "3.8.1"
