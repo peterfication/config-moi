@@ -4,7 +4,11 @@ return {
     dependencies = {
       {
         "mikavilpas/blink-ripgrep.nvim",
-        version = "*", -- use the latest stable version
+        version = "*",
+      },
+      {
+        "marcoSven/blink-cmp-yanky",
+        version = "*",
       },
     },
     opts_extend = {
@@ -47,6 +51,7 @@ return {
       sources = {
         default = {
           "ripgrep",
+          "yank",
         },
         providers = {
           ripgrep = {
@@ -55,6 +60,14 @@ return {
             ---@module "blink-ripgrep"
             ---@type blink-ripgrep.Options
             opts = {},
+          },
+          yank = {
+            name = "yank",
+            module = "blink-yanky",
+            opts = {
+              trigger_characters = { '"' },
+              kind_icon = "󰅍",
+            },
           },
         },
       },
