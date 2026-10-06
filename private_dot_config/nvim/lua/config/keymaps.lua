@@ -47,6 +47,11 @@ map("n", "<Leader>fyy", function()
   copy(path, "Git-relative file path: " .. path)
 end, { desc = "Yank Git-relative file path" })
 
+map("n", "<Leader>fyY", function()
+  local path = current_file_name()
+  copy(path, "Absolute file path: " .. path)
+end, { desc = "Yank absoulte file path" })
+
 map("n", "<Leader>fyn", function()
   local file_name = vim.fs.basename(current_file_name())
   copy(file_name, "file name: " .. file_name)
