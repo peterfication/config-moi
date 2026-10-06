@@ -185,7 +185,7 @@ return {
       { "<Leader>t6", "<CMD>ToggleTerm 6<CR>", desc = "Open terminal 6" },
       { "<Leader>t7", "<CMD>ToggleTerm 7<CR>", desc = "Open terminal 7" },
       { "<Leader>t8", "<CMD>ToggleTerm 8<CR>", desc = "Open terminal 8" },
-      { "<Leader>t9", "<CMD>ToggleTerm 9<CR>", desc = "Open terminal 9" },
+      { "<Leader>t9", "<CMD>ToggleTerm 9<CR>", desc = "Open Just task terminal" },
       { "<Leader>te", "<CMD>TermSelect<CR>", desc = "Select terminal to show" },
       { "<Leader>tm", show_current_file_in_leaf_md, desc = "Open current file in leaf-md" },
       { "<Leader>tn", open_new_terminal, desc = "Open a new terminal" },

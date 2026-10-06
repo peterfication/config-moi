@@ -54,7 +54,8 @@ return {
           cmd = "tig blame " .. file,
           direction = "float",
           close_on_exit = true,
-          count = 9,
+          count = 10,
+          hidden = true,
           on_open = function(term)
             vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
           end,
