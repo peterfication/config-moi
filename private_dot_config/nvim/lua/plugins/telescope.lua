@@ -115,63 +115,30 @@ return {
     end,
 
     keys = function()
-      local git_hunks = function()
-        require("telescope.pickers")
-          .new({
-            finder = require("telescope.finders").new_oneshot_job({ "git", "jump", "--stdout", "diff" }, {
-              entry_maker = function(line)
-                local filename, lnum_string = line:match("([^:]+):(%d+).*")
-
-                -- I couldn't find a way to use grep in new_oneshot_job so we have to filter here
-                -- return nil if filename is /dev/null because this means the file was deleted
-                if filename:match("^/dev/null") then
-                  return nil
-                end
-
-                return {
-                  value = filename,
-                  display = line,
-                  ordinal = line,
-                  filename = filename,
-                  lnum = tonumber(lnum_string),
-                }
-              end,
-            }),
-            sorter = require("telescope.sorters").get_generic_fuzzy_sorter(),
-            previewer = require("telescope.config").values.grep_previewer({}),
-            results_title = "Git hunks",
-            prompt_title = "Git hunks",
-            layout_strategy = "flex",
-          }, {})
-          :find()
-      end
-
       return {
-        { "<Leader>e", group = "Open file(s)" },
-        { "<Leader>eo", ":Oil<CR>", desc = "Oil file browser" },
         {
-          "<Leader>ee",
+          "<Leader>je",
           function()
             require("telescope.builtin").find_files()
           end,
           desc = "Find files with Telescope",
         },
         {
-          "<Leader>eg",
+          "<Leader>jg",
           function()
             require("telescope.builtin").git_files()
           end,
           desc = "Find Git ls-files with Telescope",
         },
         {
-          "<Leader>eh",
+          "<Leader>jh",
           function()
             require("telescope.builtin").oldfiles({ cwd_only = true })
           end,
           desc = "Recent files with Telescope",
         },
         {
-          "<Leader>ea",
+          "<Leader>ja",
           function()
             require("telescope.builtin").find_files({
               find_command = {
@@ -193,14 +160,8 @@ return {
           desc = "Find all files with Telescope",
         },
 
-        { "<Leader>E", group = "Open buffer(s)" },
         {
-          "<Leader>EB",
-          ":Telescope file_browser path=%:p:h<CR>",
-          desc = "Telescope file browser for current file",
-        },
-        {
-          "<Leader>EE",
+          "<Leader>jE",
           function()
             require("telescope.builtin").buffers()
           end,
@@ -208,21 +169,21 @@ return {
         },
 
         {
-          "<Leader>ff",
+          "<Leader>jj",
           function()
             require("telescope.builtin").live_grep()
           end,
           desc = "Telescope live grep search (Use <C-Space> to refine the search)",
         },
         {
-          "<Leader>ft",
+          "<Leader>jT",
           function()
             require("telescope.builtin").grep_string({ search = "TODO:" })
           end,
           desc = "List all TODO: comments in Telescope",
         },
         {
-          "<Leader>fw",
+          "<Leader>jf",
           function()
             require("telescope.builtin").grep_string({ search = vim.fn.input("Grep For > ") })
           end,
@@ -230,7 +191,7 @@ return {
         },
 
         {
-          "<Leader>F",
+          "<Leader>jJ",
           function()
             require("telescope.builtin").grep_string()
           end,
@@ -239,14 +200,14 @@ return {
         },
 
         {
-          "<Leader>H",
+          "<Leader>jH",
           function()
             require("telescope.builtin").pickers()
           end,
           desc = "Telescope history",
         },
         {
-          "<Leader>/",
+          "<Leader>j/",
           function()
             require("telescope.builtin").pickers()
           end,
@@ -254,7 +215,7 @@ return {
         },
 
         {
-          "<Leader>l",
+          "<Leader>jl",
           function()
             require("telescope.builtin").current_buffer_fuzzy_find()
           end,
@@ -262,63 +223,54 @@ return {
         },
 
         {
-          "<Leader>?",
-          function()
-            require("telescope.builtin").help_tags()
-          end,
-          desc = "Search Vim help tags with Telescope",
-        },
-
-        {
-          "<Leader>dE",
+          "<Leader>jd",
           function()
             require("telescope.builtin").diagnostics()
           end,
           desc = "Diagnostics of project with Telescope",
         },
         {
-          "<Leader>de",
+          "<Leader>jD",
           ":Telescope diagnostics bufnr=0<CR>",
           desc = "Diagnostics of current buffer with Telescope",
         },
         {
-          "<Leader>xE",
+          "<Leader>xJ",
           function()
             require("telescope.builtin").diagnostics()
           end,
           desc = "Diagnostics of project with Telescope",
         },
         {
-          "<Leader>xe",
+          "<Leader>xj",
           ":Telescope diagnostics bufnr=0<CR>",
           desc = "Diagnostics of current buffer with Telescope",
         },
 
         {
-          "<Leader>m",
+          "<Leader>jm",
           function()
             require("telescope.builtin").marks()
           end,
           desc = "Open marks in Telescope",
         },
         {
-          "<Leader>j",
+          "<Leader>jj",
           function()
             require("telescope.builtin").jumplist()
           end,
           desc = "Open jumplist in Telescope",
         },
 
-        { "<Leader>C", group = "Commands" },
         {
-          "<Leader>CC",
+          "<Leader>jc",
           function()
             require("telescope.builtin").commands()
           end,
           desc = "Open commands in Telescope",
         },
         {
-          "<Leader>CH",
+          "<Leader>jC",
           function()
             require("telescope.builtin").command_history()
           end,
@@ -326,17 +278,33 @@ return {
         },
 
         {
-          "<Leader>CB",
+          "<Leader>jb",
           function()
             require("telescope.builtin").builtin()
           end,
           desc = "Open builtin Telescope actions in Telescope",
         },
 
-        { "<Leader>qh", ":Telescope quickfixhistory<CR>", desc = "Open quickfix history in Telescope" },
-        { "<Leader>qq", ":Telescope quickfix<CR>", desc = "Open quickfix list in Telescope" },
+        { "<Leader>jqh", ":Telescope quickfixhistory<CR>", desc = "Open quickfix history in Telescope" },
+        { "<Leader>jqq", ":Telescope quickfix<CR>", desc = "Open quickfix list in Telescope" },
 
-        { "<Leader>g", group = "Git" },
+        {
+          "<Leader>jZ",
+          function()
+            require("telescope.builtin").treesitter()
+          end,
+          desc = "Open Treesitter in Telescope",
+        },
+        {
+          "<Leader>jT",
+          function()
+            require("telescope.builtin").current_buffer_tags()
+          end,
+          desc = "Open current buffer tags in Telescope",
+        },
+
+        -- Git Subcommands
+
         {
           "<Leader>gc",
           function()
@@ -344,9 +312,7 @@ return {
           end,
           desc = "Open Git commits in Telescope (<C-d> opens DiffView)",
         },
-        { "<Leader>gs", git_hunks, desc = "Open Git status hunks in Telescope" },
 
-        { "<Leader>G", group = "Git 2" },
         {
           "<Leader>GC",
           function()
@@ -362,31 +328,15 @@ return {
           desc = "Open Git status files in Telescope",
         },
 
-        { "<Leader>o", group = "Octo / Github" },
         {
-          "<Leader>oi",
+          "<Leader>Goi",
           ":Telescope gh issues<CR>",
           desc = "Open Github issues in Telescope ([o]cto [i]ssues)",
         },
         {
-          "<Leader>op",
+          "<Leader>Gop",
           ":Telescope gh pull_request<CR>",
           desc = "Open Github pull requests in Telescope ([o]cto [p]ull requests)",
-        },
-
-        {
-          "<Leader>ZZ",
-          function()
-            require("telescope.builtin").treesitter()
-          end,
-          desc = "Open Treesitter in Telescope",
-        },
-        {
-          "<Leader>ZT",
-          function()
-            require("telescope.builtin").current_buffer_tags()
-          end,
-          desc = "Open current buffer tags in Telescope",
         },
       }
     end,
