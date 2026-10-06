@@ -30,46 +30,50 @@ return {
     end,
 
     keys = {
-      {
-        "<C-h>",
-        ":cprevious<CR>",
-        desc = "Previous quickfix item",
-      },
-      {
-        "<C-l>",
-        ":cnext<CR>",
-        desc = "Next quickfix item",
-      },
-      -- ["A-j"] = { ":cnext<CR>", "Next quickfix item" },
-      -- ["A-k"] = { ":cprevious<CR>", "Previous quickfix item" },
+      -- {
+      --   "<C-h>",
+      --   ":cprevious<CR>",
+      --   desc = "Previous quickfix item",
+      -- },
+      -- {
+      --   "<C-l>",
+      --   ":cnext<CR>",
+      --   desc = "Next quickfix item",
+      -- },
 
-      { "<Leader>q", group = "Quickfix" },
       {
-        "<Leader>qc",
-        ":cclose<CR>",
-        desc = "Close quickfix list",
-      },
-      {
-        "<Leader>qo",
-        ":copen<CR>",
-        desc = "Open quickfix list",
-      },
-      {
-        "<Leader>qt",
-        ":cg quickfix.out | cwindow<CR>",
-        desc = "Load quickfix from rspec-quickfix tests",
+        "<Leader>xq",
+        function()
+          local winid = vim.fn.getqflist({ winid = 0 }).winid
+
+          if winid ~= 0 then
+            vim.cmd.cclose()
+          else
+            vim.cmd.copen()
+          end
+        end,
+        desc = "Toggle quickfix list",
       },
 
-      { "<Leader>x", group = "Trouble" },
-      { "<Leader>xl", "<CMD>Trouble loclist toggle<CR>", desc = "Toggle loclist" },
-      { "<Leader>xn", "<CMD>Trouble diagnostics next<CR><CMD>Trouble diagnostics jump<CR>", desc = "Next" },
-      { "<Leader>xq", "<CMD>Trouble qflist toggle<CR>", desc = "Toggle quickfix" },
+      -- Intended duplicate of <leader>jx/X
       {
-        "<Leader>xw",
+        "<Leader>xj",
+        function()
+          require("telescope.builtin").diagnostics()
+        end,
+        desc = "Diagnostics of project with Telescope",
+      },
+      {
+        "<Leader>xJ",
+        ":Telescope diagnostics bufnr=0<CR>",
+        desc = "Diagnostics of current buffer with Telescope",
+      },
+
+      {
+        "<Leader>xW",
         "<CMD>Trouble diagnostics toggle<CR>",
-        desc = "Toggle workspace diagnostics",
+        desc = "Workspace diagnostics (Trouble)",
       },
-      { "<Leader>xx", group = "Trouble document diagnostics" },
       {
         "<Leader>xxx",
         "<CMD>Trouble diagnostics toggle filter.buf=0 filter.severity=vim.diagnostic.severity.ERROR<CR>",

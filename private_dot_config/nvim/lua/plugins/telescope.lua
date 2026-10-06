@@ -223,26 +223,14 @@ return {
         },
 
         {
-          "<Leader>jd",
+          "<Leader>jx",
           function()
             require("telescope.builtin").diagnostics()
           end,
           desc = "Diagnostics of project with Telescope",
         },
         {
-          "<Leader>jD",
-          ":Telescope diagnostics bufnr=0<CR>",
-          desc = "Diagnostics of current buffer with Telescope",
-        },
-        {
-          "<Leader>xJ",
-          function()
-            require("telescope.builtin").diagnostics()
-          end,
-          desc = "Diagnostics of project with Telescope",
-        },
-        {
-          "<Leader>xj",
+          "<Leader>jX",
           ":Telescope diagnostics bufnr=0<CR>",
           desc = "Diagnostics of current buffer with Telescope",
         },
