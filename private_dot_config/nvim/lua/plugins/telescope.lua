@@ -191,7 +191,7 @@ return {
         },
 
         {
-          "<Leader>jJ",
+          "<Leader>jF",
           function()
             require("telescope.builtin").grep_string()
           end,
