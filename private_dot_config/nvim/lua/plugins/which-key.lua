@@ -12,6 +12,7 @@ return {
         { "<Leader>Go", group = "Octo / GitHub" },
         { "<Leader>h", group = "Harpoon" },
         { "<Leader>k", group = "Multi-cursor" },
+        { "<Leader>m", group = "Marks" },
         { "<Leader>o", group = "" },
         { "<Leader>r", group = "Review" },
         { "<Leader>t", group = "Terminal / test" },
