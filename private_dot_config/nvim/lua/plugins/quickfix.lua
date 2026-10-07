@@ -59,17 +59,17 @@ return {
       {
         "<Leader>xsx",
         "<CMD>Trouble diagnostics toggle filter.severity=vim.diagnostic.severity.ERROR<CR>",
-        desc = "Toggle document diagnostics ERROR",
+        desc = "Toggle diagnostics ERROR",
       },
       {
         "<Leader>xsw",
         "<CMD>Trouble diagnostics toggle filter.severity=vim.diagnostic.severity.WARN<CR>",
-        desc = "Toggle document diagnostics WARN",
+        desc = "Toggle diagnostics WARN",
       },
       {
         "<Leader>xsi",
         "<CMD>Trouble diagnostics toggle filter.severity=vim.diagnostic.severity.INFO<CR>",
-        desc = "Toggle document diagnostics INFO",
+        desc = "Toggle diagnostics INFO",
       },
 
       {

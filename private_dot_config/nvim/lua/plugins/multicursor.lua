@@ -60,7 +60,7 @@ return {
       {
         "<Leader>kk",
         function()
-          require("multicursor-nvim").lineAddCursor(1)
+          require("multicursor-nvim").lineAddCursor(-1)
         end,
         mode = { "n", "x" },
         desc = "Go into visual mode and select the current line/cursor position and go up",

@@ -162,17 +162,17 @@ return {
         end,
       })
     end,
-  },
-  keys = {
-    {
-      "<Leader>Goi",
-      ":Telescope gh issues<CR>",
-      desc = "Open Github issues in Telescope ([o]cto [i]ssues)",
-    },
-    {
-      "<Leader>Gop",
-      ":Telescope gh pull_request<CR>",
-      desc = "Open Github pull requests in Telescope ([o]cto [p]ull requests)",
+    keys = {
+      {
+        "<Leader>Goi",
+        ":Telescope gh issues<CR>",
+        desc = "Open Github issues in Telescope ([o]cto [i]ssues)",
+      },
+      {
+        "<Leader>Gop",
+        ":Telescope gh pull_request<CR>",
+        desc = "Open Github pull requests in Telescope ([o]cto [p]ull requests)",
+      },
     },
   },
 }

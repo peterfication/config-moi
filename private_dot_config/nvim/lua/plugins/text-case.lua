@@ -32,7 +32,6 @@ return {
         desc = "Run Subs command for text under cursor",
         mode = { "n", "v" },
       },
-      { "gaR", "<CMD>TextCaseStartReplacingCommand<CR>", desc = "Run Subs command for text under cursor" },
     },
     cmd = {
       "Subs",
