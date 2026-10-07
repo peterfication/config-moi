@@ -25,6 +25,5 @@ return {
 
 ## TODO
 
-- https://github.com/davidmh/cspell.nvim
 - https://github.com/chentoast/marks.nvim
 - https://github.com/hkupty/iron.nvim

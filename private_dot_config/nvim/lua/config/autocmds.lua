@@ -14,3 +14,13 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     vim.cmd('silent! lua require("mini.trailspace").trim_last_lines()')
   end,
 })
+
+-- Disable Neovim spell check by default in favor of codebook
+vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("wrap_text"),
+  pattern = { "text", "plaintex", "typst", "gitcommit", "markdown" },
+  callback = function()
+    vim.opt_local.wrap = true
+  end,
+})

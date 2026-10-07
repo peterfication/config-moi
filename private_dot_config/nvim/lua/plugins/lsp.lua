@@ -49,11 +49,11 @@ return {
     "mason-org/mason.nvim",
     opts = {
       ensure_installed = {
-        -- Protobufs
-        -- "buf",
-        "protols",
-        "just-lsp",
+        -- "buf", -- Protobufs
+        "codebook",
         "gh-actions-language-server",
+        "just-lsp",
+        "protols",
       },
     },
   },
