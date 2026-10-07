@@ -4,8 +4,6 @@ local map = vim.keymap.set
 
 map("n", "<Leader><ESC>", ":nohlsearch<CR>", { silent = true, desc = "Clear search highlight" })
 
-map("n", "<Leader>!", ":w<CR>", { silent = true, desc = "Save current buffer" })
-
 map("n", "<Leader>!", ":tabclose<CR>", { desc = "Close current tab" })
 map("n", "<Leader>1", "1gt", { desc = "Go to tab 1" })
 map("n", "<Leader>2", "2gt", { desc = "Go to tab 2" })
@@ -22,7 +20,6 @@ map("n", "<Leader>baw", ":noautocmd w<CR>", { silent = true, desc = "Write curre
 map("n", "<Leader>bW", ":wa<CR>", { silent = true, desc = "Safe/write all buffers" })
 map("n", "<Leader>br", ":e<CR>", { silent = true, desc = "Refresh current buffer" })
 map("n", "<Leader>bc", ":bufdo bd<CR>", { silent = true, desc = "Delete/clear all buffers" })
-map("n", "<Leader>qA", ":qa!<CR>", { silent = true, desc = "Quit all without saving" })
 
 -- File copying keymaps
 
