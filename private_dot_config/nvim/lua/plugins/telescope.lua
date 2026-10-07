@@ -145,14 +145,4 @@ return {
       },
     },
   },
-
-  {
-    "nvim-telescope/telescope-ui-select.nvim",
-    event = "VeryLazy",
-    opts = function()
-      LazyVim.on_load("telescope.nvim", function()
-        require("telescope").load_extension("ui-select")
-      end)
-    end,
-  },
 }

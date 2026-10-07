@@ -2,6 +2,11 @@ return {
   {
     "snacks.nvim",
     opts = {
+      input = { enabled = true },
+      picker = {
+        enabled = true,
+        ui_select = true,
+      },
       scroll = {
         animate = {
           duration = { step = 10, total = 100 },
@@ -22,6 +27,11 @@ return {
         },
       },
     },
+  },
+
+  {
+    "stevearc/dressing.nvim",
+    enabled = false,
   },
 
   {
