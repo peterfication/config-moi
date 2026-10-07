@@ -79,17 +79,4 @@ return {
       { "<A-S-l>", "<CMD>Treewalker SwapRight<CR>", silent = true },
     },
   },
-
-  {
-    "hasansujon786/nvim-navbuddy",
-    cmd = { "Navbuddy" },
-    opts = { lsp = { auto_attach = true } },
-    keys = {
-      { "<Leader>cb", "<CMD>Navbuddy<CR>", desc = "Navbuddy" },
-    },
-  },
-  {
-    "SmiteshP/nvim-navic",
-    cmd = { "Navbuddy" },
-  },
 }

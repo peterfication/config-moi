@@ -1,6 +1,20 @@
 return {
   {
     "neovim/nvim-lspconfig",
+    dependencies = {
+      -- Navbuddy must initialize before LSP clients attach so that auto_attach can observe the attachment events.
+      {
+        "hasansujon786/nvim-navbuddy",
+        dependencies = {
+          "SmiteshP/nvim-navic",
+          "MunifTanjim/nui.nvim",
+        },
+        opts = { lsp = { auto_attach = true } },
+        keys = {
+          { "<Leader>cb", "<CMD>Navbuddy<CR>", desc = "Navbuddy" },
+        },
+      },
+    },
     -- opts = function()
     --   local keys = require("lazyvim.plugins.lsp.keymaps").get()
     --   -- change a keymap
