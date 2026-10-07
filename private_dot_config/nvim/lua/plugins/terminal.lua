@@ -175,7 +175,7 @@ return {
     keys = {
       -- Because of lazy loading, <C-t> from the opts.open_mapping is not loaded, so it needs
       -- to be redefined here.
-      { "<C-t>", "<CMD>ToggleTerm<CR>", { desc = "Toggle ToggleTerm" } },
+      { "<C-t>", "<CMD>ToggleTerm<CR>", desc = "Toggle ToggleTerm" },
 
       { "<Leader>t1", "<CMD>ToggleTerm 1<CR>", desc = "Open terminal 1" },
       { "<Leader>t2", "<CMD>ToggleTerm 2<CR>", desc = "Open terminal 2" },

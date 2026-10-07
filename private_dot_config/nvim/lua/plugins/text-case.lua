@@ -19,12 +19,12 @@ return {
       {
         "gar",
         "<CMD>lua require('textcase').start_replacing_command_with_part({ parts_count = 1 })<CR>",
-        { desc = "Run Subs command for first part of text under cursor" },
+        desc = "Run Subs command for first part of text under cursor",
       },
       {
         "ga2r",
         "<CMD>lua require('textcase').start_replacing_command_with_part({ parts_count = 2 })<CR>",
-        { desc = "Run Subs command for first part of text under cursor" },
+        desc = "Run Subs command for first two parts of text under cursor",
       },
       {
         "gaR",
