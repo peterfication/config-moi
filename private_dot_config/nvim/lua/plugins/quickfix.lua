@@ -17,17 +17,12 @@ return {
     "folke/trouble.nvim",
     event = "VeryLazy",
     opts = {
-      {
-        win = {
-          wo = {
-            wrap = true,
-          },
+      win = {
+        wo = {
+          wrap = true,
         },
       },
     },
-    config = function()
-      vim.diagnostic.config({ virtual_text = false })
-    end,
 
     keys = {
       -- {
@@ -41,6 +36,12 @@ return {
       --   desc = "Next quickfix item",
       -- },
 
+      -- <leader>cs is used by aerial
+      { "<leader>cz", "<cmd>Trouble symbols toggle<cr>", desc = "Symbols (Trouble)" },
+
+      { "<Leader>xf", "<cmd>Telescope diagnostics<CR>", desc = "Diagnostics (Telescope)" },
+      { "<Leader>xF", "<cmd>Telescope diagnostics bufnr=0<CR>", desc = "Buffer diagnostics (Telescope)" },
+
       {
         "<Leader>xq",
         function()
@@ -52,44 +53,40 @@ return {
             vim.cmd.copen()
           end
         end,
-        desc = "Toggle quickfix list",
-      },
-
-      -- Intended duplicate of <leader>jx/X
-      {
-        "<Leader>xj",
-        function()
-          require("telescope.builtin").diagnostics()
-        end,
-        desc = "Diagnostics of project with Telescope",
-      },
-      {
-        "<Leader>xJ",
-        ":Telescope diagnostics bufnr=0<CR>",
-        desc = "Diagnostics of current buffer with Telescope",
+        desc = "Quickfix list",
       },
 
       {
-        "<Leader>xW",
-        "<CMD>Trouble diagnostics toggle<CR>",
-        desc = "Workspace diagnostics (Trouble)",
+        "<Leader>xsx",
+        "<CMD>Trouble diagnostics toggle filter.severity=vim.diagnostic.severity.ERROR<CR>",
+        desc = "Toggle document diagnostics ERROR",
       },
       {
-        "<Leader>xxx",
+        "<Leader>xsw",
+        "<CMD>Trouble diagnostics toggle filter.severity=vim.diagnostic.severity.WARN<CR>",
+        desc = "Toggle document diagnostics WARN",
+      },
+      {
+        "<Leader>xsi",
+        "<CMD>Trouble diagnostics toggle filter.severity=vim.diagnostic.severity.INFO<CR>",
+        desc = "Toggle document diagnostics INFO",
+      },
+
+      {
+        "<Leader>xSx",
         "<CMD>Trouble diagnostics toggle filter.buf=0 filter.severity=vim.diagnostic.severity.ERROR<CR>",
         desc = "Toggle document diagnostics ERROR",
       },
       {
-        "<Leader>xxw",
+        "<Leader>xSw",
         "<CMD>Trouble diagnostics toggle filter.buf=0 filter.severity=vim.diagnostic.severity.WARN<CR>",
         desc = "Toggle document diagnostics WARN",
       },
       {
-        "<Leader>xxi",
+        "<Leader>xSi",
         "<CMD>Trouble diagnostics toggle filter.buf=0 filter.severity=vim.diagnostic.severity.INFO<CR>",
         desc = "Toggle document diagnostics INFO",
       },
-      { "<Leader>xxe", "<CMD>Telescope diagnostics<CR>", desc = "Telescope document diagnostics" },
     },
   },
 
