@@ -2,7 +2,7 @@
 
 Refer to the [documentation](https://lazyvim.github.io/installation).
 
-## Project specific setup via .lazy.lua
+## Project specific setup via `.lazy.lua` file
 
 See [LOCAL_SPEC](https://github.com/folke/lazy.nvim/blob/306a05526ada86a7b30af95c5cc81ffba93fef97/lua/lazy/core/plugin.lua#L21).
 
@@ -25,22 +25,6 @@ return {
 
 ## TODO
 
-- mrjones2014/legendary.nvim
-- davidmh/cspell.nvim
-- chentoast/marks.nvim
-- simnalamburt/vim-mundo
-- hkupty/iron.nvim
-- L3MON4D3/LuaSnip
-- stevearc/overseer.nvim
-- lukas-reineke/indent-blankline.nvim
-- akinsho/bufferline.nvim
-- nvim-lualine/lualine.nvim
-- wfxr/minimap.vim
-
-- https://github.com/nvim-neorg/neorg
-
-### Treesitter
-
-- RRethy/nvim-treesitter-textsubjects
-- kevinhwang91/nvim-ufo
-- chrisgrieser/nvim-various-textobjs
+- https://github.com/davidmh/cspell.nvim
+- https://github.com/chentoast/marks.nvim
+- https://github.com/hkupty/iron.nvim
