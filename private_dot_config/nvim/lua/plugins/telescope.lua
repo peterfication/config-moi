@@ -115,6 +115,7 @@ return {
     end,
 
     keys = {
+      { "<leader><space>", false },
       { "<Leader>fT", ":Telescope pickers<CR>", desc = "Picker history" },
       { "<Leader>ft", ":Telescope builtin<CR>", desc = "Telescope builtins" },
       { "<Leader>fq", ":Telescope quickfixhistory<CR>", desc = "Quickfix history" },

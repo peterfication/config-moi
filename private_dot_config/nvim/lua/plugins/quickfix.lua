@@ -1,16 +1,95 @@
 return {
   {
-    -- Better quickfix features
-    "kevinhwang91/nvim-bqf",
-    -- priority = 1001,
+    "quickfix-format",
+    virtual = true,
     event = "VeryLazy",
+    config = function()
+      function _G.qftf(info)
+        local items
+        local result = {}
+
+        if info.quickfix == 1 then
+          items = vim.fn.getqflist({ id = info.id, items = 0 }).items
+        else
+          items = vim.fn.getloclist(info.winid, { id = info.id, items = 0 }).items
+        end
+
+        local filename_limit = 31
+        local short_filename = "%-" .. filename_limit .. "s"
+        local truncated_filename = "…%." .. (filename_limit - 1) .. "s"
+        local item_format = "%s │%5d:%-3d│%s %s"
+
+        for i = info.start_idx, info.end_idx do
+          local item = items[i]
+          local line
+
+          if item.valid == 1 then
+            local filename = ""
+
+            if item.bufnr > 0 then
+              filename = vim.fn.bufname(item.bufnr)
+              if filename == "" then
+                filename = "[No Name]"
+              else
+                filename = filename:gsub("^" .. vim.pesc(vim.env.HOME), "~")
+              end
+
+              if #filename <= filename_limit then
+                filename = short_filename:format(filename)
+              else
+                filename = truncated_filename:format(filename:sub(1 - filename_limit))
+              end
+            end
+
+            local lnum = item.lnum > 99999 and -1 or item.lnum
+            local col = item.col > 999 and -1 or item.col
+            local item_type = item.type == "" and "" or " " .. item.type:sub(1, 1):upper()
+            line = item_format:format(filename, lnum, col, item_type, item.text)
+          else
+            line = item.text
+          end
+
+          table.insert(result, line)
+        end
+
+        return result
+      end
+
+      vim.o.quickfixtextfunc = "{info -> v:lua._G.qftf(info)}"
+    end,
   },
 
   {
-    "stevearc/quicker.nvim",
-    -- priority = 1000,
+    -- Better quickfix features
+    -- - Some styling
+    -- - Preview (zp: maximize)
+    -- - Filtering with <Tab> and zn/N
+    "kevinhwang91/nvim-bqf",
+    -- priority = 1001,
     event = "VeryLazy",
-    opts = {},
+    init = function()
+      local group = vim.api.nvim_create_augroup("bqf_localleader", { clear = true })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        group = group,
+        pattern = "qf",
+        callback = function(event)
+          local function alias(mode, lhs, rhs, desc)
+            vim.keymap.set(mode, lhs, rhs, {
+              buffer = event.buf,
+              remap = true,
+              desc = desc,
+            })
+          end
+
+          -- Add localleader mappings for discoverability
+          alias("n", "<localleader>n", "zn", "Filter selected items")
+          alias("n", "<localleader>N", "zN", "Filter unselected items")
+          alias("n", "<localleader>p", "zp", "Toggle preview mode")
+          alias({ "n", "x" }, "<localleader><Tab>", "<Tab>", "Toggle selection")
+        end,
+      })
+    end,
   },
 
   {

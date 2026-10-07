@@ -3,6 +3,7 @@ return {
     "folke/which-key.nvim",
     opts = {
       spec = {
+        { "<Leader> ", group = "<localleader>" },
         { "<Leader>C", group = "Commands" },
         { "<Leader>fy", group = "Yank" },
         { "<Leader>fya", group = "Agent Refs" },
