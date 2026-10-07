@@ -114,209 +114,36 @@ return {
       return vim.tbl_deep_extend("force", opts, additional_opts)
     end,
 
-    keys = function()
-      return {
-        {
-          "<Leader>je",
-          function()
-            require("telescope.builtin").find_files()
-          end,
-          desc = "Find files with Telescope",
-        },
-        {
-          "<Leader>jg",
-          function()
-            require("telescope.builtin").git_files()
-          end,
-          desc = "Find Git ls-files with Telescope",
-        },
-        {
-          "<Leader>jh",
-          function()
-            require("telescope.builtin").oldfiles({ cwd_only = true })
-          end,
-          desc = "Recent files with Telescope",
-        },
-        {
-          "<Leader>ja",
-          function()
-            require("telescope.builtin").find_files({
-              find_command = {
-                "rg",
-                "--files",
-                "--hidden",
-                "--no-ignore",
-                "--maxdepth",
-                2,
-                "--glob",
-                "!.git/*",
-                "--glob",
-                "!.venv/*",
-                "--glob",
-                "!node_modules/*",
-              },
-            })
-          end,
-          desc = "Find all files with Telescope",
-        },
+    keys = {
+      { "<Leader>fT", ":Telescope pickers<CR>", desc = "Picker history" },
+      { "<Leader>ft", ":Telescope builtin<CR>", desc = "Telescope builtins" },
+      { "<Leader>fq", ":Telescope quickfixhistory<CR>", desc = "Quickfix history" },
+      { "<Leader>sz", ":Telescope treesitter<CR>", desc = "Treesitter buffer symbols" },
+      { "<Leader>gC", ":Telescope git_bcommits<CR>", desc = "Commits (Buffer)" },
 
-        {
-          "<Leader>jE",
-          function()
-            require("telescope.builtin").buffers()
-          end,
-          desc = "Find files of currently open buffers",
-        },
-
-        {
-          "<Leader>jj",
-          function()
-            require("telescope.builtin").live_grep()
-          end,
-          desc = "Telescope live grep search (Use <C-Space> to refine the search)",
-        },
-        {
-          "<Leader>jT",
-          function()
-            require("telescope.builtin").grep_string({ search = "TODO:" })
-          end,
-          desc = "List all TODO: comments in Telescope",
-        },
-        {
-          "<Leader>jf",
-          function()
-            require("telescope.builtin").grep_string({ search = vim.fn.input("Grep For > ") })
-          end,
-          desc = "Open input to search for word with Telescope",
-        },
-
-        {
-          "<Leader>jF",
-          function()
-            require("telescope.builtin").grep_string()
-          end,
-          desc = "Find word under cursor with Telescope",
-          mode = { "n", "v" },
-        },
-
-        {
-          "<Leader>jH",
-          function()
-            require("telescope.builtin").pickers()
-          end,
-          desc = "Telescope history",
-        },
-        {
-          "<Leader>j/",
-          function()
-            require("telescope.builtin").pickers()
-          end,
-          desc = "Search history with Telescope",
-        },
-
-        {
-          "<Leader>jl",
-          function()
-            require("telescope.builtin").current_buffer_fuzzy_find()
-          end,
-          desc = "Select lines of current buffer with Telescope",
-        },
-
-        {
-          "<Leader>jx",
-          function()
-            require("telescope.builtin").diagnostics()
-          end,
-          desc = "Diagnostics of project with Telescope",
-        },
-        {
-          "<Leader>jX",
-          ":Telescope diagnostics bufnr=0<CR>",
-          desc = "Diagnostics of current buffer with Telescope",
-        },
-
-        {
-          "<Leader>jm",
-          function()
-            require("telescope.builtin").marks()
-          end,
-          desc = "Open marks in Telescope",
-        },
-        {
-          "<Leader>jj",
-          function()
-            require("telescope.builtin").jumplist()
-          end,
-          desc = "Open jumplist in Telescope",
-        },
-
-        {
-          "<Leader>jc",
-          function()
-            require("telescope.builtin").commands()
-          end,
-          desc = "Open commands in Telescope",
-        },
-        {
-          "<Leader>jC",
-          function()
-            require("telescope.builtin").command_history()
-          end,
-          desc = "Open command history in Telescope",
-        },
-
-        {
-          "<Leader>jb",
-          function()
-            require("telescope.builtin").builtin()
-          end,
-          desc = "Open builtin Telescope actions in Telescope",
-        },
-
-        { "<Leader>jqh", ":Telescope quickfixhistory<CR>", desc = "Open quickfix history in Telescope" },
-        { "<Leader>jqq", ":Telescope quickfix<CR>", desc = "Open quickfix list in Telescope" },
-
-        {
-          "<Leader>jZ",
-          function()
-            require("telescope.builtin").treesitter()
-          end,
-          desc = "Open Treesitter in Telescope",
-        },
-        {
-          "<Leader>jT",
-          function()
-            require("telescope.builtin").current_buffer_tags()
-          end,
-          desc = "Open current buffer tags in Telescope",
-        },
-
-        -- Git Subcommands
-
-        {
-          "<Leader>gc",
-          function()
-            require("telescope.builtin").git_commits()
-          end,
-          desc = "Open Git commits in Telescope (<C-d> opens DiffView)",
-        },
-
-        {
-          "<Leader>GC",
-          function()
-            require("telescope.builtin").git_bcommits()
-          end,
-          desc = "Open current buffer Git commits in Telescope (<C-d> opens DiffView)",
-        },
-        {
-          "<Leader>GS",
-          function()
-            require("telescope.builtin").git_status()
-          end,
-          desc = "Open Git status files in Telescope",
-        },
-      }
-    end,
+      {
+        "<Leader>fa",
+        function()
+          require("telescope.builtin").find_files({
+            find_command = {
+              "rg",
+              "--files",
+              "--hidden",
+              "--no-ignore",
+              "--maxdepth",
+              2,
+              "--glob",
+              "!.git/*",
+              "--glob",
+              "!.venv/*",
+              "--glob",
+              "!node_modules/*",
+            },
+          })
+        end,
+        desc = "Find all files",
+      },
+    },
   },
 
   {

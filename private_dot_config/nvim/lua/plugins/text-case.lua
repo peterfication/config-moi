@@ -15,7 +15,7 @@ return {
     keys = {
       { "ga", group = "Text Case" },
       { "ga.", "<CMD>TextCaseOpenTelescope<CR>", mode = { "n", "x" }, desc = "Telescope" },
-      { "<Leader>jn", "<CMD>TextCaseOpenTelescope<CR>", mode = { "n", "x" }, desc = "Telescope" },
+      { "<Leader>s.", "<CMD>TextCaseOpenTelescope<CR>", mode = { "n", "x" }, desc = "Textcase" },
       {
         "gar",
         "<CMD>lua require('textcase').start_replacing_command_with_part({ parts_count = 1 })<CR>",

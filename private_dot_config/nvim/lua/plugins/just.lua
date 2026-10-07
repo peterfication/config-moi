@@ -213,9 +213,9 @@ return {
     },
     keys = {
       {
-        "<Leader>jr",
+        "<Leader>fj",
         select_recipe,
-        desc = "Run Just recipe",
+        desc = "Just recipe",
       },
     },
   },
