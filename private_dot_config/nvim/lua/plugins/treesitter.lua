@@ -92,9 +92,4 @@ return {
     "SmiteshP/nvim-navic",
     cmd = { "Navbuddy" },
   },
-  {
-    "numToStr/Comment.nvim",
-    cmd = { "Navbuddy" },
-    opts = {},
-  },
 }
