@@ -15,7 +15,7 @@ vim.opt.listchars = {
   tab = "│─",
 }
 
-vim.wo.relativenumber = false
+vim.opt.relativenumber = false
 
 -- LazyVim auto format
 vim.g.autoformat = false
