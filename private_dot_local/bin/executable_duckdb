@@ -1,0 +1,5 @@
+#!/bin/sh
+
+exec /run/current-system/sw/bin/duckdb \
+	-init "${HOME:?HOME is not set}/.config/duckdb/duckdbrc" \
+	"$@"
