@@ -382,6 +382,45 @@ provenance = "github-attestations"
 checksum = "sha256:837d299e8f7ddf2be31a229a7a7e019d354979825117989acb3b32b1a9be262a"
 url = "https://cache.ruby-lang.org/pub/ruby/4.0/ruby-4.0.6.tar.gz"
 
+[[tools.sentry]]
+version = "3.8.0"
+backend = "aqua:getsentry/sentry-cli"
+
+[tools.sentry."platforms.linux-arm64"]
+checksum = "sha256:eaea24b5b47b61a96d9a2e353268ea41fd9a8c5b7979694330df614d4af672bf"
+url = "https://github.com/getsentry/sentry-cli/releases/download/3.8.0/sentry-cli-Linux-aarch64"
+url_api = "https://api.github.com/repos/getsentry/sentry-cli/releases/assets/568158248"
+
+[tools.sentry."platforms.linux-arm64-musl"]
+checksum = "sha256:eaea24b5b47b61a96d9a2e353268ea41fd9a8c5b7979694330df614d4af672bf"
+url = "https://github.com/getsentry/sentry-cli/releases/download/3.8.0/sentry-cli-Linux-aarch64"
+url_api = "https://api.github.com/repos/getsentry/sentry-cli/releases/assets/568158248"
+
+[tools.sentry."platforms.linux-x64"]
+checksum = "sha256:13f8cb34ae01a6a272d7d7c22e277a105286615b4020de900ea95a8de47cdbb6"
+url = "https://github.com/getsentry/sentry-cli/releases/download/3.8.0/sentry-cli-Linux-x86_64"
+url_api = "https://api.github.com/repos/getsentry/sentry-cli/releases/assets/568158243"
+
+[tools.sentry."platforms.linux-x64-musl"]
+checksum = "sha256:13f8cb34ae01a6a272d7d7c22e277a105286615b4020de900ea95a8de47cdbb6"
+url = "https://github.com/getsentry/sentry-cli/releases/download/3.8.0/sentry-cli-Linux-x86_64"
+url_api = "https://api.github.com/repos/getsentry/sentry-cli/releases/assets/568158243"
+
+[tools.sentry."platforms.macos-arm64"]
+checksum = "sha256:1dda212b0e168b9c4dc48d7d3aa24c1c37de9c6edf786e6ae661236e529969cd"
+url = "https://github.com/getsentry/sentry-cli/releases/download/3.8.0/sentry-cli-Darwin-arm64"
+url_api = "https://api.github.com/repos/getsentry/sentry-cli/releases/assets/568158233"
+
+[tools.sentry."platforms.macos-x64"]
+checksum = "sha256:279c795b15de7a76106d30b6611b7942b1a97323307327bafc18335f10384c4d"
+url = "https://github.com/getsentry/sentry-cli/releases/download/3.8.0/sentry-cli-Darwin-x86_64"
+url_api = "https://api.github.com/repos/getsentry/sentry-cli/releases/assets/568158237"
+
+[tools.sentry."platforms.windows-x64"]
+checksum = "sha256:2257cf6805a616f5c3ee291a549ebbba021190048b646adc006beb4e8cdef7fd"
+url = "https://github.com/getsentry/sentry-cli/releases/download/3.8.0/sentry-cli-Windows-x86_64.exe"
+url_api = "https://api.github.com/repos/getsentry/sentry-cli/releases/assets/568158249"
+
 [[tools.yarn]]
 version = "4.1.0"
 backend = "vfox:yarn"

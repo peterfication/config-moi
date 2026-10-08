@@ -15,6 +15,7 @@ yarn = "4.1.0"
 "github:earendil-works/pi" = "v0.84.4" # https://github.com/earendil-works/pi
 prettier = "3.8.1"
 "aqua:astral-sh/ruff" = "0.16.9"
+sentry = "3.8.0" # https://github.com/getsentry/sentry-cli
 "npm:skills" = "1.4.3"
 "github:agavra/tuicr" = "0.27.0" # https://github.com/agavra/tuicr
 "github:kopecmaciej/vi-sql" = "v0.4.0" # https://github.com/kopecmaciej/vi-sql
