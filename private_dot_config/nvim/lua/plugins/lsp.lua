@@ -36,6 +36,36 @@ return {
         "<CMD>tab split | lua vim.lsp.buf.definition()<CR>",
         desc = "Open definition in a new tab",
       },
+      {
+        "<Leader>us",
+        function()
+          local bufnr = vim.api.nvim_get_current_buf()
+          local clients = vim.lsp.get_clients({ bufnr = bufnr, name = "codebook" })
+
+          if #clients == 0 then
+            vim.notify("Codebook is not attached to this buffer", vim.log.levels.WARN)
+            return
+          end
+
+          local namespace = vim.lsp.diagnostic.get_namespace(clients[1].id)
+          local enabled = not vim.diagnostic.is_enabled({ bufnr = bufnr, ns_id = namespace })
+
+          for _, client in ipairs(clients) do
+            vim.diagnostic.enable(enabled, {
+              bufnr = bufnr,
+              ns_id = vim.lsp.diagnostic.get_namespace(client.id),
+            })
+          end
+
+          local trouble = package.loaded["trouble"]
+          if trouble then
+            trouble.refresh({ mode = "diagnostics" })
+          end
+
+          vim.notify("Codebook spelling " .. (enabled and "enabled" or "disabled"))
+        end,
+        desc = "Toggle Codebook spelling",
+      },
     },
     opts = {
       servers = {

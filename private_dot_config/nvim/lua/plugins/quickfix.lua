@@ -96,6 +96,24 @@ return {
     "folke/trouble.nvim",
     event = "VeryLazy",
     opts = {
+      filters = {
+        enabled = function(item)
+          local diagnostic = item.item
+          if not item.buf or not diagnostic.namespace then
+            return true
+          end
+
+          return vim.diagnostic.is_enabled({
+            bufnr = item.buf,
+            ns_id = diagnostic.namespace,
+          })
+        end,
+      },
+      modes = {
+        diagnostics = {
+          filter = { enabled = true },
+        },
+      },
       win = {
         wo = {
           wrap = true,
