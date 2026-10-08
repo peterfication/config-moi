@@ -18,6 +18,10 @@ export ZSH_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
 mkdir -p "$ZSH_CACHE_DIR"
 mkdir -p "$ZSH_CACHE_DIR/completions"
 
+# nix-darwin's system profile contains package-provided completions, but it can
+# be missing from NIX_PROFILES (and therefore fpath) in inherited environments.
+fpath=(/run/current-system/sw/share/zsh/site-functions $fpath)
+
 export ZCOMET_DIR=${XDG_CONFIG_HOME:-${HOME}}/.zcomet
 # Clone zcomet if necessary
 if [[ ! -f ${ZCOMET_DIR}/bin/zcomet.zsh ]]; then
