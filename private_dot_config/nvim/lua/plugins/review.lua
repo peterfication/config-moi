@@ -60,6 +60,13 @@ return {
       { "<leader>rs", "<cmd>Review sidekick<cr>", desc = "Send comments via sidekick" },
       { "<leader>r-", "<cmd>Review clear<cr>", desc = "Clear comments" },
     },
-    opts = {},
+    opts = {
+      export = {
+        header = table.concat({
+          "Please address my review notes:",
+          "",
+        }, "\n"),
+      },
+    },
   },
 }
