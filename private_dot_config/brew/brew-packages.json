@@ -231,13 +231,6 @@
     ]
   },
   {
-    "name": "tpack",
-    "type": "formula",
-    "versions": [
-      "2.0.6"
-    ]
-  },
-  {
     "name": "usbtree",
     "type": "formula",
     "versions": [

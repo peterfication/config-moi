@@ -241,6 +241,45 @@ checksum = "sha256:0679b4e17e5a3640efa9a02ae765a8e61b93a4ea0081baa7174b9fc5ef2f3
 url = "https://github.com/kopecmaciej/vi-sql/releases/download/v0.4.0/vi-sql_Windows_x86_64.zip"
 url_api = "https://api.github.com/repos/kopecmaciej/vi-sql/releases/assets/538188857"
 
+[[tools."github:tmuxpack/tpack"]]
+version = "2.0.6"
+backend = "github:tmuxpack/tpack"
+
+[tools."github:tmuxpack/tpack"."platforms.linux-arm64"]
+checksum = "sha256:cb61dce698ce2df760cf6c04871fce0ba8785a24a462fb19c681b650b3c352a7"
+url = "https://github.com/tmuxpack/tpack/releases/download/v2.0.6/tpack_2.0.6_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/tmuxpack/tpack/releases/assets/533160250"
+
+[tools."github:tmuxpack/tpack"."platforms.linux-arm64-musl"]
+checksum = "sha256:cb61dce698ce2df760cf6c04871fce0ba8785a24a462fb19c681b650b3c352a7"
+url = "https://github.com/tmuxpack/tpack/releases/download/v2.0.6/tpack_2.0.6_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/tmuxpack/tpack/releases/assets/533160250"
+
+[tools."github:tmuxpack/tpack"."platforms.linux-x64"]
+checksum = "sha256:936eb4bfaad8e301348970bf0f7afcacd57a737435c6e1cc7beda616d29230a0"
+url = "https://github.com/tmuxpack/tpack/releases/download/v2.0.6/tpack_2.0.6_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/tmuxpack/tpack/releases/assets/533160247"
+
+[tools."github:tmuxpack/tpack"."platforms.linux-x64-musl"]
+checksum = "sha256:936eb4bfaad8e301348970bf0f7afcacd57a737435c6e1cc7beda616d29230a0"
+url = "https://github.com/tmuxpack/tpack/releases/download/v2.0.6/tpack_2.0.6_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/tmuxpack/tpack/releases/assets/533160247"
+
+[tools."github:tmuxpack/tpack"."platforms.macos-arm64"]
+checksum = "sha256:19a14475a091f01dde9e5ec96932e99d864b94d2d8d62a225da8b8e41e468bb9"
+url = "https://github.com/tmuxpack/tpack/releases/download/v2.0.6/tpack_2.0.6_darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/tmuxpack/tpack/releases/assets/533160248"
+
+[tools."github:tmuxpack/tpack"."platforms.macos-x64"]
+checksum = "sha256:f406b07bcfa87c4009d44e42d6688dbd41a35b84838cfac2d61f30a1e2b9fe59"
+url = "https://github.com/tmuxpack/tpack/releases/download/v2.0.6/tpack_2.0.6_darwin_amd64.tar.gz"
+url_api = "https://api.github.com/repos/tmuxpack/tpack/releases/assets/533160249"
+
+[tools."github:tmuxpack/tpack"."platforms.windows-x64"]
+checksum = "sha256:ba5ee33e198a61bca2d6d70f788d9ed6129a8699cfd71db7174418c6bcb2fe4c"
+url = "https://github.com/tmuxpack/tpack/releases/download/v2.0.6/tpack_2.0.6_freebsd_amd64.tar.gz"
+url_api = "https://api.github.com/repos/tmuxpack/tpack/releases/assets/533160259"
+
 [[tools.go]]
 version = "1.26.1"
 backend = "core:go"
