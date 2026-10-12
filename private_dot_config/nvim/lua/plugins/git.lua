@@ -257,28 +257,6 @@ return {
     end,
   },
 
-  -- Get links to the current line on GitHub, GitLab, Bitbucket, etc.
-  {
-    "ruifm/gitlinker.nvim",
-    opts = {
-      mappings = nil,
-    },
-    keys = {
-      {
-        "<Leader>gy",
-        '<CMD>lua require"gitlinker".get_buf_range_url("n")<CR>',
-        desc = "Copy the link for current line on Github",
-        mode = "n",
-      },
-      {
-        "<Leader>gy",
-        '<CMD>lua require"gitlinker".get_buf_range_url("v")<CR>',
-        desc = "Copy the link for current line on Github",
-        mode = "v",
-      },
-    },
-  },
-
   {
     "pwntester/octo.nvim",
     opts = function(_, opts)
