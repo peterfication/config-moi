@@ -8,7 +8,7 @@ return {
         { "<Leader>fya", group = "Agent Refs" },
         { "<Leader>fz", group = "Yazi" },
         { "<Leader>G", group = "git 2" },
-        { "<Leader>Go", group = "Octo / GitHub" },
+        { "<Leader>GH", group = "GitHub / Octo" },
         { "<Leader>GD", desc = "DiffView" },
         { "<Leader>GB", desc = "Git blame" },
         { "<Leader>h", group = "Harpoon" },

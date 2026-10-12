@@ -203,6 +203,60 @@ return {
     end,
   },
 
+  {
+    "github",
+    virtual = true,
+    keys = function()
+      local gh_notifications_term_open = function()
+        local gh_news_term = require("toggleterm.terminal").Terminal:new({
+          cmd = "gh news",
+          direction = "float",
+          close_on_exit = true,
+          count = 11,
+          hidden = true,
+        })
+        gh_news_term:toggle()
+      end
+
+      local gh_notifications_repo_term_open = function()
+        local origin = vim.fn.systemlist({
+          "git",
+          "-C",
+          vim.fn.expand("%:p:h"),
+          "remote",
+          "get-url",
+          "origin",
+        })[1]
+
+        if vim.v.shell_error ~= 0 or not origin then
+          vim.notify("Could not find the origin remote", vim.log.levels.ERROR)
+          return
+        end
+
+        local github_repository = origin:gsub("%.git$", ""):match("github%.com[:/](.+)$")
+
+        if not github_repository then
+          vim.notify("Origin is not a GitHub repository: " .. origin, vim.log.levels.ERROR)
+          return
+        end
+
+        local gh_news_term = require("toggleterm.terminal").Terminal:new({
+          cmd = "gh news --filter " .. vim.fn.shellescape(github_repository),
+          direction = "float",
+          close_on_exit = true,
+          count = 11,
+          hidden = true,
+        })
+        gh_news_term:toggle()
+      end
+
+      return {
+        { "<Leader>GHN", gh_notifications_term_open, desc = "Github notifications" },
+        { "<Leader>GHn", gh_notifications_repo_term_open, desc = "Github repo notifications" },
+      }
+    end,
+  },
+
   -- Get links to the current line on GitHub, GitLab, Bitbucket, etc.
   {
     "ruifm/gitlinker.nvim",
@@ -281,12 +335,12 @@ return {
     end,
     keys = {
       {
-        "<Leader>Goi",
+        "<Leader>GHi",
         ":Telescope gh issues<CR>",
         desc = "Open Github issues in Telescope ([o]cto [i]ssues)",
       },
       {
-        "<Leader>Gop",
+        "<Leader>GHp",
         ":Telescope gh pull_request<CR>",
         desc = "Open Github pull requests in Telescope ([o]cto [p]ull requests)",
       },
