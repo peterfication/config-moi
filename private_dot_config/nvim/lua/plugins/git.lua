@@ -47,6 +47,28 @@ return {
       })
     end,
     cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+    keys = {
+      {
+        "<Leader>GDF",
+        ":DiffviewFileHistory %<CR>",
+        desc = "Open DiffView with the Git history of the current file",
+      },
+      {
+        "<Leader>GDM",
+        ":DiffviewOpen<CR>",
+        desc = "Open DiffView (e.g. for merge conflicts)",
+      },
+      {
+        "<Leader>GDR",
+        ":DiffviewOpen origin/main...HEAD<CR>",
+        desc = "Open DiffView for current branch against main (like a PR)",
+      },
+    },
+  },
+
+  {
+    "tig",
+    virtual = true,
     keys = function()
       local tig_blame_term_open = function()
         local file = vim.fn.expand("%")
@@ -64,23 +86,6 @@ return {
       end
 
       return {
-        { "<Leader>GD", desc = "DiffView" },
-        {
-          "<Leader>GDF",
-          ":DiffviewFileHistory %<CR>",
-          desc = "Open DiffView with the Git history of the current file",
-        },
-        {
-          "<Leader>GDM",
-          ":DiffviewOpen<CR>",
-          desc = "Open DiffView (e.g. for merge conflicts)",
-        },
-        {
-          "<Leader>GDR",
-          ":DiffviewOpen origin/main...HEAD<CR>",
-          desc = "Open DiffView for current branch against main (like a PR)",
-        },
-        { "<Leader>GB", desc = "Git blame" },
         { "<Leader>GBT", tig_blame_term_open, desc = "Open tig for current file" },
       }
     end,

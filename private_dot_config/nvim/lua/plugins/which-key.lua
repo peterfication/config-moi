@@ -10,6 +10,8 @@ return {
         { "<Leader>fz", group = "Yazi" },
         { "<Leader>G", group = "git 2" },
         { "<Leader>Go", group = "Octo / GitHub" },
+        { "<Leader>GD", desc = "DiffView" },
+        { "<Leader>GB", desc = "Git blame" },
         { "<Leader>h", group = "Harpoon" },
         { "<Leader>k", group = "Multi-cursor" },
         { "<Leader>m", group = "Marks" },
