@@ -33,9 +33,9 @@ return {
     },
   },
   {
-    -- "georgeguimaraes/review.nvim",
-    "peterfication/review.nvim",
-    branch = "mark-file-as-reviewed",
+    "georgeguimaraes/review.nvim",
+    -- "peterfication/review.nvim",
+    -- branch = "...",
     dependencies = {
       "esmuellert/codediff.nvim",
       "MunifTanjim/nui.nvim",
@@ -61,6 +61,9 @@ return {
       { "<leader>r-", "<cmd>Review clear<cr>", desc = "Clear comments" },
     },
     opts = {
+      branch = {
+        pick_base = true,
+      },
       export = {
         header = table.concat({
           "Please address my review notes:",
