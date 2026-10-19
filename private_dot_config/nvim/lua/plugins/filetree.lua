@@ -29,6 +29,7 @@ return {
             vim.fn.setreg('"', content)
             vim.fn.setreg("1", content)
             vim.fn.setreg("+", content)
+            vim.notify("Copied file name: " .. content)
           end,
           copy_file_path = function(state)
             local node = state.tree:get_node()
@@ -36,18 +37,15 @@ return {
             vim.fn.setreg('"', content)
             vim.fn.setreg("1", content)
             vim.fn.setreg("+", content)
+            vim.notify("Copied absolute file path: " .. content)
           end,
           copy_relative_file_path = function(state)
             local node = state.tree:get_node()
             local content = vim.fs.relpath(state.path, node.path) or node.path
-            vim.notify(vim.inspect({
-              state_path = state.path,
-              node_path = node.path,
-              relative_path = content,
-            }))
             vim.fn.setreg('"', content)
             vim.fn.setreg("1", content)
             vim.fn.setreg("+", content)
+            vim.notify("Copied relative file path: " .. content)
           end,
         },
       },
