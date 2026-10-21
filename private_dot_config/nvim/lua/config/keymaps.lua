@@ -19,7 +19,10 @@ map("n", "<Leader>bw", ":w<CR>", { silent = true, desc = "Safe/write current buf
 map("n", "<Leader>baw", ":noautocmd w<CR>", { silent = true, desc = "Write current buffer without autocmds" })
 map("n", "<Leader>bW", ":wa<CR>", { silent = true, desc = "Safe/write all buffers" })
 map("n", "<Leader>br", ":e<CR>", { silent = true, desc = "Refresh current buffer" })
-map("n", "<Leader>bc", ":bufdo bd<CR>", { silent = true, desc = "Delete/clear all buffers" })
+map("n", "<Leader>bc", function()
+  require("neo-tree.command").execute({ action = "close" })
+  vim.cmd("bufdo bd")
+end, { silent = true, desc = "Delete/clear all buffers" })
 
 -- File copying keymaps
 
