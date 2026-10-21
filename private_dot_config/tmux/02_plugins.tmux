@@ -4,6 +4,9 @@
 
 # Select console output line with CTRL+b + TAB
 set -g @plugin 'laktak/extrakto'
+set -g @extrakto_filter_order "line"
+set -g @extrakto_grab_area "full"
+set -g @extrakto_history_limit "100"
 
 # https://github.com/sainnhe/tmux-fzf
 # CTRL+b + SHIFT+f
