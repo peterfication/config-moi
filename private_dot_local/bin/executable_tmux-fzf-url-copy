@@ -1,0 +1,24 @@
+#!/bin/sh
+
+copy_to_clipboard() {
+	if command -v pbcopy >/dev/null 2>&1; then
+		pbcopy
+	elif { [ -n "${WSL_DISTRO_NAME:-}" ] || [ -n "${WSL_INTEROP:-}" ]; } && command -v clip.exe >/dev/null 2>&1; then
+		clip.exe
+	elif [ -n "${WAYLAND_DISPLAY:-}" ] && command -v wl-copy >/dev/null 2>&1; then
+		wl-copy
+	elif [ -n "${DISPLAY:-}" ] && command -v xclip >/dev/null 2>&1; then
+		xclip -selection clipboard
+	elif [ -n "${DISPLAY:-}" ] && command -v xsel >/dev/null 2>&1; then
+		xsel --clipboard --input
+	else
+		return 127
+	fi
+}
+
+if copy_to_clipboard; then
+	tmux display-message 'URL copied to clipboard'
+else
+	tmux display-message 'Could not copy URL: no working clipboard command found'
+	exit 1
+fi

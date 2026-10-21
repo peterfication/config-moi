@@ -19,6 +19,7 @@ set -g @plugin 'alexwforsythe/tmux-which-key'
 
 # https://github.com/wfxr/tmux-fzf-url
 set -g @plugin 'wfxr/tmux-fzf-url#legacy'
+set -g @fzf-url-copy-cmd 'tmux-fzf-url-copy'
 
 # FPP PathFinder
 set -g @plugin 'tmux-plugins/tmux-fpp'
