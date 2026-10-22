@@ -7,5 +7,10 @@ mise-default:
 [group('mise')]
 mise-install:
   mise install --cd ~
+  just mise-lock-add
+
+# Add the global lockfile to chezmoi
+[group('mise')]
+mise-lock-add:
   mise lock --global
   chezmoi add ~/.config/mise/mise.lock
