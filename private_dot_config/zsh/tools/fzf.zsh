@@ -18,3 +18,13 @@ kill-process() {
   fi
 }
 alias kp=kill-process
+
+# Simple alternativ to https://github.com/yutat23/lsoff
+kill-listener() {
+  local pid
+  pid=$(sudo lsof -iTCP -sTCP:LISTEN -nP |
+    fzf --header-lines=1 |
+    awk '{print $2}')
+  [[ -n "$pid" ]] && sudo kill "$pid"
+}
+alias kl=kill-listener
