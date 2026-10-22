@@ -17,6 +17,7 @@ with pkgs; [
   bitwarden-cli # https://github.com/bitwarden/clients
   chezmoi # https://www.chezmoi.io
   colima # https://github.com/abiosoft/colima
+  csvlens # https://github.com/ys-l/csvlens
   curl
   delta # https://github.com/dandavison/delta
   direnv # https://github.com/direnv/direnv

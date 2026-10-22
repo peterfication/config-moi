@@ -25,4 +25,32 @@ return {
       { "<leader>c;", "<cmd>CsvViewToggle delimiter=;<cr>", ft = "csv", desc = "Toggle CSV view (semicolon)" },
     },
   },
+
+  {
+    "csvlens",
+    virtual = true,
+    dependencies = { "akinsho/toggleterm.nvim" },
+    keys = function()
+      local csvlens_term_open = function()
+        local file = vim.api.nvim_buf_get_name(0)
+        if file == "" then
+          vim.notify("Cannot open unnamed buffer in csvlens", vim.log.levels.WARN)
+          return
+        end
+
+        local csvlens_term = require("toggleterm.terminal").Terminal:new({
+          display_name = "csvlens",
+          cmd = "csvlens -d auto " .. vim.fn.shellescape(file),
+          direction = "float",
+          close_on_exit = true,
+          hidden = true,
+        })
+        csvlens_term:toggle()
+      end
+
+      return {
+        { "<leader>c.", csvlens_term_open, ft = "csv", desc = "Open current file in csvlens" },
+      }
+    end,
+  },
 }
