@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# Load the config without the -init banner, which Yazi treats as an error on stderr.
 exec /run/current-system/sw/bin/duckdb \
-	-init "${HOME:?HOME is not set}/.config/duckdb/duckdbrc" \
+	-cmd ".read \"${HOME:?HOME is not set}/.config/duckdb/duckdbrc\"" \
 	"$@"
