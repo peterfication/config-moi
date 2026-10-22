@@ -85,6 +85,45 @@ checksum = "sha256:de8625ba8cf65ebf40eb80a388ba1ec8e9c15b30218821e2c639119b05920
 url = "https://github.com/neovim/neovim/releases/download/v0.12.5/nvim-win64.zip"
 url_api = "https://api.github.com/repos/neovim/neovim/releases/assets/526503770"
 
+[[tools.fx]]
+version = "40.0.0"
+backend = "aqua:antonmedv/fx"
+
+[tools.fx."platforms.linux-arm64"]
+checksum = "sha256:1200eb9c7e78aae2108c84809a90e361193b2859c2ea528ad49f2e8b690620c9"
+url = "https://github.com/antonmedv/fx/releases/download/40.0.0/fx_linux_arm64"
+url_api = "https://api.github.com/repos/antonmedv/fx/releases/assets/613037499"
+
+[tools.fx."platforms.linux-arm64-musl"]
+checksum = "sha256:1200eb9c7e78aae2108c84809a90e361193b2859c2ea528ad49f2e8b690620c9"
+url = "https://github.com/antonmedv/fx/releases/download/40.0.0/fx_linux_arm64"
+url_api = "https://api.github.com/repos/antonmedv/fx/releases/assets/613037499"
+
+[tools.fx."platforms.linux-x64"]
+checksum = "sha256:c5cf146137d3d1819384356366913f1f98bcf5b334e5f100e4705c081f65ed8e"
+url = "https://github.com/antonmedv/fx/releases/download/40.0.0/fx_linux_amd64"
+url_api = "https://api.github.com/repos/antonmedv/fx/releases/assets/613037517"
+
+[tools.fx."platforms.linux-x64-musl"]
+checksum = "sha256:c5cf146137d3d1819384356366913f1f98bcf5b334e5f100e4705c081f65ed8e"
+url = "https://github.com/antonmedv/fx/releases/download/40.0.0/fx_linux_amd64"
+url_api = "https://api.github.com/repos/antonmedv/fx/releases/assets/613037517"
+
+[tools.fx."platforms.macos-arm64"]
+checksum = "sha256:d3a93b9e78d77ebc2c8cfc9b7101e20d6e46317d5b41ee149d8ff8b6c1899d66"
+url = "https://github.com/antonmedv/fx/releases/download/40.0.0/fx_darwin_arm64"
+url_api = "https://api.github.com/repos/antonmedv/fx/releases/assets/613037515"
+
+[tools.fx."platforms.macos-x64"]
+checksum = "sha256:b071f677c13b25aa8576d7af3a7b8e8c16488c430f5a8360a370b5cbeec94ec2"
+url = "https://github.com/antonmedv/fx/releases/download/40.0.0/fx_darwin_amd64"
+url_api = "https://api.github.com/repos/antonmedv/fx/releases/assets/613037527"
+
+[tools.fx."platforms.windows-x64"]
+checksum = "sha256:95ad6b786a435c7e06e15c7090f4fe0d6e92ef6f47e9a5e76f493a9626629f70"
+url = "https://github.com/antonmedv/fx/releases/download/40.0.0/fx_windows_amd64.exe"
+url_api = "https://api.github.com/repos/antonmedv/fx/releases/assets/613037500"
+
 [[tools."github:agavra/tuicr"]]
 version = "0.27.0"
 backend = "github:agavra/tuicr"
