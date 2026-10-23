@@ -40,6 +40,10 @@
     "version": "0.10.1"
   },
   {
+    "name": "csvlens",
+    "version": "0.13.0"
+  },
+  {
     "name": "curl",
     "version": "8.20.0"
   },
