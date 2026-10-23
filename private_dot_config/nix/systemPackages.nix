@@ -37,7 +37,7 @@ with pkgs; [
   jq # https://github.com/jqlang/jq
   jujutsu # https://jj-vcs.github.io/jj/latest/
   just # https://github.com/casey/just
-  pkgsUnstable.lazygit # https://github.com/jesseduffield/lazygit
+  # pkgsUnstable.lazygit # https://github.com/jesseduffield/lazygit - in mise
   pkgsUnstable.lazydocker # https://github.com/jesseduffield/lazydocker
   pkgsUnstable.lefthook # https://github.com/evilmartians/lefthook
   lnav # https://github.com/tstack/lnav
@@ -51,7 +51,7 @@ with pkgs; [
   pam-reattach # https://github.com/fabianishere/pam_reattach
   _1password-cli # https://developer.1password.com/docs/cli/
   _1password-gui
-  pkgsUnstable.neovim # https://github.com/neovim/neovim
+  # pkgsUnstable.neovim # https://github.com/neovim/neovim - in mise
   peco # https://github.com/peco/peco interactive grep
   rclone # https://rclone.org/
   restic # https://github.com/restic/restic

@@ -164,10 +164,6 @@
     "version": "0.25.2"
   },
   {
-    "name": "lazygit",
-    "version": "0.66.2"
-  },
-  {
     "name": "lefthook",
     "version": "2.1.15"
   },
@@ -198,10 +194,6 @@
   {
     "name": "ncftp",
     "version": "3.3.0"
-  },
-  {
-    "name": "neovim",
-    "version": "0.12.6"
   },
   {
     "name": "nmap",

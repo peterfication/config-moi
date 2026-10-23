@@ -12,10 +12,13 @@ nix-ci: nix-check
 nix-check:
   nix flake check ./private_dot_config/nix --extra-experimental-features 'nix-command flakes'
 
+alias nix-install := nix-darwin-rebuild
+
 # Apply current macOS configuration
 [group('nix')]
 nix-darwin-rebuild:
   sudo darwin-rebuild switch --flake ~/.config/nix#simple
+  just nix-system-packages-json
 
 # Update all flake inputs and apply current macOS configuration
 [group('nix')]
