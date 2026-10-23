@@ -16,6 +16,7 @@ set -sg escape-time 10 # Don't delay the ESC key too much
 set-option -g history-limit 30000
 # Show the status display longer
 set-option -g display-time 4000
+set -g copy-mode-line-numbers absolute
 
 # Don't rename the window to the current command
 set-option -g allow-rename off
