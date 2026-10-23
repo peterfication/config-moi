@@ -121,7 +121,7 @@
   },
   {
     "name": "gh",
-    "version": "2.97.0"
+    "version": "2.102.0"
   },
   {
     "name": "ghostty-bin",
@@ -129,7 +129,7 @@
   },
   {
     "name": "grype",
-    "version": "0.116.1"
+    "version": "0.120.0"
   },
   {
     "name": "icu4c",
@@ -165,11 +165,11 @@
   },
   {
     "name": "lazygit",
-    "version": "0.64.0"
+    "version": "0.66.2"
   },
   {
     "name": "lefthook",
-    "version": "2.1.10"
+    "version": "2.1.15"
   },
   {
     "name": "lnav",
@@ -185,7 +185,7 @@
   },
   {
     "name": "mise",
-    "version": "2026.8.3"
+    "version": "2026.10.3"
   },
   {
     "name": "nats-server",
@@ -201,7 +201,7 @@
   },
   {
     "name": "neovim",
-    "version": "0.12.4"
+    "version": "0.12.6"
   },
   {
     "name": "nmap",
@@ -221,7 +221,7 @@
   },
   {
     "name": "podman",
-    "version": "5.8.4"
+    "version": "5.8.9"
   },
   {
     "name": "podman-compose",
@@ -285,7 +285,7 @@
   },
   {
     "name": "trivy",
-    "version": "0.73.0"
+    "version": "0.76.0"
   },
   {
     "name": "ueberzugpp",
@@ -293,7 +293,7 @@
   },
   {
     "name": "uv",
-    "version": "0.12.3"
+    "version": "0.13.1"
   },
   {
     "name": "vim",
@@ -317,7 +317,7 @@
   },
   {
     "name": "yazi",
-    "version": "26.5.6"
+    "version": "26.9.1"
   },
   {
     "name": "yq-go",
