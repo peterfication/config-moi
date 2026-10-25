@@ -61,6 +61,9 @@ return {
       { "<leader>r-", "<cmd>Review clear<cr>", desc = "Clear comments" },
     },
     opts = {
+      codediff = {
+        readonly = false,
+      },
       branch = {
         pick_base = true,
       },
@@ -69,6 +72,13 @@ return {
           "Please address my review notes:",
           "",
         }, "\n"),
+      },
+      keymaps = {
+        add_note = "<localleader>rn",
+        delete_comment = "<localleader>rd",
+        edit_comment = "<localleader>re",
+        toggle_reviewed  = "<localleader>r",
+        readonly_toggle_reviewed   = "<localleader>r",
       },
     },
   },
