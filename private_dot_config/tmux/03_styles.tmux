@@ -1,5 +1,8 @@
 # Style
 
+# Keep terminal colours for styles without explicit colours.
+set -s theme terminal
+
 # Update Interval
 set -g status-interval 1
 
@@ -12,11 +15,11 @@ set -g status-interval 1
 set -g status-justify "left"
 set -g status "on"
 set -g status-left-style "none"
-set -g message-command-style "fg=#f8f8f0,bg=#232526"
+set -g message-command-style "fg=#f8f8f0,bg=#232526,fill=#232526"
 set -g status-right-style "none"
 set -g pane-active-border-style "fg=#b08602"
 set -g status-style "none,bg=#465457"
-set -g message-style "fg=#f8f8f0,bg=#232526"
+set -g message-style "fg=#f8f8f0,bg=#232526,fill=#232526"
 set -g pane-border-style "fg=#232526"
 set -g status-right-length "100"
 set -g status-left-length "100"
