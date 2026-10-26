@@ -60,7 +60,7 @@ with pkgs; [
   # pkgsUnstable.sshfs # https://github.com/libfuse/sshfs => Brewfile fuse-t
   sshs # https://github.com/quantumsheep/sshs
   starship # https://github.com/starship/starship
-  tmux
+  pkgsUnstable.tmux # https://github.com/tmux/tmux
   tree-sitter # https://github.com/tree-sitter/tree-sitter
   pkgsUnstable.trivy # https://github.com/aquasecurity/trivy
   extract_url # https://www.memoryhole.net/~kyle/extract_url/

@@ -269,7 +269,7 @@
   },
   {
     "name": "tmux",
-    "version": "3.7b"
+    "version": "3.8"
   },
   {
     "name": "tree-sitter",
