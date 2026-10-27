@@ -4,10 +4,10 @@ idiomatic_version_file_enable_tools = ["python", "node"]
 [tools]
 # Languages and package managers
 go = "1.26.1"
-node = "24.21.0"
-npm = "11.11.0"
+node = "26.12.1"
+npm = "12.2.1"
 ruby = "4.0.6"
-yarn = "4.1.0"
+yarn = "4.18.1"
 
 # Tools
 fx = "40.0.0"
