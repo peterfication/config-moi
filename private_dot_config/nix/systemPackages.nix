@@ -19,7 +19,7 @@ with pkgs; [
   colima # https://github.com/abiosoft/colima
   csvlens # https://github.com/ys-l/csvlens
   curl
-  delta # https://github.com/dandavison/delta
+  pkgsUnstable.delta # https://github.com/dandavison/delta
   direnv # https://github.com/direnv/direnv
   docker
   duckdb # https://github.com/duckdb/duckdb
