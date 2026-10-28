@@ -37,6 +37,7 @@ return {
   {
     "petertriho/nvim-scrollbar",
     event = "BufReadPre",
+    branch = "v1",
     opts = {
       set_highlights = true,
       handlers = {
