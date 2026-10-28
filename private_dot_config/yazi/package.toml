@@ -1,47 +1,47 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "d7588f6"
-hash = "3cce60031b27cbce80b50f68ca319c0a"
+rev = "e0bbd20"
+hash = "347cc6b190eb0c2fd60513cc7ae37412"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:jump-to-char"
-rev = "d7588f6"
-hash = "d2f04875bbd4ed3dd5696e8c4b094fde"
+rev = "e0bbd20"
+hash = "7a4b4237223aaa94e589d1c01a23542a"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "d7588f6"
-hash = "d6f60c24d8c0cf57a855bf46115b2502"
+rev = "e0bbd20"
+hash = "5b2fbef7d1513ce38ff72623a071a5e"
 
 [[plugin.deps]]
 use = "stelcodes/bunny"
-rev = "7137a44"
-hash = "58bfa473bcac8574400e573787954512"
+rev = "8f3f84e"
+hash = "18a2829738214fe9bca99a2fef19113d"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:piper"
-rev = "d7588f6"
-hash = "2143a53182dbbe935a1abd1623424aa5"
+rev = "e0bbd20"
+hash = "d1e0499cae5f3aeb628c267616d4b682"
 
 [[plugin.deps]]
 use = "imsi32/yatline"
-rev = "88bd1c5"
-hash = "981acbe9b758b1af3a8154c932bb936d"
+rev = "dc44b73"
+hash = "fa488655544e367e5439a9748d28519e"
 
 [[plugin.deps]]
 use = "Rolv-Apneseth/starship"
-rev = "a63550b"
-hash = "c2021386289a0cbb3e152a052f67c177"
+rev = "ea92cf4"
+hash = "9776f378459072b6c2875eae5addc49d"
 
 [[plugin.deps]]
 use = "Lil-Dank/lazygit"
-rev = "8f37dc5"
-hash = "ee71543790f0ce3951161045a3787abd"
+rev = "e73fd74"
+hash = "6ea5f37c7f219671ec504cb8311f889d"
 
 [[plugin.deps]]
 use = "pirafrank/what-size"
-rev = "d896656"
-hash = "62251f94eb67648d42cdfcfb8be0fad2"
+rev = "1cb456f"
+hash = "7699acf73a1079f8a4afef5cec84ce73"
 
 [[plugin.deps]]
 use = "wylie102/duckdb"
@@ -55,20 +55,20 @@ hash = "541c53f04c184de6269a87923a4500ec"
 
 [[plugin.deps]]
 use = "peterfication/mux"
-rev = "266233e"
-hash = "1963dda85333e5e2cb6ff5d7d5a6ad4e"
+rev = "e4e6771"
+hash = "1fcbcce39229bd75e81be4dcb1d3e5a8"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:zoom"
-rev = "1962818"
-hash = "fa268cb59989a87780605fdcfb8d99a9"
+rev = "e0bbd20"
+hash = "558bbb58e3dd36d488280a8f10e7b904"
 
 [[plugin.deps]]
 use = "KKV9/compress"
-rev = "46a6b9f"
-hash = "771af2becc575a3f43d0542de823969d"
+rev = "80e5268"
+hash = "868db729374b97871bc30b96d0e9061f"
 
 [[flavor.deps]]
 use = "peterfication/solarized"
-rev = "b652f3d"
-hash = "d724ed1d4639b356d00612c07c565174"
+rev = "f048196"
+hash = "cbdc7cb7269eaf9c826f7c582208f460"

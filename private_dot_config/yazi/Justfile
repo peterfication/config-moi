@@ -7,9 +7,11 @@ yazi-add-package-toml:
 [group('yazi')]
 yazi-upgrade:
   ya pkg upgrade
+  just yazi-add-package-toml
 
 # Clean all plugins and reinstall them
 [group('yazi')]
 yazi-reinstall:
   rm -rf ~/.config/yazi/plugins
   ya pkg install
+  just yazi-add-package-toml
