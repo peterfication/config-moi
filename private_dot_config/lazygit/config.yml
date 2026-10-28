@@ -65,10 +65,14 @@ customCommands:
     context: "localBranches"
     output: log
 
-  # Add --no-verify to reword
-  - key: R
-    command: git commit --allow-empty --amend --no-verify
-    description: "Reword current commit without hooks"
+  # Reword the selected commit with hooks disabled during the rebase
+  - key: W
+    command: |
+      base=$(git rev-parse --verify {{.SelectedCommit.Sha}}^ 2>/dev/null) || base=--root
+      GIT_SEQUENCE_EDITOR="sed -i.bak 's/^pick {{.SelectedCommit.Sha}} /reword {{.SelectedCommit.Sha}} /'" \
+      git -c core.hooksPath=/dev/null -c core.abbrev=no \
+        rebase -i --autostash --keep-empty --no-autosquash --rebase-merges "$base"
+    description: "Reword selected commit without hooks"
     context: commits
     output: terminal
   - key: "<c-u>"
