@@ -17,12 +17,12 @@ return {
       lazygit = {
         config = {
           os = {
-            -- These values differ from the preset in that they don't open a new tab
-            -- https://github.com/jesseduffield/lazygit/blob/d1d2bb23b6b9d862fbd16aac20b029eec01ddc8d/pkg/config/editor_presets.go#L64
-            edit = '[ -z "$NVIM" ] && (nvim -- {{filename}}) || (nvim --server "$NVIM" --remote-send "q" && nvim --server "$NVIM" --remote {{filename}})',
-            editAtLine = '[ -z "$NVIM" ] && (nvim +{{line}} -- {{filename}}) || (nvim --server "$NVIM" --remote-send "q" &&  nvim --server "$NVIM" --remote {{filename}} && nvim --server "$NVIM" --remote-send ":{{line}}<CR>")',
+            -- Close the terminal synchronously before opening in the current tab.
+            -- A queued "q" can run after --remote and send the line jump to the wrong window.
+            edit = [[[ -z "$NVIM" ] && (nvim -- {{filename}}) || (nvim --server "$NVIM" --remote-expr "execute('stopinsert | close')" && nvim --server "$NVIM" --remote {{filename}})]],
+            editAtLine = [[[ -z "$NVIM" ] && (nvim +{{line}} -- {{filename}}) || (nvim --server "$NVIM" --remote-expr "execute('stopinsert | close')" && nvim --server "$NVIM" --remote {{filename}} && nvim --server "$NVIM" --remote-send ":{{line}}<CR>")]],
             editAtLineAndWait = "nvim +{{line}} {{filename}}",
-            openDirInEditor = '[ -z "$NVIM" ] && (nvim -- {{dir}}) || (nvim --server "$NVIM" --remote-send "q" && nvim --server "$NVIM" --remote {{dir}})',
+            openDirInEditor = [[[ -z "$NVIM" ] && (nvim -- {{dir}}) || (nvim --server "$NVIM" --remote-expr "execute('stopinsert | close')" && nvim --server "$NVIM" --remote {{dir}})]],
           },
         },
       },
