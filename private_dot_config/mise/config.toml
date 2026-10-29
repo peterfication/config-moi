@@ -19,5 +19,5 @@ prettier = "3.8.1"
 sentry = "3.8.0" # https://github.com/getsentry/sentry-cli
 "npm:skills" = "1.4.3"
 "github:tmuxpack/tpack" = "2.0.6" # https://github.com/tmuxpack/tpack
-"github:agavra/tuicr" = "0.27.0" # https://github.com/agavra/tuicr
+"github:agavra/tuicr" = "0.28.0" # https://github.com/agavra/tuicr
 "github:kopecmaciej/vi-sql" = "v0.4.0" # https://github.com/kopecmaciej/vi-sql
