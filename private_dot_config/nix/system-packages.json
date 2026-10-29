@@ -121,11 +121,11 @@
   },
   {
     "name": "gh",
-    "version": "2.102.0"
+    "version": "2.103.3"
   },
   {
     "name": "ghostty-bin",
-    "version": "1.3.1"
+    "version": "1.4.0"
   },
   {
     "name": "grype",
@@ -181,7 +181,7 @@
   },
   {
     "name": "mise",
-    "version": "2026.10.3"
+    "version": "2026.10.17"
   },
   {
     "name": "nats-server",
@@ -213,7 +213,7 @@
   },
   {
     "name": "podman",
-    "version": "5.8.9"
+    "version": "6.1.4"
   },
   {
     "name": "podman-compose",
@@ -277,7 +277,7 @@
   },
   {
     "name": "trivy",
-    "version": "0.76.0"
+    "version": "0.76.1"
   },
   {
     "name": "ueberzugpp",
@@ -285,7 +285,7 @@
   },
   {
     "name": "uv",
-    "version": "0.13.1"
+    "version": "0.13.5"
   },
   {
     "name": "vim",
