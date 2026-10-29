@@ -82,4 +82,25 @@ return {
       },
     },
   },
+
+  {
+    "tuicr",
+    virtual = true,
+    keys = function()
+      local tuicr_term_open = function()
+        local tuicr_term = require("toggleterm.terminal").Terminal:new({
+          cmd = "tuicr",
+          direction = "float",
+          close_on_exit = true,
+          count = 20,
+          hidden = true,
+        })
+        tuicr_term:toggle()
+      end
+
+      return {
+        { "<Leader>rt", tuicr_term_open, desc = "TUI Code Review (tuicr)" },
+      }
+    end,
+  },
 }
