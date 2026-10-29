@@ -17,7 +17,7 @@
     "name": "claude",
     "type": "cask",
     "versions": [
-      "3.6556.2,20c019a1e61fa5b687616af57d31f97bb3181723"
+      "4.29.0,2609742292f7dbce2e259e76f53620cac4da9002"
     ]
   },
   {
@@ -31,14 +31,14 @@
     "name": "codex",
     "type": "cask",
     "versions": [
-      "0.163.0"
+      "0.165.0"
     ]
   },
   {
     "name": "codex-acp",
     "type": "formula",
     "versions": [
-      "2.2.2"
+      "2.3.0"
     ]
   },
   {
@@ -59,7 +59,7 @@
     "name": "firefox",
     "type": "cask",
     "versions": [
-      "158.0.1"
+      "159.0"
     ]
   },
   {
@@ -80,7 +80,7 @@
     "name": "google-chrome",
     "type": "cask",
     "versions": [
-      "156.0.8078.48"
+      "156.0.8078.74"
     ]
   },
   {
@@ -108,7 +108,7 @@
     "name": "leaf-markdown-viewer",
     "type": "formula",
     "versions": [
-      "1.29.1"
+      "1.29.2"
     ]
   },
   {
@@ -122,7 +122,7 @@
     "name": "mqttx",
     "type": "cask",
     "versions": [
-      "1.13.1"
+      "1.13.2"
     ]
   },
   {
@@ -136,7 +136,7 @@
     "name": "opencode",
     "type": "formula",
     "versions": [
-      "2.1.3"
+      "2.2.1"
     ]
   },
   {
@@ -178,7 +178,7 @@
     "name": "stats",
     "type": "cask",
     "versions": [
-      "3.0.22"
+      "3.0.23"
     ]
   },
   {
@@ -199,14 +199,14 @@
     "name": "tableplus",
     "type": "cask",
     "versions": [
-      "27.1.0,830"
+      "27.2.0,840"
     ]
   },
   {
     "name": "tablepro",
     "type": "cask",
     "versions": [
-      "0.82.2"
+      "0.83.0"
     ]
   },
   {
@@ -248,14 +248,14 @@
     "name": "yt-dlp",
     "type": "formula",
     "versions": [
-      "2026.10.21"
+      "2026.10.26"
     ]
   },
   {
     "name": "zed",
     "type": "cask",
     "versions": [
-      "1.25.2"
+      "1.26.2"
     ]
   }
 ]
