@@ -147,13 +147,6 @@
     ]
   },
   {
-    "name": "rustnet",
-    "type": "formula",
-    "versions": [
-      "1.7.0"
-    ]
-  },
-  {
     "name": "rv",
     "type": "formula",
     "versions": [

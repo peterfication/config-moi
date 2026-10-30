@@ -16,6 +16,7 @@ fx = "40.0.0"
 "github:earendil-works/pi" = "v0.84.4" # https://github.com/earendil-works/pi
 prettier = "3.8.1"
 "aqua:astral-sh/ruff" = "0.16.9"
+"github:domcyrus/rustnet" = "1.7.0" # https://github.com/domcyrus/rustnet
 sentry = "3.8.0" # https://github.com/getsentry/sentry-cli
 "npm:skills" = "1.4.3"
 "github:tmuxpack/tpack" = "2.0.6" # https://github.com/tmuxpack/tpack
