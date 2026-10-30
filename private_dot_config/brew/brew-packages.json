@@ -203,13 +203,6 @@
     ]
   },
   {
-    "name": "termscp",
-    "type": "formula",
-    "versions": [
-      "1.2.1"
-    ]
-  },
-  {
     "name": "thaw",
     "type": "cask",
     "versions": [

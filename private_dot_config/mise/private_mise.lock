@@ -358,6 +358,45 @@ checksum = "sha256:ba5ee33e198a61bca2d6d70f788d9ed6129a8699cfd71db7174418c6bcb2f
 url = "https://github.com/tmuxpack/tpack/releases/download/v2.0.6/tpack_2.0.6_freebsd_amd64.tar.gz"
 url_api = "https://api.github.com/repos/tmuxpack/tpack/releases/assets/533160259"
 
+[[tools."github:veeso/termscp"]]
+version = "1.2.1"
+backend = "github:veeso/termscp"
+
+[tools."github:veeso/termscp"."platforms.linux-arm64"]
+checksum = "sha256:79bbeb31c1bf346e9ac8e0c2e1b5e1f52f2a1ba37757481369bb342570ec0316"
+url = "https://github.com/veeso/termscp/releases/download/v1.2.1/termscp-v1.2.1-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/veeso/termscp/releases/assets/656781252"
+
+[tools."github:veeso/termscp"."platforms.linux-arm64-musl"]
+checksum = "sha256:79bbeb31c1bf346e9ac8e0c2e1b5e1f52f2a1ba37757481369bb342570ec0316"
+url = "https://github.com/veeso/termscp/releases/download/v1.2.1/termscp-v1.2.1-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/veeso/termscp/releases/assets/656781252"
+
+[tools."github:veeso/termscp"."platforms.linux-x64"]
+checksum = "sha256:fdfb3ea26ab3ed592bfc4bd4eeb54e7e579562f4722aad03937e7f70d6f2ff8d"
+url = "https://github.com/veeso/termscp/releases/download/v1.2.1/termscp-v1.2.1-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/veeso/termscp/releases/assets/656781293"
+
+[tools."github:veeso/termscp"."platforms.linux-x64-musl"]
+checksum = "sha256:fdfb3ea26ab3ed592bfc4bd4eeb54e7e579562f4722aad03937e7f70d6f2ff8d"
+url = "https://github.com/veeso/termscp/releases/download/v1.2.1/termscp-v1.2.1-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/veeso/termscp/releases/assets/656781293"
+
+[tools."github:veeso/termscp"."platforms.macos-arm64"]
+checksum = "sha256:b00c4c7ec0c14023a1d765720e47cc376fa35dd6d6b5572521f5140235023a29"
+url = "https://github.com/veeso/termscp/releases/download/v1.2.1/termscp-v1.2.1-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/veeso/termscp/releases/assets/656781251"
+
+[tools."github:veeso/termscp"."platforms.macos-x64"]
+checksum = "sha256:839a4bbf2bbf51d276ad1eaa6d15e17e5ae6fdd67035182ddf8ead84946b3a9c"
+url = "https://github.com/veeso/termscp/releases/download/v1.2.1/termscp-v1.2.1-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/veeso/termscp/releases/assets/656781247"
+
+[tools."github:veeso/termscp"."platforms.windows-x64"]
+checksum = "sha256:d3c34da7467c8e63f2f6281b6531e1a61429695504a1aacccc5e60bc617f185a"
+url = "https://github.com/veeso/termscp/releases/download/v1.2.1/termscp-v1.2.1-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/veeso/termscp/releases/assets/656781249"
+
 [[tools.go]]
 version = "1.26.1"
 backend = "core:go"
