@@ -196,13 +196,6 @@
     ]
   },
   {
-    "name": "usbtree",
-    "type": "formula",
-    "versions": [
-      "0.1.1"
-    ]
-  },
-  {
     "name": "xnviewmp",
     "type": "cask",
     "versions": [

@@ -27,4 +27,5 @@ sentry = "3.8.0" # https://github.com/getsentry/sentry-cli
 "github:morantron/tmux-fingers" = "2.7.1" # https://github.com/Morantron/tmux-fingers
 "github:tmuxpack/tpack" = "2.0.6" # https://github.com/tmuxpack/tpack
 "github:agavra/tuicr" = "0.28.0" # https://github.com/agavra/tuicr
+"github:gnomeria/usbtree" = "v0.1.2" # https://github.com/gnomeria/usbtree
 "github:kopecmaciej/vi-sql" = "v0.4.0" # https://github.com/kopecmaciej/vi-sql

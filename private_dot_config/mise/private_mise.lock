@@ -241,6 +241,40 @@ checksum = "sha256:03b2318774f18721e959d9f8f3340a9f942e7aa516fb7030d3007a12a40a4
 url = "https://github.com/earendil-works/pi/releases/download/v0.84.4/pi-windows-x64.zip"
 url_api = "https://api.github.com/repos/earendil-works/pi/releases/assets/534389959"
 
+[[tools."github:gnomeria/usbtree"]]
+version = "0.1.2"
+backend = "github:gnomeria/usbtree"
+
+[tools."github:gnomeria/usbtree"."platforms.linux-arm64"]
+checksum = "sha256:d746a6211f5c687788d6c7484426b75292eac24f29798b4c384a7f4cb689295b"
+url = "https://github.com/gnomeria/usbtree/releases/download/v0.1.2/usbtree_0.1.2_linux-arm64.tar.gz"
+url_api = "https://api.github.com/repos/gnomeria/usbtree/releases/assets/690382087"
+
+[tools."github:gnomeria/usbtree"."platforms.linux-arm64-musl"]
+checksum = "sha256:d746a6211f5c687788d6c7484426b75292eac24f29798b4c384a7f4cb689295b"
+url = "https://github.com/gnomeria/usbtree/releases/download/v0.1.2/usbtree_0.1.2_linux-arm64.tar.gz"
+url_api = "https://api.github.com/repos/gnomeria/usbtree/releases/assets/690382087"
+
+[tools."github:gnomeria/usbtree"."platforms.linux-x64"]
+checksum = "sha256:a140c27bd2dbe3132b3d4dadcc1d7da6ab0140fa28d7f564c95c91d509396186"
+url = "https://github.com/gnomeria/usbtree/releases/download/v0.1.2/usbtree_0.1.2_linux-amd64.tar.gz"
+url_api = "https://api.github.com/repos/gnomeria/usbtree/releases/assets/690382088"
+
+[tools."github:gnomeria/usbtree"."platforms.linux-x64-musl"]
+checksum = "sha256:a140c27bd2dbe3132b3d4dadcc1d7da6ab0140fa28d7f564c95c91d509396186"
+url = "https://github.com/gnomeria/usbtree/releases/download/v0.1.2/usbtree_0.1.2_linux-amd64.tar.gz"
+url_api = "https://api.github.com/repos/gnomeria/usbtree/releases/assets/690382088"
+
+[tools."github:gnomeria/usbtree"."platforms.macos-arm64"]
+checksum = "sha256:db854c8eb94ee8ed791f29e596448e1c9bc070c42107fa1c56cc10eaeba3be7b"
+url = "https://github.com/gnomeria/usbtree/releases/download/v0.1.2/usbtree_0.1.2_darwin-arm64.tar.gz"
+url_api = "https://api.github.com/repos/gnomeria/usbtree/releases/assets/690382091"
+
+[tools."github:gnomeria/usbtree"."platforms.windows-x64"]
+checksum = "sha256:4486bebb89b7c1465189f4e2f82269bbc8ee3bc215737a8201f9beb40d9dcba0"
+url = "https://github.com/gnomeria/usbtree/releases/download/v0.1.2/usbtree_0.1.2_windows-amd64.zip"
+url_api = "https://api.github.com/repos/gnomeria/usbtree/releases/assets/690382090"
+
 [[tools."github:jesseduffield/lazygit"]]
 version = "0.66.2"
 backend = "github:jesseduffield/lazygit"
