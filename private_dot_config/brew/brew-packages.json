@@ -140,13 +140,6 @@
     ]
   },
   {
-    "name": "quien",
-    "type": "formula",
-    "versions": [
-      "0.12.0"
-    ]
-  },
-  {
     "name": "spotify",
     "type": "cask",
     "versions": [

@@ -338,6 +338,45 @@ checksum = "sha256:32b94499f3569d548a6dffd0d89d88e1d6a600c7a8aa891d2b0ee6cc068a7
 url = "https://github.com/Morantron/tmux-fingers/releases/download/2.7.1/tmux-fingers-2.7.1-macos-arm64"
 url_api = "https://api.github.com/repos/Morantron/tmux-fingers/releases/assets/442602015"
 
+[[tools."github:retlehs/quien"]]
+version = "0.12.0"
+backend = "github:retlehs/quien"
+
+[tools."github:retlehs/quien"."platforms.linux-arm64"]
+checksum = "sha256:a426b0511326078e1a246d9c439f7b8caf5d8f3e0d70a3d014ef70e5992655c0"
+url = "https://github.com/retlehs/quien/releases/download/v0.12.0/quien_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/retlehs/quien/releases/assets/456047742"
+
+[tools."github:retlehs/quien"."platforms.linux-arm64-musl"]
+checksum = "sha256:a426b0511326078e1a246d9c439f7b8caf5d8f3e0d70a3d014ef70e5992655c0"
+url = "https://github.com/retlehs/quien/releases/download/v0.12.0/quien_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/retlehs/quien/releases/assets/456047742"
+
+[tools."github:retlehs/quien"."platforms.linux-x64"]
+checksum = "sha256:2aae42e8610374ee57e47939be65bf7e16f146145a402708e7f1b5db268fed83"
+url = "https://github.com/retlehs/quien/releases/download/v0.12.0/quien_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/retlehs/quien/releases/assets/456047728"
+
+[tools."github:retlehs/quien"."platforms.linux-x64-musl"]
+checksum = "sha256:2aae42e8610374ee57e47939be65bf7e16f146145a402708e7f1b5db268fed83"
+url = "https://github.com/retlehs/quien/releases/download/v0.12.0/quien_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/retlehs/quien/releases/assets/456047728"
+
+[tools."github:retlehs/quien"."platforms.macos-arm64"]
+checksum = "sha256:f8bac6c1047af69dfbbc2b980534ffdab07efd0f4f19829e4a2d26778356b314"
+url = "https://github.com/retlehs/quien/releases/download/v0.12.0/quien_darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/retlehs/quien/releases/assets/456047748"
+
+[tools."github:retlehs/quien"."platforms.macos-x64"]
+checksum = "sha256:0205b28bf242c9684e004e1668b0918937ff23998b8734fa3360dbaf14553ce1"
+url = "https://github.com/retlehs/quien/releases/download/v0.12.0/quien_darwin_amd64.tar.gz"
+url_api = "https://api.github.com/repos/retlehs/quien/releases/assets/456047732"
+
+[tools."github:retlehs/quien"."platforms.windows-x64"]
+checksum = "sha256:8697585fdd1c8e59b82787311ed202749fde7f5253752c417a76be0299ac07ce"
+url = "https://github.com/retlehs/quien/releases/download/v0.12.0/quien_windows_amd64.zip"
+url_api = "https://api.github.com/repos/retlehs/quien/releases/assets/456047731"
+
 [[tools."github:spinel-coop/rv"]]
 version = "0.7.2"
 backend = "github:spinel-coop/rv"
