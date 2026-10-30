@@ -17,6 +17,7 @@ fx = "40.0.0"
 prettier = "3.8.1"
 "aqua:astral-sh/ruff" = "0.16.9"
 "github:domcyrus/rustnet" = "1.7.0" # https://github.com/domcyrus/rustnet
+"github:spinel-coop/rv" = "0.7.2" # https://github.com/spinel-coop/rv uv for Ruby
 sentry = "3.8.0" # https://github.com/getsentry/sentry-cli
 "npm:skills" = "1.4.3"
 "github:veeso/termscp" = "1.2.1" # https://github.com/tmuxpack/tpack

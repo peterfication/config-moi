@@ -147,13 +147,6 @@
     ]
   },
   {
-    "name": "rv",
-    "type": "formula",
-    "versions": [
-      "0.7.2"
-    ]
-  },
-  {
     "name": "spotify",
     "type": "cask",
     "versions": [

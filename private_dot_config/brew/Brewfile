@@ -5,7 +5,6 @@ brew 'syncthing' # https://github.com/syncthing/syncthing
 brew 'leaf-markdown-viewer' # https://github.com/rivolink/leaf
 brew 'peterfication/num-peek/num-peek', trusted: true # Peek into *.npy files
 brew 'quien' # https://github.com/retlehs/quien
-brew 'rv' # https://github.com/spinel-coop/rv uv for Ruby
 brew 'switchaudio-osx' # https://github.com/deweller/switchaudio-osx
 brew 'usbtree' # https://github.com/gnomeria/usbtree
 brew 'yt-dlp' # https://github.com/yt-dlp/yt-dlp

@@ -338,6 +338,52 @@ checksum = "sha256:32b94499f3569d548a6dffd0d89d88e1d6a600c7a8aa891d2b0ee6cc068a7
 url = "https://github.com/Morantron/tmux-fingers/releases/download/2.7.1/tmux-fingers-2.7.1-macos-arm64"
 url_api = "https://api.github.com/repos/Morantron/tmux-fingers/releases/assets/442602015"
 
+[[tools."github:spinel-coop/rv"]]
+version = "0.7.2"
+backend = "github:spinel-coop/rv"
+
+[tools."github:spinel-coop/rv"."platforms.linux-arm64"]
+checksum = "sha256:b24987bc65f04d0eeb84a6d184a2cee1d9669a87da3087ac8feabaa40ddfab8e"
+url = "https://github.com/spinel-coop/rv/releases/download/v0.7.2/rv-aarch64-unknown-linux-gnu.tar.xz"
+url_api = "https://api.github.com/repos/spinel-coop/rv/releases/assets/663728468"
+provenance = "github-attestations"
+
+[tools."github:spinel-coop/rv"."platforms.linux-arm64-musl"]
+checksum = "sha256:599c9b7e189af30b37412077fd3490594e78c596336a0356cb230f999feec853"
+url = "https://github.com/spinel-coop/rv/releases/download/v0.7.2/rv-aarch64-unknown-linux-musl.tar.xz"
+url_api = "https://api.github.com/repos/spinel-coop/rv/releases/assets/663728489"
+provenance = "github-attestations"
+
+[tools."github:spinel-coop/rv"."platforms.linux-x64"]
+checksum = "sha256:b8279cd38eef705af1b8b273b356ec0a478e6d1023e1e89883a7249f177fd3e0"
+url = "https://github.com/spinel-coop/rv/releases/download/v0.7.2/rv-x86_64-unknown-linux-gnu.tar.xz"
+url_api = "https://api.github.com/repos/spinel-coop/rv/releases/assets/663728518"
+provenance = "github-attestations"
+
+[tools."github:spinel-coop/rv"."platforms.linux-x64-musl"]
+checksum = "sha256:08e3405bd7f56f8544888ef8cddc7f7b4c8116152b7a4e8059ae8d6c3ed1a263"
+url = "https://github.com/spinel-coop/rv/releases/download/v0.7.2/rv-x86_64-unknown-linux-musl.tar.xz"
+url_api = "https://api.github.com/repos/spinel-coop/rv/releases/assets/663728531"
+provenance = "github-attestations"
+
+[tools."github:spinel-coop/rv"."platforms.macos-arm64"]
+checksum = "sha256:752205153712b48e35f75013875704668a5746d9f6298d6b2360731add936804"
+url = "https://github.com/spinel-coop/rv/releases/download/v0.7.2/rv-aarch64-apple-darwin.tar.xz"
+url_api = "https://api.github.com/repos/spinel-coop/rv/releases/assets/663728442"
+provenance = "github-attestations"
+
+[tools."github:spinel-coop/rv"."platforms.macos-x64"]
+checksum = "sha256:0d4d4af5dfb04086254773ba8a353ebe14b6d3a9a046489e7c6b26091a585286"
+url = "https://github.com/spinel-coop/rv/releases/download/v0.7.2/rv-x86_64-apple-darwin.tar.xz"
+url_api = "https://api.github.com/repos/spinel-coop/rv/releases/assets/663728503"
+provenance = "github-attestations"
+
+[tools."github:spinel-coop/rv"."platforms.windows-x64"]
+checksum = "sha256:745eb69530cb78f329a9e11e8dd237fbc6ce7c6f56e6edd15366c190f701d922"
+url = "https://github.com/spinel-coop/rv/releases/download/v0.7.2/rv-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/spinel-coop/rv/releases/assets/663728512"
+provenance = "github-attestations"
+
 [[tools."github:tmuxpack/tpack"]]
 version = "2.0.6"
 backend = "github:tmuxpack/tpack"
