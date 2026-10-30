@@ -7,7 +7,6 @@ brew 'peterfication/num-peek/num-peek', trusted: true # Peek into *.npy files
 brew 'quien' # https://github.com/retlehs/quien
 brew 'rv' # https://github.com/spinel-coop/rv uv for Ruby
 brew 'switchaudio-osx' # https://github.com/deweller/switchaudio-osx
-brew 'morantron/tmux-fingers/tmux-fingers', trusted: true # https://github.com/Morantron/tmux-fingers
 brew 'usbtree' # https://github.com/gnomeria/usbtree
 brew 'yt-dlp' # https://github.com/yt-dlp/yt-dlp
 

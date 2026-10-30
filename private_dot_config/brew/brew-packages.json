@@ -210,13 +210,6 @@
     ]
   },
   {
-    "name": "tmux-fingers",
-    "type": "formula",
-    "versions": [
-      "2.7.1"
-    ]
-  },
-  {
     "name": "usbtree",
     "type": "formula",
     "versions": [
