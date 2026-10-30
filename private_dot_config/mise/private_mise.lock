@@ -377,6 +377,45 @@ checksum = "sha256:8697585fdd1c8e59b82787311ed202749fde7f5253752c417a76be0299ac0
 url = "https://github.com/retlehs/quien/releases/download/v0.12.0/quien_windows_amd64.zip"
 url_api = "https://api.github.com/repos/retlehs/quien/releases/assets/456047731"
 
+[[tools."github:so-fancy/diff-so-fancy"]]
+version = "1.4.14"
+backend = "github:so-fancy/diff-so-fancy"
+
+[tools."github:so-fancy/diff-so-fancy"."platforms.linux-arm64"]
+checksum = "sha256:98b2eb61c132f411d6005962ca14c3b5c537770bb283eef2c92dfef196f70983"
+url = "https://github.com/so-fancy/diff-so-fancy/releases/download/v1.4.14/diff-so-fancy"
+url_api = "https://api.github.com/repos/so-fancy/diff-so-fancy/releases/assets/608509718"
+
+[tools."github:so-fancy/diff-so-fancy"."platforms.linux-arm64-musl"]
+checksum = "sha256:98b2eb61c132f411d6005962ca14c3b5c537770bb283eef2c92dfef196f70983"
+url = "https://github.com/so-fancy/diff-so-fancy/releases/download/v1.4.14/diff-so-fancy"
+url_api = "https://api.github.com/repos/so-fancy/diff-so-fancy/releases/assets/608509718"
+
+[tools."github:so-fancy/diff-so-fancy"."platforms.linux-x64"]
+checksum = "sha256:98b2eb61c132f411d6005962ca14c3b5c537770bb283eef2c92dfef196f70983"
+url = "https://github.com/so-fancy/diff-so-fancy/releases/download/v1.4.14/diff-so-fancy"
+url_api = "https://api.github.com/repos/so-fancy/diff-so-fancy/releases/assets/608509718"
+
+[tools."github:so-fancy/diff-so-fancy"."platforms.linux-x64-musl"]
+checksum = "sha256:98b2eb61c132f411d6005962ca14c3b5c537770bb283eef2c92dfef196f70983"
+url = "https://github.com/so-fancy/diff-so-fancy/releases/download/v1.4.14/diff-so-fancy"
+url_api = "https://api.github.com/repos/so-fancy/diff-so-fancy/releases/assets/608509718"
+
+[tools."github:so-fancy/diff-so-fancy"."platforms.macos-arm64"]
+checksum = "sha256:98b2eb61c132f411d6005962ca14c3b5c537770bb283eef2c92dfef196f70983"
+url = "https://github.com/so-fancy/diff-so-fancy/releases/download/v1.4.14/diff-so-fancy"
+url_api = "https://api.github.com/repos/so-fancy/diff-so-fancy/releases/assets/608509718"
+
+[tools."github:so-fancy/diff-so-fancy"."platforms.macos-x64"]
+checksum = "sha256:98b2eb61c132f411d6005962ca14c3b5c537770bb283eef2c92dfef196f70983"
+url = "https://github.com/so-fancy/diff-so-fancy/releases/download/v1.4.14/diff-so-fancy"
+url_api = "https://api.github.com/repos/so-fancy/diff-so-fancy/releases/assets/608509718"
+
+[tools."github:so-fancy/diff-so-fancy"."platforms.windows-x64"]
+checksum = "sha256:98b2eb61c132f411d6005962ca14c3b5c537770bb283eef2c92dfef196f70983"
+url = "https://github.com/so-fancy/diff-so-fancy/releases/download/v1.4.14/diff-so-fancy"
+url_api = "https://api.github.com/repos/so-fancy/diff-so-fancy/releases/assets/608509718"
+
 [[tools."github:spinel-coop/rv"]]
 version = "0.7.2"
 backend = "github:spinel-coop/rv"
@@ -500,6 +539,45 @@ url_api = "https://api.github.com/repos/veeso/termscp/releases/assets/656781247"
 checksum = "sha256:d3c34da7467c8e63f2f6281b6531e1a61429695504a1aacccc5e60bc617f185a"
 url = "https://github.com/veeso/termscp/releases/download/v1.2.1/termscp-v1.2.1-x86_64-pc-windows-msvc.zip"
 url_api = "https://api.github.com/repos/veeso/termscp/releases/assets/656781249"
+
+[[tools."github:wilfred/difftastic"]]
+version = "0.72.0"
+backend = "github:wilfred/difftastic"
+
+[tools."github:wilfred/difftastic"."platforms.linux-arm64"]
+checksum = "sha256:0993a82a6708a24adc6c6b8de366924728ed08f537a5b488940082c8edc79353"
+url = "https://github.com/Wilfred/difftastic/releases/download/0.72.0/difft-0.72.0-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/Wilfred/difftastic/releases/assets/689925869"
+
+[tools."github:wilfred/difftastic"."platforms.linux-arm64-musl"]
+checksum = "sha256:0993a82a6708a24adc6c6b8de366924728ed08f537a5b488940082c8edc79353"
+url = "https://github.com/Wilfred/difftastic/releases/download/0.72.0/difft-0.72.0-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/Wilfred/difftastic/releases/assets/689925869"
+
+[tools."github:wilfred/difftastic"."platforms.linux-x64"]
+checksum = "sha256:33ea1f003081e9f2422299a434e6040c89085bd9f102b08f3fe30393720d5d4a"
+url = "https://github.com/Wilfred/difftastic/releases/download/0.72.0/difft-0.72.0-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/Wilfred/difftastic/releases/assets/689921979"
+
+[tools."github:wilfred/difftastic"."platforms.linux-x64-musl"]
+checksum = "sha256:27b9c1fe038a95682eed241265a3cacb781227730f106104b617e10067d38ff4"
+url = "https://github.com/Wilfred/difftastic/releases/download/0.72.0/difft-0.72.0-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/Wilfred/difftastic/releases/assets/689922856"
+
+[tools."github:wilfred/difftastic"."platforms.macos-arm64"]
+checksum = "sha256:959ce3e4b661663a6bb0b79de5e03051897e521e99c1b85f3c810b54f025ec93"
+url = "https://github.com/Wilfred/difftastic/releases/download/0.72.0/difft-0.72.0-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/Wilfred/difftastic/releases/assets/689921777"
+
+[tools."github:wilfred/difftastic"."platforms.macos-x64"]
+checksum = "sha256:31472d5cc1d40444beb697b58e6cf83febb3c7741df4007c3039952ffc1c36c6"
+url = "https://github.com/Wilfred/difftastic/releases/download/0.72.0/difft-0.72.0-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/Wilfred/difftastic/releases/assets/689924801"
+
+[tools."github:wilfred/difftastic"."platforms.windows-x64"]
+checksum = "sha256:7b6295a9a433ba79978b02ad4b4b27f955423b8eb379927409b9ff4e5156379e"
+url = "https://github.com/Wilfred/difftastic/releases/download/0.72.0/difft-0.72.0-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/Wilfred/difftastic/releases/assets/689923028"
 
 [[tools.go]]
 version = "1.26.1"

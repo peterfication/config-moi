@@ -5,8 +5,6 @@ git:
     - command: >-
         delta --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
     - command: diff-so-fancy
-    - command: ydiff -p cat -s --wrap --width={{columnWidth}}
-      colorArg: never
     - command: difft --color=always
       type: extDiff
   overrideGpg: true # Ignore GPG errors as I'm using a GPG agent
