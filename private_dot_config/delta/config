@@ -14,6 +14,6 @@
   line-numbers-left-style = gray
   line-numbers-right-format = " {np:>3}│"
   line-numbers-right-style = gray
-  line-numbers-minus-style = red black
-  line-numbers-plus-style = green black
+  line-numbers-minus-style = black brightred bold
+  line-numbers-plus-style = black brightgreen bold
   line-numbers-zero-style = gray
