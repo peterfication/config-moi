@@ -25,6 +25,7 @@
 
 [rebase]
   autoStash = true
+  updateRefs = true
 
 # Remember merge conflict resolution on rebases
 # See https://git-scm.com/book/en/v2/Git-Tools-Rerere
