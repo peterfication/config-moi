@@ -3,6 +3,14 @@
 vim.g.lazyvim_picker = "telescope"
 vim.g.lazyvim_python_lsp = "ty"
 
+vim.filetype.add({
+  pattern = {
+    [".*/delta/config"] = "gitconfig",
+    [".*/private_dot_config/git/config"] = "gitconfig",
+    [".*/git/config%.private.*"] = "gitconfig",
+  },
+})
+
 vim.g.maplocalleader = "  "
 
 vim.opt.listchars = {
