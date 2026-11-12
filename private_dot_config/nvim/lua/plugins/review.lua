@@ -93,7 +93,6 @@ return {
           direction = "float",
           close_on_exit = true,
           count = 20,
-          hidden = true,
         })
         tuicr_term:toggle()
       end
