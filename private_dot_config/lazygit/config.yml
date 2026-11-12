@@ -3,6 +3,8 @@
 git:
   diffRenderers:
     - command: >-
+        delta --paging=never --side-by-side --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+    - command: >-
         delta --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
     - command: diff-so-fancy
     - command: difft --color=always
@@ -28,6 +30,7 @@ gui:
       '^integration$': '#11aaff'
       '^wt/': 'yellow'
   showIcons: true
+  mainPanelSplitMode: vertical
 
 promptToReturnFromSubprocess: false # removes "press enter to return to lazygit" popup
 
