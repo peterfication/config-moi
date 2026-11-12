@@ -95,6 +95,12 @@ require("mux"):setup({
 	notify_on_switch = true,
 	remember_per_file_extension = true,
 	aliases = {
+    bat = {
+			previewer = "piper",
+			args = {
+        'bat -p --color=always "$1"'
+      },
+    },
 		eza_tree_1 = {
 			previewer = "piper",
 			args = {

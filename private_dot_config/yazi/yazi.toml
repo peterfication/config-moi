@@ -13,11 +13,16 @@ prepend_fetchers = [
 ]
 prepend_previewers = [
   { url = "*/", run = "mux eza_tree_1 eza_tree_2 eza_tree_3 eza_tree_4" },
-  { url = "*.csv", run = "mux code duckdb" },
-  { url = "*.tsv", run = "mux code duckdb" },
-  { url = "*.json", run = "mux code duckdb" },
+
+  { mime = "text/*", run = 'piper -- bat -p --color=always "$1"' },
+  { mime = "application/json", run = 'piper -- bat -p --color=always "$1"' },
+  { mime = "application/x-yaml", run = 'piper -- bat -p --color=always "$1"' },
+  { mime = "application/toml", run = 'piper -- bat -p --color=always "$1"' },
+
+  { url = "*.csv", run = "mux bat duckdb" },
+  { url = "*.tsv", run = "mux bat duckdb" },
+  { url = "*.json", run = "mux bat duckdb" },
   { url = "*.parquet", run = "duckdb" },
-  { url = "*.txt", run = "duckdb" },
   { url = "*.xlsx", run = "duckdb" },
   { url = "*.db", run = "duckdb" },
   { url = "*.duckdb", run = "duckdb" },
@@ -29,6 +34,5 @@ prepend_preloaders = [
   { url = "*.tsv", run = "duckdb", multi = false },
   { url = "*.json", run = "duckdb", multi = false },
   { url = "*.parquet", run = "duckdb", multi = false },
-  { url = "*.txt", run = "duckdb", multi = false },
   { url = "*.xlsx", run = "duckdb", multi = false },
 ]
