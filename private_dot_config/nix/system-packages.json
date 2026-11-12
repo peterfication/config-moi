@@ -248,6 +248,10 @@
     "version": "8.8.3"
   },
   {
+    "name": "resterm",
+    "version": "1.17.2"
+  },
+  {
     "name": "restic",
     "version": "0.18.1"
   },

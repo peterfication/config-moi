@@ -55,6 +55,7 @@ with pkgs; [
   # pkgsUnstable.neovim # https://github.com/neovim/neovim - in mise
   peco # https://github.com/peco/peco interactive grep
   rclone # https://rclone.org/
+  pkgsUnstable.resterm # https://github.com/unkn0wn-root/resterm
   restic # https://github.com/restic/restic
   ripgrep # https://github.com/BurntSushi/ripgrep
   samba # https://gitlab.com/samba-team/samba
