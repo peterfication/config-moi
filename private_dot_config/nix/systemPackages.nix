@@ -43,6 +43,7 @@ with pkgs; [
   lnav # https://github.com/tstack/lnav
   lua5_1 # https://www.lua.org/
   luarocks # https://github.com/luarocks/luarocks
+  mergiraf # https://mergiraf.org
   pkgsUnstable.mise # https://github.com/jdx/mise
   ncftp # https://www.ncftp.com/ncftp/
   natscli # https://nats.io/
