@@ -29,6 +29,7 @@ gui:
       '^staging$': '#11aaff'
       '^integration$': '#11aaff'
       '^wt/': 'yellow'
+      '^backup/': 'gray'
   showIcons: true
   mainPanelSplitMode: vertical
 
