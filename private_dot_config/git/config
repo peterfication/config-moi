@@ -42,6 +42,7 @@
 [diff]
   algorithm = histogram
   tool = nvimdiff
+  colorMoved = zebra
 
 [difftool]
   prompt = true

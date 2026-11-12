@@ -2,6 +2,13 @@
   features = decorations line-numbers
   syntax-theme = Solarized (dark)
 
+  # For Git diff.colorMoved=zebra
+  map-styles = \
+    bold purple => syntax "#2a2d45", \
+    bold blue => syntax "#163952", \
+    bold cyan => syntax "#08434a", \
+    bold yellow => syntax "#243e2b"
+
 [delta "decorations"]
   commit-decoration-style = bold yellow box ul
   file-style = bold yellow
