@@ -165,7 +165,7 @@
   },
   {
     "name": "lefthook",
-    "version": "2.1.15"
+    "version": "2.2.2"
   },
   {
     "name": "lnav",
@@ -221,7 +221,7 @@
   },
   {
     "name": "podman-tui",
-    "version": "1.11.3"
+    "version": "2.0.0"
   },
   {
     "name": "postgresql",
@@ -277,7 +277,7 @@
   },
   {
     "name": "trivy",
-    "version": "0.76.1"
+    "version": "0.76.2"
   },
   {
     "name": "ueberzugpp",
@@ -285,7 +285,7 @@
   },
   {
     "name": "uv",
-    "version": "0.13.5"
+    "version": "0.13.7"
   },
   {
     "name": "vim",
