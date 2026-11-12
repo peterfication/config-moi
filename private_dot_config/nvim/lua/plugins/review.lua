@@ -89,7 +89,7 @@ return {
     keys = function()
       local tuicr_term_open = function()
         local tuicr_term = require("toggleterm.terminal").Terminal:new({
-          cmd = "tuicr",
+          cmd = "tuicr -r 'main..HEAD'",
           direction = "float",
           close_on_exit = true,
           count = 20,
