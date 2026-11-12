@@ -54,7 +54,7 @@ selected=$(
 			--listen \
 			--bind "start:execute-silent:$refresh_command" \
 			--bind "ctrl-r:$reload_action" \
-			--preview-window=right:80% \
+			--preview-window=right:70% \
 			--preview="$preview_command"
 ) || exit 0
 
