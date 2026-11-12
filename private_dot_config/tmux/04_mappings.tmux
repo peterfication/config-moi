@@ -37,8 +37,9 @@ bind-key l select-pane -R
 
 #### OUTPUT ####
 
-# Enable v and y for vi-mode
-bind-key -T copy-mode-vi 'v' send -X begin-selection
+# Vim-style selection: v for characters, Ctrl+v for a rectangular block, y to copy
+bind-key -T copy-mode-vi 'v' send -X rectangle-off \; send -X begin-selection
+bind-key -T copy-mode-vi C-v send -X rectangle-on \; send -X begin-selection
 bind-key -T copy-mode-vi 'y' send -X copy-selection-and-cancel
 bind Escape copy-mode # `tmux prefix + Escape` starts copy mode.
 bind p paste-buffer
