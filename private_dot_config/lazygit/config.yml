@@ -43,6 +43,19 @@ customCommands:
     context: 'worktrees'
     output: terminal
 
+  - key: 'T'
+    command: |
+      branch_ref={{printf "refs/heads/%s" .SelectedLocalBranch.Name | quote}}
+      worktree_path=$(git for-each-ref --format='%(worktreepath)' -- "$branch_ref")
+      if [ -z "$worktree_path" ]; then
+        printf '%s\n' 'Selected branch has no worktree.' >&2
+        exit 1
+      fi
+      tmux-worktree-open "$worktree_path"
+    description: 'Open worktree tmux session'
+    context: 'localBranches'
+    output: terminal
+
   - key: '<c-d>'
     command: '[ -z "$NVIM" ] && (nvim -c DiffviewOpen) || (nvim --server "$NVIM" -c DiffviewOpen)'
     context: 'files'
