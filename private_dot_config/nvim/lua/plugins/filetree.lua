@@ -1,27 +1,76 @@
+local filename_win
+local filename_buf
+
+local function close_filename()
+  if filename_win and vim.api.nvim_win_is_valid(filename_win) then
+    vim.api.nvim_win_close(filename_win, true)
+  end
+  filename_win = nil
+  filename_buf = nil
+end
+
+local function update_filename()
+  if vim.bo.filetype ~= "neo-tree" then
+    close_filename()
+    return
+  end
+
+  local state = require("neo-tree.sources.manager").get_state_for_window()
+  local node = state and state.tree and state.tree:get_node()
+  if not node or node.type == "message" then
+    close_filename()
+    return
+  end
+
+  local width = math.max(1, vim.o.columns - 2)
+  local bottom = math.max(1, vim.o.lines - vim.o.cmdheight - (vim.o.laststatus > 0 and 1 or 0))
+  local lines = vim.split(node.name, "\n", { plain = true })
+  local height = 0
+  for _, line in ipairs(lines) do
+    height = height + math.max(1, math.ceil(vim.fn.strdisplaywidth(line) / width))
+  end
+  local config = {
+    relative = "editor",
+    anchor = "SW",
+    row = bottom,
+    col = 1,
+    width = width,
+    height = math.min(height, bottom),
+    border = "none",
+    focusable = false,
+    style = "minimal",
+    zindex = 60,
+  }
+
+  if not filename_buf or not vim.api.nvim_buf_is_valid(filename_buf) then
+    filename_buf = vim.api.nvim_create_buf(false, true)
+    vim.bo[filename_buf].bufhidden = "wipe"
+  end
+  vim.api.nvim_buf_set_lines(filename_buf, 0, -1, false, lines)
+
+  if filename_win and vim.api.nvim_win_is_valid(filename_win) then
+    vim.api.nvim_win_set_config(filename_win, config)
+  else
+    filename_win = vim.api.nvim_open_win(filename_buf, false, vim.tbl_extend("force", config, { noautocmd = true }))
+    vim.wo[filename_win].wrap = true
+    vim.wo[filename_win].linebreak = false
+    vim.wo[filename_win].breakindent = false
+    vim.wo[filename_win].showbreak = ""
+  end
+end
+
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     init = function()
-      vim.api.nvim_create_autocmd("CursorHold", {
-        group = vim.api.nvim_create_augroup("NeoTreeFilenameHover", { clear = true }),
-        callback = function()
-          if vim.bo.filetype ~= "neo-tree" then
-            return
-          end
-
-          local state = require("neo-tree.sources.manager").get_state_for_window()
-          local node = state and state.tree and state.tree:get_node()
-          if not node or node.type == "message" then
-            return
-          end
-
-          vim.lsp.util.open_floating_preview({ node.name }, "text", {
-            border = "rounded",
-            focusable = false,
-            max_width = math.max(1, vim.o.columns - 4),
-            close_events = { "CursorMoved", "BufLeave", "WinLeave" },
-          })
-        end,
+      local group = vim.api.nvim_create_augroup("NeoTreeFilenameDisplay", { clear = true })
+      vim.api.nvim_create_autocmd({ "CursorMoved", "BufEnter", "WinEnter", "VimResized" }, {
+        group = group,
+        callback = update_filename,
+      })
+      vim.api.nvim_create_autocmd({ "BufLeave", "WinLeave", "TabLeave" }, {
+        group = group,
+        callback = close_filename,
       })
     end,
     opts = {
