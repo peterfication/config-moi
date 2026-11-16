@@ -1,6 +1,29 @@
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
+    init = function()
+      vim.api.nvim_create_autocmd("CursorHold", {
+        group = vim.api.nvim_create_augroup("NeoTreeFilenameHover", { clear = true }),
+        callback = function()
+          if vim.bo.filetype ~= "neo-tree" then
+            return
+          end
+
+          local state = require("neo-tree.sources.manager").get_state_for_window()
+          local node = state and state.tree and state.tree:get_node()
+          if not node or node.type == "message" then
+            return
+          end
+
+          vim.lsp.util.open_floating_preview({ node.name }, "text", {
+            border = "rounded",
+            focusable = false,
+            max_width = math.max(1, vim.o.columns - 4),
+            close_events = { "CursorMoved", "BufLeave", "WinLeave" },
+          })
+        end,
+      })
+    end,
     opts = {
       use_popups_for_input = true,
 
