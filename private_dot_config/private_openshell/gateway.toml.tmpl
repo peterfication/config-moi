@@ -8,3 +8,9 @@ compute_driver = "vm"
 grpc_endpoint = "https://127.0.0.1:17670"
 driver_dir = "{{ joinPath .chezmoi.homeDir ".local" "share" "mise" "installs" "http-openshell-driver-vm" "global" }}"
 state_dir = "{{ joinPath .chezmoi.homeDir ".local" "state" "openshell" "vm-driver" }}"
+# Allow per-sandbox host directory mounts (virtiofs), see `just openshell-claude`
+allow_driver_config = true
+enable_bind_mounts = true
+
+[openshell.drivers.vm.resource_admission]
+enabled = false

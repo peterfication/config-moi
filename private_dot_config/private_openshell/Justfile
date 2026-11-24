@@ -1,6 +1,8 @@
 OPENSHELL_LABEL := "openshell.gateway"
 OPENSHELL_PLIST := "~/Library/LaunchAgents/openshell.gateway.plist"
 OPENSHELL_TLS_DIR := "~/.local/state/openshell/tls"
+OPENSHELL_CLAUDE_VERSION := "2.1.311"
+OPENSHELL_CLAUDE_IMAGE := "localhost/claude-agent:" + OPENSHELL_CLAUDE_VERSION
 
 # List all available commands
 [group('openshell')]
@@ -43,3 +45,14 @@ openshell-preflight:
 openshell-setup:
   test -d {{OPENSHELL_TLS_DIR}} || openshell-gateway generate-certs --output-dir {{OPENSHELL_TLS_DIR}} --server-san 127.0.0.1 --server-san localhost
   openshell gateway add https://127.0.0.1:17670 --local --name local
+
+# Build the Claude Code sandbox image with podman (:latest is used by openshell-claude)
+[group('openshell')]
+openshell-claude-image:
+  podman build --build-arg CLAUDE_CODE_VERSION={{OPENSHELL_CLAUDE_VERSION}} --build-arg SANDBOX_UID=$(id -u) --build-arg SANDBOX_GID=$(id -g) \
+    -t {{OPENSHELL_CLAUDE_IMAGE}} -t localhost/claude-agent:latest ~/.config/openshell/claude
+
+# Delete a sandbox
+[group('openshell')]
+openshell-rm NAME:
+  openshell sandbox delete {{NAME}}

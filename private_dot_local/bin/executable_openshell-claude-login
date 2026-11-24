@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+usage() {
+	cat <<'EOF'
+Usage: openshell-claude-login [options]
+
+Store a Claude subscription OAuth token in OpenShell for openshell-claude.
+Imports the claude-code-oauth provider profile, runs `claude setup-token`,
+asks for the printed token without echoing it, and creates the provider (or
+updates its token when it already exists).
+
+Sandboxes only see a placeholder. OpenShell injects the real token into
+requests from /usr/local/bin/claude to the Anthropic endpoints in the profile.
+
+Options:
+  --profile-only  Only sync the provider profile (e.g. after editing its endpoints)
+  -h, --help      Show this help
+
+Environment:
+  CLAUDE_CODE_OAUTH_TOKEN    Use this token instead of running `claude setup-token`
+  OPENSHELL_CLAUDE_PROVIDER  Provider name (default: claude)
+EOF
+}
+
+die() {
+	printf "openshell-claude-login: %s\n" "$*" >&2
+	exit 1
+}
+
+require_command() {
+	command -v "$1" >/dev/null 2>&1 || die "missing required command: $1"
+}
+
+profile_only=false
+
+case "${1:-}" in
+"") ;;
+--profile-only)
+	profile_only=true
+	;;
+-h | --help)
+	usage
+	exit 0
+	;;
+*) die "unknown option: $1 (see --help)" ;;
+esac
+
+require_command openshell
+require_command claude
+require_command yq
+
+profile_file="$HOME/.config/openshell/claude/claude-code-oauth.yaml"
+profile_id="claude-code-oauth"
+provider="${OPENSHELL_CLAUDE_PROVIDER:-claude}"
+
+[[ -f "$profile_file" ]] || die "missing provider profile: $profile_file (run chezmoi apply)"
+
+if openshell profile describe "$profile_id" >/dev/null 2>&1; then
+	# Updates must carry the current resource_version of the stored profile
+	resource_version="$(openshell profile export "$profile_id" | yq '.resource_version')"
+	# openshell detects the file format from the extension
+	tmp_dir="$(mktemp -d -t openshell-claude-login)"
+	trap 'rm -rf "$tmp_dir"' EXIT
+	RESOURCE_VERSION="$resource_version" yq '.resource_version = env(RESOURCE_VERSION)' "$profile_file" >"$tmp_dir/profile.yaml"
+	openshell profile update --file "$tmp_dir/profile.yaml" "$profile_id"
+else
+	openshell profile import -f "$profile_file"
+fi
+
+[[ "$profile_only" == true ]] && exit 0
+
+if [[ -z "${CLAUDE_CODE_OAUTH_TOKEN:-}" ]]; then
+	claude setup-token
+	printf "\nPaste the token printed above, then press Enter on an empty line (input is hidden):\n"
+	# setup-token wraps the token over several lines, so read until an empty line
+	CLAUDE_CODE_OAUTH_TOKEN=""
+	while IFS= read -rs line && [[ -n "$line" ]]; do
+		CLAUDE_CODE_OAUTH_TOKEN+="$line"
+	done
+fi
+CLAUDE_CODE_OAUTH_TOKEN="$(printf "%s" "$CLAUDE_CODE_OAUTH_TOKEN" | tr -d '[:space:]')"
+[[ "$CLAUDE_CODE_OAUTH_TOKEN" == sk-ant-oat* ]] || die "this does not look like a Claude Code OAuth token (sk-ant-oat...)"
+export CLAUDE_CODE_OAUTH_TOKEN
+
+# Passing only the variable name makes openshell read the value from the environment
+if openshell provider get "$provider" >/dev/null 2>&1; then
+	openshell provider update "$provider" --credential CLAUDE_CODE_OAUTH_TOKEN
+else
+	openshell provider create --name "$provider" --type "$profile_id" --credential CLAUDE_CODE_OAUTH_TOKEN
+fi

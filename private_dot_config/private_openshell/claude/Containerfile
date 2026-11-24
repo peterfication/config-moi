@@ -1,0 +1,27 @@
+# Claude Code sandbox image for OpenShell
+# Build with: just -f ~/.config/openshell/Justfile openshell-claude-image
+FROM debian:trixie-slim
+
+# Pinned in ~/.config/openshell/Justfile
+ARG CLAUDE_CODE_VERSION
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends bash ca-certificates curl fd-find git jq less procps ripgrep \
+    && ln -s /usr/bin/fdfind /usr/local/bin/fd \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy the native binary to a fixed path, the provider profile only allows /usr/local/bin/claude
+RUN test -n "${CLAUDE_CODE_VERSION}" \
+    && curl -fsSL https://claude.ai/install.sh | bash -s "${CLAUDE_CODE_VERSION}" \
+    && cp -L /root/.local/bin/claude /usr/local/bin/claude \
+    && rm -rf /root/.local /root/.claude /root/.claude.json
+
+# The VM driver runs the workload as the image's `sandbox` account. It matches the
+# host user so the sandbox can write to mounted host directories.
+ARG SANDBOX_UID=1000
+ARG SANDBOX_GID=1000
+RUN (getent group "${SANDBOX_GID}" || groupadd --gid "${SANDBOX_GID}" sandbox) \
+    && useradd --uid "${SANDBOX_UID}" --gid "${SANDBOX_GID}" --create-home sandbox
+
+USER sandbox
+WORKDIR /sandbox

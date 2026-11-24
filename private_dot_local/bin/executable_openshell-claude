@@ -1,0 +1,202 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+usage() {
+	cat <<'EOF'
+Usage: openshell-claude [options] [-- claude args...]
+
+Run Claude Code in an OpenShell sandbox for the current directory. The
+directory is mounted read-write at its host path. Inside a Git repository or
+worktree, the main repository and, if it exists, its ../<project>-worktrees
+directory (see git-worktree-new) are mounted instead, so Git's worktree
+metadata resolves in the sandbox and on the host. Nothing else from the host
+is mounted.
+
+Creates the sandbox if it does not exist yet, otherwise attaches to it and
+continues the last conversation. New sandboxes get a copy of the default
+Claude Code config from ~/.config/openshell/claude/home, the skills from
+~/.config/agents/skills and the status line script from ~/.config/agents/claude.
+Conversations stay separate per sandbox.
+
+Options:
+  --name NAME    Sandbox name (default: name of the current directory or worktree)
+  --new          Start a new conversation in an existing sandbox
+  --sync-config  Copy the default config, skills and status line into an existing sandbox again
+  -h, --help     Show this help
+
+Environment:
+  OPENSHELL_CLAUDE_IMAGE     Sandbox image (default: localhost/claude-agent:latest)
+  OPENSHELL_CLAUDE_PROVIDER  Provider with the OAuth token (default: claude)
+  OPENSHELL_CLAUDE_SKILLS    Skills copied into new sandboxes (default: ~/.config/agents/skills)
+
+Setup: just -f ~/.config/openshell/Justfile openshell-claude-image && openshell-claude-login
+Delete a sandbox: openshell sandbox delete NAME
+EOF
+}
+
+die() {
+	printf "openshell-claude: %s\n" "$*" >&2
+	exit 1
+}
+
+require_command() {
+	command -v "$1" >/dev/null 2>&1 || die "missing required command: $1"
+}
+
+slugify() {
+	printf "%s" "$1" |
+		tr '[:upper:]' '[:lower:]' |
+		sed -E 's#[^a-z0-9-]+#-#g; s#^-+##; s#-+$##'
+}
+
+sandbox_exists() {
+	openshell sandbox get "$1" >/dev/null 2>&1
+}
+
+# Claude Code stores conversations in ~/.claude/projects/<workdir with non-alphanumerics as ->
+has_conversation() {
+	local project
+	project="$(printf "%s" "$workdir" | sed 's/[^a-zA-Z0-9]/-/g')"
+	# shellcheck disable=SC2016 # $HOME expands inside the sandbox
+	openshell sandbox exec "$1" --no-tty -- \
+		sh -c 'ls "$HOME/.claude/projects/$1/"*.jsonl' sh "$project" >/dev/null 2>&1
+}
+
+create_sandbox() {
+	local name="$1"
+	local policy mounts path
+
+	# openshell detects the file format from the extension
+	policy="$tmp_dir/policy.yaml"
+	{
+		printf "version: 1\n"
+		printf "filesystem_policy:\n"
+		printf "  include_workdir: true\n"
+		printf "  read_only: [/usr, /lib, /etc, /proc, /dev/urandom]\n"
+		printf "  read_write: [/tmp, /dev/null"
+		for path in "${mount_paths[@]}"; do
+			printf ', "%s"' "$path"
+		done
+		printf "]\n"
+	} >"$policy"
+
+	mounts="$(jq -cn '{vm: {mounts: $ARGS.positional | map({type: "bind", source: ., target: ., read_only: false})}}' \
+		--args "${mount_paths[@]}")"
+
+	openshell sandbox create \
+		--name "$name" \
+		--from "${OPENSHELL_CLAUDE_IMAGE:-localhost/claude-agent:latest}" \
+		--provider "${OPENSHELL_CLAUDE_PROVIDER:-claude}" \
+		--no-auto-providers \
+		--policy "$policy" \
+		--driver-config-json "$mounts" \
+		--detach
+
+	upload_claude_dir "$name"
+	upload_claude_json "$name"
+}
+
+# Copy the default Claude Code config, skills and status line into the sandbox's ~/.claude
+upload_claude_dir() {
+	local name="$1"
+	local claude_dir="$tmp_dir/seed/.claude"
+	local skills="${OPENSHELL_CLAUDE_SKILLS:-$HOME/.config/agents/skills}"
+	local statusline="$HOME/.config/agents/claude/statusline-command.sh"
+
+	mkdir -p "$(dirname "$claude_dir")"
+	cp -R "$template/.claude" "$claude_dir"
+	# Resolve symlinked skills, the sandbox cannot follow links to the host
+	[[ -d "$skills" ]] && cp -RL "$skills" "$claude_dir/skills"
+	[[ -f "$statusline" ]] && cp "$statusline" "$claude_dir/statusline-command.sh"
+
+	openshell sandbox upload "$name" "$claude_dir" /sandbox --no-git-ignore
+}
+
+# Copy ~/.claude.json with onboarding done and the working directory trusted (new sandboxes only,
+# Claude Code keeps its runtime state in this file)
+upload_claude_json() {
+	local name="$1"
+
+	jq --arg workdir "$workdir" '.projects[$workdir].hasTrustDialogAccepted = true' \
+		"$template/.claude.json" >"$tmp_dir/.claude.json"
+	openshell sandbox upload "$name" "$tmp_dir/.claude.json" /sandbox --no-git-ignore
+}
+
+name=""
+continue_conversation=true
+sync_config=false
+template="$HOME/.config/openshell/claude/home"
+
+while (($# > 0)); do
+	case "$1" in
+	--name)
+		[[ $# -ge 2 ]] || die "--name needs a value"
+		name="$2"
+		shift 2
+		;;
+	--new)
+		continue_conversation=false
+		shift
+		;;
+	--sync-config)
+		sync_config=true
+		shift
+		;;
+	-h | --help)
+		usage
+		exit 0
+		;;
+	--)
+		shift
+		break
+		;;
+	*)
+		die "unknown option: $1 (see --help)"
+		;;
+	esac
+done
+
+require_command openshell
+require_command jq
+
+workdir="$(pwd -P)"
+mount_paths=("$workdir")
+if command -v git >/dev/null 2>&1 && toplevel="$(git rev-parse --show-toplevel 2>/dev/null)"; then
+	workdir="$toplevel"
+	# The common Git dir also points to the main repository when started from a worktree
+	repo="$(dirname "$(git rev-parse --path-format=absolute --git-common-dir)")"
+	mount_paths=("$repo")
+	[[ -d "${repo}-worktrees" ]] && mount_paths+=("${repo}-worktrees")
+fi
+
+home="$(cd "$HOME" && pwd -P)"
+for path in "${mount_paths[@]}"; do
+	[[ "$path" != "/" && "$path" != "$home" ]] || die "refusing to mount $path into the sandbox, run it in a project directory"
+done
+
+name="${name:-$(slugify "$(basename "$workdir")")}"
+
+tmp_dir="$(mktemp -d -t openshell-claude)"
+trap 'rm -rf "$tmp_dir"' EXIT
+
+claude_args=()
+if sandbox_exists "$name"; then
+	[[ "$sync_config" == true ]] && upload_claude_dir "$name"
+	[[ "$continue_conversation" == true ]] && has_conversation "$name" && claude_args+=(--continue)
+else
+	create_sandbox "$name"
+fi
+
+# `sandbox exec` does not apply the image's ENV, so Claude Code settings are passed here
+env_args=(--env DISABLE_AUTOUPDATER=1 --env CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1)
+if command -v git >/dev/null 2>&1; then
+	git_name="$(git config user.name || true)"
+	git_email="$(git config user.email || true)"
+	[[ -n "$git_name" ]] && env_args+=(--env "GIT_AUTHOR_NAME=$git_name" --env "GIT_COMMITTER_NAME=$git_name")
+	[[ -n "$git_email" ]] && env_args+=(--env "GIT_AUTHOR_EMAIL=$git_email" --env "GIT_COMMITTER_EMAIL=$git_email")
+fi
+
+# exec replaces this shell, so the EXIT trap would not run
+rm -rf "$tmp_dir"
+exec openshell sandbox exec "$name" --tty --workdir "$workdir" "${env_args[@]}" \
+	-- claude "${claude_args[@]}" "$@"
