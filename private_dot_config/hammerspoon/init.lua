@@ -112,6 +112,8 @@ local function toggleTailscale()
 end
 
 local function toggleTailscaleExitNode()
+	hs.alert.show("Toggle Tailscale VPN")
+
 	runTailscale({ "debug", "prefs" }, function(exitCode, stdOut, stdErr)
 		if exitCode ~= 0 then
 			hs.alert.show("Tailscale prefs failed")
