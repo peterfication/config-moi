@@ -15,6 +15,10 @@ yarn = "4.18.1"
 fx = "40.0.0"
 "github:jesseduffield/lazygit" = "0.66.2"
 "aqua:neovim/neovim" = "0.12.5"
+"github:ai-openshell/openshell" = "0.1.9"
+# Keep the OpenShell gateway and VM driver on the same version as the CLI above
+"http:openshell-gateway" = { version = "0.1.9", url = "https://github.com/ai-openshell/openshell/releases/download/v{{ version }}/openshell-gateway-aarch64-apple-darwin.tar.gz" }
+"http:openshell-driver-vm" = { version = "0.1.9", url = "https://github.com/ai-openshell/openshell/releases/download/v{{ version }}/openshell-driver-vm-aarch64-apple-darwin.tar.gz", postinstall = "codesign --entitlements \"$HOME/.config/openshell/openshell-driver-vm.entitlements.plist\" --force -s - \"$MISE_TOOL_INSTALL_PATH/openshell-driver-vm\"" }
 "github:earendil-works/pi" = "v0.84.4" # https://github.com/earendil-works/pi
 prettier = "3.8.1"
 "github:retlehs/quien" = "0.12.0" # https://github.com/retlehs/quien

@@ -163,6 +163,45 @@ checksum = "sha256:45a616accf2660376a5bc7d0eb9441e55e08bc572b1d3aaedffeb3a290528
 url = "https://github.com/agavra/tuicr/releases/download/v0.29.0/tuicr-0.29.0-x86_64-pc-windows-msvc.zip"
 url_api = "https://api.github.com/repos/agavra/tuicr/releases/assets/748379657"
 
+[[tools."github:ai-openshell/openshell"]]
+version = "0.1.9"
+backend = "github:ai-openshell/openshell"
+
+[tools."github:ai-openshell/openshell"."platforms.linux-arm64"]
+checksum = "sha256:a41701c2dc7ac1aba13b0d48678dcb95090055aa42a2103b2ae712fb79338b1a"
+url = "https://github.com/ai-openshell/openshell/releases/download/v0.1.9/openshell-gateway-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/ai-openshell/openshell/releases/assets/760295210"
+
+[tools."github:ai-openshell/openshell"."platforms.linux-arm64-musl"]
+checksum = "sha256:cb923d08703b966f7e0e6b1483ed4ba6ed77bc10812c5502bcc1fb6ee0f6ad59"
+url = "https://github.com/ai-openshell/openshell/releases/download/v0.1.9/openshell-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/ai-openshell/openshell/releases/assets/760295208"
+
+[tools."github:ai-openshell/openshell"."platforms.linux-x64"]
+checksum = "sha256:c32085d64ccef037121c0e87bee1a57d6e886d77f77bb8b260cb08f0a6cce6a3"
+url = "https://github.com/ai-openshell/openshell/releases/download/v0.1.9/openshell-gateway-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/ai-openshell/openshell/releases/assets/760295227"
+
+[tools."github:ai-openshell/openshell"."platforms.linux-x64-musl"]
+checksum = "sha256:3856ac7b6b2e33d6c8ab72a1036444156516e7303da85a9b13f661a2aa63bd2d"
+url = "https://github.com/ai-openshell/openshell/releases/download/v0.1.9/openshell-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/ai-openshell/openshell/releases/assets/760295202"
+
+[tools."github:ai-openshell/openshell"."platforms.macos-arm64"]
+checksum = "sha256:355bf612159eaa0c5375facd8f27536d9cb54e5af030328ea839a927a7901da5"
+url = "https://github.com/ai-openshell/openshell/releases/download/v0.1.9/openshell-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/ai-openshell/openshell/releases/assets/760295228"
+
+[tools."github:ai-openshell/openshell"."platforms.macos-x64"]
+checksum = "sha256:9522a8ffa970b3def5225d253e8cb74b1f6e1a81fafbc305cc3ab268bbf3e7d8"
+url = "https://github.com/ai-openshell/openshell/releases/download/v0.1.9/openshell_0.1.9_amd64.snap"
+url_api = "https://api.github.com/repos/ai-openshell/openshell/releases/assets/760295196"
+
+[tools."github:ai-openshell/openshell"."platforms.windows-x64"]
+checksum = "sha256:f95c30cfc957d1d3150269c6e681c5cadec4a717408956e7ff3a9d265056ffc4"
+url = "https://github.com/ai-openshell/openshell/releases/download/v0.1.9/OpenShell-Windows-0.1.9-x64.zip"
+url_api = "https://api.github.com/repos/ai-openshell/openshell/releases/assets/768747020"
+
 [[tools."github:domcyrus/rustnet"]]
 version = "1.7.0"
 backend = "github:domcyrus/rustnet"
@@ -683,6 +722,57 @@ url = "https://dl.google.com/go/go1.26.1.darwin-amd64.tar.gz"
 [tools.go."platforms.windows-x64"]
 checksum = "sha256:9b68112c913f45b7aebbf13c036721264bbba7e03a642f8f7490c561eebd1ecc"
 url = "https://dl.google.com/go/go1.26.1.windows-amd64.zip"
+
+[[tools."http:openshell-driver-vm"]]
+version = "0.1.9"
+backend = "http:openshell-driver-vm"
+
+[tools."http:openshell-driver-vm"."platforms.linux-arm64"]
+url = "https://github.com/ai-openshell/openshell/releases/download/v0.1.9/openshell-driver-vm-aarch64-apple-darwin.tar.gz"
+
+[tools."http:openshell-driver-vm"."platforms.linux-arm64-musl"]
+url = "https://github.com/ai-openshell/openshell/releases/download/v0.1.9/openshell-driver-vm-aarch64-apple-darwin.tar.gz"
+
+[tools."http:openshell-driver-vm"."platforms.linux-x64"]
+url = "https://github.com/ai-openshell/openshell/releases/download/v0.1.9/openshell-driver-vm-aarch64-apple-darwin.tar.gz"
+
+[tools."http:openshell-driver-vm"."platforms.linux-x64-musl"]
+url = "https://github.com/ai-openshell/openshell/releases/download/v0.1.9/openshell-driver-vm-aarch64-apple-darwin.tar.gz"
+
+[tools."http:openshell-driver-vm"."platforms.macos-arm64"]
+checksum = "blake3:d7b0a5e07161690b03f1c43bf0566a67693c15db731695faa00ced0604786d80"
+url = "https://github.com/ai-openshell/openshell/releases/download/v0.1.9/openshell-driver-vm-aarch64-apple-darwin.tar.gz"
+
+[tools."http:openshell-driver-vm"."platforms.macos-x64"]
+url = "https://github.com/ai-openshell/openshell/releases/download/v0.1.9/openshell-driver-vm-aarch64-apple-darwin.tar.gz"
+
+[tools."http:openshell-driver-vm"."platforms.windows-x64"]
+url = "https://github.com/ai-openshell/openshell/releases/download/v0.1.9/openshell-driver-vm-aarch64-apple-darwin.tar.gz"
+
+[[tools."http:openshell-gateway"]]
+version = "0.1.9"
+backend = "http:openshell-gateway"
+
+[tools."http:openshell-gateway"."platforms.linux-arm64"]
+url = "https://github.com/ai-openshell/openshell/releases/download/v0.1.9/openshell-gateway-aarch64-apple-darwin.tar.gz"
+
+[tools."http:openshell-gateway"."platforms.linux-arm64-musl"]
+url = "https://github.com/ai-openshell/openshell/releases/download/v0.1.9/openshell-gateway-aarch64-apple-darwin.tar.gz"
+
+[tools."http:openshell-gateway"."platforms.linux-x64"]
+url = "https://github.com/ai-openshell/openshell/releases/download/v0.1.9/openshell-gateway-aarch64-apple-darwin.tar.gz"
+
+[tools."http:openshell-gateway"."platforms.linux-x64-musl"]
+url = "https://github.com/ai-openshell/openshell/releases/download/v0.1.9/openshell-gateway-aarch64-apple-darwin.tar.gz"
+
+[tools."http:openshell-gateway"."platforms.macos-arm64"]
+url = "https://github.com/ai-openshell/openshell/releases/download/v0.1.9/openshell-gateway-aarch64-apple-darwin.tar.gz"
+
+[tools."http:openshell-gateway"."platforms.macos-x64"]
+url = "https://github.com/ai-openshell/openshell/releases/download/v0.1.9/openshell-gateway-aarch64-apple-darwin.tar.gz"
+
+[tools."http:openshell-gateway"."platforms.windows-x64"]
+url = "https://github.com/ai-openshell/openshell/releases/download/v0.1.9/openshell-gateway-aarch64-apple-darwin.tar.gz"
 
 [[tools.node]]
 version = "26.12.1"
