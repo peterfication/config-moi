@@ -85,6 +85,45 @@ checksum = "sha256:de8625ba8cf65ebf40eb80a388ba1ec8e9c15b30218821e2c639119b05920
 url = "https://github.com/neovim/neovim/releases/download/v0.12.5/nvim-win64.zip"
 url_api = "https://api.github.com/repos/neovim/neovim/releases/assets/526503770"
 
+[[tools.dust]]
+version = "1.2.7"
+backend = "aqua:bootandy/dust"
+
+[tools.dust."platforms.linux-arm64"]
+checksum = "sha256:64496fe9e56dabb379308b3a079816818f6022d0b93638d06206a9144ca795d9"
+url = "https://github.com/bootandy/dust/releases/download/v1.2.7/dust-v1.2.7-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/699455926"
+
+[tools.dust."platforms.linux-arm64-musl"]
+checksum = "sha256:4c8ebaf224179bfd42db45d8a50fd5304bbd89532eda94db684d309c7b734ed6"
+url = "https://github.com/bootandy/dust/releases/download/v1.2.7/dust-v1.2.7-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/699455978"
+
+[tools.dust."platforms.linux-x64"]
+checksum = "sha256:ec3bf712c660dcaa5578b996741f5cca36b30c021c1e4b49352b11137a95a96e"
+url = "https://github.com/bootandy/dust/releases/download/v1.2.7/dust-v1.2.7-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/699456259"
+
+[tools.dust."platforms.linux-x64-musl"]
+checksum = "sha256:2f1a1106f1f14c0b684b2f0a5f4482c6d53e07a871df4afc11e3b91ade300b55"
+url = "https://github.com/bootandy/dust/releases/download/v1.2.7/dust-v1.2.7-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/699458387"
+
+[tools.dust."platforms.macos-arm64"]
+checksum = "sha256:38e1b3b4e5e6a5cdb044b5fdb32ea45f18dc78276711796214806f20f7705a99"
+url = "https://github.com/bootandy/dust/releases/download/v1.2.7/dust-v1.2.7-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/699455834"
+
+[tools.dust."platforms.macos-x64"]
+checksum = "sha256:5eef77d18dfd2d1d56d1b3c415bc2d41b5b793bc63b5c7f706005d058a48a363"
+url = "https://github.com/bootandy/dust/releases/download/v1.2.7/dust-v1.2.7-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/699455855"
+
+[tools.dust."platforms.windows-x64"]
+checksum = "sha256:d07a41521958895e701ad55f342302b7362799d6a328c843e8e2208ba0564c30"
+url = "https://github.com/bootandy/dust/releases/download/v1.2.7/dust-v1.2.7-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/bootandy/dust/releases/assets/699459326"
+
 [[tools.fx]]
 version = "40.0.0"
 backend = "aqua:antonmedv/fx"

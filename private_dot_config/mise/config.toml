@@ -12,6 +12,7 @@ yarn = "4.18.1"
 # Tools
 "github:so-fancy/diff-so-fancy" = "v1.4.14" # https://github.com/so-fancy/diff-so-fancy
 "github:wilfred/difftastic" = "0.72.0" # https://github.com/wilfred/difftastic
+dust = "1.2.7"
 fx = "40.0.0"
 "github:jesseduffield/lazygit" = "0.66.2"
 "aqua:neovim/neovim" = "0.12.5"
