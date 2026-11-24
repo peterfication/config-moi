@@ -23,6 +23,7 @@ with pkgs; [
   direnv # https://github.com/direnv/direnv
   docker
   duckdb # https://github.com/duckdb/duckdb
+  e2fsprogs # https://e2fsprogs.sourceforge.net/ mkfs.ext4 for the OpenShell VM driver
   eza # https://github.com/eza-community/eza
   fd # https://github.com/sharkdp/fd
   ffmpeg # https://ffmpeg.org/

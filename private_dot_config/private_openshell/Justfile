@@ -1,0 +1,45 @@
+OPENSHELL_LABEL := "openshell.gateway"
+OPENSHELL_PLIST := "~/Library/LaunchAgents/openshell.gateway.plist"
+OPENSHELL_TLS_DIR := "~/.local/state/openshell/tls"
+
+# List all available commands
+[group('openshell')]
+openshell-default:
+  just --list
+
+# Start the OpenShell gateway LaunchAgent
+[group('openshell')]
+openshell-start:
+  launchctl print gui/$(id -u)/{{OPENSHELL_LABEL}} >/dev/null 2>&1 || launchctl bootstrap gui/$(id -u) {{OPENSHELL_PLIST}}
+
+# Stop the OpenShell gateway LaunchAgent (until the next start or login)
+[group('openshell')]
+openshell-stop:
+  launchctl bootout gui/$(id -u)/{{OPENSHELL_LABEL}}
+
+# Restart the OpenShell gateway (e.g. after a version bump)
+[group('openshell')]
+openshell-restart:
+  launchctl kickstart -k gui/$(id -u)/{{OPENSHELL_LABEL}}
+
+# Show the LaunchAgent state and the gateway status
+[group('openshell')]
+openshell-status:
+  -launchctl print gui/$(id -u)/{{OPENSHELL_LABEL}} | grep -E '^\s+(state|pid|last exit code) ='
+  openshell status
+
+# Follow the gateway logs
+[group('openshell')]
+openshell-logs:
+  tail -f ~/Library/Logs/openshell-gateway.out.log ~/Library/Logs/openshell-gateway.err.log
+
+# Validate the gateway config and VM host tools
+[group('openshell')]
+openshell-preflight:
+  openshell-gateway config preflight --path ~/.config/openshell/gateway.toml
+
+# Generate the gateway certificates (if missing) and register the gateway with the CLI
+[group('openshell')]
+openshell-setup:
+  test -d {{OPENSHELL_TLS_DIR}} || openshell-gateway generate-certs --output-dir {{OPENSHELL_TLS_DIR}} --server-san 127.0.0.1 --server-san localhost
+  openshell gateway add https://127.0.0.1:17670 --local --name local

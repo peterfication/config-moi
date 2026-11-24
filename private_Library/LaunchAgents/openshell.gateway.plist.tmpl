@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>openshell.gateway</string>
+
+    <key>ProgramArguments</key>
+    <array>
+      <string>{{ joinPath .chezmoi.homeDir ".local" "share" "mise" "installs" "http-openshell-gateway" "global" "openshell-gateway" }}</string>
+      <string>--config</string>
+      <string>{{ joinPath .chezmoi.homeDir ".config" "openshell" "gateway.toml" }}</string>
+    </array>
+
+    <!-- The VM driver needs mkfs.ext4 from e2fsprogs (nix) -->
+    <key>EnvironmentVariables</key>
+    <dict>
+      <key>PATH</key>
+      <string>/run/current-system/sw/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    </dict>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <dict>
+      <key>SuccessfulExit</key>
+      <false/>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>{{ joinPath .chezmoi.homeDir "Library" "Logs" "openshell-gateway.out.log" }}</string>
+
+    <key>StandardErrorPath</key>
+    <string>{{ joinPath .chezmoi.homeDir "Library" "Logs" "openshell-gateway.err.log" }}</string>
+  </dict>
+</plist>
