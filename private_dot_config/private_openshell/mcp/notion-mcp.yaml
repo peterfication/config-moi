@@ -1,5 +1,5 @@
 # Hosted Notion MCP (https://mcp.notion.com/mcp) with OAuth tokens refreshed by the gateway.
-# Log in with `openshell-notion-login`, which registers an OAuth client for the gateway only.
+# Log in with `openshell-mcp-login notion`, which registers an OAuth client for the gateway only.
 # The sandbox only sees a placeholder in NOTION_MCP_TOKEN, the proxy injects the current access
 # token into MCP requests from /usr/local/bin/claude to mcp.notion.com/mcp.
 id: notion-mcp

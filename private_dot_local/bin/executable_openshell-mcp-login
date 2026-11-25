@@ -1,0 +1,356 @@
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.12"
+# ///
+"""
+Log the OpenShell gateway in to a hosted MCP server (Notion or Asana).
+
+Runs the OAuth authorization code flow with PKCE in the browser and stores the tokens in
+OpenShell:
+
+- the access token as the provider credential (sandboxes only see a placeholder)
+- the client id, client secret (if any) and refresh token as gateway-only refresh
+  material, so the gateway refreshes the access token by itself
+
+Notion: registers a separate OAuth client for the gateway (dynamic client registration),
+so the Notion login of Claude Code on the host is not affected.
+
+Asana: Asana has no dynamic client registration, so it uses an existing Asana MCP app.
+The client id and secret are asked for (or read from ASANA_CLIENT_ID and
+ASANA_CLIENT_SECRET). The gateway gets its own authorization with its own refresh token.
+
+Run it again to log in from scratch, e.g. after the refresh token was revoked.
+
+Usage:
+  openshell-mcp-login notion|asana [--provider NAME] [--redirect-uri URI] [--profile-only]
+
+Attach the provider to a sandbox:
+  openshell-claude --provider notion --provider asana
+  openshell sandbox provider attach SANDBOX asana
+"""
+
+import argparse
+import base64
+import getpass
+import hashlib
+import http.server
+import json
+import os
+import secrets
+import socket
+import subprocess
+import sys
+import time
+import urllib.error
+import urllib.parse
+import urllib.request
+import webbrowser
+from dataclasses import dataclass, replace
+from pathlib import Path
+
+PROFILE_DIR = Path.home() / ".config/openshell/mcp"
+LOGIN_TIMEOUT_SECONDS = 300
+
+
+@dataclass(frozen=True)
+class Service:
+    name: str
+    resource: str
+    authorization_endpoint: str
+    token_endpoint: str
+    profile_id: str
+    credential_key: str
+    # Dynamic client registration endpoint, otherwise an existing app is used
+    registration_endpoint: str | None = None
+    # Fixed redirect URI registered with an existing app, otherwise a free local port
+    redirect_uri: str | None = None
+    scope: str = "default"
+
+
+SERVICES = {
+    "notion": Service(
+        name="Notion",
+        resource="https://mcp.notion.com/mcp",
+        registration_endpoint="https://mcp.notion.com/register",
+        authorization_endpoint="https://mcp.notion.com/authorize",
+        token_endpoint="https://mcp.notion.com/token",
+        profile_id="notion-mcp",
+        credential_key="NOTION_MCP_TOKEN",
+    ),
+    "asana": Service(
+        name="Asana",
+        resource="https://mcp.asana.com/v2/mcp",
+        authorization_endpoint="https://app.asana.com/-/oauth_authorize",
+        token_endpoint="https://app.asana.com/-/oauth_token",
+        profile_id="asana-mcp",
+        credential_key="ASANA_MCP_TOKEN",
+        redirect_uri="http://localhost:8080/callback",
+    ),
+}
+
+
+def die(message: str) -> None:
+    print(f"openshell-mcp-login: {message}", file=sys.stderr)
+    sys.exit(1)
+
+
+def post(url: str, data: bytes, content_type: str) -> dict:
+    request = urllib.request.Request(
+        url,
+        data=data,
+        headers={"Content-Type": content_type, "Accept": "application/json"},
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=30) as response:
+            return json.load(response)
+    except urllib.error.HTTPError as error:
+        die(f"{url} returned {error.code}: {error.read().decode(errors='replace')}")
+
+
+def register_client(service: Service, redirect_uri: str) -> dict:
+    payload = {
+        "client_name": f"OpenShell gateway ({socket.gethostname()})",
+        "redirect_uris": [redirect_uri],
+        "grant_types": ["authorization_code", "refresh_token"],
+        "response_types": ["code"],
+        "token_endpoint_auth_method": "none",
+    }
+    return post(
+        service.registration_endpoint, json.dumps(payload).encode(), "application/json"
+    )
+
+
+def existing_client(service: Service) -> dict:
+    prefix = service.name.upper()
+    client_id = os.environ.get(f"{prefix}_CLIENT_ID") or input(
+        f"{service.name} OAuth app client id: "
+    )
+    client_secret = os.environ.get(f"{prefix}_CLIENT_SECRET") or getpass.getpass(
+        f"{service.name} OAuth app client secret (input is hidden): "
+    )
+    if not client_id.strip() or not client_secret.strip():
+        die("client id and client secret are required")
+    return {"client_id": client_id.strip(), "client_secret": client_secret.strip()}
+
+
+def callback_server(service: Service) -> tuple[http.server.HTTPServer, str]:
+    if service.redirect_uri is None:
+        server = http.server.HTTPServer(
+            ("127.0.0.1", 0), http.server.BaseHTTPRequestHandler
+        )
+        return server, f"http://127.0.0.1:{server.server_port}/callback"
+
+    port = urllib.parse.urlparse(service.redirect_uri).port
+    # macOS lets this server bind next to a wildcard listener (e.g. an SSH forward), which
+    # might then receive the redirect, so refuse when anything answers on the port
+    with socket.socket() as probe:
+        port_in_use = probe.connect_ex(("127.0.0.1", port)) == 0
+    try:
+        if port_in_use:
+            raise OSError
+        server = http.server.HTTPServer(
+            ("127.0.0.1", port), http.server.BaseHTTPRequestHandler
+        )
+    except OSError:
+        die(
+            f"port {port} is in use, free it or register another redirect URI with the"
+            f" {service.name} app and pass it with --redirect-uri"
+        )
+    return server, service.redirect_uri
+
+
+def wait_for_code(service: Service, server: http.server.HTTPServer, state: str) -> str:
+    result: dict[str, str] = {}
+
+    class CallbackHandler(http.server.BaseHTTPRequestHandler):
+        def do_GET(self) -> None:
+            query = urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query)
+            if query.get("state", [""])[0] != state:
+                result["error"] = "state mismatch"
+            elif "error" in query:
+                result["error"] = query["error"][0]
+            else:
+                result["code"] = query.get("code", [""])[0]
+            message = (
+                f"{service.name} login failed, see the terminal."
+                if "error" in result
+                else f"{service.name} login done. You can close this tab."
+            )
+            self.send_response(200)
+            self.send_header("Content-Type", "text/plain; charset=utf-8")
+            self.end_headers()
+            self.wfile.write(message.encode())
+
+        def log_message(self, format: str, *args: object) -> None:
+            pass
+
+    server.RequestHandlerClass = CallbackHandler
+    server.timeout = LOGIN_TIMEOUT_SECONDS
+    server.handle_request()
+    if "error" in result:
+        die(f"authorization failed: {result['error']}")
+    if not result.get("code"):
+        die("no authorization code received (timed out?)")
+    return result["code"]
+
+
+def openshell(*args: str, env: dict[str, str] | None = None) -> None:
+    subprocess.run(["openshell", *args], check=True, env={**os.environ, **(env or {})})
+
+
+def provider_exists(name: str) -> bool:
+    return (
+        subprocess.run(
+            ["openshell", "provider", "get", name],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            check=False,
+        ).returncode
+        == 0
+    )
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(
+        description="Log the OpenShell gateway in to a hosted MCP server."
+    )
+    parser.add_argument("service", choices=SERVICES, help="MCP server to log in to")
+    parser.add_argument("--provider", help="Provider name (default: the service name)")
+    parser.add_argument(
+        "--redirect-uri",
+        help="Redirect URI registered with the existing app (Asana default: http://localhost:8080/callback)",
+    )
+    parser.add_argument(
+        "--profile-only", action="store_true", help="Only sync the provider profile"
+    )
+    args = parser.parse_args()
+    service = SERVICES[args.service]
+    if args.redirect_uri:
+        service = replace(service, redirect_uri=args.redirect_uri)
+    provider = args.provider or args.service
+
+    subprocess.run(
+        ["openshell-profile-sync", str(PROFILE_DIR / f"{service.profile_id}.yaml")],
+        check=True,
+    )
+    if args.profile_only:
+        return
+
+    server, redirect_uri = callback_server(service)
+    if service.registration_endpoint:
+        client = register_client(service, redirect_uri)
+    else:
+        client = existing_client(service)
+    client_id = client["client_id"]
+
+    code_verifier = secrets.token_urlsafe(64)
+    code_challenge = (
+        base64.urlsafe_b64encode(hashlib.sha256(code_verifier.encode()).digest())
+        .rstrip(b"=")
+        .decode()
+    )
+    state = secrets.token_urlsafe(32)
+    authorization_url = (
+        service.authorization_endpoint
+        + "?"
+        + urllib.parse.urlencode(
+            {
+                "response_type": "code",
+                "client_id": client_id,
+                "redirect_uri": redirect_uri,
+                "code_challenge": code_challenge,
+                "code_challenge_method": "S256",
+                "state": state,
+                "scope": service.scope,
+                "resource": service.resource,
+            }
+        )
+    )
+
+    print(
+        f"Opening the {service.name} login in your browser. If it does not open, visit:"
+    )
+    print(f"\n  {authorization_url}\n")
+    webbrowser.open(authorization_url)
+    code = wait_for_code(service, server, state)
+
+    token_params = {
+        "grant_type": "authorization_code",
+        "code": code,
+        "redirect_uri": redirect_uri,
+        "client_id": client_id,
+        "code_verifier": code_verifier,
+        "resource": service.resource,
+    }
+    if client.get("client_secret"):
+        token_params["client_secret"] = client["client_secret"]
+    tokens = post(
+        service.token_endpoint,
+        urllib.parse.urlencode(token_params).encode(),
+        "application/x-www-form-urlencoded",
+    )
+    if not tokens.get("refresh_token"):
+        die(
+            f"{service.name} did not return a refresh token, the gateway cannot refresh the access token"
+        )
+
+    expires_at = str(int((time.time() + int(tokens.get("expires_in", 3600))) * 1000))
+    # Secrets go through the environment, never through process arguments
+    secret_env = {
+        service.credential_key: tokens["access_token"],
+        "OPENSHELL_MCP_REFRESH_TOKEN": tokens["refresh_token"],
+        "OPENSHELL_MCP_CLIENT_SECRET": client.get("client_secret", ""),
+    }
+
+    if provider_exists(provider):
+        openshell(
+            "provider",
+            "update",
+            provider,
+            "--credential",
+            service.credential_key,
+            env=secret_env,
+        )
+    else:
+        openshell(
+            "provider",
+            "create",
+            "--name",
+            provider,
+            "--type",
+            service.profile_id,
+            "--credential",
+            service.credential_key,
+            env=secret_env,
+        )
+
+    refresh_args = [
+        "provider",
+        "refresh",
+        "configure",
+        provider,
+        "--credential-key",
+        service.credential_key,
+        "--strategy",
+        "oauth2-refresh-token",
+        "--material",
+        f"client_id={client_id}",
+        "--secret-material-env",
+        "refresh_token=OPENSHELL_MCP_REFRESH_TOKEN",
+        "--credential-expires-at",
+        expires_at,
+    ]
+    if client.get("client_secret"):
+        refresh_args += [
+            "--secret-material-env",
+            "client_secret=OPENSHELL_MCP_CLIENT_SECRET",
+        ]
+    openshell(*refresh_args, env=secret_env)
+
+    print(f"\n{service.name} MCP provider '{provider}' is ready. Attach it with:")
+    print(f"\n  openshell-claude --provider {provider}")
+
+
+if __name__ == "__main__":
+    main()

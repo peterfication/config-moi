@@ -31,7 +31,7 @@ Environment:
   OPENSHELL_CLAUDE_SKILLS    Skills copied into new sandboxes (default: ~/.config/agents/skills)
 
 Setup: just -f ~/.config/openshell/Justfile openshell-claude-image && openshell-claude-login
-Notion MCP: openshell-notion-login, then --provider notion
+Notion/Asana MCP: openshell-mcp-login notion|asana, then --provider notion|asana
 Change providers later: openshell sandbox provider attach|detach SANDBOX PROVIDER
 Delete a sandbox: openshell sandbox delete NAME
 EOF

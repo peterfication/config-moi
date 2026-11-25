@@ -2,6 +2,13 @@
   "hasCompletedOnboarding": true,
   "lastOnboardingVersion": "2.1.311",
   "mcpServers": {
+    "asana": {
+      "type": "http",
+      "url": "https://mcp.asana.com/v2/mcp",
+      "headers": {
+        "Authorization": "Bearer ${ASANA_MCP_TOKEN}"
+      }
+    },
     "notion": {
       "type": "http",
       "url": "https://mcp.notion.com/mcp",
