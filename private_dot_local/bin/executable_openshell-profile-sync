@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+usage() {
+	cat <<'EOF'
+Usage: openshell-profile-sync FILE
+
+Import an OpenShell provider profile from FILE, or update the stored profile
+with the same id when it already exists.
+EOF
+}
+
+die() {
+	printf "openshell-profile-sync: %s\n" "$*" >&2
+	exit 1
+}
+
+require_command() {
+	command -v "$1" >/dev/null 2>&1 || die "missing required command: $1"
+}
+
+case "${1:-}" in
+"" | -h | --help)
+	usage
+	[[ -n "${1:-}" ]] || exit 1
+	exit 0
+	;;
+esac
+
+require_command openshell
+require_command yq
+
+profile_file="$1"
+[[ -f "$profile_file" ]] || die "missing provider profile: $profile_file (run chezmoi apply)"
+profile_id="$(yq '.id' "$profile_file")"
+
+if openshell profile describe "$profile_id" >/dev/null 2>&1; then
+	# Updates must carry the current resource_version of the stored profile
+	resource_version="$(openshell profile export "$profile_id" | yq '.resource_version')"
+	# openshell detects the file format from the extension
+	tmp_dir="$(mktemp -d -t openshell-profile-sync)"
+	trap 'rm -rf "$tmp_dir"' EXIT
+	RESOURCE_VERSION="$resource_version" yq '.resource_version = env(RESOURCE_VERSION)' "$profile_file" >"$tmp_dir/profile.yaml"
+	openshell profile update --file "$tmp_dir/profile.yaml" "$profile_id"
+else
+	openshell profile import -f "$profile_file"
+fi

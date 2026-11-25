@@ -1,4 +1,13 @@
 {
   "hasCompletedOnboarding": true,
-  "lastOnboardingVersion": "2.1.311"
+  "lastOnboardingVersion": "2.1.311",
+  "mcpServers": {
+    "notion": {
+      "type": "http",
+      "url": "https://mcp.notion.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${NOTION_MCP_TOKEN}"
+      }
+    }
+  }
 }

@@ -19,10 +19,11 @@ Claude Code config from ~/.config/openshell/claude/home, the skills from
 Conversations stay separate per sandbox.
 
 Options:
-  --name NAME    Sandbox name (default: name of the current directory or worktree)
-  --new          Start a new conversation in an existing sandbox
-  --sync-config  Copy the default config, skills and status line into an existing sandbox again
-  -h, --help     Show this help
+  --name NAME      Sandbox name (default: name of the current directory or worktree)
+  --provider NAME  Attach another provider, e.g. notion (repeatable)
+  --new            Start a new conversation in an existing sandbox
+  --sync-config    Copy the default config, skills and status line into an existing sandbox again
+  -h, --help       Show this help
 
 Environment:
   OPENSHELL_CLAUDE_IMAGE     Sandbox image (default: localhost/claude-agent:latest)
@@ -30,6 +31,8 @@ Environment:
   OPENSHELL_CLAUDE_SKILLS    Skills copied into new sandboxes (default: ~/.config/agents/skills)
 
 Setup: just -f ~/.config/openshell/Justfile openshell-claude-image && openshell-claude-login
+Notion MCP: openshell-notion-login, then --provider notion
+Change providers later: openshell sandbox provider attach|detach SANDBOX PROVIDER
 Delete a sandbox: openshell sandbox delete NAME
 EOF
 }
@@ -64,7 +67,12 @@ has_conversation() {
 
 create_sandbox() {
 	local name="$1"
-	local policy mounts path
+	local policy mounts path provider
+	local provider_args=(--provider "${OPENSHELL_CLAUDE_PROVIDER:-claude}")
+
+	for provider in "${providers[@]}"; do
+		provider_args+=(--provider "$provider")
+	done
 
 	# openshell detects the file format from the extension
 	policy="$tmp_dir/policy.yaml"
@@ -86,7 +94,7 @@ create_sandbox() {
 	openshell sandbox create \
 		--name "$name" \
 		--from "${OPENSHELL_CLAUDE_IMAGE:-localhost/claude-agent:latest}" \
-		--provider "${OPENSHELL_CLAUDE_PROVIDER:-claude}" \
+		"${provider_args[@]}" \
 		--no-auto-providers \
 		--policy "$policy" \
 		--driver-config-json "$mounts" \
@@ -123,6 +131,7 @@ upload_claude_json() {
 }
 
 name=""
+providers=()
 continue_conversation=true
 sync_config=false
 template="$HOME/.config/openshell/claude/home"
@@ -132,6 +141,11 @@ while (($# > 0)); do
 	--name)
 		[[ $# -ge 2 ]] || die "--name needs a value"
 		name="$2"
+		shift 2
+		;;
+	--provider)
+		[[ $# -ge 2 ]] || die "--provider needs a value"
+		providers+=("$2")
 		shift 2
 		;;
 	--new)
@@ -182,6 +196,10 @@ trap 'rm -rf "$tmp_dir"' EXIT
 claude_args=()
 if sandbox_exists "$name"; then
 	[[ "$sync_config" == true ]] && upload_claude_dir "$name"
+	for provider in "${providers[@]}"; do
+		# Fails harmlessly when the provider is already attached
+		openshell sandbox provider attach "$name" "$provider" || true
+	done
 	[[ "$continue_conversation" == true ]] && has_conversation "$name" && claude_args+=(--continue)
 else
 	create_sandbox "$name"

@@ -48,25 +48,12 @@ esac
 
 require_command openshell
 require_command claude
-require_command yq
+require_command openshell-profile-sync
 
-profile_file="$HOME/.config/openshell/claude/claude-code-oauth.yaml"
 profile_id="claude-code-oauth"
 provider="${OPENSHELL_CLAUDE_PROVIDER:-claude}"
 
-[[ -f "$profile_file" ]] || die "missing provider profile: $profile_file (run chezmoi apply)"
-
-if openshell profile describe "$profile_id" >/dev/null 2>&1; then
-	# Updates must carry the current resource_version of the stored profile
-	resource_version="$(openshell profile export "$profile_id" | yq '.resource_version')"
-	# openshell detects the file format from the extension
-	tmp_dir="$(mktemp -d -t openshell-claude-login)"
-	trap 'rm -rf "$tmp_dir"' EXIT
-	RESOURCE_VERSION="$resource_version" yq '.resource_version = env(RESOURCE_VERSION)' "$profile_file" >"$tmp_dir/profile.yaml"
-	openshell profile update --file "$tmp_dir/profile.yaml" "$profile_id"
-else
-	openshell profile import -f "$profile_file"
-fi
+openshell-profile-sync "$HOME/.config/openshell/claude/claude-code-oauth.yaml"
 
 [[ "$profile_only" == true ]] && exit 0
 
