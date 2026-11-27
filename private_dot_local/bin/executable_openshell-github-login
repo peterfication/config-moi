@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+usage() {
+	cat <<'EOF'
+Usage: openshell-github-login [--alt] PROVIDER GH_USER
+
+Store the GitHub CLI token of GH_USER (from `gh auth token --user GH_USER`) in the
+OpenShell provider PROVIDER. Run it once per GitHub account and again after the
+host token changed.
+
+Without --alt the provider uses the github profile (GH_TOKEN/GITHUB_TOKEN), with
+--alt the github-alt profile (GH_TOKEN_ALT) for a second account in the same
+sandbox. Sandboxes only see placeholders. openshell-claude routes git credentials
+for repositories behind SSH host aliases (github.com-<alias>) to GH_TOKEN_ALT.
+
+Examples:
+  openshell-github-login github my-user
+  openshell-github-login --alt github-work my-work-user
+EOF
+}
+
+die() {
+	printf "openshell-github-login: %s\n" "$*" >&2
+	exit 1
+}
+
+require_command() {
+	command -v "$1" >/dev/null 2>&1 || die "missing required command: $1"
+}
+
+profile_id="github"
+credential_key="GH_TOKEN"
+
+case "${1:-}" in
+-h | --help)
+	usage
+	exit 0
+	;;
+--alt)
+	profile_id="github-alt"
+	credential_key="GH_TOKEN_ALT"
+	shift
+	;;
+esac
+
+[[ $# -eq 2 ]] || {
+	usage >&2
+	exit 1
+}
+
+require_command openshell
+require_command openshell-profile-sync
+require_command gh
+
+provider="$1"
+gh_user="$2"
+
+openshell-profile-sync "$HOME/.config/openshell/github/$profile_id.yaml"
+
+token="$(gh auth token --hostname github.com --user "$gh_user")" || die "no gh login for $gh_user (gh auth login)"
+export "$credential_key=$token"
+
+if openshell provider get "$provider" >/dev/null 2>&1; then
+	provider_type="$(openshell provider get "$provider" | awk '/Type:/ {print $2}')"
+	[[ "$provider_type" == "$profile_id" ]] ||
+		die "provider $provider has type $provider_type, delete it first: openshell provider delete $provider"
+	# Passing only the variable name makes openshell read the value from the environment
+	openshell provider update "$provider" --credential "$credential_key"
+else
+	openshell provider create --name "$provider" --type "$profile_id" --credential "$credential_key"
+fi

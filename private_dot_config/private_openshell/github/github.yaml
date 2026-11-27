@@ -1,0 +1,43 @@
+# GitHub API and Git over HTTPS for gh and git, including push and API writes.
+# Based on https://github.com/ai-openshell/openshell/blob/v0.1.9/providers/github.yaml, which
+# is read-only. Create one provider per GitHub account with `openshell-github-login`.
+# The sandbox only sees a placeholder in GH_TOKEN/GITHUB_TOKEN, the proxy injects the token
+# (Bearer, token or Basic authorization) for requests from gh and git to the endpoints below.
+id: github
+display_name: GitHub
+description: GitHub API and Git operations including push
+category: source_control
+credentials:
+  - name: api_token
+    description: GitHub token
+    env_vars: [GH_TOKEN, GITHUB_TOKEN]
+    required: true
+    auth_style: bearer
+    header_name: authorization
+discovery:
+  credentials: [api_token]
+endpoints:
+  - host: api.github.com
+    port: 443
+    protocol: rest
+    access: read-write
+    enforcement: enforce
+  - host: api.github.com
+    port: 443
+    path: /graphql
+    protocol: graphql
+    access: read-write
+    enforcement: enforce
+  # Git smart HTTP: clone/fetch (git-upload-pack) and push (git-receive-pack)
+  - host: github.com
+    port: 443
+    protocol: rest
+    enforcement: enforce
+    rules:
+      - allow: { method: GET, path: "**" }
+      - allow: { method: HEAD, path: "**" }
+      - allow: { method: OPTIONS, path: "**" }
+      - allow: { method: POST, path: "/**/git-upload-pack" }
+      - allow: { method: POST, path: "/**/git-receive-pack" }
+# git-remote-https is matched by its git ancestry
+binaries: [/usr/local/bin/gh, /usr/bin/git]

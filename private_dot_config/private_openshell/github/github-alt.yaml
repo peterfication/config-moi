@@ -1,0 +1,42 @@
+# Second GitHub account next to the `github` profile in the same sandbox (same endpoints and
+# binaries). Its token goes into GH_TOKEN_ALT; openshell-claude routes git credentials for the
+# orgs behind SSH host aliases (github.com-<alias>) to it, gh needs GH_TOKEN=$GH_TOKEN_ALT.
+# Create the provider with `openshell-github-login --alt PROVIDER GH_USER`.
+id: github-alt
+display_name: GitHub (second account)
+description: GitHub API and Git operations including push, for a second GitHub account
+category: source_control
+credentials:
+  - name: api_token
+    description: GitHub token
+    env_vars: [GH_TOKEN_ALT]
+    required: true
+    auth_style: bearer
+    header_name: authorization
+discovery:
+  credentials: [api_token]
+endpoints:
+  - host: api.github.com
+    port: 443
+    protocol: rest
+    access: read-write
+    enforcement: enforce
+  - host: api.github.com
+    port: 443
+    path: /graphql
+    protocol: graphql
+    access: read-write
+    enforcement: enforce
+  # Git smart HTTP: clone/fetch (git-upload-pack) and push (git-receive-pack)
+  - host: github.com
+    port: 443
+    protocol: rest
+    enforcement: enforce
+    rules:
+      - allow: { method: GET, path: "**" }
+      - allow: { method: HEAD, path: "**" }
+      - allow: { method: OPTIONS, path: "**" }
+      - allow: { method: POST, path: "/**/git-upload-pack" }
+      - allow: { method: POST, path: "/**/git-receive-pack" }
+# git-remote-https is matched by its git ancestry
+binaries: [/usr/local/bin/gh, /usr/bin/git]

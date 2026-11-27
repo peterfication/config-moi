@@ -32,6 +32,9 @@ Environment:
 
 Setup: just -f ~/.config/openshell/Justfile openshell-claude-image && openshell-claude-login
 Notion/Asana MCP: openshell-mcp-login notion|asana, then --provider notion|asana
+GitHub: openshell-github-login [--alt] PROVIDER GH_USER, then --provider PROVIDER. GitHub SSH
+  remotes are used over HTTPS inside the sandbox; remotes behind an SSH host alias
+  (github.com-<alias>) use the second account (--alt provider, GH_TOKEN_ALT)
 Change providers later: openshell sandbox provider attach|detach SANDBOX PROVIDER
 Delete a sandbox: openshell sandbox delete NAME
 EOF
@@ -212,6 +215,40 @@ if command -v git >/dev/null 2>&1; then
 	git_email="$(git config user.email || true)"
 	[[ -n "$git_name" ]] && env_args+=(--env "GIT_AUTHOR_NAME=$git_name" --env "GIT_COMMITTER_NAME=$git_name")
 	[[ -n "$git_email" ]] && env_args+=(--env "GIT_AUTHOR_EMAIL=$git_email" --env "GIT_COMMITTER_EMAIL=$git_email")
+fi
+
+# SSH cannot leave the sandbox: rewrite the repository's GitHub SSH remotes (including host
+# aliases like github.com-foo) to HTTPS and let gh hand git the GH_TOKEN placeholder. Passed
+# as environment so the shared .git/config stays untouched.
+git_config=(
+	"credential.https://github.com.helper="
+	"credential.https://github.com.helper=!gh auth git-credential"
+)
+alt_owners=()
+if command -v git >/dev/null 2>&1; then
+	remotes="$(git -C "$workdir" remote -v 2>/dev/null | awk '{print $2}' | sort -u)"
+	while IFS= read -r prefix; do
+		git_config+=("url.https://github.com/.insteadOf=$prefix")
+	done < <(sed -nE 's#^((ssh://)?([^@/]+@)?github\.com[^:/]*[:/]).*#\1#p' <<<"$remotes" | sort -u)
+	# Repositories behind an SSH host alias (github.com-<alias>) belong to the second account
+	# (github-alt provider), so git uses GH_TOKEN_ALT for their owners
+	while IFS= read -r owner; do
+		[[ -n "$owner" ]] || continue
+		alt_owners+=("$owner")
+		git_config+=(
+			"credential.https://github.com/$owner.helper="
+			"credential.https://github.com/$owner.helper=!f() { test \"\$1\" = get && printf 'username=x-access-token\npassword=%s\n' \"\$GH_TOKEN_ALT\"; }; f"
+		)
+	done < <(sed -nE 's#^(ssh://)?([^@/]+@)?github\.com-[^:/]+[:/]([^/]+)/.*#\3#p' <<<"$remotes" | sort -u)
+fi
+env_args+=(--env "GIT_CONFIG_COUNT=${#git_config[@]}")
+for i in "${!git_config[@]}"; do
+	env_args+=(--env "GIT_CONFIG_KEY_$i=${git_config[$i]%%=*}" --env "GIT_CONFIG_VALUE_$i=${git_config[$i]#*=}")
+done
+
+# gh only reads GH_TOKEN, so tell Claude which owners need the second account's token
+if ((${#alt_owners[@]} > 0)); then
+	claude_args+=(--append-system-prompt "GitHub: repositories of ${alt_owners[*]} belong to a second account. Run gh for them as \`GH_TOKEN=\"\$GH_TOKEN_ALT\" gh ...\`. git picks the right token by itself.")
 fi
 
 # exec replaces this shell, so the EXIT trap would not run
