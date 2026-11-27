@@ -1,0 +1,16 @@
+#!/bin/sh
+# First and last commit date per author, using author dates and .mailmap names.
+# Extra args are passed to git log (e.g. --all to include every branch, or
+# -- <path> to scope to a subtree).
+git log --pretty=%as%x09%aN "$@" | awk -F'\t' '
+  {
+    # Author dates survive rebases and squash merges, so they are not in log order.
+    if (!($2 in first) || $1 < first[$2]) first[$2] = $1
+    if (!($2 in last) || $1 > last[$2]) last[$2] = $1
+    n[$2]++
+  }
+  END {
+    for (a in first)
+      printf "%-30s %s -> %s  (%d commits)\n", a, first[a], last[a], n[a]
+  }
+' | sort
